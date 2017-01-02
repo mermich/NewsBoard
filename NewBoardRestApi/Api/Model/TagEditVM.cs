@@ -10,7 +10,7 @@ namespace NewBoardRestApi.Api.Model
     {
         public int Id { get; set; }
 
-        public string Label { get; set; }
+        public string Label { get; set; } = "";
 
         public bool Enabled { get; set; }
 

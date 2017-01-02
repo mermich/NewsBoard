@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using NewsBoard.Tools.JsonResult;
 using System.Linq;
 using NewBoardRestApi.Api;
+using System.Collections.Generic;
+using NewBoardRestApi.Api.Model;
 
 namespace NewsBoard.wwwroot.Feed.FeedList
 {
@@ -13,10 +15,10 @@ namespace NewsBoard.wwwroot.Feed.FeedList
     public class FeedListController : BaseController
     {
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult Index(FeedListFilterVM filter)
         {
             var feedRepo = new FeedApi(HttpContext.Session.Id);
-            var model = feedRepo.ListFeed();
+            var model = feedRepo.ListFeed(filter);
 
             return ReturnView("FeedListView", model);
         }
@@ -26,7 +28,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
             var feedRepo = new FeedApi(HttpContext.Session.Id);
             feedRepo.SubscribeFeed(feedId);
 
-            return new ReplaceHtmlResult("#UserSubscription", Url.Action("Index", "UserSubscription"));
+            return new ReplaceHtmlResult("#UserSubscription", NewsBoardUrlHelper.Action("Feed", "UserSubscription", "Index"));
         }
 
         public IActionResult Unsubscribe(int feedId)
@@ -34,7 +36,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
             var feedRepo = new FeedApi(HttpContext.Session.Id);
             feedRepo.UnSubscribeFeed(feedId);
 
-            return new ReplaceHtmlResult("#UserSubscription", Url.Action("Index", "UserSubscription"));
+            return new ReplaceHtmlResult("#UserSubscription", NewsBoardUrlHelper.Action("Feed", "UserSubscription", "Index"));
         }
 
         public IActionResult Report(int feedId)
@@ -50,7 +52,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
             var feedRepo = new FeedApi(HttpContext.Session.Id);
             feedRepo.OpenFeed(feedId);
 
-            return new ReplaceHtmlResult("#page", Url.Action("Index", "FeedDetails", new { feedId = feedId }));
+            return new ReplaceHtmlResult("#page", NewsBoardUrlHelper.Action("Feed", "FeedDetails", "Index", new { feedId = feedId }));
         }
     }
 }

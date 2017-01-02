@@ -6,7 +6,7 @@ using NewBoardRestApi.Api.Model;
 
 namespace NewsBoard.wwwroot.User.UserRegister
 {
-    [Area("TagCreate")]
+    [Area("Tag")]
     public class TagCreateController : BaseController
     {
 

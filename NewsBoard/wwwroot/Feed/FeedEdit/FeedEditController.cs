@@ -16,17 +16,21 @@ namespace NewsBoard.wwwroot.Feed.FeedEdit
         // GET: /<controller>/
         public IActionResult Index(int feedId)
         {
-            var model = new FeedApi(HttpContext.Session.Id).GetFeed(feedId);
+            var model = new FeedApi(HttpContext.Session.Id).GetFeedEdit(feedId);
             
-            return ReturnView("FeedListView", model);
+            return ReturnView("FeedEditView", model);
         }
 
 
-        public IActionResult SaveFeed(FeedEditVM feed)
+        public IActionResult Update(FeedEditVM feed)
         {
             var model = new FeedApi(HttpContext.Session.Id).SaveFeed(feed);
 
-            return ReturnView("FeedListView", model);
+
+            return new ComposeResult(
+                new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Feed", "TagList", "Index")),
+                new SuccessMessageResult("Tag Created")
+                );            
         }
     }
 }

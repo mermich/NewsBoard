@@ -94,9 +94,20 @@ namespace NewBoardRestApi.Api
             return feed;
         }
 
-        public FeedVMList ListFeed()
+        public FeedVMList ListFeed(FeedListFilterVM filter)
         {
-            return NewsBoardContext.Feeds.Include(f => f.UserFeeds).Include(f => f.Articles).ToFeedVMList();
+            // Filter
+            if (filter == null)
+                filter = new FeedListFilterVM();
+
+            // Initialize query.
+            return NewsBoardContext
+                .Feeds
+                .Take(100)
+                .Where(f => !filter.Tags.Any() || f.FeedTags.Any(ft => filter.Tags.Contains(ft.TagId)))
+                .Include(f => f.UserFeeds)
+                .Include(f => f.Articles)
+                .ToFeedVMList();
         }
 
 

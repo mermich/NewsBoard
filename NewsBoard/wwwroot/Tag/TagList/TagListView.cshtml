@@ -1,16 +1,12 @@
 ﻿@model TagVMList
 
 
-
-
-
-
 <div class="panel panel-default">
     <div class="panel-heading">
         Les tags
     </div>
 
-    <a href="#" action="@Url.NewsBoardUrlHelper().Action("Tag", "TagCreate", "Index")"
+    <a href="#" action="@Url.NewsBoardUrlHelper().Action("Tag", "TagList", "GetCreate")"
        actiondata="" type="button" name="simpleGetAction">
         Creer un nouveau tag
     </a>
@@ -40,7 +36,7 @@
         </table>
     </div>
 
-    <a href="#" action="@Url.NewsBoardUrlHelper().Action("Tag", "TagCreate", "Index")"
+    <a href="#" action="@Url.NewsBoardUrlHelper().Action("Tag", "TagList", "GetCreate")"
        actiondata="" type="button" name="simpleGetAction">
         Creer un nouveau tag
     </a>

@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Http;
 namespace NewsBoard.Tools
 {
     public abstract class BaseController : Controller
-    {     
-           
+    {
+
         public static bool IsAjaxRequest(HttpRequest request)
         {
             if (request == null)
@@ -25,6 +25,14 @@ namespace NewsBoard.Tools
                 return PartialView(viewName, model);
 
             return View(viewName, model);
+        }
+
+        public NewsBoardUrlHelper NewsBoardUrlHelper
+        {
+            get
+            {
+                return Url.NewsBoardUrlHelper();
+            }
         }
     }
 }

@@ -3,43 +3,35 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        Flux disponibles
+        Edition du flux : @Model.Title
     </div>
 
     <div class="panel-body" style="padding:0px">
-        <table class="table table-striped">
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="btn-group" role="group">
-                            <button class="btn btn-info btn-sm"
-                                    action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Subscribe", new {feedId = Model.Id })"
-                                    actiondata="" type="button" name="simpleGetAction">
-                                S'abonner
-                            </button>
-                            <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
-                            </button>
+
+        <input type="hidden" name="Id" value="@Model.Id" /><br />
+        Description: <input type="text" name="Description" value="@Model.Description" /><br />
+        SyndicationUrl: <input type="text" name="SyndicationUrl" value="@Model.SyndicationUrl" /><br />
+        Title: <input type="text" name="Title" value="@Model.Title" /><br />
+        WebSiteUrl: <input type="text" name="WebSiteUrl" value="@Model.WebSiteUrl" /><br />
 
 
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#" action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Unsubscribe", new {feedId = Model.Id })"
-                                       actiondata="" type="button" name="simpleGetAction">
-                                        Se desabonner
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "OpenDetails", new {feedId = Model.Id })"
-                                       actiondata="" type="button" name="simpleGetAction">
-                                        Masquer
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        @Model.Tags.Items.Count
+        @for (int i = 0; i < Model.Tags.Items.Count; i++)
+        {
+            var idName = "Tags.Items[" + i + "].Id";
+            var isSelectedName = "Tags.Items[" + i + "].IsSelected";
+
+                <input type="hidden" name="@idName" value="@Model.Tags.Items[i].Id" />
+                <input type="checkbox" name="@isSelectedName" value="@Model.Tags.Items[i].IsSelected" />
+                @Model.Tags.Items[i].Label
+                <br />
+    }
+
+        <button class="btn btn-info"
+                action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedEdit", "Update")"
+                actiondata="" type="button" name="simplePostAction">
+            Update
+        </button>
+
     </div>
 </div>

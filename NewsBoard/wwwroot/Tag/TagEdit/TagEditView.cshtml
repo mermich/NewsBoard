@@ -3,6 +3,11 @@
 <h4>Editer un tag</h4>
 
 <input type="hidden" name="Id" value="@Model.Id" />
-<inputtext for="Label"></inputtext>
-<checkBox for="Disabled"></checkBox>
-<navigatePostAction label="Update" action="TagEdit/Update">
+<input type="text" name="Label" value="@Model.Label" />
+<input type="checkbox" name="Enabled" value="@Model.Enabled" />
+
+<button class="btn btn-info"
+        action="@Url.NewsBoardUrlHelper().Action("Tag", "TagEdit", "Update")"
+        actiondata="" type="button" name="simplePostAction">
+    Update
+</button>

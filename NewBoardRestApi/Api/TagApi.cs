@@ -21,11 +21,24 @@ namespace NewBoardRestApi.Api
                 .ToTagVMList(feedTags);
         }
 
+        public TagVMList GetUsedTags()
+        {
+            var feedTags = NewsBoardContext.FeedTags.ToList();
+
+            return NewsBoardContext
+                .Tags
+                .Include(t => t.FeedTags)
+                .Where(t => t.FeedTags.Any())
+                .ToTagVMList(feedTags);
+        }
+
+
+
         public TagCreateVM GetNewCreateTag()
         {
             return new TagCreateVM();
         }
-        
+
 
         public TagVM GetTag(int tagId)
         {
@@ -62,7 +75,7 @@ namespace NewBoardRestApi.Api
 
         public TagVM SaveTag(TagEditVM tagVM)
         {
-            var tag = NewsBoardContext.Tags.FirstOrDefault(t=>t.Id == tagVM.Id);
+            var tag = NewsBoardContext.Tags.FirstOrDefault(t => t.Id == tagVM.Id);
             tag.Label = tagVM.Label;
 
             NewsBoardContext.SaveChanges();

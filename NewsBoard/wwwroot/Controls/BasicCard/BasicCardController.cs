@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using NewBoardRestApi.Api;
+using NewBoardRestApi.Api.Model;
 
 namespace NewsBoard.wwwroot.Controls.BasicCard
 {
@@ -17,7 +18,7 @@ namespace NewsBoard.wwwroot.Controls.BasicCard
             var feedRepo = new FeedApi(HttpContext.Session.Id);
 
             var model = new BasicCardModel();
-            var item = feedRepo.ListFeed().Feeds.First();
+            var item = feedRepo.ListFeed(new FeedListFilterVM()).Feeds.First();
 
             model.Label = item.Title;
             model.Summary = item.Description;

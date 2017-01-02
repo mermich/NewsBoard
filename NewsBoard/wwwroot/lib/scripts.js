@@ -46,11 +46,8 @@ function HidePageLoader() {
 
 
 function LoadCallback(selector) {
-    if (selector == undefined) {
-        selector = $("#page");
-    }
 
-    selector.find("asyncloader").each(function (e) {
+    $("asyncloader").each(function (e) {
         let thisdiv = $(this);
         let url = $(this).attr("url");
 
@@ -61,7 +58,7 @@ function LoadCallback(selector) {
     });
 
 
-    selector.find("[name=simpleGetAction]").off('click').click(function (e) {
+   $("[name=simpleGetAction]").off('click').click(function (e) {
         let target = e.target;
 
         //we could have clicked the icon <i> element
@@ -84,7 +81,7 @@ function LoadCallback(selector) {
         });
     });
 
-    selector.find("[name=simplePostAction]").off('click').click(function (e) {
+   $("[name=simplePostAction]").off('click').click(function (e) {
         let target = e.target;
 
         //we could have clicked the icon <i> element
