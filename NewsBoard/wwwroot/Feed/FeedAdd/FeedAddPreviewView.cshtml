@@ -1,0 +1,36 @@
+﻿@model FeedVMPreview
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        @Html.DisplayFor(m => Model.Title) : @Html.DisplayFor(m => Model.SyndicationUrl)
+        <input type="hidden" name="SyndicationUrl" value="@Model.SyndicationUrl" />
+        <button class="btn btn-info"
+                action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedAdd", "CreateSubscription")"
+                actiondata="" type="button" name="simplePostAction">
+            Ajouter aux flux
+        </button>
+    </div>
+
+    <div class="panel-body" style="padding:0px">
+        <table class="table table-striped">
+            <tbody>
+                @for (int i = 0; i < Model.ArticlePreviews.Count; i++)
+                {
+                    <tr>
+                        <td>@Model.ArticlePreviews[i].Label<br />@Model.ArticlePreviews[i].Summary</td>
+                    </tr>
+                }
+                <tr>
+                    <td>
+                        <button class="btn btn-info"
+                                action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedAdd", "CreateSubscription")"
+                                actiondata="" type="button" name="simplePostAction">
+                            Ajouter aux flux
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

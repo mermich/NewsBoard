@@ -1,0 +1,44 @@
+﻿@model ArticleVMList
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Articles de mes flux
+    </div>
+
+    <div class="panel-body" style="padding:0px">
+        <table class="table table-striped">
+            <tbody>
+                @for (int i = 0; i < Model.Articles.Count; i++)
+                {
+                    <tr id="article-@Model.Articles[i].Id">
+                        <td>@Model.Articles[i].Label</td>
+
+                        <td>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-info btn-sm"
+                                        action="@Url.NewsBoardUrlHelper().Action("User", "UserSubscription", "open", new {articleId=Model.Articles[i].Id })"
+                                        actiondata="" type="button" name="simpleGetAction">
+                                    Ouvrir
+                                </button>
+                                <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("User", "UserSubscription", "hide", new {articleId=Model.Articles[i].Id })"
+                                           actiondata="" type="button" name="simpleGetAction">
+                                            Masquer
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

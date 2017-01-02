@@ -3,3 +3,8 @@
 ################################################################################
 
 /NewBoardRestApi/bin/Debug/netcoreapp1.0
+/NewBoardRestApi/obj/Debug/netcoreapp1.0
+/NewsBoard/bin/Debug/netcoreapp1.0
+/NewsBoard/node_modules/.bin
+/NewsBoard/obj/Debug/netcoreapp1.0
+/NewsBoard/Properties/PublishProfiles

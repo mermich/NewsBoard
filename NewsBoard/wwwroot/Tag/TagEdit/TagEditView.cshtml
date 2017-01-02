@@ -1,0 +1,8 @@
+﻿@model TagEditVM
+
+<h4>Editer un tag</h4>
+
+<input type="hidden" name="Id" value="@Model.Id" />
+<inputtext for="Label"></inputtext>
+<checkBox for="Disabled"></checkBox>
+<navigatePostAction label="Update" action="TagEdit/Update">

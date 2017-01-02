@@ -1,0 +1,24 @@
+﻿@model FeedVMPreview
+
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Ajouter un site a l'annuaire
+    </div>
+
+    <div class="panel-body" style="padding:0px">
+        Adresse du site: <input type="url" style="width:400px;" name="WebSiteUrl" value="" />
+        
+        <button class="btn btn-info"
+                action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedAdd", "GetPreview")"
+                actiondata="" type="button" name="simplePostAction">
+            Previsualiser
+        </button>
+    </div>
+</div>
+
+
+<div id="preview"></div>
+
