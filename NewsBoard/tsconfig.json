@@ -6,6 +6,5 @@
     "sourceMap": true
   },
   "exclude": [
-    "node_modules"
   ]
 }
