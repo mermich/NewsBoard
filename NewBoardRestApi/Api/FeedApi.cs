@@ -213,9 +213,37 @@ namespace NewBoardRestApi.Api
                 .ToArticleList();
         }
 
-        public virtual FeedEditVM SaveFeed(FeedEditVM feed)
+        public void SaveFeed(FeedEditVM feed)
         {
-            return feed;
+            var feedDb = NewsBoardContext.Feeds.FirstOrDefault(f => f.Id == feed.Id);
+            feedDb.Description = feed.Description;
+            feedDb.SyndicationUrl = feed.SyndicationUrl;
+            feedDb.Title = feed.Title;
+            feed.WebSiteUrl = feed.WebSiteUrl;
+
+            //merge tags
+            foreach (var item in feed.Tags.Items)
+            {
+                var existingTag = feedDb.FeedTags.FirstOrDefault(ft => ft.TagId == item.Id);
+                if(existingTag == null)
+                {
+                    if (item.IsSelected)
+                    {
+                        var tagToattach = NewsBoardContext.Tags.FirstOrDefault(t => t.Id == item.Id);
+                        feedDb.FeedTags.Add(new FeedTag { Feed = feedDb, Tag = tagToattach });
+                    }                    
+                }
+                else
+                {
+                    //remove  tag
+                    if (!item.IsSelected)
+                    {
+                       NewsBoardContext.FeedTags.Remove(existingTag);
+                    }
+                }
+            }
+
+            NewsBoardContext.SaveChanges();            
         }
 
         public virtual FeedEditVM GetFeedEdit(int feedId)

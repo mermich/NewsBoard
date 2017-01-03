@@ -20,9 +20,9 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
 
         public IActionResult GetPreview(FeedVMPreview addFeed)
         {
-            return new ReplaceHtmlResult("#preview", Url.Action("Preview", "FeedAdd", new { webSiteUrl = addFeed.WebSiteUrl}));
+            return new ReplaceHtmlResult("#preview", Url.Action("Preview", "FeedAdd", new { webSiteUrl = addFeed.WebSiteUrl }));
         }
-        
+
         public IActionResult Preview(string webSiteUrl)
         {
             var preview = new FeedApi(HttpContext.Session.Id).GetPreview(webSiteUrl);
@@ -35,7 +35,10 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
         {
             var feed = new FeedApi(HttpContext.Session.Id).CreateSubscriptionAndSubScribe(addFeed.SyndicationUrl);
 
-            return ReturnView("FeedAddView", addFeed);
+            return new ComposeResult(
+                new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("feed", "FeedList", "Index")),
+                new SuccessMessageResult("Feed Created")
+                );
         }
     }
 }

@@ -24,11 +24,11 @@ namespace NewsBoard.wwwroot.Feed.FeedEdit
 
         public IActionResult Update(FeedEditVM feed)
         {
-            var model = new FeedApi(HttpContext.Session.Id).SaveFeed(feed);
+           new FeedApi(HttpContext.Session.Id).SaveFeed(feed);
 
 
             return new ComposeResult(
-                new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "TagList", "Index")),
+                new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedList", "Index")),
                 new SuccessMessageResult("Tag Created")
                 );            
         }
