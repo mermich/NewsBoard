@@ -1,4 +1,5 @@
 ﻿@model NewsBoard.wwwroot.Home.HomeModel
+
 <div class="col col-md-6">
     <asyncLoader url="@Url.NewsBoardUrlHelper().Action("User","UserSubscription","Index")">
         Chargement des articles de l'utilisateur...
@@ -7,7 +8,7 @@
 </div>
 
 <div class="col col-md-6">
-    <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","Index")">
+    <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","Index", new FeedListFilterVM() { }) ">
         Chargement des flux ...
         <div class='loader'></div>
     </asyncLoader>

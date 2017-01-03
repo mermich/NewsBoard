@@ -103,16 +103,25 @@ namespace NewBoardRestApi.Api
             // Initialize query.
             return NewsBoardContext
                 .Feeds
-                .Take(100)
+                .Take(filter.MaxItems)
                 .Where(f => !filter.Tags.Any() || f.FeedTags.Any(ft => filter.Tags.Contains(ft.TagId)))
+                .Where(f => filter.OnlyUserSubscription || f.UserFeeds.Any(uf => uf.UserId == currentUser.Id))
+                .Where(f => filter.HideReported || !f.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsReported))
                 .Include(f => f.UserFeeds)
                 .Include(f => f.Articles)
+                .OrderBy(f => f.Title)
                 .ToFeedVMList();
         }
 
 
         public Feed CreateSubscriptionAndSubScribe(string addFeedUrl)
         {
+            if (NewsBoardContext.Feeds.Any(f => f.SyndicationUrl == addFeedUrl))
+            {
+
+            }
+
+
             var feed = CreateSubscription(addFeedUrl);
             SubscribeFeed(feed.Id);
 
