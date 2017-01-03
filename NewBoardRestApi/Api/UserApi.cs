@@ -1,4 +1,5 @@
-﻿using NewBoardRestApi.DataModel;
+﻿using NewBoardRestApi.Api.Model;
+using NewBoardRestApi.DataModel;
 
 namespace NewBoardRestApi.Api
 {
@@ -10,7 +11,9 @@ namespace NewBoardRestApi.Api
 
         public UserApi(User user) :base(user)
         {
+
         }
+      
 
         public User Get()
         {

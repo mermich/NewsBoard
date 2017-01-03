@@ -1,8 +1,8 @@
-﻿using NewsBoard.Tools;
-using Microsoft.AspNetCore.Mvc;
-using NewsBoard.Tools.JsonResult;
+﻿using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.Api;
 using NewBoardRestApi.Api.Model;
+using NewsBoard.Tools;
+using NewsBoard.Tools.JsonResult;
 
 namespace NewsBoard.wwwroot.User.UserRegister
 {
@@ -18,8 +18,8 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
         public ActionResult Register(UserRegisterVM model)
         {
-            var api = new UserRegisterApi();
-            var user = api.Register(model.Email, model.Password);
+            var api = new AuthenticationApi();
+            var user = api.Register(model);
 
             return new SuccessMessageResult("Registered");
         }

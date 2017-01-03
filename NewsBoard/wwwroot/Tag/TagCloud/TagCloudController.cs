@@ -23,7 +23,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
             var filter = new FeedListFilterVM();
             filter.Tags.Add(id);
 
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Index", filter));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedList", "Index", filter));
         }
     }
 }

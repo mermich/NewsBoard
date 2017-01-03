@@ -1,0 +1,14 @@
+﻿@model UserLoginVM
+
+<h4>Connexion</h4>
+
+
+<input type="text" name="Email" value="@Model.Email" />
+<input type="text" name="Password" value="@Model.Password" />
+
+<button class="btn btn-info"
+        action="@Url.NewsBoardUrlHelper().Action("User", "UserLogin", "Login")"
+        actiondata="" type="button" name="simplePostAction">
+    Create
+</button>
+

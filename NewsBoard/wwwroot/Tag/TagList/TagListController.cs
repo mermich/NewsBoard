@@ -20,12 +20,12 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
         public ActionResult GetEdit(int tagId)
         {
-            return new ReplaceMainHtmlResult(Url.Action("Edit", "TagEdit", new { tagId = tagId }));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Tag", "TagEdit","Index", new { tagId = tagId }));
         }
 
         public ActionResult GetCreate()
         {
-            return new ReplaceMainHtmlResult(Url.Action("Index", "TagCreate"));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Tag", "TagCreate", "Index"));
         }
     }
 }

@@ -28,7 +28,7 @@ namespace NewsBoard.wwwroot.Feed.FeedEdit
 
 
             return new ComposeResult(
-                new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Feed", "TagList", "Index")),
+                new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "TagList", "Index")),
                 new SuccessMessageResult("Tag Created")
                 );            
         }

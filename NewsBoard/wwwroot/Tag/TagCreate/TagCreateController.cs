@@ -24,7 +24,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
             api.CreateTag(model);
 
             return new ComposeResult(
-                new ReplaceMainHtmlResult(Url.Action("Index","TagList")),
+                new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Tag", "TagList","Index")),
                 new SuccessMessageResult("Tag Created")
                 );
         }

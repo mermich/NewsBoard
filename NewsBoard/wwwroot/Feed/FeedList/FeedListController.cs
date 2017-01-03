@@ -1,10 +1,8 @@
-﻿using NewsBoard.Tools;
-using Microsoft.AspNetCore.Mvc;
-using NewsBoard.Tools.JsonResult;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.Api;
-using System.Collections.Generic;
 using NewBoardRestApi.Api.Model;
+using NewsBoard.Tools;
+using NewsBoard.Tools.JsonResult;
 
 namespace NewsBoard.wwwroot.Feed.FeedList
 {
@@ -52,7 +50,12 @@ namespace NewsBoard.wwwroot.Feed.FeedList
             var feedRepo = new FeedApi(HttpContext.Session.Id);
             feedRepo.OpenFeed(feedId);
 
-            return new ReplaceHtmlResult("#page", NewsBoardUrlHelper.Action("Feed", "FeedDetails", "Index", new { feedId = feedId }));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedDetails", "Index", new { feedId = feedId }));
+        }
+
+        public IActionResult GetEdit(int feedId)
+        {
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedEdit", "Index", new { feedId = feedId }));
         }
     }
 }
