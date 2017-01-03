@@ -24,10 +24,10 @@ namespace NewBoardRestApi.Syndication.Client
             {
                 items.Add(new SyndicationItem
                 {
-                    Content = item.Elements().First(i => i.Name.LocalName == "description").Value.RemoveHtmlTags().SafeSubtring(200),
-                    Url = item.Elements().First(i => i.Name.LocalName == "link").Value,
-                    PublishDate = ParseDate(item.Elements().First(i => i.Name.LocalName == "pubDate").Value),
-                    Title = item.Elements().First(i => i.Name.LocalName == "title").Value.RemoveHtmlTags().SafeSubtring(200),
+                    Content = item.Elements().FirstOrDefault(i => i.Name.LocalName == "description").GetValueOrEmpty().RemoveHtmlTags().SafeSubtring(200),
+                    Url = item.Elements().FirstOrDefault(i => i.Name.LocalName == "link").GetValueOrEmpty(),
+                    PublishDate = item.Elements().FirstOrDefault(i => i.Name.LocalName == "pubDate").GetValueOrEmpty().ParseDate(),
+                    Title = item.Elements().FirstOrDefault(i => i.Name.LocalName == "title").GetValueOrEmpty().RemoveHtmlTags().SafeSubtring(200),
                 });
             }
             return items;
@@ -59,8 +59,8 @@ namespace NewBoardRestApi.Syndication.Client
                     summary.SyndicationUrl = selfLink.Attribute("href").Value;
 
 
-                summary.PublishDate = DateTime.Parse(doc.Root.Descendants().First(i => i.Name.LocalName == "channel").Elements().First(i => i.Name.LocalName == "lastBuildDate").Value);
-                summary.Description = doc.Root.Descendants().First(i => i.Name.LocalName == "channel").Elements().First(i => i.Name.LocalName == "description").Value.RemoveHtmlTags().SafeSubtring(200);
+                summary.PublishDate = doc.Root.Descendants().First(i => i.Name.LocalName == "channel").Elements().FirstOrDefault(i => i.Name.LocalName == "lastBuildDate").GetValueOrEmpty().ParseDate();
+                summary.Description = doc.Root.Descendants().First(i => i.Name.LocalName == "channel").Elements().FirstOrDefault(i => i.Name.LocalName == "description").GetValueOrEmpty().RemoveHtmlTags().SafeSubtring(200);
             }
             return summary;
         }

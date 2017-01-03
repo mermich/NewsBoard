@@ -24,10 +24,10 @@ namespace NewBoardRestApi.Syndication.Client
             {
                 items.Add(new SyndicationItem
                 {
-                    Content = item.Elements().First(i => i.Name.LocalName == "content").Value.RemoveHtmlTags().SafeSubtring(200),
-                    Url = item.Elements().First(i => i.Name.LocalName == "link").Attribute("href").Value,
-                    PublishDate = ParseDate(item.Elements().First(i => i.Name.LocalName == "published").Value),
-                    Title = item.Elements().First(i => i.Name.LocalName == "title").Value.RemoveHtmlTags().SafeSubtring(200),
+                    Content = item.Elements().FirstOrDefault(i => i.Name.LocalName == "content").GetValueOrEmpty().RemoveHtmlTags().SafeSubtring(200),
+                    Url = item.Elements().FirstOrDefault(i => i.Name.LocalName == "link").Attribute("href").GetValueOrEmpty(),
+                    PublishDate = item.Elements().FirstOrDefault(i => i.Name.LocalName == "published").GetValueOrEmpty().ParseDate(),
+                    Title = item.Elements().FirstOrDefault(i => i.Name.LocalName == "title").GetValueOrEmpty().RemoveHtmlTags().SafeSubtring(200),
                 });
             }
             return items.ToList();
@@ -36,26 +36,26 @@ namespace NewBoardRestApi.Syndication.Client
         public override SyndicationSummary SyndicationSummary()
         {
             var result = new SyndicationSummary();
-            result.Title = doc.Root.Elements().First(i => i.Name.LocalName == "title").Value.RemoveHtmlTags().SafeSubtring(200);
+            result.Title = doc.Root.Elements().FirstOrDefault(i => i.Name.LocalName == "title").GetValueOrEmpty().RemoveHtmlTags().SafeSubtring(200);
 
-            var link = doc.Root.Descendants().First(i => i.Name.LocalName == "link" && !(i.Attributes().Any(a => a.Name == "rel" && a.Value == "self") && i.Attributes().Any(a => a.Name == "type" && a.Value == "application/rss+xml")));
-            if (!string.IsNullOrWhiteSpace(link.Value))
-                result.WebSiteUrl = link.Value;
+            var link = doc.Root.Descendants().FirstOrDefault(i => i.Name.LocalName == "link" && !(i.Attributes().Any(a => a.Name == "rel" && a.Value == "self") && i.Attributes().Any(a => a.Name == "type" && a.Value == "application/rss+xml")));
+            if (!string.IsNullOrWhiteSpace(link.GetValueOrEmpty()))
+                result.WebSiteUrl = link.GetValueOrEmpty();
             else
-                result.WebSiteUrl = link.Attribute("href").Value;
+                result.WebSiteUrl = link.Attribute("href").GetValueOrEmpty();
 
 
             var selfLink = doc.Root.Descendants().FirstOrDefault(i => i.Name.LocalName == "link" && (i.Attributes().Any(a => a.Name == "rel" && a.Value == "self") && i.Attributes().Any(a => a.Name == "type" && a.Value == "application/rss+xml")));
             if (selfLink == null)
                 result.SyndicationUrl = syndicationURl;
-            else if (!string.IsNullOrWhiteSpace(selfLink.Value))
-                result.SyndicationUrl = selfLink.Value;
+            else if (!string.IsNullOrWhiteSpace(selfLink.GetValueOrEmpty()))
+                result.SyndicationUrl = selfLink.GetValueOrEmpty();
             else
-                result.SyndicationUrl = selfLink.Attribute("href").Value;
+                result.SyndicationUrl = selfLink.Attribute("href").GetValueOrEmpty();
 
 
-            result.PublishDate = DateTime.Parse(doc.Root.Elements().First(i => i.Name.LocalName == "updated").Value);
-            result.Description = doc.Root.Elements().First(i => i.Name.LocalName == "subtitle").Value.RemoveHtmlTags().SafeSubtring(200);
+            result.PublishDate = doc.Root.Elements().FirstOrDefault(i => i.Name.LocalName == "updated").GetValueOrEmpty().ParseDate();
+            result.Description = doc.Root.Elements().FirstOrDefault(i => i.Name.LocalName == "subtitle").GetValueOrEmpty().RemoveHtmlTags().SafeSubtring(200);
 
             return result;
         }
