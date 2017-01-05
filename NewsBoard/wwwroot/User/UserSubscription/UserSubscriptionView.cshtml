@@ -1,5 +1,12 @@
 ﻿@model ArticleVMList
+@using NewsBoard.Tools.TagHelpers
+@using NewBoardRestApi.Api.Model
+@using NewsBoard.Tools
 
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, NewsBoard
+@addTagHelper NewsBoard.Tools.TagHelpers, NewsBoard
 
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -40,5 +47,6 @@
                 }
             </tbody>
         </table>
+        <a asp-action="plop"></a>
     </div>
 </div>

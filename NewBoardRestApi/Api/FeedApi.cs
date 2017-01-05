@@ -215,7 +215,10 @@ namespace NewBoardRestApi.Api
 
         public void SaveFeed(FeedEditVM feed)
         {
-            var feedDb = NewsBoardContext.Feeds.FirstOrDefault(f => f.Id == feed.Id);
+            var feedDb = NewsBoardContext.Feeds
+                .Include(f=>f.FeedTags)
+                .FirstOrDefault(f => f.Id == feed.Id);
+
             feedDb.Description = feed.Description;
             feedDb.SyndicationUrl = feed.SyndicationUrl;
             feedDb.Title = feed.Title;
@@ -252,12 +255,13 @@ namespace NewBoardRestApi.Api
             var feed = NewsBoardContext.Feeds
                .Include(f => f.UserFeeds)
                .Include(f => f.Articles)
-                .Include(f => f.FeedTags)
+               .Include(f => f.FeedTags)
                .FirstOrDefault(f => f.Id == feedId);
 
             var possibleTags = NewsBoardContext.Tags.ToList();
 
             var result = feed.ToFeedEdit(possibleTags);
+
             return result;
         }
     }

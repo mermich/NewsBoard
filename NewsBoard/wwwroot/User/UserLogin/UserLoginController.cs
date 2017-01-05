@@ -9,7 +9,6 @@ namespace NewsBoard.wwwroot.User.UserRegister
     [Area("User")]
     public class UserLoginController : BaseController
     {
-
         public IActionResult Index()
         {
             var model = new AuthenticationApi().GetNewUserLoginVM();
@@ -20,14 +19,18 @@ namespace NewsBoard.wwwroot.User.UserRegister
         public ActionResult Login(UserLoginVM model)
         {
             var api = new AuthenticationApi();
-            var userId = api.Login(model);
-
-            if (userId == 0)
-                return new ErrorMessageResult("Login failed");
-            else
+            try
+            {
+                var userId = api.Login(model);
                 return new ComposeResult(
                     new SuccessMessageResult("Logged"),
-                    new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("","Home","Index")));
+                    new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("", "Home", "Index")));
+            }
+            catch (System.Exception)
+            {
+                return new ErrorMessageResult("Login failed");
+                throw;
+            }
         }
     }
 }

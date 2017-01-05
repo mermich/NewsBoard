@@ -21,6 +21,18 @@ namespace NewsBoard.wwwroot.Feed.FeedList
             return ReturnView("FeedListView", model);
         }
 
+        public IActionResult Open(int feedId)
+        {
+            var feedRepo = new FeedApi(HttpContext.Session.Id);
+            var feed = feedRepo.GetFeed(feedId);
+
+            // Opens the article and should also update stats.
+            return new ComposeResult(
+                new OpenNewWindowResult(feed.WebSiteUrl),
+                new WarnMessageResult("Ouverture de lu site dans une nouvelle fenetre."));
+        }
+
+        
         public IActionResult Subscribe(int feedId)
         {
             var feedRepo = new FeedApi(HttpContext.Session.Id);

@@ -8,11 +8,10 @@ namespace NewsBoard.wwwroot.User.UserSubscription
     [Area("User")]
     public class UserSubscriptionController : BaseController
     {
-
         public IActionResult Index()
         {
             var articleRepo = new ArticleApi(HttpContext.Session.Id);
-            var articles = articleRepo.GetLatestArticles();
+            var articles = articleRepo.GetArticles();
 
             return ReturnView("UserSubscriptionView", articles);
         }

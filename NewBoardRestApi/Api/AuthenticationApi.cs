@@ -32,8 +32,7 @@ namespace NewBoardRestApi.Api
             if(user != null)
                 return user.Id;
 
-            return 0;
-
+            throw new Exception();
         }
 
         public UserLoginVM GetNewUserLoginVM()

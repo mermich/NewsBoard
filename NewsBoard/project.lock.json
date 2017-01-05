@@ -687,6 +687,21 @@
           "lib/netstandard1.3/Microsoft.AspNetCore.Server.IISIntegration.dll": {}
         }
       },
+      "Microsoft.AspNetCore.Server.IISIntegration.Tools/1.1.0-preview4-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.DotNet.ProjectModel": "1.0.0-rc3-003121",
+          "Microsoft.Extensions.CommandLineUtils": "1.1.0",
+          "Microsoft.NETCore.App": "1.1.0",
+          "System.Diagnostics.Process": "4.3.0"
+        },
+        "compile": {
+          "lib/netcoreapp1.0/dotnet-publish-iis.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp1.0/dotnet-publish-iis.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Server.Kestrel/1.1.0": {
         "type": "package",
         "dependencies": {
@@ -1012,6 +1027,18 @@
           "lib/netstandard1.3/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
         }
       },
+      "Microsoft.EntityFrameworkCore.Tools/1.1.0-preview4-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "1.1.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/_._": {}
+        }
+      },
       "Microsoft.Extensions.Caching.Abstractions/1.1.0": {
         "type": "package",
         "dependencies": {
@@ -1040,14 +1067,10 @@
           "lib/netstandard1.3/Microsoft.Extensions.Caching.Memory.dll": {}
         }
       },
-      "Microsoft.Extensions.CommandLineUtils/1.0.0": {
+      "Microsoft.Extensions.CommandLineUtils/1.1.0": {
         "type": "package",
         "dependencies": {
-          "System.Collections": "4.0.11",
-          "System.Console": "4.0.0",
-          "System.IO": "4.1.0",
-          "System.Linq": "4.1.0",
-          "System.Resources.ResourceManager": "4.0.1"
+          "NETStandard.Library": "1.6.1"
         },
         "compile": {
           "lib/netstandard1.3/Microsoft.Extensions.CommandLineUtils.dll": {}
@@ -2453,30 +2476,30 @@
           }
         }
       },
-      "System.Diagnostics.Process/4.1.0": {
+      "System.Diagnostics.Process/4.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.1",
-          "Microsoft.Win32.Primitives": "4.0.1",
-          "Microsoft.Win32.Registry": "4.0.0",
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Debug": "4.0.11",
-          "System.Globalization": "4.0.11",
-          "System.IO": "4.1.0",
-          "System.IO.FileSystem": "4.0.1",
-          "System.IO.FileSystem.Primitives": "4.0.1",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Runtime.Handles": "4.0.1",
-          "System.Runtime.InteropServices": "4.1.0",
-          "System.Text.Encoding": "4.0.11",
-          "System.Text.Encoding.Extensions": "4.0.11",
-          "System.Threading": "4.0.11",
-          "System.Threading.Tasks": "4.0.11",
-          "System.Threading.Thread": "4.0.0",
-          "System.Threading.ThreadPool": "4.0.10",
-          "runtime.native.System": "4.0.0"
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.Win32.Primitives": "4.3.0",
+          "Microsoft.Win32.Registry": "4.3.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.IO.FileSystem": "4.3.0",
+          "System.IO.FileSystem.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Text.Encoding.Extensions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0",
+          "System.Threading.Thread": "4.3.0",
+          "System.Threading.ThreadPool": "4.3.0",
+          "runtime.native.System": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.4/System.Diagnostics.Process.dll": {}
@@ -4785,6 +4808,21 @@
           "lib/netstandard1.3/Microsoft.AspNetCore.Server.IISIntegration.dll": {}
         }
       },
+      "Microsoft.AspNetCore.Server.IISIntegration.Tools/1.1.0-preview4-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.DotNet.ProjectModel": "1.0.0-rc3-003121",
+          "Microsoft.Extensions.CommandLineUtils": "1.1.0",
+          "Microsoft.NETCore.App": "1.1.0",
+          "System.Diagnostics.Process": "4.3.0"
+        },
+        "compile": {
+          "lib/netcoreapp1.0/dotnet-publish-iis.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp1.0/dotnet-publish-iis.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Server.Kestrel/1.1.0": {
         "type": "package",
         "dependencies": {
@@ -5110,6 +5148,18 @@
           "lib/netstandard1.3/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
         }
       },
+      "Microsoft.EntityFrameworkCore.Tools/1.1.0-preview4-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "1.1.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/_._": {}
+        }
+      },
       "Microsoft.Extensions.Caching.Abstractions/1.1.0": {
         "type": "package",
         "dependencies": {
@@ -5138,14 +5188,10 @@
           "lib/netstandard1.3/Microsoft.Extensions.Caching.Memory.dll": {}
         }
       },
-      "Microsoft.Extensions.CommandLineUtils/1.0.0": {
+      "Microsoft.Extensions.CommandLineUtils/1.1.0": {
         "type": "package",
         "dependencies": {
-          "System.Collections": "4.0.11",
-          "System.Console": "4.0.0",
-          "System.IO": "4.1.0",
-          "System.Linq": "4.1.0",
-          "System.Resources.ResourceManager": "4.0.1"
+          "NETStandard.Library": "1.6.1"
         },
         "compile": {
           "lib/netstandard1.3/Microsoft.Extensions.CommandLineUtils.dll": {}
@@ -6825,30 +6871,30 @@
           "runtimes/win/lib/netstandard1.3/System.Diagnostics.FileVersionInfo.dll": {}
         }
       },
-      "System.Diagnostics.Process/4.1.0": {
+      "System.Diagnostics.Process/4.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.1",
-          "Microsoft.Win32.Primitives": "4.0.1",
-          "Microsoft.Win32.Registry": "4.0.0",
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Debug": "4.0.11",
-          "System.Globalization": "4.0.11",
-          "System.IO": "4.1.0",
-          "System.IO.FileSystem": "4.0.1",
-          "System.IO.FileSystem.Primitives": "4.0.1",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Runtime.Handles": "4.0.1",
-          "System.Runtime.InteropServices": "4.1.0",
-          "System.Text.Encoding": "4.0.11",
-          "System.Text.Encoding.Extensions": "4.0.11",
-          "System.Threading": "4.0.11",
-          "System.Threading.Tasks": "4.0.11",
-          "System.Threading.Thread": "4.0.0",
-          "System.Threading.ThreadPool": "4.0.10",
-          "runtime.native.System": "4.0.0"
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.Win32.Primitives": "4.3.0",
+          "Microsoft.Win32.Registry": "4.3.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.IO.FileSystem": "4.3.0",
+          "System.IO.FileSystem.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Text.Encoding.Extensions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0",
+          "System.Threading.Thread": "4.3.0",
+          "System.Threading.ThreadPool": "4.3.0",
+          "runtime.native.System": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.4/System.Diagnostics.Process.dll": {}
@@ -8909,6 +8955,18 @@
         "lib/netstandard1.3/Microsoft.AspNetCore.Server.IISIntegration.xml"
       ]
     },
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools/1.1.0-preview4-final": {
+      "sha512": "HdV8kZHqja8RVefqToTAY5CpcYxO6Ts8R+RMa/vGN7qKD9ilT20/WS9x1YY/QAS+sIxjbjxP6X0zbl9TCDUNNw==",
+      "type": "package",
+      "path": "Microsoft.AspNetCore.Server.IISIntegration.Tools/1.1.0-preview4-final",
+      "files": [
+        "Microsoft.AspNetCore.Server.IISIntegration.Tools.1.1.0-preview4-final.nupkg.sha512",
+        "Microsoft.AspNetCore.Server.IISIntegration.Tools.nuspec",
+        "lib/netcoreapp1.0/dotnet-publish-iis.dll",
+        "lib/netcoreapp1.0/dotnet-publish-iis.runtimeconfig.json",
+        "lib/netcoreapp1.0/dotnet-publish-iis.xml"
+      ]
+    },
     "Microsoft.AspNetCore.Server.Kestrel/1.1.0": {
       "sha512": "PbVYQUVxOwtrl9YCnw8ykXSufELVeEuASYahVh1F7B4LYVtcqwyV5+FhXlJkboGM4ozKMrdhB5w/tlLLcmHxNA==",
       "type": "package",
@@ -9190,6 +9248,29 @@
         "lib/netstandard1.3/Microsoft.EntityFrameworkCore.SqlServer.xml"
       ]
     },
+    "Microsoft.EntityFrameworkCore.Tools/1.1.0-preview4-final": {
+      "sha512": "n7g5JB4YxLYCl32XCmjXEHDF/9J/DSeNYGjxGAzG1xUi/IXOCWd6T3XyEnDXsub7iFDvpB2VgUlh6wHDqmTZgA==",
+      "type": "package",
+      "path": "Microsoft.EntityFrameworkCore.Tools/1.1.0-preview4-final",
+      "files": [
+        "Microsoft.EntityFrameworkCore.Tools.1.1.0-preview4-final.nupkg.sha512",
+        "Microsoft.EntityFrameworkCore.Tools.nuspec",
+        "lib/net451/_._",
+        "lib/netstandard1.3/_._",
+        "tools/EntityFrameworkCore.PowerShell2.psd1",
+        "tools/EntityFrameworkCore.PowerShell2.psm1",
+        "tools/EntityFrameworkCore.psd1",
+        "tools/EntityFrameworkCore.psm1",
+        "tools/Microsoft.EntityFrameworkCore.Tools.dll",
+        "tools/about_EntityFrameworkCore.help.txt",
+        "tools/init.ps1",
+        "tools/install.ps1",
+        "tools/net451/ef.exe",
+        "tools/net451/ef.x86.exe",
+        "tools/netcoreapp1.0/ef.dll",
+        "tools/netcoreapp1.0/ef.runtimeconfig.json"
+      ]
+    },
     "Microsoft.Extensions.Caching.Abstractions/1.1.0": {
       "sha512": "uMbUDz/lNoO9LGc+DSjKMLWJk+y4qX6syDRcmQC0w6LSQzizkRqmo5Y8jO0ePtZRjF2lSGgO5URt4YgB6STDBQ==",
       "type": "package",
@@ -9214,12 +9295,12 @@
         "lib/netstandard1.3/Microsoft.Extensions.Caching.Memory.xml"
       ]
     },
-    "Microsoft.Extensions.CommandLineUtils/1.0.0": {
-      "sha512": "kXJ8+YvEjp1j7ezJ7yvQMLYbRL6QlpBUjRoBfqghoe80yqZ5azYB90lL4iNeyRCznWF+cGm41aaIoFU0aOq7TQ==",
+    "Microsoft.Extensions.CommandLineUtils/1.1.0": {
+      "sha512": "ZBmdRx6aj7RsJmT8KWZnr0dP/O5C/aChLQ1fD4TC4QBDcnh7/yjucIsZc1o3bLtutkqIqJ4ODPaVEhkEaPJZDQ==",
       "type": "package",
-      "path": "Microsoft.Extensions.CommandLineUtils/1.0.0",
+      "path": "Microsoft.Extensions.CommandLineUtils/1.1.0",
       "files": [
-        "Microsoft.Extensions.CommandLineUtils.1.0.0.nupkg.sha512",
+        "Microsoft.Extensions.CommandLineUtils.1.1.0.nupkg.sha512",
         "Microsoft.Extensions.CommandLineUtils.nuspec",
         "lib/net451/Microsoft.Extensions.CommandLineUtils.dll",
         "lib/net451/Microsoft.Extensions.CommandLineUtils.xml",
@@ -11704,12 +11785,12 @@
         "runtimes/win/lib/netstandard1.3/System.Diagnostics.FileVersionInfo.dll"
       ]
     },
-    "System.Diagnostics.Process/4.1.0": {
-      "sha512": "mpVZ5bnlSs3tTeJ6jYyDJEIa6tavhAd88lxq1zbYhkkCu0Pno2+gHXcvZcoygq2d8JxW3gojXqNJMTAshduqZA==",
+    "System.Diagnostics.Process/4.3.0": {
+      "sha512": "J0wOX07+QASQblsfxmIMFc9Iq7KTXYL3zs2G/Xc704Ylv3NpuVdo6gij6V3PGiptTxqsK0K7CdXenRvKUnkA2g==",
       "type": "package",
-      "path": "System.Diagnostics.Process/4.1.0",
+      "path": "System.Diagnostics.Process/4.3.0",
       "files": [
-        "System.Diagnostics.Process.4.1.0.nupkg.sha512",
+        "System.Diagnostics.Process.4.3.0.nupkg.sha512",
         "System.Diagnostics.Process.nuspec",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -15680,9 +15761,11 @@
       "Microsoft.AspNetCore.Razor.Runtime >= 1.1.0",
       "Microsoft.AspNetCore.Razor.Tools >= 1.1.0-preview4-final",
       "Microsoft.AspNetCore.Server.IISIntegration >= 1.1.0",
+      "Microsoft.AspNetCore.Server.IISIntegration.Tools >= 1.1.0-preview4-final",
       "Microsoft.AspNetCore.Server.Kestrel >= 1.1.0",
       "Microsoft.AspNetCore.Session >= 1.1.0",
       "Microsoft.AspNetCore.StaticFiles >= 1.1.0",
+      "Microsoft.EntityFrameworkCore.Tools >= 1.1.0-preview4-final",
       "Microsoft.Extensions.Caching.Memory >= 1.1.0",
       "Microsoft.Extensions.Configuration.FileExtensions >= 1.1.0",
       "Microsoft.Extensions.Configuration.Json >= 1.1.0",
@@ -15714,38 +15797,12 @@
         "runtime": {
           "lib/netcoreapp1.0/dotnet-razor-tooling.dll": {}
         }
-      },
-      "Microsoft.AspNetCore.Server.IISIntegration.Tools/1.0.0-preview2-final": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.DotNet.ProjectModel": "1.0.0-rc3-003121",
-          "Microsoft.Extensions.CommandLineUtils": "1.0.0",
-          "Microsoft.NETCore.App": "1.0.0",
-          "System.Diagnostics.Process": "4.1.0"
-        },
-        "compile": {
-          "lib/netcoreapp1.0/dotnet-publish-iis.dll": {}
-        },
-        "runtime": {
-          "lib/netcoreapp1.0/dotnet-publish-iis.dll": {}
-        }
-      },
-      "Microsoft.EntityFrameworkCore.Tools/1.0.0-preview3-final": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard1.3/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/_._": {}
-        }
       }
     }
   },
   "projectFileToolGroups": {
     ".NETCoreApp,Version=v1.0": [
-      "Microsoft.AspNetCore.Razor.Tools >= 1.1.0-preview4-final",
-      "Microsoft.AspNetCore.Server.IISIntegration.Tools >= 1.0.0-preview2-final",
-      "Microsoft.EntityFrameworkCore.Tools >= 1.0.0-preview3-final"
+      "Microsoft.AspNetCore.Razor.Tools >= 1.1.0-preview4-final"
     ]
   }
 }

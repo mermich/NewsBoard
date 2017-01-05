@@ -6,32 +6,65 @@
         Edition du flux : @Model.Title
     </div>
 
-    <div class="panel-body" style="padding:0px">
+    <div class="panel-body panel-edit">
+        <input type="hidden" name="Id" value="@Model.Id" />
 
-        <input type="hidden" name="Id" value="@Model.Id" /><br />
-        Description: <input type="text" name="Description" value="@Model.Description" /><br />
-        SyndicationUrl: <input type="text" name="SyndicationUrl" value="@Model.SyndicationUrl" /><br />
-        Title: <input type="text" name="Title" value="@Model.Title" /><br />
-        WebSiteUrl: <input type="text" name="WebSiteUrl" value="@Model.WebSiteUrl" /><br />
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label for="Description" class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="Description" name="Description" placeholder="Description">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="SyndicationUrl" class="col-sm-2 control-label">SyndicationUrl</label>
+                <div class="col-sm-10">
+                    <input type="url" class="form-control" id="SyndicationUrl" name="SyndicationUrl" placeholder="SyndicationUrl">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Title" class="col-sm-2 control-label">Title</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="Title" name="Title" placeholder="Title">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="WebSiteUrl" class="col-sm-2 control-label">WebSiteUrl</label>
+                <div class="col-sm-10">
+                    <input type="url" class="form-control" id="WebSiteUrl" name="WebSiteUrl" placeholder="WebSiteUrl">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Tags associes</label>
 
 
-        @Model.Tags.Items.Count
-        @for (int i = 0; i < Model.Tags.Items.Count; i++)
-        {
-            var idName = "Tags.Items[" + i + "].Id";
-            var isSelectedName = "Tags.Items[" + i + "].IsSelected";
+                <div class="col-sm-10">
+                    @for (int i = 0; i < Model.Tags.Items.Count; i++)
+                    {
+                        var idName = "Tags.Items[" + i + "].Id";
+                        var isSelectedName = "Tags.Items[" + i + "].IsSelected";
+                        <div class="checkbox">
+                            <label>
+                                <input type="hidden" name="@idName" value="@Model.Tags.Items[i].Id" />
+                                <input type="checkbox" name="@isSelectedName" value="true" @(@Model.Tags.Items[i].IsSelected ? "checked=\"checked\"" : "") />
+                                @Model.Tags.Items[i].Label
+                            </label>
+                        </div>
+                    }
+                </div>
 
-                <input type="hidden" name="@idName" value="@Model.Tags.Items[i].Id" />
-                <input type="checkbox" name="@isSelectedName" value="@Model.Tags.Items[i].IsSelected" />
-                @Model.Tags.Items[i].Label
-                <br />
-    }
+            </div>
 
-        <button class="btn btn-info"
-                action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedEdit", "Update")"
-                actiondata="" type="button" name="simplePostAction">
-            Update
-        </button>
-
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-info"
+                            action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedEdit", "Update")"
+                            actiondata="" type="button" name="simplePostAction">
+                        Update
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -9,7 +9,6 @@ namespace NewsBoard.wwwroot.User.UserRegister
     [Area("User")]
     public class UserRegisterController : BaseController
     {
-
         public IActionResult Index()
         {
             var model = new UserRegisterVM();
@@ -19,7 +18,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
         public ActionResult Register(UserRegisterVM model)
         {
             var api = new AuthenticationApi();
-            var user = api.Register(model);
+            var userId = api.Register(model);
 
             return new SuccessMessageResult("Registered");
         }

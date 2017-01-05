@@ -15,71 +15,26 @@ namespace NewBoardRestApi.Api
         }
 
 
-
         [HttpGet("{id}")]
-        public Model.ArticleVM GetArticle(int articleId)
+        public ArticleVM GetArticle(int articleId)
         {
             return NewsBoardContext.Articles.SingleResult(a => a.Id == articleId).ToArticle();
         }
 
 
-        [HttpGet()]
-        public ArticleVMList GetLatestArticles()
+        public ArticleVMList GetArticles(ArticleListFilterVM filter = null)
         {
-            return NewsBoardContext.Articles
-                .Include(a => a.Feed)
-                .Include(a => a.UserArticles)
-                .Where(a => !a.UserArticles.Any() || !a.UserArticles.First(ua => ua.UserId == 1).IsHidden)
-                .OrderBy(a => a.PublishDate)
-                .Take(10)
-                .ToArticleList();
-        }
-
-        [HttpGet("{showHidden}")]
-        [Route("GetLatestArticlesForUser")]
-        public ArticleVMList GetLatestArticlesForUser(bool showHidden)
-        {
-            var result = NewsBoardContext.Articles
-                .Include(a => a.Feed)
-                .Include(a => a.UserArticles)
-                .Where(a => !a.UserArticles.Any() || !a.UserArticles.First(ua => ua.User != null && ua.User.Id == currentUser.Id).IsHidden)
-                .OrderBy(a => a.PublishDate)
-                .Take(10)
-                .ToArticleList();
-
-            return result;
-        }
-
-        [HttpGet("{feedId}/{showHidden}")]
-        [Route("GetLatestArticlesForFeed")]
-        public ArticleVMList GetLatestArticlesForFeed(int feedId, bool showHidden)
-        {
-            UserArticle userArticleAlias = null;
+            if (filter == null)
+                filter = new ArticleListFilterVM();
 
             var result = NewsBoardContext.Articles
                 .Include(a => a.Feed)
                 .Include(a => a.UserArticles)
-                .Where(a => a.FeedId == feedId)
-                .Where(a => userArticleAlias.IsHidden == false || userArticleAlias.IsHidden == showHidden)
+                .Where(a => filter.OnlyUserSubscription || a.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id))
+                .Where(a => filter.HideReported || !a.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsReported))
+                .Where(a => !filter.Feeds.Any() || filter.Feeds.Contains(a.FeedId))
                 .OrderBy(a => a.PublishDate)
-                .Take(10)
-                .ToArticleList();
-
-            return result;
-        }
-
-
-        [HttpGet("{feedId}/{showHidden}")]
-        [Route("GetLatestArticlesForUserAndFeed")]
-        public ArticleVMList GetLatestArticlesForUserAndFeed(int feedId, bool showHidden)
-        {
-            var result = NewsBoardContext.Articles
-                .Include(a => a.Feed)
-                .Include(a => a.UserArticles)
-                .Where(a => a.UserArticles.Any(ua=>ua.UserId == currentUser.Id && (ua.IsHidden ==false && ua.IsHidden == showHidden)))
-                .Where(a => a.FeedId == feedId)
-                .OrderBy(a => a.PublishDate)
-                .Take(10)
+                .Take(filter.MaxItems)
                 .ToArticleList();
 
             return result;

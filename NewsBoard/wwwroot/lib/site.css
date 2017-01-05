@@ -110,7 +110,7 @@ html, body.body {
     transform: translate(-50%,-50%);
     text-align: center;
     color: white;
-    font-size:60px;
+    font-size: 60px;
 }
 
     .h1-header small {
@@ -119,4 +119,12 @@ html, body.body {
 
 .navbar-header a, .navbar-nav a {
     color: white;
+}
+
+.panel-default>.panel-heading {
+    font-size: large;
+}
+
+.panel-edit{
+    margin:20px;
 }

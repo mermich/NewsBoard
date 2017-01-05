@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using NewBoardRestApi.Api;
+using System.Collections.Generic;
+using NewBoardRestApi.Api.Model;
 
 namespace NewsBoard.wwwroot.Article.ArticleList
 {
@@ -15,14 +17,14 @@ namespace NewsBoard.wwwroot.Article.ArticleList
         public IActionResult Index(bool showHidden = false)
         {
             var articleRepo = new ArticleApi(HttpContext.Session.Id);
-            var model = articleRepo.GetLatestArticlesForUser(showHidden);
+            var model = articleRepo.GetArticles();
 
             return ReturnView("ArticleListView", model);
         }
 
-        public IActionResult Open(int feedId, bool showHidden = false)
+        public IActionResult Open(int feedId)
         {
-            var articles = new ArticleApi(HttpContext.Session.Id).GetLatestArticlesForUserAndFeed(feedId, showHidden);
+            var articles = new ArticleApi(HttpContext.Session.Id).GetArticles(new ArticleListFilterVM { Feeds = new List<int> { feedId }});
 
             return ReturnView("ArticleListView", articles);
         }
@@ -32,7 +34,7 @@ namespace NewsBoard.wwwroot.Article.ArticleList
             var articleApi = new ArticleApi(HttpContext.Session.Id);
             articleApi.HideArticle(articleId);
 
-            var articles = articleApi.GetLatestArticles();
+            var articles = articleApi.GetArticles();
 
             return ReturnView("ArticleListView", articles);
         }

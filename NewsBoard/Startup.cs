@@ -80,8 +80,6 @@ namespace NewsBoard
                 // add the new route here.
                 routes.MapRoute(name: "areaRoute", template: "{area:exists}/{controller}/{action}", defaults: new { controller = "Home", action = "Index" });
                 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
-                //routes.MapRoute("spa-fallback", "{*anything}", new { controller = "Home", action = "Index" });
-                //routes.MapWebApiRoute("defaultApi", "api/{controller}/{id?}");
             });
         }
     }

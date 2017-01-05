@@ -2,10 +2,21 @@
 
 <h4>Creation d'un Tag</h4>
 
+<div class="form-horizontal">
+    <div class="form-group">
+        <label for="Label" class="col-sm-2 control-label">Non du tag</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="Label" name="Label" value="@Model.Label" placeholder="Non du tag">
+        </div>
+    </div>
 
-<input type="text" name="Label" value="@Model.Label" />
-<button class="btn btn-info"
-        action="@Url.NewsBoardUrlHelper().Action("Tag", "TagCreate", "Create")"
-        actiondata="" type="button" name="simplePostAction">
-    Create
-</button>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-info"
+                    action="@Url.NewsBoardUrlHelper().Action("Tag", "TagCreate", "Create")"
+                    actiondata="" type="button" name="simplePostAction">
+                Creer
+            </button>
+        </div>
+    </div>
+</div>

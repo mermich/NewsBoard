@@ -4,8 +4,8 @@
     <title>NewsBoard</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>    
-    
+    <title>@ViewData["Title"]</title>
+
     <!--External ressources-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -14,7 +14,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-    <!--Our stuff-->    
+    <!--Our stuff-->
     <link href="~/lib/site.css" rel="stylesheet" />
     <script src="~/lib/toastr/bootstrap-notify.js"></script>
     <link href="~/lib/bootstrap-switch/bootstrap-switch.css" rel="stylesheet" />
@@ -24,7 +24,7 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @RenderSection("scripts", required: false)
-    
+
 </head>
 <body class="body" y>
     <nav class="navbar navbar-fixed-top">
@@ -43,19 +43,13 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <li><a href="~/User/UserSubscription">Mes abonnements</a></li>
+                    <li><a href="~/Article/ArticleList">Liste des articles</a></li>
+                    <li><a href="~/Feed/FeedList">List des Flux</a></li>
+                    <li><a href="~/Feed/FeedAdd">Ajouter un flux</a></li>
+                    <li><a href="~/About/About">About me</a></li>
                     <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Pages<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="~/Feed/FeedList">Feed List</a></li>
-                            <li><a href="~/Feed/FeedAdd">FeedAdd</a></li>
-                            <li><a href="~/Article/ArticleList">Liste des articles</a></li>
-                            <li><a href="~/User/UserSubscription">Liste des articles de mes abonnements</a></li>
-                            <li><a href="~/Tag/TagList">Gestion des tags</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Test des controles<span class="caret"></span></a>
+                        <a data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="~/Controls/Checkbox">Checkbox</a></li>
                             <li><a href="~/Controls/InputText">InputText</a></li>
@@ -79,8 +73,6 @@
     </div>
 
     <div class="container">
-       
-
         @RenderSection("featured", required: false)
         <div class="row">
             <div class="col-md-9">

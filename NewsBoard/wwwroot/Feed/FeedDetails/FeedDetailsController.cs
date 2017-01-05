@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using NewsBoard.Tools.JsonResult;
 using NewBoardRestApi.Api;
+using NewBoardRestApi.Api.Model;
+using System.Collections.Generic;
 
 namespace NewsBoard.wwwroot.Feed.FeedDetails
 {
@@ -16,7 +18,7 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
         {
             var feedRepo = new FeedApi(HttpContext.Session.Id);
             var feed = feedRepo.GetFeed(feedId);
-            
+
             return ReturnView("FeedDetailsView", feed);
         }
 
@@ -49,7 +51,10 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
             var feedRepo = new FeedApi(HttpContext.Session.Id);
             feedRepo.Refresh(feedId);
 
-            return new SuccessMessageResult("Refreshed");
+            return new ComposeResult(
+                new ReplaceHtmlResult("#articleList", NewsBoardUrlHelper.Action("Article", "ArticleList", "Index", new ArticleListFilterVM() { Feeds = new List<int> { feedId } })),
+                new SuccessMessageResult("Flux Refreshed")
+            );
         }
     }
 }
