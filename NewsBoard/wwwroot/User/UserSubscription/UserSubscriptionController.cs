@@ -25,6 +25,7 @@ namespace NewsBoard.wwwroot.User.UserSubscription
             // Opens the article and should also update stats.
             return new ComposeResult(
                 new OpenNewWindowResult(article.Url),
+                new HideHtmlResult("#article-" + articleId),
                 new WarnMessageResult("Ouverture de l'article dans une nouvelle fenetre."));
         }
 

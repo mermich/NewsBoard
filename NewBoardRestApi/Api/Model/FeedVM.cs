@@ -21,7 +21,7 @@ namespace NewBoardRestApi.Api.Model
 
         public FeedVM() { }
 
-        public FeedVM(Feed feed)
+        public FeedVM(Feed feed, User currentUser)
         {
             Id = feed.Id;
             WebSiteUrl = feed.WebSiteUrl;
@@ -30,15 +30,15 @@ namespace NewBoardRestApi.Api.Model
             Description = feed.Description;
             Subscribers = feed.Subscribers;
 
-            ArticleVMList = feed.Articles.ToArticleList();
+            ArticleVMList = feed.Articles.ToArticleList(currentUser);
         }
     }
 
     public static class FeedVMExtentions
     {
-        public static FeedVM ToFeedVM(this Feed feed)
+        public static FeedVM ToFeedVM(this Feed feed, User currentUser)
         {
-            return new FeedVM(feed);
+            return new FeedVM(feed, currentUser);
         }
     }
 }

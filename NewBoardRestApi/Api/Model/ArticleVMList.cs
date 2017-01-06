@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using NewBoardRestApi.DataModel;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace NewBoardRestApi.Api.Model
@@ -17,9 +18,9 @@ namespace NewBoardRestApi.Api.Model
 
     public static class ArticleVMListExtentions
     {
-        public static ArticleVMList ToArticleList(this IEnumerable<DataModel.Article> items)
+        public static ArticleVMList ToArticleList(this IEnumerable<DataModel.Article> items, User currentUser)
         {
-            return new ArticleVMList(items.Select(i => i.ToArticle()));
+            return new ArticleVMList(items.Select(i => i.ToArticle(currentUser)));
         }
     }
 }

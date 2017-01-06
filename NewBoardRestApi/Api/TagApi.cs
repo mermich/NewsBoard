@@ -87,7 +87,10 @@ namespace NewBoardRestApi.Api
 
         public FeedVMList GetFeedsForTag(int tagId)
         {
-            return NewsBoardContext.Feeds.Where(f => f.FeedTags.Any(ft => ft.TagId == tagId)).ToFeedVMList();
+            return NewsBoardContext.Feeds
+                .Include(f=>f.Articles).ThenInclude(article=>article.UserArticles)
+                .Where(f => f.FeedTags.Any(ft => ft.TagId == tagId))
+                .ToFeedVMList(currentUser);
         }
     }
 }

@@ -19,9 +19,9 @@ namespace NewBoardRestApi.Api.Model
 
     public static class FeedVMListExtentions
     {
-        public static FeedVMList ToFeedVMList(this IEnumerable<Feed> items)
+        public static FeedVMList ToFeedVMList(this IEnumerable<Feed> items, User currentUser)
         {
-            return new FeedVMList(items.Select(i => i.ToFeedVM()));
+            return new FeedVMList(items.Select(i => i.ToFeedVM(currentUser)));
         }
     }
 }

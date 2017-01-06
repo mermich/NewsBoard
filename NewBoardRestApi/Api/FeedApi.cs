@@ -110,7 +110,7 @@ namespace NewBoardRestApi.Api
                 .Include(f => f.UserFeeds)
                 .Include(f => f.Articles)
                 .OrderBy(f => f.Title)
-                .ToFeedVMList();
+                .ToFeedVMList(currentUser);
         }
 
 
@@ -201,22 +201,23 @@ namespace NewBoardRestApi.Api
         {
             return NewsBoardContext.Feeds
                 .Include(f => f.UserFeeds)
-                .Include(f => f.Articles)
+                .Include(f => f.Articles).ThenInclude(article => article.UserArticles)
                 .FirstOrDefault(f => f.Id == feedId)
-                .ToFeedVM();
+                .ToFeedVM(currentUser);
         }
 
         public virtual ArticleVMList GetArticles(int feedId)
         {
             return NewsBoardContext.Articles
+                .Include(a => a.UserArticles)
                 .Where(a => a.FeedId == feedId)
-                .ToArticleList();
+                .ToArticleList(currentUser);
         }
 
         public void SaveFeed(FeedEditVM feed)
         {
             var feedDb = NewsBoardContext.Feeds
-                .Include(f=>f.FeedTags)
+                .Include(f => f.FeedTags)
                 .FirstOrDefault(f => f.Id == feed.Id);
 
             feedDb.Description = feed.Description;
@@ -228,25 +229,25 @@ namespace NewBoardRestApi.Api
             foreach (var item in feed.Tags.Items)
             {
                 var existingTag = feedDb.FeedTags.FirstOrDefault(ft => ft.TagId == item.Id);
-                if(existingTag == null)
+                if (existingTag == null)
                 {
                     if (item.IsSelected)
                     {
                         var tagToattach = NewsBoardContext.Tags.FirstOrDefault(t => t.Id == item.Id);
                         feedDb.FeedTags.Add(new FeedTag { Feed = feedDb, Tag = tagToattach });
-                    }                    
+                    }
                 }
                 else
                 {
                     //remove  tag
                     if (!item.IsSelected)
                     {
-                       NewsBoardContext.FeedTags.Remove(existingTag);
+                        NewsBoardContext.FeedTags.Remove(existingTag);
                     }
                 }
             }
 
-            NewsBoardContext.SaveChanges();            
+            NewsBoardContext.SaveChanges();
         }
 
         public virtual FeedEditVM GetFeedEdit(int feedId)
@@ -254,13 +255,13 @@ namespace NewBoardRestApi.Api
 
             var feed = NewsBoardContext.Feeds
                .Include(f => f.UserFeeds)
-               .Include(f => f.Articles)
+               .Include(f => f.Articles).ThenInclude(article => article.UserArticles)
                .Include(f => f.FeedTags)
                .FirstOrDefault(f => f.Id == feedId);
 
             var possibleTags = NewsBoardContext.Tags.ToList();
 
-            var result = feed.ToFeedEdit(possibleTags);
+            var result = feed.ToFeedEdit(possibleTags, currentUser);
 
             return result;
         }

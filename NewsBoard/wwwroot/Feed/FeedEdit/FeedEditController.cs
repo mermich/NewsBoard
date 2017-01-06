@@ -17,20 +17,19 @@ namespace NewsBoard.wwwroot.Feed.FeedEdit
         public IActionResult Index(int feedId)
         {
             var model = new FeedApi(HttpContext.Session.Id).GetFeedEdit(feedId);
-            
+
             return ReturnView("FeedEditView", model);
         }
 
 
         public IActionResult Update(FeedEditVM feed)
         {
-           new FeedApi(HttpContext.Session.Id).SaveFeed(feed);
-
+            new FeedApi(HttpContext.Session.Id).SaveFeed(feed);
 
             return new ComposeResult(
                 new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedList", "Index")),
                 new SuccessMessageResult("Tag Created")
-                );            
+                );
         }
     }
 }

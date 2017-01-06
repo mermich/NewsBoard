@@ -1,12 +1,13 @@
 ﻿using NewBoardRestApi.DataModel;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace NewBoardRestApi.Api.Model
 {
     public class FeedEditVM
     {
         public int Id { get; set; }
-
+        
         public string WebSiteUrl { get; set; } = "";
 
         public string SyndicationUrl { get; set; } = "";
@@ -24,7 +25,7 @@ namespace NewBoardRestApi.Api.Model
 
         public FeedEditVM() { }
 
-        public FeedEditVM(Feed feed, IEnumerable<Tag> possibleTags)
+        public FeedEditVM(Feed feed, IEnumerable<Tag> possibleTags, User currentUser)
         {
             Id = feed.Id;
             WebSiteUrl = feed.WebSiteUrl;
@@ -33,7 +34,7 @@ namespace NewBoardRestApi.Api.Model
             Description = feed.Description;
             Subscribers = feed.Subscribers;
 
-            ArticleVMList = feed.Articles.ToArticleList();
+            ArticleVMList = feed.Articles.ToArticleList(currentUser);
 
             Tags = possibleTags.ToSelectableItemList(feed.FeedTags);
 
@@ -42,9 +43,9 @@ namespace NewBoardRestApi.Api.Model
 
     public static class FeedEditVMExtentions
     {
-        public static FeedEditVM ToFeedEdit(this Feed feed, IEnumerable<Tag> possibleTags)
+        public static FeedEditVM ToFeedEdit(this Feed feed, IEnumerable<Tag> possibleTags, User currentUser)
         {
-            return new FeedEditVM(feed, possibleTags);
+            return new FeedEditVM(feed, possibleTags, currentUser);
         }
     }
 }

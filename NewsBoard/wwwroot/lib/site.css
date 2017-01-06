@@ -113,18 +113,27 @@ html, body.body {
     font-size: 60px;
 }
 
-    .h1-header small {
+.h1-header small {
         color: white;
     }
 
-.navbar-header a, .navbar-nav a {
+.navbar-header a, .navbar-nav a, .navbar-nav .dropdown-menu > li > a {
     color: white;
 }
 
-.panel-default>.panel-heading {
+.panel-default > .panel-heading {
     font-size: large;
 }
 
-.panel-edit{
-    margin:20px;
+.panel-edit {
+    margin: 20px;
+}
+
+.navbar-brand:hover, .navbar-nav li a:hover, .navbar-nav li.open a:hover, .nav .open > a {
+    background-color: rgba(0,0,0,.4);
+}
+
+.navbar-nav > li > .dropdown-menu, li:hover, a:hover {
+    background-color: rgba(0,0,0,.6) !important;
+    border: 0px;
 }

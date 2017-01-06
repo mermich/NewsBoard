@@ -18,7 +18,7 @@ namespace NewBoardRestApi.Api
         [HttpGet("{id}")]
         public ArticleVM GetArticle(int articleId)
         {
-            return NewsBoardContext.Articles.SingleResult(a => a.Id == articleId).ToArticle();
+            return NewsBoardContext.Articles.SingleResult(a => a.Id == articleId).ToArticle(currentUser);
         }
 
 
@@ -35,7 +35,7 @@ namespace NewBoardRestApi.Api
                 .Where(a => !filter.Feeds.Any() || filter.Feeds.Contains(a.FeedId))
                 .OrderBy(a => a.PublishDate)
                 .Take(filter.MaxItems)
-                .ToArticleList();
+                .ToArticleList(currentUser);
 
             return result;
         }
@@ -43,7 +43,7 @@ namespace NewBoardRestApi.Api
 
         [HttpGet("{id}")]
         [Route("OpenArticle")]
-        public virtual Model.ArticleVM OpenArticle(int id)
+        public virtual ArticleVM OpenArticle(int id)
         {
             var article = NewsBoardContext.Articles
                 .Include(a => a.Feed)
