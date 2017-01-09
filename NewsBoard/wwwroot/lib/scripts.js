@@ -79,6 +79,8 @@ function LoadCallback(selector) {
                 LoadCallback();
             }
         });
+
+        return false;
     });
 
    $("[name=simplePostAction]").off('click').click(function (e) {
@@ -103,6 +105,8 @@ function LoadCallback(selector) {
                 LoadCallback();
             }
         });
+
+        return false;
     });
 }
 
