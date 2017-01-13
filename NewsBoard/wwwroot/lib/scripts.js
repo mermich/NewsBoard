@@ -20,13 +20,10 @@
 $(function () {
     $("#menu").find("a[href]").click(function (e) {
         e.preventDefault();
-        ShowPageLoader();
-
         var url = e.target.getAttribute("href");
         $.get(url, function (result) {
             $("#page").html(result);
             LoadCallback();
-            HidePageLoader();
             history.pushState(null, null, url);
         });
     });
@@ -35,15 +32,6 @@ $(function () {
 
     $('[type="checkbox"]').not("[readonly='readonly']").bootstrapSwitch();
 });
-
-function ShowPageLoader() {
-    //todo
-}
-
-function HidePageLoader() {
-    //todo
-}
-
 
 function LoadCallback(selector) {
 
@@ -58,7 +46,7 @@ function LoadCallback(selector) {
     });
 
 
-   $("[name=simpleGetAction]").off('click').click(function (e) {
+    $("[name=simpleGetAction]").off('click').click(function (e) {
         let target = e.target;
 
         //we could have clicked the icon <i> element
@@ -79,11 +67,10 @@ function LoadCallback(selector) {
                 LoadCallback();
             }
         });
-
         return false;
     });
 
-   $("[name=simplePostAction]").off('click').click(function (e) {
+    $("[name=simplePostAction]").off('click').click(function (e) {
         let target = e.target;
 
         //we could have clicked the icon <i> element
@@ -98,20 +85,15 @@ function LoadCallback(selector) {
             url: targetUrl,
             //contentType: 'application/json; charset=utf-8',
             //dataType: "json",
-            data:  $(e.target).closest("form").serializeFormJSON(),
+            data: $(e.target).closest("form").serializeFormJSON(),
             success: function (result) {
                 console.log(result);
                 HandleAjaxResult(result);
                 LoadCallback();
             }
         });
-
         return false;
     });
-}
-
-function getLoaderHtml() {
-    return "";
 }
 
 
@@ -145,7 +127,6 @@ function HandleAjaxResult(result) {
     if (result.replaceHtml != undefined) {
         let selector = $(result.replaceHtml.selector);
         if (selector.length > 0) {
-            selector.html(getLoaderHtml());
             var url = result.replaceHtml.action;
             $.get(url, function (result2) {
                 selector.html(result2).hide().fadeIn(1000);
