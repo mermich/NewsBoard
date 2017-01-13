@@ -14,6 +14,8 @@ namespace NewBoardRestApi.Api.Model
         public bool OnlyUserSubscription { get; set; } = true;
 
         public bool HideReported { get; set; } = true;
-        
+
+        public string OrderBy { get; set; }
+
     }
 }

@@ -71,7 +71,7 @@
     </nav>
 
     <div class="page-header">
-        <h1 class="h1-header">News Board  <small>Le premier agrégateur <b>communautaire</b> de sites</small></h1>
+        <h1 class="h1-header">News Board  <small>Le premier agrégateur <b>communautaire</b> de flux</small></h1>
     </div>
 
     <div class="container">
@@ -86,6 +86,16 @@
             </div>
             <div class="col-md-3">
                 <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Tag","TagCloud","Index")">
+                    Chargement du widget ...
+                    <div class='loader'></div>
+                </asyncLoader>
+
+                <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","Index", new FeedListFilterVM { OrderBy = "Subscribers", MaxItems=5 })">
+                    Chargement du widget ...
+                    <div class='loader'></div>
+                </asyncLoader>
+
+                <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","Index", new ArticleListFilterVM { OrderBy = "Open", MaxItems=5 })">
                     Chargement du widget ...
                     <div class='loader'></div>
                 </asyncLoader>
