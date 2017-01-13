@@ -1,4 +1,8 @@
-﻿namespace NewBoardRestApi.DataModel
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace NewBoardRestApi.DataModel
 {
     public class FeedTag
     {
@@ -29,5 +33,7 @@
             FeedId = feedId;
             TagId = tagId;
         }
+
+       
     }
 }

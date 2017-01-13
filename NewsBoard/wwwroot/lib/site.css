@@ -26,7 +26,7 @@
     right: 0;
     left: 0;
     z-index: 1030;
-    background-color: rgba(0,0,0,.4);
+    background-color: rgba(0,0,0,.3);
 }
 
 html, body.body {
@@ -113,12 +113,27 @@ html, body.body {
     font-size: 60px;
 }
 
-.h1-header small {
+    .h1-header small {
         color: white;
     }
 
 .navbar-header a, .navbar-nav a, .navbar-nav .dropdown-menu > li > a {
     color: white;
+    background-image: initial;
+}
+
+a {
+    background-image: initial;
+    background-color: initial;
+}
+
+
+.dropdown > .dropdown-menu {
+    padding-top: 0px;
+}
+
+li.open {
+    background-image: initial;
 }
 
 .panel-default > .panel-heading {
@@ -129,11 +144,25 @@ html, body.body {
     margin: 20px;
 }
 
-.navbar-brand:hover, .navbar-nav li a:hover, .navbar-nav li.open a:hover, .nav .open > a {
+.navbar-brand:hover, .navbar-nav li a:hover, .navbar-nav li.open a:hover, .nav .open > a, nav .open > a:focus,
+.navbar-brand:active, .navbar-nav li a:active, .navbar-nav li.open a:active, .nav .open > a, nav .open > a:active,  a:active{
+    background-color: initial;
+}
+
+.navbar-nav > li > .dropdown-menu, li:hover {
+    background-color: rgba(0,0,0,.4);
+    border: 0px;
+}
+
+.navbar-nav > li > .dropdown-menu{
     background-color: rgba(0,0,0,.4);
 }
 
-.navbar-nav > li > .dropdown-menu, li:hover, a:hover {
-    background-color: rgba(0,0,0,.6) !important;
-    border: 0px;
+
+li.open > .dropdown-toggle, a.navbar-brand:hover {
+    background-color: rgba(0,0,0,.4);
+}
+
+a:focus:not(:hover){
+    background-color: rgba(0,0,0,.4) !important;
 }

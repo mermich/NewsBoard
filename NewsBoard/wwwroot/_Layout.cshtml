@@ -43,15 +43,15 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="~/User/UserSubscription">Mon accueil</a></li>
-                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","Index", new ArticleListFilterVM())">Mes articles</a></li>
-                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Index", new ArticleListFilterVM { OnlyUserSubscription = false, HideReported = false, MaxItems = 50 })">Tous les articles</a></li>
-                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","Index", new FeedListFilterVM())">Mes Flux</a></li>
-                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","Index", new FeedListFilterVM { OnlyUserSubscription = false, HideReported = false, MaxItems = 50} )">Tous les Flux</a></li>
-                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("Feed","FeedAdd","Index")">Ajouter un flux</a></li>
-                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("Misc","About","Index")">A propos de l'auteur</a></li>
+                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetUserhomePage")">Mon accueil</a></li>
+                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetUserArticles")">Mes articles</a></li>
+                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("", "Home", "GetAllArticleList")">Tous les articles</a></li>
+                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetUserFeeds")">Mes Flux</a></li>
+                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetAllFeeds")">Tous les Flux</a></li>
+                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetAddFeed")">Ajouter un flux</a></li>
+                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetAboutPage")">A propos de l'auteur</a></li>
                     <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="~/Controls/Checkbox">Checkbox</a></li>
                             <li><a href="~/Controls/InputText">InputText</a></li>
