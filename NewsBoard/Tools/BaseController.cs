@@ -34,5 +34,13 @@ namespace NewsBoard.Tools
                 return Url.NewsBoardUrlHelper();
             }
         }
+
+        public int UserId
+        {
+            get
+            {
+                return HttpContext.Session.GetInt32("UserId").GetValueOrDefault();
+            }
+        }
     }
 }

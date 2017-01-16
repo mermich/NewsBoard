@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Http;
 using System;
+using NewBoardRestApi.Api.Model;
+using Microsoft.AspNetCore.Identity;
 
 namespace NewsBoard
 {
@@ -54,6 +56,11 @@ namespace NewsBoard
                 options.IdleTimeout = TimeSpan.FromMinutes(10);
             });
 
+
+            services.AddAuthentication();
+
+          
+
             services.AddMyServices(null);
         }
 
@@ -71,6 +78,17 @@ namespace NewsBoard
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+
+
+            app.UseCookieAuthentication(new CookieAuthenticationOptions()
+            {
+                AuthenticationScheme = "NewsBoardScheme",
+                LoginPath = new PathString("/User/UserLogin/"),
+                AccessDeniedPath = new PathString("/User/Denied/"),
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true
+            });
 
             app.UseStaticFiles();
             app.UseSession();
@@ -97,6 +115,8 @@ namespace NewsBoard
             copy.Add("~/wwwroot/Feed/{1}/{0}.cshtml");
             copy.Add("~/wwwroot/User/{1}/{0}.cshtml");
             copy.Add("~/wwwroot/Article/{1}/{0}.cshtml");
+            copy.Add("~/wwwroot/Group/{1}/{0}.cshtml");
+            copy.Add("~/wwwroot/Permission/{1}/{0}.cshtml");
             copy.Add("~/wwwroot/Tag/{1}/{0}.cshtml");
             copy.Add("~/wwwroot/{1}/{0}.cshtml");
             copy.Add("~/wwwroot/{0}.cshtml");

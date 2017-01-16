@@ -27,9 +27,6 @@ namespace NewBoardRestApi.Api
             if (filter == null)
                 filter = new ArticleListFilterVM();
 
-
-
-
             var result = NewsBoardContext.Articles
                 .Include(a => a.Feed)
                 .Include(a => a.UserArticles)

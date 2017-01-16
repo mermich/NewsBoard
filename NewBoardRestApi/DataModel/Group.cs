@@ -9,7 +9,7 @@ namespace NewBoardRestApi.DataModel
 
         public virtual string Label { get; set; }
 
-        public List<GroupPermission> Permissions { get; set; }
+        public List<GroupPermission> GroupPermissions { get; set; }
 
         public List<UserGroup> UserGroups { get; set; }
 

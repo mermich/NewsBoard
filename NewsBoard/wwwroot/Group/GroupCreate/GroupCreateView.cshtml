@@ -1,9 +1,9 @@
-﻿@model TagCreateVM
+﻿@model GroupEditVM
 
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        Creation d'un Tag
+        Creation d'un Groupe
     </div>
 
     <div class="panel-body panel-edit">
@@ -11,9 +11,9 @@
         <div class="form-horizontal">
 
             <div class="form-group">
-                <label for="Label" class="col-sm-2 control-label">Nom du tag</label>
+                <label for="Label" class="col-sm-2 control-label">Nom du Groupe</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="Label" name="Label" value="@Model.Label" placeholder="Non du tag">
+                    <input type="text" class="form-control" id="Label" name="Label" value="@Model.Label" placeholder="Non du Groupe">
                 </div>
             </div>
 
@@ -21,7 +21,7 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button class="btn btn-info"
-                            action="@Url.NewsBoardUrlHelper().Action("Tag", "TagCreate", "Create")"
+                            action="@Url.NewsBoardUrlHelper().Action("Group", "GroupCreate", "Create")"
                             actiondata="" type="button" name="simplePostAction">
                         Creer
                     </button>

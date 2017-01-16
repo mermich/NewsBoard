@@ -5,14 +5,12 @@ namespace NewBoardRestApi.DataModel
 {
     public class Permission
     {
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
 
-        public virtual string Label { get; set; }
+        public string Label { get; set; }
+
+        public string Key { get; set; }
 
         public List<GroupPermission> GroupPermissions { get; set; }
-
-        public Permission()
-        {
-        }
     }
 }

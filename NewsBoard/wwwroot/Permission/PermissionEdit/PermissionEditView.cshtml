@@ -1,8 +1,8 @@
-﻿@model TagEditVM
+﻿@model PermissionVM
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        Editer un tag
+        Editer un Permission
     </div>
 
     <div class="panel-body panel-edit">
@@ -11,30 +11,24 @@
             <input type="hidden" name="Id" value="@Model.Id" />
 
             <div class="form-group">
-                <label for="Label" class="col-sm-2 control-label">Nom du tag</label>
+                <label for="Label" class="col-sm-2 control-label">Label</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="Label" name="Label" value="@Model.Label" placeholder="Non du tag">
+                    <input type="text" class="form-control" id="Label" name="Label" value="@Model.Label" placeholder="Label">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label" for="Enabled">Actif</label>
-                <div class="col-sm-10">
-                    <div class="checkbox">
-                        <label>
-                            <input type="hidden" id="Enabled" name="Enabled" value="@Model.Enabled" />
-                            <input type="checkbox" name="Enabled" value="true" @(@Model.Enabled ? "checked=\"checked\"" : "") />
-                        </label>
-                    </div>
+                <label for="Key" class="col-sm-2 control-label">Cle technique</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="Key" name="Key" value="@Model.Key" placeholder="Cle">
                 </div>
             </div>
-
 
             <div class="form-group">
                 <div class="col-sm-10">
                     <div class="col-sm-offset-2 col-sm-10">
                         <button class="btn btn-info"
-                                action="@Url.NewsBoardUrlHelper().Action("Tag", "TagEdit", "Update")"
+                                action="@Url.NewsBoardUrlHelper().Action("Permission", "PermissionEdit", "Update")"
                                 actiondata="" type="button" name="simplePostAction">
                             Update
                         </button>

@@ -20,15 +20,9 @@ namespace NewsBoard.wwwroot.User.UserRegister
             var api = new AuthenticationApi();
             var userId = api.Register(model);
 
-            return new SuccessMessageResult("Registered");
-        }
-
-        public ActionResult Hide(int articleId)
-        {
-            var articleRepo = new ArticleApi(HttpContext.Session.Id);
-            articleRepo.HideArticle(articleId);
-
-            return new HideHtmlResult("#article-" + articleId);
+            return new ComposeResult(
+                    new SuccessMessageResult("Votre compte est creer, veuilliez vous connecter"),
+                    new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserLogin", "Index")));
         }
     }
 }

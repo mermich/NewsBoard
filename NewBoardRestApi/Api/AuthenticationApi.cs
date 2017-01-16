@@ -1,7 +1,8 @@
-﻿using System;
-using System.Linq;
-using NewBoardRestApi.DataModel;
+﻿using Microsoft.EntityFrameworkCore;
 using NewBoardRestApi.Api.Model;
+using NewBoardRestApi.DataModel;
+using System;
+using System.Linq;
 
 namespace NewBoardRestApi.Api
 {
@@ -26,13 +27,20 @@ namespace NewBoardRestApi.Api
             }
         }
 
-        public int Login(UserLoginVM model)
+        public UserVM Login(UserLoginVM model)
         {
-            var user = NewsBoardContext.Users.FirstOrDefault(u => u.Email == model.Email);
-            if(user != null)
-                return user.Id;
+            var user = NewsBoardContext.Users
+                .Include(u => u.UserGroups).ThenInclude(ug => ug.Group).ThenInclude(g => g.GroupPermissions).ThenInclude(gp => gp.Permission)
+                .FirstOrDefault(u => u.Email == model.Email);
 
-            throw new Exception();
+            if (user == null)
+            {
+                throw new Exception();
+            }
+            else
+            {
+                return new UserVM(user);
+            }
         }
 
         public UserLoginVM GetNewUserLoginVM()

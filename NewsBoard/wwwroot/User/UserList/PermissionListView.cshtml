@@ -1,0 +1,43 @@
+﻿@model PermissionVMList
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Les Permissiones
+    </div>
+
+    <a href="#" action="@Url.NewsBoardUrlHelper().Action("Permission", "PermissionList", "GetCreate")"
+       actiondata="" type="button" name="simpleGetAction">
+        Creer une nouvelle permission
+    </a>
+
+
+    <div class="panel-body" style="padding:0px">
+        <table class="table table-striped table-condensed">
+            <tbody>
+                @for (int i = 0; i < Model.Permissions.Count; i++)
+                {
+                    <tr>
+                        <td>@Model.Permissions[i].Label</td>
+                        <td>
+                            <div class="btn-Permission" role="Permission">
+                                <button class="btn btn-info btn-sm"
+                                        action="@Url.NewsBoardUrlHelper().Action("Permission", "PermissionList", "GetEdit", new { PermissionId=Model.Permissions[i].Id})"
+                                        actiondata="" type="button" name="simpleGetAction">
+                                    Editer
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <a href="#" action="@Url.NewsBoardUrlHelper().Action("Permission", "PermissionList", "GetCreate")"
+       actiondata="" type="button" name="simpleGetAction">
+        Creer une nouvelle permission
+    </a>
+</div>
+
+

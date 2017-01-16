@@ -8,9 +8,10 @@ using NewBoardRestApi.DataModel;
 namespace NewBoardRestApi.Migrations
 {
     [DbContext(typeof(NewsBoardContext))]
-    partial class NewsBoardContextModelSnapshot : ModelSnapshot
+    [Migration("20170116143727_permissions1")]
+    partial class permissions1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")

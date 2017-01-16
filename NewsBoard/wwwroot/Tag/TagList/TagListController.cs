@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using NewsBoard.Tools.JsonResult;
 using NewBoardRestApi.Api;
 using NewBoardRestApi.Api.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NewsBoard.wwwroot.User.UserRegister
 {
     [Area("Tag")]
+    [Authorize(Roles = "Administrator")]
     public class TagListController : BaseController
     {
 
