@@ -13,7 +13,7 @@ namespace NewBoardRestApi.Api
         {
             if (NewsBoardContext.Users.Any(u => u.Email == model.Email))
             {
-                throw new Exception();
+                throw new BusinessLogicException("Un utilisateur existe deja avec cet email.");
             }
             else
             {
@@ -36,7 +36,7 @@ namespace NewBoardRestApi.Api
 
             if (user == null)
             {
-                throw new Exception();
+                throw new BusinessLogicException("Login/Mode de passe incorrects.");
             }
             else
             {

@@ -110,14 +110,7 @@ namespace NewsBoard
 
             // Swap /Shared/ for /_Shared/
             var copy = viewLocations.ToList();
-            copy.Add("~/wwwroot/Admin/{1}/{0}.cshtml");
-            copy.Add("~/wwwroot/Controls/{1}/{0}.cshtml");
-            copy.Add("~/wwwroot/Feed/{1}/{0}.cshtml");
-            copy.Add("~/wwwroot/User/{1}/{0}.cshtml");
-            copy.Add("~/wwwroot/Article/{1}/{0}.cshtml");
-            copy.Add("~/wwwroot/Group/{1}/{0}.cshtml");
-            copy.Add("~/wwwroot/Permission/{1}/{0}.cshtml");
-            copy.Add("~/wwwroot/Tag/{1}/{0}.cshtml");
+            copy.Add("~/wwwroot/{2}/{1}/{0}.cshtml");
             copy.Add("~/wwwroot/{1}/{0}.cshtml");
             copy.Add("~/wwwroot/{0}.cshtml");
             return copy;

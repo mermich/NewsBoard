@@ -19,7 +19,7 @@ namespace NewsBoard.wwwroot.Home
             return ReturnView("IndexView", new HomeModel());
         }
 
-        public IActionResult GetUserhomePage()
+        public IActionResult GetUserHomePage()
         {
             return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Index", new ArticleListFilterVM()));
         }
@@ -52,6 +52,26 @@ namespace NewsBoard.wwwroot.Home
         public IActionResult GetAboutPage()
         {
             return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Misc", "About", "Index"));
+        }
+
+        public IActionResult GetTagListPage()
+        {
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Tag", "TagList", "Index"));
+        }
+
+        public IActionResult GetGroupListPage()
+        {
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Group", "GroupList", "Index"));
+        }
+
+        public IActionResult GetPermissionListPage()
+        {
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Permission", "tPermissionList", "Index"));
+        }
+
+        public IActionResult GetUserListPage()
+        {
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("User", "UserList", "Index"));
         }
     }
 }

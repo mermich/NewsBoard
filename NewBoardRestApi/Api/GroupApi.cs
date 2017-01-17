@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NewBoardRestApi.Api.Model;
 using NewBoardRestApi.DataModel;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace NewBoardRestApi.Api
@@ -58,7 +59,8 @@ namespace NewBoardRestApi.Api
         {
             var group = new Group
             {
-                Label = groupVM.Label
+                Label = groupVM.Label,
+                GroupPermissions = new List<GroupPermission>()
             };
 
             foreach (var item in groupVM.Permissions.Items.Where(i=>i.IsSelected))

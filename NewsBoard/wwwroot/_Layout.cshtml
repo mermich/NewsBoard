@@ -43,7 +43,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetUserhomePage")">Mon accueil</a></li>
+                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetUserHomePage")">Mon accueil</a></li>
                     <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetUserArticles")">Mes articles</a></li>
                     <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("", "Home", "GetAllArticleList")">Tous les articles</a></li>
                     <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetUserFeeds")">Mes Flux</a></li>
@@ -53,9 +53,10 @@
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="~/Group/GroupList">Groups</a></li>
-                            <li><a href="~/Permission/PermissionList">Permissions</a></li>
-                            <li><a href="~/User/UserList">Users</a></li>
+                            <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetTagListPage")">Tags</a></li>
+                            <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetGroupListPage")">Groupes</a></li>
+                            <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetPermissionListPage")">Permissions</a></li>
+                            <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetUserListPage")">Utilisateurs</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -71,9 +72,13 @@
 
                 </ul>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="~/User/UserLogin">Login</a></li>
-                    <li><a href="~/User/UserLogin/SignOut">SignOut</a></li>
+                
+
+                <ul class="nav navbar-nav navbar-right" id="UserMenu">
+                    <asyncLoader url="@Url.NewsBoardUrlHelper().Action("User","UserMenu","Index")">
+                        Chargement du widget ...
+                        <div class='loader'></div>
+                    </asyncLoader>
                 </ul>
             </div>
         </div>
@@ -99,12 +104,12 @@
                     <div class='loader'></div>
                 </asyncLoader>
 
-                <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","Index", new FeedListFilterVM { OrderBy = "Subscribers", MaxItems=5 })">
+                <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","Index", new FeedListFilterVM { OnlyUserSubscription=false, OrderBy = "Subscribers", MaxItems=5 })">
                     Chargement du widget ...
                     <div class='loader'></div>
                 </asyncLoader>
 
-                <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","Index", new ArticleListFilterVM { OrderBy = "Open", MaxItems=5 })">
+                <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","Index", new ArticleListFilterVM {  OnlyUserSubscription=false,  OrderBy = "Open", MaxItems=5 })">
                     Chargement du widget ...
                     <div class='loader'></div>
                 </asyncLoader>

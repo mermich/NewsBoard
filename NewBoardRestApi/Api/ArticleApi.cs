@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using NewBoardRestApi.Api.Model;
 using NewBoardRestApi.DataModel.Engine;
+using System.Collections.Generic;
 
 namespace NewBoardRestApi.Api
 {
@@ -27,17 +28,32 @@ namespace NewBoardRestApi.Api
             if (filter == null)
                 filter = new ArticleListFilterVM();
 
-            var result = NewsBoardContext.Articles
-                .Include(a => a.Feed)
-                .Include(a => a.UserArticles)
-                .Where(a => filter.OnlyUserSubscription || a.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id))
-                .Where(a => filter.HideReported || !a.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsReported))
-                .Where(a => !filter.Feeds.Any() || filter.Feeds.Contains(a.FeedId))
-                .OrderBy(a => a.PublishDate)
-                .Take(filter.MaxItems)
-                .ToArticleList(currentUser);
+            if (currentUser == null)
+            {
+                var result = NewsBoardContext.Articles
+                    .Include(a => a.Feed)
+                    .Include(a => a.UserArticles)
+                    .Where(a => !filter.Feeds.Any() || filter.Feeds.Contains(a.FeedId))
+                    .OrderBy(a => a.PublishDate)
+                    .Take(filter.MaxItems)
+                    .ToArticleList(currentUser);
 
-            return result;
+                return result;
+            }
+            else
+            {
+                var result = NewsBoardContext.Articles
+                    .Include(a => a.Feed)
+                    .Include(a => a.UserArticles)
+                    .Where(a => filter.OnlyUserSubscription || a.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id))
+                    .Where(a => filter.HideReported || !a.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsReported))
+                    .Where(a => !filter.Feeds.Any() || filter.Feeds.Contains(a.FeedId))
+                    .OrderBy(a => a.PublishDate)
+                    .Take(filter.MaxItems)
+                    .ToArticleList(currentUser);
+
+                return result;
+            }
         }
 
 
@@ -45,6 +61,11 @@ namespace NewBoardRestApi.Api
         [Route("OpenArticle")]
         public virtual ArticleVM OpenArticle(int id)
         {
+            if (currentUser == null)
+            {
+                throw new BusinessLogicException("Seuls les utilisateurs authentifies peuvent ouvrir des articles.");
+            }
+
             var article = NewsBoardContext.Articles
                 .Include(a => a.Feed)
                 .Include(a => a.UserArticles)
@@ -67,6 +88,11 @@ namespace NewBoardRestApi.Api
         [Route("HideArticle")]
         public virtual void HideArticle(int id)
         {
+            if (currentUser == null)
+            {
+                throw new BusinessLogicException("Seuls les utilisateurs authentifies peuvent masquer des articles.");
+            }
+
             var article = NewsBoardContext.Articles
                 .Include(a => a.Feed)
                 .Include(a => a.UserArticles)

@@ -100,12 +100,27 @@ namespace NewBoardRestApi.Api
             if (filter == null)
                 filter = new FeedListFilterVM();
 
+            if(currentUser == null)
+            {
+                return NewsBoardContext
+               .Feeds
+               .Take(filter.MaxItems)
+               .Where(f => !filter.Tags.Any() || f.FeedTags.Any(ft => filter.Tags.Contains(ft.TagId)))
+               .Include(f => f.UserFeeds)
+               .ThenInclude(uf => uf.User)
+               .Include(f => f.Articles)
+               .ThenInclude(a => a.UserArticles)
+               .OrderBy(f => f.Title)
+               .Take(10)
+               .ToFeedVMList(currentUser);
+            }
+
             // Initialize query.
             return NewsBoardContext
                 .Feeds
                 .Take(filter.MaxItems)
                 .Where(f => !filter.Tags.Any() || f.FeedTags.Any(ft => filter.Tags.Contains(ft.TagId)))
-                .Where(f => filter.OnlyUserSubscription || f.UserFeeds.Any(uf => uf.UserId == currentUser.Id))
+                .Where(f => !filter.OnlyUserSubscription || f.UserFeeds.Any(uf => uf.UserId == currentUser.Id))
                 .Where(f => filter.HideReported || !f.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsReported))
                 .Include(f => f.UserFeeds)
                 .ThenInclude(uf => uf.User)
@@ -118,6 +133,11 @@ namespace NewBoardRestApi.Api
 
         public Feed CreateSubscriptionAndSubScribe(string addFeedUrl)
         {
+            if (currentUser == null)
+            {
+                throw new BusinessLogicException("Seuls les utilisateurs authentifies peuvent creer des abonnements.");
+            }
+
             if (NewsBoardContext.Feeds.Any(f => f.SyndicationUrl == addFeedUrl))
             {
 
@@ -133,6 +153,11 @@ namespace NewBoardRestApi.Api
 
         public virtual void SubscribeFeed(int feedId)
         {
+            if (currentUser == null)
+            {
+                throw new BusinessLogicException("Seuls les utilisateurs authentifies peuvent s'abonner.");
+            }
+
             var existingUserFeed = NewsBoardContext.UserFeeds
                 .Include(uf => uf.Feed)
                 .Include(uf => uf.User)
@@ -155,6 +180,11 @@ namespace NewBoardRestApi.Api
 
         public virtual void UnSubscribeFeed(int feedId)
         {
+            if (currentUser == null)
+            {
+                throw new BusinessLogicException("Seuls les utilisateurs authentifies peuvent se desabonner.");
+            }
+
             var existingUserFeed = NewsBoardContext.UserFeeds.FirstOrDefault(uf => uf.UserId == currentUser.Id && uf.FeedId == feedId);
             if (existingUserFeed != null)
             {
@@ -187,6 +217,11 @@ namespace NewBoardRestApi.Api
 
         public virtual void ReportFeed(int feedId)
         {
+            if (currentUser == null)
+            {
+                throw new BusinessLogicException("Seuls les utilisateurs authentifies peuvent rapporter une anomalie.");
+            }
+
             var existingUserFeed = NewsBoardContext.UserFeeds.FirstOrDefault(uf => uf.UserId == currentUser.Id && uf.FeedId == feedId);
             if (existingUserFeed != null)
             {
@@ -218,6 +253,11 @@ namespace NewBoardRestApi.Api
 
         public void SaveFeed(FeedEditVM feed)
         {
+            if (currentUser == null)
+            {
+                throw new BusinessLogicException("Seuls les utilisateurs authentifies peuvent modifier un abonnement.");
+            }
+
             var feedDb = NewsBoardContext.Feeds
                 .Include(f => f.FeedTags)
                 .FirstOrDefault(f => f.Id == feed.Id);

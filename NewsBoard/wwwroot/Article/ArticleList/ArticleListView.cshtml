@@ -27,19 +27,19 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "subscribe", new { articleId=Model.Articles[i].Id})"
+                                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Subscribe", new { feedId=Model.Articles[i].FeedId})"
                                            actiondata="" type="button" name="simpleGetAction">
                                             S'abonner au flux
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "report", new { articleId=Model.Articles[i].Id})"
+                                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Report", new { feedId=Model.Articles[i].FeedId})"
                                            actiondata="" type="button" name="simpleGetAction">
                                             Rapporter une anomalie
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "unSubscribe", new { articleId=Model.Articles[i].Id})"
+                                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "UnSubscribe", new { feedId=Model.Articles[i].FeedId})"
                                            actiondata="" type="button" name="simpleGetAction">
                                             Se desabonner
                                         </a>

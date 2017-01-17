@@ -44,6 +44,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
                 return new ComposeResult(
                     new SuccessMessageResult("Logged"),
+                    new ReplaceHtmlResult("#UserMenu", NewsBoardUrlHelper.Action("User", "UserMenu", "Index")),
                     new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("", "Home", "Index")));
             }
             catch (BusinessLogicException ex)
@@ -60,6 +61,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
             return new ComposeResult(
                     new SuccessMessageResult("Signed Out"),
+                    new ReplaceHtmlResult("#UserMenu", NewsBoardUrlHelper.Action("User", "UserMenu", "Index")),
                     new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("", "Home", "Index")));
         }
     }

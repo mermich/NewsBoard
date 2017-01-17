@@ -1,6 +1,9 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Filters;
+using NewBoardRestApi.Api.Model;
+using NewsBoard.Tools.JsonResult;
 
 namespace NewsBoard.Tools
 {
@@ -40,6 +43,24 @@ namespace NewsBoard.Tools
             get
             {
                 return HttpContext.Session.GetInt32("UserId").GetValueOrDefault();
+            }
+        }
+
+        public bool IsAuthenticated
+        {
+            get
+            {
+                return UserId != 0;
+            }
+        }
+
+
+        public override void OnActionExecuted(ActionExecutedContext context)
+        {
+            if (context.Exception != null && context.Exception is BusinessLogicException)
+            {
+                context.Result = new ErrorMessageResult(context.Exception.Message);
+                context.ExceptionHandled = true;
             }
         }
     }

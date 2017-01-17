@@ -34,7 +34,6 @@ $(function () {
 });
 
 function LoadCallback(selector) {
-
     $("asyncloader").each(function (e) {
         let thisdiv = $(this);
         let url = $(this).attr("url");
@@ -44,7 +43,6 @@ function LoadCallback(selector) {
             LoadCallback();
         });
     });
-
 
     $("[name=simpleGetAction]").off('click').click(function (e) {
         let target = e.target;
