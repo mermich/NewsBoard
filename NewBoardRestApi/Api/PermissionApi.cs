@@ -7,7 +7,7 @@ namespace NewBoardRestApi.Api
 {
     public class PermissionApi : BaseAuthenticatedApi
     {
-        public PermissionApi(string userToken = "") : base(userToken)
+        public PermissionApi(int userId) : base(userId)
         {
         }
 

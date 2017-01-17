@@ -38,6 +38,16 @@ namespace NewBoardRestApi.Api.Model
                 Id = permission.Id
             };
         }
+
+        public static SelectableItem ToSelectableItem(this Group group, List<UserGroup> existingGroups)
+        {
+            return new SelectableItem
+            {
+                IsSelected = existingGroups.Any(ft => ft.GroupId == group.Id),
+                Label = group.Label,
+                Id = group.Id
+            };
+        }
     }
 
 }

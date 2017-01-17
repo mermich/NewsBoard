@@ -12,7 +12,7 @@ namespace NewsBoard.wwwroot.Permission.PermissionCreate
 
         public IActionResult Index()
         {
-            var api = new PermissionApi();
+            var api = new PermissionApi(UserId);
             var model = api.GetNewPermissionEditVM();
             
             return ReturnView("PermissionCreateView", model);
@@ -20,7 +20,7 @@ namespace NewsBoard.wwwroot.Permission.PermissionCreate
 
         public ActionResult Create(PermissionVM model)
         {
-            var api = new PermissionApi();
+            var api = new PermissionApi(UserId);
             api.CreatePermission(model);
 
             return new ComposeResult(

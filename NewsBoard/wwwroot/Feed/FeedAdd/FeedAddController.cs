@@ -25,7 +25,7 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
 
         public IActionResult Preview(string webSiteUrl)
         {
-            var preview = new FeedApi(HttpContext.Session.Id).GetPreview(webSiteUrl);
+            var preview = new FeedApi(UserId).GetPreview(webSiteUrl);
 
             return ReturnView("FeedAddPreviewView", preview);
         }
@@ -33,7 +33,7 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
         [HttpPost]
         public IActionResult CreateSubscription(FeedVMPreview addFeed)
         {
-            var feed = new FeedApi(HttpContext.Session.Id).CreateSubscriptionAndSubScribe(addFeed.SyndicationUrl);
+            var feed = new FeedApi(UserId).CreateSubscriptionAndSubScribe(addFeed.SyndicationUrl);
 
             return new ComposeResult(
                 new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("feed", "FeedList", "Index")),

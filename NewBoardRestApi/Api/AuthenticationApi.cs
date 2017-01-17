@@ -2,6 +2,7 @@
 using NewBoardRestApi.Api.Model;
 using NewBoardRestApi.DataModel;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace NewBoardRestApi.Api
@@ -46,6 +47,15 @@ namespace NewBoardRestApi.Api
         public UserLoginVM GetNewUserLoginVM()
         {
             return new UserLoginVM();
+        }
+
+        public List<string> GetPermissions(int userId)
+        {
+            var result = NewsBoardContext.Groups.Where(g => g.UserGroups.Any(ug => ug.UserId == userId))
+                 .SelectMany(g => g.GroupPermissions.Select(gp => gp.Permission.Key)).ToList();
+
+
+            return result;
         }
     }
 }

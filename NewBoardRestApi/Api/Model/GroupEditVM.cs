@@ -14,7 +14,7 @@ namespace NewBoardRestApi.Api.Model
 
         public bool Enabled { get; set; }
 
-        public SelectableItemList Permissions { get; set; }
+        public SelectableItemList Permissions { get; set; } = new SelectableItemList();
 
         public GroupEditVM()
         {

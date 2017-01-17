@@ -10,7 +10,7 @@ namespace NewsBoard.wwwroot.User.UserSubscription
     {
         public IActionResult Index()
         {
-            var articleRepo = new ArticleApi(HttpContext.Session.Id);
+            var articleRepo = new ArticleApi(UserId);
             var articles = articleRepo.GetArticles();
 
             return ReturnView("UserSubscriptionView", articles);
@@ -18,7 +18,7 @@ namespace NewsBoard.wwwroot.User.UserSubscription
 
         public ActionResult Open(int articleId)
         {
-            var articleRepo = new ArticleApi(HttpContext.Session.Id);
+            var articleRepo = new ArticleApi(UserId);
             articleRepo.OpenArticle(articleId);
             var article = articleRepo.GetArticle(articleId);
 
@@ -31,7 +31,7 @@ namespace NewsBoard.wwwroot.User.UserSubscription
 
         public ActionResult Hide(int articleId)
         {
-            var articleRepo = new ArticleApi(HttpContext.Session.Id);
+            var articleRepo = new ArticleApi(UserId);
             articleRepo.HideArticle(articleId);
 
             return new ComposeResult(

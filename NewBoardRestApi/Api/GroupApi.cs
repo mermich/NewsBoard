@@ -7,7 +7,7 @@ namespace NewBoardRestApi.Api
 {
     public class GroupApi : BaseAuthenticatedApi
     {
-        public GroupApi(string userToken = "") : base(userToken)
+        public GroupApi(int userId) : base(userId)
         {
         }
 

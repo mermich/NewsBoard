@@ -12,7 +12,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
         public IActionResult Index()
         {
-            var api = new TagApi();
+            var api = new TagApi(UserId);
             var model = api.GetNewCreateTag();
             
             return ReturnView("TagCreateView", model);
@@ -20,7 +20,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
         public ActionResult Create(TagEditVM model)
         {
-            var api = new TagApi();
+            var api = new TagApi(UserId);
             api.CreateTag(model);
 
             return new ComposeResult(

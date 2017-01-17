@@ -18,7 +18,7 @@ namespace NewsBoard.wwwroot.Article.ArticleDetails
 
         public IActionResult Open(int articleId)
         {
-            var articleRepo = new ArticleApi(HttpContext.Session.Id);
+            var articleRepo = new ArticleApi(UserId);
             articleRepo.OpenArticle(articleId);
 
             return ReturnView("",null);
@@ -27,7 +27,7 @@ namespace NewsBoard.wwwroot.Article.ArticleDetails
 
         public IActionResult Hide(int articleId)
         {
-            var articleRepo = new ArticleApi(HttpContext.Session.Id);
+            var articleRepo = new ArticleApi(UserId);
             articleRepo.HideArticle(articleId);
 
             return ReturnView("", null);

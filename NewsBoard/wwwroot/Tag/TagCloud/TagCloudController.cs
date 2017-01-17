@@ -12,7 +12,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
         public IActionResult Index()
         {
-            var api = new TagApi();
+            var api = new TagApi(UserId);
             var model = api.GetUsedTags();
 
             return ReturnView("TagCloudView", model);

@@ -30,7 +30,9 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
                 // create *required* claims
                 claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Email));
-                foreach (var permission in user.Permissions)
+
+                var permissions = api.GetPermissions(user.Id);
+                foreach (var permission in permissions)
                 {
                     claims.Add(new Claim(ClaimTypes.Role, permission));
                 }

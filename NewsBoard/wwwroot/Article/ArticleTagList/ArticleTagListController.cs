@@ -16,7 +16,7 @@ namespace NewsBoard.wwwroot.Article.ArticleList
 
         public IActionResult Index(bool showHidden = false)
         {
-            var articleRepo = new ArticleApi(HttpContext.Session.Id);
+            var articleRepo = new ArticleApi(UserId);
             var model = articleRepo.GetArticles();
 
             return ReturnView("ArticleListView", model);
@@ -24,14 +24,14 @@ namespace NewsBoard.wwwroot.Article.ArticleList
 
         public IActionResult Open(int feedId)
         {
-            var articles = new ArticleApi(HttpContext.Session.Id).GetArticles(new ArticleListFilterVM { Feeds = new List<int> { feedId }});
+            var articles = new ArticleApi(UserId).GetArticles(new ArticleListFilterVM { Feeds = new List<int> { feedId }});
 
             return ReturnView("ArticleListView", articles);
         }
 
         public IActionResult Hide(int articleId)
         {
-            var articleApi = new ArticleApi(HttpContext.Session.Id);
+            var articleApi = new ArticleApi(UserId);
             articleApi.HideArticle(articleId);
 
             var articles = articleApi.GetArticles();

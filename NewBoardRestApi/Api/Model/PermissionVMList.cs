@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NewBoardRestApi.Api.Model
 {
-     public class PermissionVMList
+    public class PermissionVMList
     {
         public List<PermissionVM> Permissions { get; set; }
 

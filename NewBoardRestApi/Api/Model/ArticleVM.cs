@@ -44,7 +44,9 @@ namespace NewBoardRestApi.Api.Model
             Url = article.Url;
             Score = article.Score;
             FeedId = article.FeedId;
-            IsNew = article.UserArticles == null || !article.UserArticles.Any(ua => ua.UserId == currentUser.Id);
+
+            if(currentUser != null)
+                IsNew = article.UserArticles == null || !article.UserArticles.Any(ua => ua.UserId == currentUser.Id);
         }
     }
 

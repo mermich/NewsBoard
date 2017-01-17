@@ -7,7 +7,7 @@ namespace NewBoardRestApi.Api
 {
     public class TagApi : BaseAuthenticatedApi
     {
-        public TagApi(string userToken = "") : base(userToken)
+        public TagApi(int userId) : base(userId)
         {
         }
 

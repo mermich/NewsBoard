@@ -10,7 +10,7 @@ namespace NewBoardRestApi.Api
 {
     public class FeedApi : BaseAuthenticatedApi
     {
-        public FeedApi(string userToken) : base(userToken)
+        public FeedApi(int userId) : base(userId)
         {
         }
 
@@ -108,7 +108,9 @@ namespace NewBoardRestApi.Api
                 .Where(f => filter.OnlyUserSubscription || f.UserFeeds.Any(uf => uf.UserId == currentUser.Id))
                 .Where(f => filter.HideReported || !f.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsReported))
                 .Include(f => f.UserFeeds)
+                .ThenInclude(uf => uf.User)
                 .Include(f => f.Articles)
+                .ThenInclude(a=>a.UserArticles)
                 .OrderBy(f => f.Title)
                 .ToFeedVMList(currentUser);
         }

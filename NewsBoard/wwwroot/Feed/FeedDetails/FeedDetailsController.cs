@@ -16,7 +16,7 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
         // GET: /<controller>/
         public IActionResult Index(int feedId)
         {
-            var feedRepo = new FeedApi(HttpContext.Session.Id);
+            var feedRepo = new FeedApi(UserId);
             var feed = feedRepo.GetFeed(feedId);
 
             return ReturnView("FeedDetailsView", feed);
@@ -24,7 +24,7 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
 
         public IActionResult Subscribe(int feedId)
         {
-            var feedRepo = new FeedApi(HttpContext.Session.Id);
+            var feedRepo = new FeedApi(UserId);
             feedRepo.SubscribeFeed(feedId);
 
             return new SuccessMessageResult("Subscribed");
@@ -32,7 +32,7 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
 
         public IActionResult Report(int feedId)
         {
-            var feedRepo = new FeedApi(HttpContext.Session.Id);
+            var feedRepo = new FeedApi(UserId);
             feedRepo.ReportFeed(feedId);
 
             return new SuccessMessageResult("Reported");
@@ -40,7 +40,7 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
 
         public IActionResult Unsubscribe(int feedId)
         {
-            var feedRepo = new FeedApi(HttpContext.Session.Id);
+            var feedRepo = new FeedApi(UserId);
             feedRepo.UnSubscribeFeed(feedId);
 
             return new SuccessMessageResult("UnSubscribed");
@@ -48,7 +48,7 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
 
         public IActionResult RefreshFeed(int feedId)
         {
-            var feedRepo = new FeedApi(HttpContext.Session.Id);
+            var feedRepo = new FeedApi(UserId);
             feedRepo.Refresh(feedId);
 
             return new ComposeResult(

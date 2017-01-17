@@ -12,7 +12,7 @@ namespace NewsBoard.wwwroot.Group.GroupCreate
 
         public IActionResult Index(int groupId)
         {
-            var api = new GroupApi();
+            var api = new GroupApi(UserId);
             var model = api.GetEditGroup(groupId);
             
             return ReturnView("GroupEditView", model);
@@ -20,7 +20,7 @@ namespace NewsBoard.wwwroot.Group.GroupCreate
 
         public ActionResult Update(GroupEditVM model)
         {
-            var api = new GroupApi();
+            var api = new GroupApi(UserId);
             api.CreateGroup(model);
 
             return new ComposeResult(

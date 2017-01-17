@@ -16,7 +16,7 @@ namespace NewsBoard.wwwroot.Feed.FeedEdit
         // GET: /<controller>/
         public IActionResult Index(int feedId)
         {
-            var model = new FeedApi(HttpContext.Session.Id).GetFeedEdit(feedId);
+            var model = new FeedApi(UserId).GetFeedEdit(feedId);
 
             return ReturnView("FeedEditView", model);
         }
@@ -24,7 +24,7 @@ namespace NewsBoard.wwwroot.Feed.FeedEdit
 
         public IActionResult Update(FeedEditVM feed)
         {
-            new FeedApi(HttpContext.Session.Id).SaveFeed(feed);
+            new FeedApi(UserId).SaveFeed(feed);
 
             return new ComposeResult(
                 new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedList", "Index")),

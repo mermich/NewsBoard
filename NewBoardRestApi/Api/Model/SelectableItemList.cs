@@ -28,5 +28,10 @@ namespace NewBoardRestApi.Api.Model
         {
             return new SelectableItemList(permissions.Select(t => t.ToSelectableItem(existingPermissions)));
         }
+
+        public static SelectableItemList ToSelectableItemList(this IEnumerable<Group> groups, List<UserGroup> existingGroups)
+        {
+            return new SelectableItemList(groups.Select(t => t.ToSelectableItem(existingGroups)));
+        }
     }
 }

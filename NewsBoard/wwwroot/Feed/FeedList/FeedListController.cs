@@ -15,7 +15,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
         // GET: /<controller>/
         public IActionResult Index(FeedListFilterVM filter)
         {
-            var feedRepo = new FeedApi(HttpContext.Session.Id);
+            var feedRepo = new FeedApi(UserId);
             var model = feedRepo.ListFeed(filter);
 
             return ReturnView("FeedListView", model);
@@ -23,7 +23,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
 
         public IActionResult Open(int feedId)
         {
-            var feedRepo = new FeedApi(HttpContext.Session.Id);
+            var feedRepo = new FeedApi(UserId);
             var feed = feedRepo.GetFeed(feedId);
 
             // Opens the article and should also update stats.
@@ -35,7 +35,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
         
         public IActionResult Subscribe(int feedId)
         {
-            var feedRepo = new FeedApi(HttpContext.Session.Id);
+            var feedRepo = new FeedApi(UserId);
             feedRepo.SubscribeFeed(feedId);
 
             return new ReplaceHtmlResult("#UserSubscription", NewsBoardUrlHelper.Action("Feed", "UserSubscription", "Index"));
@@ -43,7 +43,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
 
         public IActionResult Unsubscribe(int feedId)
         {
-            var feedRepo = new FeedApi(HttpContext.Session.Id);
+            var feedRepo = new FeedApi(UserId);
             feedRepo.UnSubscribeFeed(feedId);
 
             return new ReplaceHtmlResult("#UserSubscription", NewsBoardUrlHelper.Action("Feed", "UserSubscription", "Index"));
@@ -51,7 +51,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
 
         public IActionResult Report(int feedId)
         {
-            var feedRepo = new FeedApi(HttpContext.Session.Id);
+            var feedRepo = new FeedApi(UserId);
             feedRepo.ReportFeed(feedId);
 
             return new SuccessMessageResult("Reported");
@@ -59,7 +59,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
 
         public IActionResult ShowDetails(int feedId)
         {
-            var feedRepo = new FeedApi(HttpContext.Session.Id);
+            var feedRepo = new FeedApi(UserId);
             feedRepo.OpenFeed(feedId);
 
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedDetails", "Index", new { feedId = feedId }));

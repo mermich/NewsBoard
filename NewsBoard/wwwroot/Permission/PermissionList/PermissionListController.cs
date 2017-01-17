@@ -8,13 +8,12 @@ using Microsoft.AspNetCore.Authorization;
 namespace NewsBoard.wwwroot.Permission.PermissionList
 {
     [Area("Permission")]
-    [Authorize(Roles = "Administrator")]
     public class PermissionListController : BaseController
     {
 
         public IActionResult Index()
         {
-            var api = new PermissionApi();
+            var api = new PermissionApi(UserId);
             var model =api.GetPermissions();
             
             return ReturnView("PermissionListView", model);

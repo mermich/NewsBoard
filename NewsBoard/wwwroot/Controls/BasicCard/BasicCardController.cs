@@ -15,7 +15,7 @@ namespace NewsBoard.wwwroot.Controls.BasicCard
 
         public ActionResult Index()
         {
-            var feedRepo = new FeedApi(HttpContext.Session.Id);
+            var feedRepo = new FeedApi(UserId);
 
             var model = new BasicCardModel();
             var item = feedRepo.ListFeed(new FeedListFilterVM()).Feeds.First();

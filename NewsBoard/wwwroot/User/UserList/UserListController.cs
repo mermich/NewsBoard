@@ -7,27 +7,26 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace NewsBoard.wwwroot.Permission.PermissionList
 {
-    [Area("Permission")]
-    [Authorize(Roles = "Administrator")]
+    [Area("User")]
     public class UserListController : BaseController
     {
 
         public IActionResult Index()
         {
-            var api = new UserApi();
-            var model =api.GetPermissions();
-            
-            return ReturnView("PermissionListView", model);
+            var api = new UserApi(UserId);
+            var model = api.ListUsers();
+
+            return ReturnView("UserListView", model);
         }
 
-        public ActionResult GetEdit(int PermissionId)
+        public ActionResult GetEdit(int userId)
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Permission", "PermissionEdit", "Index", new { PermissionId = PermissionId }));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserEdit", "Index", new { USerId = userId }));
         }
 
         public ActionResult GetCreate()
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Permission", "PermissionCreate", "Index"));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserCreate", "Index"));
         }
     }
 }

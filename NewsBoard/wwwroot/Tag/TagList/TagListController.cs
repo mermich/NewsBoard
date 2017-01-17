@@ -8,13 +8,12 @@ using Microsoft.AspNetCore.Authorization;
 namespace NewsBoard.wwwroot.User.UserRegister
 {
     [Area("Tag")]
-    [Authorize(Roles = "Administrator")]
     public class TagListController : BaseController
     {
 
         public IActionResult Index()
         {
-            var api = new TagApi();
+            var api = new TagApi(UserId);
             var model =api.GetTags();
             
             return ReturnView("TagListView", model);

@@ -10,7 +10,7 @@ namespace NewBoardRestApi.Api
     [Route("api/[controller]")]
     public class ArticleApi : BaseAuthenticatedApi
     {
-        public ArticleApi(string userToken = "") : base(userToken)
+        public ArticleApi(int userId) : base(userId)
         {
         }
 

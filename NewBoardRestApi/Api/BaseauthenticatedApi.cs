@@ -7,12 +7,6 @@ namespace NewBoardRestApi.Api
     {
         protected User currentUser;
 
-        public BaseAuthenticatedApi(string userToken)
-        {
-            var userId = 1;
-            currentUser = NewsBoardContext.Users.FirstOrDefault(u => u.Id == userId);
-        }
-
         public BaseAuthenticatedApi(int userId)
         {
             currentUser = NewsBoardContext.Users.FirstOrDefault(u => u.Id == userId);
