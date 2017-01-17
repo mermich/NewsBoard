@@ -8,24 +8,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Http;
 using System;
-using NewBoardRestApi.Api.Model;
-using Microsoft.AspNetCore.Identity;
 
 namespace NewsBoard
 {
-
-    public static class plop
-    {
-        public static void AddMyServices(this IServiceCollection services, IServiceCollection context)
-        {
-        }
-    }
-
-
     public class Startup
     {
-
-
         public IConfigurationRoot Configuration { get; set; }
 
 
@@ -58,10 +45,6 @@ namespace NewsBoard
 
 
             services.AddAuthentication();
-
-          
-
-            services.AddMyServices(null);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

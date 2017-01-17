@@ -1,5 +1,4 @@
-﻿using NewsBoard.Tools;
-using NewsBoard.Tools.Controls;
+﻿using NewsBoard.Tools.Controls;
 
 namespace NewsBoard.wwwroot.Controls.InputTextTest
 {

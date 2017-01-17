@@ -1,8 +1,6 @@
 ﻿using NewBoardRestApi.DataModel;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace NewBoardRestApi.Api.Model
 {
@@ -12,9 +10,17 @@ namespace NewBoardRestApi.Api.Model
 
         public int Id { get; set; }
 
-        public string  Password { get; set; }
+        public string Password { get; set; }
 
         public List<string> Groups { get; set; } = new List<string>();
+
+        public string GroupString
+        {
+            get
+            {
+                return string.Join(", ", Groups.Select(g => g));
+            }
+        }
 
 
         public UserVM()
@@ -22,7 +28,7 @@ namespace NewBoardRestApi.Api.Model
 
         }
 
-        public UserVM(User user) :this()
+        public UserVM(User user) : this()
         {
             Email = user.Email;
             Id = user.Id;

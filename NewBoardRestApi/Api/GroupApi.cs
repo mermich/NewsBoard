@@ -16,7 +16,7 @@ namespace NewBoardRestApi.Api
         {
             return NewsBoardContext
                 .Groups
-                .Include(t => t.GroupPermissions)
+                .Include(t => t.GroupPermissions).ThenInclude(gp => gp.Permission)
                 .ToGroupVMList();
         }
 
@@ -35,7 +35,7 @@ namespace NewBoardRestApi.Api
         {
             return NewsBoardContext
                 .Groups
-                .Include(t => t.GroupPermissions)
+                .Include(t => t.GroupPermissions).ThenInclude(gp => gp.Permission)
                 .FirstOrDefault(t => t.Id == groupId)
                 .ToGroup();
         }
@@ -63,7 +63,7 @@ namespace NewBoardRestApi.Api
                 GroupPermissions = new List<GroupPermission>()
             };
 
-            foreach (var item in groupVM.Permissions.Items.Where(i=>i.IsSelected))
+            foreach (var item in groupVM.Permissions.Items.Where(i => i.IsSelected))
             {
                 group.GroupPermissions.Add(new GroupPermission { Group = group, PermissionId = item.Id });
             }
@@ -81,7 +81,7 @@ namespace NewBoardRestApi.Api
             group.Label = groupVM.Label;
 
             // TODO MERGE PERMISSSIONS.
-            
+
             NewsBoardContext.SaveChanges();
 
             return GetGroup(group.Id);

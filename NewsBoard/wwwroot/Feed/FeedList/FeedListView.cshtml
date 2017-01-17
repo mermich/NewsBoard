@@ -3,7 +3,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        Flux disponibles
+        @Model.Title
     </div>
 
     <div class="panel-body" style="padding:0px">
@@ -17,10 +17,11 @@
                         <td>
                             <div class="btn-group" role="group">
                                 <button class="btn btn-info btn-sm"
-                                        action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Subscribe", new {feedId = Model.Feeds[i].Id })"
+                                        action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new {feedId = Model.Feeds[i].Id })"
                                         actiondata="" type="button" name="simpleGetAction">
-                                    S'abonner
+                                    Ouvrir
                                 </button>
+
                                 <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
                                 </button>
@@ -28,16 +29,21 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new {feedId = Model.Feeds[i].Id })"
-                                           actiondata="" type="button" name="simpleGetAction">
-                                            Ouvrir
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Unsubscribe", new {feedId = Model.Feeds[i].Id })"
-                                           actiondata="" type="button" name="simpleGetAction">
-                                            Se desabonner
-                                        </a>
+                                        @if (Model.Feeds[i].IsSubscribed)
+                                        {
+                                            <a href="#" action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Unsubscribe", new {feedId = Model.Feeds[i].Id })"
+                                               actiondata="" type="button" name="simpleGetAction">
+                                                Se desabonner
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="#"
+                                               action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Subscribe", new {feedId = Model.Feeds[i].Id })"
+                                               actiondata="" type="button" name="simpleGetAction">
+                                                S'abonner
+                                            </a>
+                                        }
                                     </li>
                                     <li>
                                         <a href="#" action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Report", new {feedId = Model.Feeds[i].Id })"

@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using NewBoardRestApi.Api.Model;
+﻿using NewBoardRestApi.Api.Model;
 using NewBoardRestApi.DataModel;
 using System.Linq;
 

@@ -1,9 +1,7 @@
-﻿using NewsBoard.Tools;
-using Microsoft.AspNetCore.Mvc;
-using NewsBoard.Tools.JsonResult;
+﻿using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.Api;
-using NewBoardRestApi.Api.Model;
-using Microsoft.AspNetCore.Authorization;
+using NewsBoard.Tools;
+using NewsBoard.Tools.JsonResult;
 
 namespace NewsBoard.wwwroot.Permission.PermissionList
 {
@@ -21,7 +19,7 @@ namespace NewsBoard.wwwroot.Permission.PermissionList
 
         public ActionResult GetEdit(int userId)
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserEdit", "Index", new { USerId = userId }));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserEdit", "Index", new { UserId = userId }));
         }
 
         public ActionResult GetCreate()

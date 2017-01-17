@@ -1,8 +1,8 @@
 ﻿using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using NewBoardRestApi.Api;
 using NewBoardRestApi.Api.Model;
+using NewsBoard.Tools.JsonResult;
 
 namespace NewsBoard.wwwroot.Article.ArticleList
 {
@@ -16,18 +16,40 @@ namespace NewsBoard.wwwroot.Article.ArticleList
         {
             var articleRepo = new ArticleApi(UserId);
             var model = articleRepo.GetArticles(filter);
+            model.Title = "Articles";
 
             return ReturnView("ArticleListView", model);
+        }
+
+        public IActionResult UserSubscription(ArticleListFilterVM filter)
+        {
+            var articleRepo = new ArticleApi(UserId);
+            var model = articleRepo.GetArticles(filter);
+            model.Title = "Mes articles";
+
+            return ReturnView("ArticleListView", model);
+        }
+
+        public IActionResult Open(int articleId)
+        {
+            var articleApi = new ArticleApi(UserId);
+            var article = articleApi.OpenArticle(articleId);
+
+            // Opens the article and should also update stats.
+            return new ComposeResult(
+                new OpenNewWindowResult(article.Url),
+                new WarnMessageResult("Ouverture dans une nouvelle fenetre."));
         }
 
         public IActionResult Hide(int articleId)
         {
             var articleApi = new ArticleApi(UserId);
             articleApi.HideArticle(articleId);
-
-            var articles = articleApi.GetArticles(new ArticleListFilterVM());
-
-            return ReturnView("ArticleListView", articles);
+            
+            return new ComposeResult(
+                new HideHtmlResult("#article-" + articleId),
+                new SuccessMessageResult("Cet article ne sera plus affiche."));
         }
+
     }
 }

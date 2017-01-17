@@ -1,6 +1,5 @@
 ﻿using NewBoardRestApi.DataModel;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace NewBoardRestApi.Api.Model
 {

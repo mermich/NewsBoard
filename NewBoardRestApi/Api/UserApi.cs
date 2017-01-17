@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NewBoardRestApi.Api.Model;
 using NewBoardRestApi.DataModel;
-using System;
 using System.Linq;
 
 namespace NewBoardRestApi.Api

@@ -1,7 +1,6 @@
 ﻿using System;
 using NewBoardRestApi.DataModel;
 using System.Linq;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using NewBoardRestApi.Http;
 using NewBoardRestApi.Api.Model;
@@ -120,7 +119,7 @@ namespace NewBoardRestApi.Api
                 .Feeds
                 .Take(filter.MaxItems)
                 .Where(f => !filter.Tags.Any() || f.FeedTags.Any(ft => filter.Tags.Contains(ft.TagId)))
-                .Where(f => !filter.OnlyUserSubscription || f.UserFeeds.Any(uf => uf.UserId == currentUser.Id))
+                .Where(f => !filter.OnlyUserSubscription || f.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsSubscribed))
                 .Where(f => filter.HideReported || !f.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsReported))
                 .Include(f => f.UserFeeds)
                 .ThenInclude(uf => uf.User)
@@ -140,14 +139,15 @@ namespace NewBoardRestApi.Api
 
             if (NewsBoardContext.Feeds.Any(f => f.SyndicationUrl == addFeedUrl))
             {
-
+                throw new BusinessLogicException("Le flux existe deja.");
             }
+            else
+            {
+                var feed = CreateSubscription(addFeedUrl);
+                SubscribeFeed(feed.Id);
 
-
-            var feed = CreateSubscription(addFeedUrl);
-            SubscribeFeed(feed.Id);
-
-            return feed;
+                return feed;
+            }
         }
 
 

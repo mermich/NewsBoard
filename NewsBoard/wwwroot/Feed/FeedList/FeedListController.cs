@@ -17,6 +17,16 @@ namespace NewsBoard.wwwroot.Feed.FeedList
         {
             var feedRepo = new FeedApi(UserId);
             var model = feedRepo.ListFeed(filter);
+            model.Title = "Abonnements";
+
+            return ReturnView("FeedListView", model);
+        }
+
+        public IActionResult UserSubscription(FeedListFilterVM filter)
+        {
+            var feedRepo = new FeedApi(UserId);
+            var model = feedRepo.ListFeed(filter);
+            model.Title = "Mes Abonnements";
 
             return ReturnView("FeedListView", model);
         }
@@ -29,7 +39,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
             // Opens the article and should also update stats.
             return new ComposeResult(
                 new OpenNewWindowResult(feed.WebSiteUrl),
-                new WarnMessageResult("Ouverture de lu site dans une nouvelle fenetre."));
+                new WarnMessageResult("Ouverture dans une nouvelle fenetre."));
         }
 
         

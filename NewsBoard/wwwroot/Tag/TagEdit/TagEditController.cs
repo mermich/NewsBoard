@@ -21,7 +21,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
         public ActionResult Update(TagEditVM model)
         {
             var api = new TagApi(UserId);
-            api.CreateTag(model);
+            api.SaveTag(model);
 
             return new ComposeResult(
                 new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Tag", "TagList", "Index")),

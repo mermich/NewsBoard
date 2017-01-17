@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace NewsBoard.wwwroot.Home
+﻿namespace NewsBoard.wwwroot.Home
 {
     public class HomeModel
     {

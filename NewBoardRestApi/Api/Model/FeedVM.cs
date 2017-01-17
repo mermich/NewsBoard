@@ -1,10 +1,13 @@
 ﻿using NewBoardRestApi.DataModel;
+using System.Linq;
 
 namespace NewBoardRestApi.Api.Model
 {
     public class FeedVM
     {
         public int Id { get; set; }
+
+        public bool IsSubscribed { get; set; }
 
         public string WebSiteUrl { get; set; } = "";
 
@@ -29,6 +32,9 @@ namespace NewBoardRestApi.Api.Model
             Title = feed.Title;
             Description = feed.Description;
             Subscribers = feed.Subscribers;
+
+            if(currentUser!= null)
+                IsSubscribed = feed.UserFeeds != null && feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsSubscribed);
 
             ArticleVMList = feed.Articles.ToArticleList(currentUser);
         }

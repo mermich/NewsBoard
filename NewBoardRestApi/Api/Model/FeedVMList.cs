@@ -9,6 +9,8 @@ namespace NewBoardRestApi.Api.Model
     {
         public List<FeedVM> Feeds { get; set; }
 
+        public string Title { get; set; } = "Flux disponibles";
+
         public FeedVMList() { }
 
         public FeedVMList(IEnumerable<FeedVM> feeds)

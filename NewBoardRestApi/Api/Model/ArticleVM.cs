@@ -9,6 +9,8 @@ namespace NewBoardRestApi.Api.Model
 
         public bool IsNew { get; set; }
 
+        public bool IsSubscribed { get; set; }
+
         public string IsNewClass
         {
             get
@@ -45,7 +47,10 @@ namespace NewBoardRestApi.Api.Model
             Score = article.Score;
             FeedId = article.FeedId;
 
-            if(currentUser != null)
+            if (currentUser != null)
+                IsSubscribed = article.Feed.UserFeeds != null && article.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsSubscribed);
+
+            if (currentUser != null)
                 IsNew = article.UserArticles == null || !article.UserArticles.Any(ua => ua.UserId == currentUser.Id);
         }
     }

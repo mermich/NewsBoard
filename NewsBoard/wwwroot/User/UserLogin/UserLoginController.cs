@@ -1,11 +1,11 @@
-﻿using NewsBoard.Tools;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NewsBoard.Tools.JsonResult;
 using NewBoardRestApi.Api;
 using NewBoardRestApi.Api.Model;
-using System.Security.Claims;
+using NewsBoard.Tools;
+using NewsBoard.Tools.JsonResult;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace NewsBoard.wwwroot.User.UserRegister
 {
@@ -39,7 +39,6 @@ namespace NewsBoard.wwwroot.User.UserRegister
                 var principal = new ClaimsPrincipal(new ClaimsIdentity(claims, "Basic"));
 
                 HttpContext.Authentication.SignInAsync("NewsBoardScheme", principal);
-
                 HttpContext.Session.SetInt32("UserId", user.Id);
 
                 return new ComposeResult(
@@ -56,7 +55,6 @@ namespace NewsBoard.wwwroot.User.UserRegister
         public ActionResult SignOut()
         {
             HttpContext.Authentication.SignOutAsync("NewsBoardScheme");
-
             HttpContext.Session.Clear();
 
             return new ComposeResult(

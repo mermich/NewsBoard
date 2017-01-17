@@ -1,7 +1,6 @@
 ﻿using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using NewsBoard.Tools.JsonResult;
-using System.Linq;
 using NewBoardRestApi.Api;
 using NewBoardRestApi.Api.Model;
 

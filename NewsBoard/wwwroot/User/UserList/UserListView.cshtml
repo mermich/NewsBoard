@@ -1,28 +1,31 @@
-﻿@model PermissionVMList
+﻿@model UserVMList
 
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        Les Permissiones
+        Utilisateurs
     </div>
 
-    <a href="#" action="@Url.NewsBoardUrlHelper().Action("Permission", "PermissionList", "GetCreate")"
+    <h1>TO DO CREATE /UPDATE SCREENS</h1>
+
+    <a href="#" action="@Url.NewsBoardUrlHelper().Action("User", "UserList", "GetCreate")"
        actiondata="" type="button" name="simpleGetAction">
-        Creer une nouvelle permission
+        Creer un nouvel utilisateur
     </a>
 
 
     <div class="panel-body" style="padding:0px">
         <table class="table table-striped table-condensed">
             <tbody>
-                @for (int i = 0; i < Model.Permissions.Count; i++)
+                @for (int i = 0; i < Model.Users.Count; i++)
                 {
                     <tr>
-                        <td>@Model.Permissions[i].Label</td>
+                        <td>@Model.Users[i].Email</td>
+                        <td>@Model.Users[i].GroupString</td>
                         <td>
-                            <div class="btn-Permission" role="Permission">
+                            <div class="btn-group" role="group">
                                 <button class="btn btn-info btn-sm"
-                                        action="@Url.NewsBoardUrlHelper().Action("Permission", "PermissionList", "GetEdit", new { PermissionId=Model.Permissions[i].Id})"
+                                        action="@Url.NewsBoardUrlHelper().Action("User", "UserList", "GetEdit", new { userId=Model.Users[i].Id})"
                                         actiondata="" type="button" name="simpleGetAction">
                                     Editer
                                 </button>
@@ -34,9 +37,9 @@
         </table>
     </div>
 
-    <a href="#" action="@Url.NewsBoardUrlHelper().Action("Permission", "PermissionList", "GetCreate")"
+    <a href="#" action="@Url.NewsBoardUrlHelper().Action("User", "UserList", "GetCreate")"
        actiondata="" type="button" name="simpleGetAction">
-        Creer une nouvelle permission
+        Creer un nouvel utilisateur
     </a>
 </div>
 

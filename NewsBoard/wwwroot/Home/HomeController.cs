@@ -26,7 +26,7 @@ namespace NewsBoard.wwwroot.Home
 
         public IActionResult GetUserArticles()
         {
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Index", new ArticleListFilterVM()));
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "UserSubscription", new ArticleListFilterVM()));
         }
 
         public IActionResult GetAllArticleList()
@@ -36,7 +36,7 @@ namespace NewsBoard.wwwroot.Home
 
         public IActionResult GetUserFeeds()
         {
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Index", new FeedListFilterVM()));
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "UserSubscription", new FeedListFilterVM()));
         }
 
         public IActionResult GetAllFeeds()
@@ -66,7 +66,7 @@ namespace NewsBoard.wwwroot.Home
 
         public IActionResult GetPermissionListPage()
         {
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Permission", "tPermissionList", "Index"));
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Permission", "PermissionList", "Index"));
         }
 
         public IActionResult GetUserListPage()

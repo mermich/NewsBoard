@@ -3,7 +3,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        Articles
+        @Model.Title
     </div>
 
     <div class="panel-body" style="padding:0px">
@@ -11,12 +11,12 @@
             <tbody>
                 @for (int i = 0; i < Model.Articles.Count; i++)
                 {
-                    <tr>
+                    <tr id="article-@Model.Articles[i].Id">
                         <td>@Model.Articles[i].Label</td>
                         <td>
                             <div class="btn-group" role="group">
                                 <button class="btn btn-info btn-sm"
-                                        action="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "open", new { articleId=Model.Articles[i].Id})"
+                                        action="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Open", new { articleId=Model.Articles[i].Id})"
                                         actiondata="" type="button" name="simpleGetAction">
                                     Ouvrir
                                 </button>
@@ -27,19 +27,29 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Subscribe", new { feedId=Model.Articles[i].FeedId})"
+                                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Hide", new {articleId = Model.Articles[i].Id })"
                                            actiondata="" type="button" name="simpleGetAction">
-                                            S'abonner au flux
+                                            Ne plus afficher cet article
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Report", new { feedId=Model.Articles[i].FeedId})"
-                                           actiondata="" type="button" name="simpleGetAction">
-                                            Rapporter une anomalie
-                                        </a>
+                                        @if (Model.Articles[i].IsSubscribed)
+                                        {
+                                            <a href="#" action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Subscribe", new { feedId = Model.Articles[i].FeedId })"
+                                               actiondata="" type="button" name="simpleGetAction">
+                                                S'abonner au flux
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="#" action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Report", new {feedId = Model.Articles[i].FeedId })"
+                                               actiondata="" type="button" name="simpleGetAction">
+                                                Rapporter une anomalie
+                                            </a>
+                                        }
                                     </li>
                                     <li>
-                                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "UnSubscribe", new { feedId=Model.Articles[i].FeedId})"
+                                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Unsubscribe", new {feedId = Model.Articles[i].FeedId })"
                                            actiondata="" type="button" name="simpleGetAction">
                                             Se desabonner
                                         </a>

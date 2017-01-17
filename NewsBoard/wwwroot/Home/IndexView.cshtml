@@ -1,14 +1,22 @@
 ﻿@model NewsBoard.wwwroot.Home.HomeModel
 
 <div class="col col-md-6">
-    <asyncLoader url="@Url.NewsBoardUrlHelper().Action("User","UserSubscription","Index", new ArticleListFilterVM() { OnlyUserSubscription = true }) ">
+    <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","UserSubscription", new ArticleListFilterVM()) ">
+        Chargement des flux ...
+        <div class='loader'></div>
+    </asyncLoader>
+    <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","Index", new ArticleListFilterVM()) ">
         Chargement des flux ...
         <div class='loader'></div>
     </asyncLoader>
 </div>
 
 <div class="col col-md-6">
-    <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","Index", new FeedListFilterVM() { OnlyUserSubscription = true }) ">
+    <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","UserSubscription", new FeedListFilterVM()) ">
+        Chargement des flux ...
+        <div class='loader'></div>
+    </asyncLoader>
+    <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","Index", new FeedListFilterVM()) ">
         Chargement des flux ...
         <div class='loader'></div>
     </asyncLoader>

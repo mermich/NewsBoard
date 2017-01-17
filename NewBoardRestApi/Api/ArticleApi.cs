@@ -3,8 +3,6 @@ using NewBoardRestApi.DataModel;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using NewBoardRestApi.Api.Model;
-using NewBoardRestApi.DataModel.Engine;
-using System.Collections.Generic;
 
 namespace NewBoardRestApi.Api
 {
@@ -19,7 +17,11 @@ namespace NewBoardRestApi.Api
         [HttpGet("{id}")]
         public ArticleVM GetArticle(int articleId)
         {
-            return NewsBoardContext.Articles.SingleResult(a => a.Id == articleId).ToArticle(currentUser);
+            return NewsBoardContext.Articles
+                .Include(a => a.Feed).ThenInclude(f=>f.UserFeeds)
+                .Include(a => a.UserArticles)
+                .FirstOrDefault(a => a.Id == articleId)
+                .ToArticle(currentUser);
         }
 
 
@@ -45,8 +47,8 @@ namespace NewBoardRestApi.Api
                 var result = NewsBoardContext.Articles
                     .Include(a => a.Feed)
                     .Include(a => a.UserArticles)
-                    .Where(a => filter.OnlyUserSubscription || a.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id))
-                    .Where(a => filter.HideReported || !a.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsReported))
+                    .Where(a => !filter.OnlyUserSubscription || a.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsSubscribed))
+                    .Where(a => !filter.HideReported || !a.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsReported))
                     .Where(a => !filter.Feeds.Any() || filter.Feeds.Contains(a.FeedId))
                     .OrderBy(a => a.PublishDate)
                     .Take(filter.MaxItems)

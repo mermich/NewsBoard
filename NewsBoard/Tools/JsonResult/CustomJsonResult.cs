@@ -1,5 +1,4 @@
-﻿using NewsBoard.Tools;
-using jsonResult = Microsoft.AspNetCore.Mvc.JsonResult;
+﻿using jsonResult = Microsoft.AspNetCore.Mvc.JsonResult;
 
 namespace NewsBoard.Tools.JsonResult
 {
