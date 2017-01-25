@@ -17,9 +17,9 @@ namespace NewBoardRestApi.Api.Model
     }
 
 
-    public static class UserVMListExtentions
+    internal static class UserVMListExtentions
     {
-        public static UserVMList ToUserVMList(this IEnumerable<User> items)
+        internal static UserVMList ToUserVMList(this IEnumerable<User> items)
         {
             return new UserVMList(items.Select(i => i.ToUserVM()));
         }

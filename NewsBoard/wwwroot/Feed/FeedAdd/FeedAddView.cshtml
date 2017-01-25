@@ -12,8 +12,8 @@
         Adresse du site: <input type="url" style="width:400px;" name="WebSiteUrl" value="" />
         
         <button class="btn btn-info"
-                action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedAdd", "GetPreview")"
-                actiondata="" type="button" name="simplePostAction">
+                ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedAdd", "GetPreview")"
+                type="button" ns-action-type="simplePostAction">
             Previsualiser
         </button>
     </div>

@@ -13,20 +13,11 @@ namespace NewsBoard.wwwroot.Feed.FeedList
     public class FeedListController : BaseController
     {
         // GET: /<controller>/
-        public IActionResult Index(FeedListFilterVM filter)
+        public IActionResult Index(FeedVMListFilter filter, FeedVMListOptions options)
         {
             var feedRepo = new FeedApi(UserId);
             var model = feedRepo.ListFeed(filter);
-            model.Title = "Abonnements";
-
-            return ReturnView("FeedListView", model);
-        }
-
-        public IActionResult UserSubscription(FeedListFilterVM filter)
-        {
-            var feedRepo = new FeedApi(UserId);
-            var model = feedRepo.ListFeed(filter);
-            model.Title = "Mes Abonnements";
+            model.Options = options;
 
             return ReturnView("FeedListView", model);
         }
@@ -42,7 +33,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
                 new WarnMessageResult("Ouverture dans une nouvelle fenetre."));
         }
 
-        
+
         public IActionResult Subscribe(int feedId)
         {
             var feedRepo = new FeedApi(UserId);

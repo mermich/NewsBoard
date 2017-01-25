@@ -21,27 +21,27 @@ namespace NewsBoard.wwwroot.Home
 
         public IActionResult GetUserHomePage()
         {
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Index", new ArticleListFilterVM()));
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Index", new ArticleVMListFilter()));
         }
 
         public IActionResult GetUserArticles()
         {
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "UserSubscription", new ArticleListFilterVM()));
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "UserSubscription", new ArticleVMListFilter()));
         }
 
         public IActionResult GetAllArticleList()
         {
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Index", new ArticleListFilterVM { OnlyUserSubscription = false, MaxItems = 50 }));
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Index", new ArticleVMListFilter { OnlyUserSubscription = false, MaxItems = 50 }));
         }
 
         public IActionResult GetUserFeeds()
         {
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "UserSubscription", new FeedListFilterVM()));
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "UserSubscription", new FeedVMListFilter()));
         }
 
         public IActionResult GetAllFeeds()
         {
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Index", new FeedListFilterVM { OnlyUserSubscription = false, HideReported = false, MaxItems = 50 }));
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Index", new FeedVMListFilter { OnlyUserSubscription = false, HideReported = false, MaxItems = 50 }));
         }
 
         public IActionResult GetAddFeed()

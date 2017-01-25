@@ -166,3 +166,19 @@ li.open > .dropdown-toggle, a.navbar-brand:hover {
 a:focus:not(:hover){
     background-color: rgba(0,0,0,.4) !important;
 }
+
+
+
+.alert-fatal {
+  background-color: crimson;
+  border-color: crimson;
+  color: crimson;
+}
+
+.alert-fatal hr {
+  border-top-color: #e4b9c0;
+}
+
+.alert-fatal .alert-link {
+  color: #843534;
+}

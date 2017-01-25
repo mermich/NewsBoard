@@ -12,20 +12,20 @@ namespace NewsBoard.wwwroot.Article.ArticleList
     [Area("Article")]
     public class ArticleListController : BaseController
     {
-        public IActionResult Index(ArticleListFilterVM filter)
+        public IActionResult Index(ArticleVMListFilter filter, ArticleVMListOptions options)
         {
             var articleRepo = new ArticleApi(UserId);
             var model = articleRepo.GetArticles(filter);
-            model.Title = "Articles";
+            model.ArticleVMListOptions = options;
 
             return ReturnView("ArticleListView", model);
         }
 
-        public IActionResult UserSubscription(ArticleListFilterVM filter)
+        public IActionResult UserSubscription(ArticleVMListFilter filter, ArticleVMListOptions options)
         {
             var articleRepo = new ArticleApi(UserId);
             var model = articleRepo.GetArticles(filter);
-            model.Title = "Mes articles";
+            model.ArticleVMListOptions = options;
 
             return ReturnView("ArticleListView", model);
         }

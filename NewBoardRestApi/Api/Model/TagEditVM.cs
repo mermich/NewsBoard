@@ -22,9 +22,9 @@ namespace NewBoardRestApi.Api.Model
         }
     }
 
-    public static class TagEditVMExtentions
+    internal static class TagEditVMExtentions
     {
-        public static TagEditVM ToTagEditVM(this Tag item)
+        internal static TagEditVM ToTagEditVM(this Tag item)
         {
             return new TagEditVM(item);
         }

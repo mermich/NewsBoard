@@ -17,8 +17,8 @@
                         <td>
                             <div class="btn-group" role="group">
                                 <button class="btn btn-info btn-sm"
-                                        action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new {feedId = Model.Feeds[i].Id })"
-                                        actiondata="" type="button" name="simpleGetAction">
+                                        ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new {feedId = Model.Feeds[i].Id })"
+                                        type="button" ns-action-type="simpleGetAction">
                                     Ouvrir
                                 </button>
 
@@ -28,32 +28,28 @@
 
 
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        @if (Model.Feeds[i].IsSubscribed)
-                                        {
-                                            <a href="#" action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Unsubscribe", new {feedId = Model.Feeds[i].Id })"
-                                               actiondata="" type="button" name="simpleGetAction">
-                                                Se desabonner
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a href="#"
-                                               action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Subscribe", new {feedId = Model.Feeds[i].Id })"
-                                               actiondata="" type="button" name="simpleGetAction">
-                                                S'abonner
-                                            </a>
-                                        }
+                                    <li is-visible="Model.Feeds[i].IsSubscribed">
+                                        <a href="#" ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Unsubscribe", new {feedId = Model.Feeds[i].Id })"
+                                           type="button" ns-action-type="simpleGetAction">
+                                            Se desabonner
+                                        </a>
+                                    </li>
+                                    <li is-visible="!Model.Feeds[i].IsSubscribed">
+                                        <a href="#"
+                                           ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Subscribe", new {feedId = Model.Feeds[i].Id })"
+                                           type="button" ns-action-type="simpleGetAction">
+                                            S'abonner
+                                        </a>
                                     </li>
                                     <li>
-                                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Report", new {feedId = Model.Feeds[i].Id })"
-                                           actiondata="" type="button" name="simpleGetAction">
+                                        <a href="#" ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Report", new {feedId = Model.Feeds[i].Id })"
+                                           type="button" ns-action-type="simpleGetAction">
                                             Report
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "GetEdit", new {feedId = Model.Feeds[i].Id })"
-                                           actiondata="" type="button" name="simpleGetAction">
+                                        <a href="#" ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "GetEdit", new {feedId = Model.Feeds[i].Id })"
+                                           type="button" ns-action-type="simpleGetAction">
                                             Modifier
                                         </a>
                                     </li>

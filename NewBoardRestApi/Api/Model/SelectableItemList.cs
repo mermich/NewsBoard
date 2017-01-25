@@ -17,19 +17,19 @@ namespace NewBoardRestApi.Api.Model
     }
 
 
-    public static class SelectableItemListExtentions
+    internal static class SelectableItemListExtentions
     {
-        public static SelectableItemList ToSelectableItemList(this IEnumerable<Tag> tag, List<FeedTag> existingTags)
+        internal static SelectableItemList ToSelectableItemList(this IEnumerable<Tag> tag, List<FeedTag> existingTags)
         {
             return new SelectableItemList(tag.Select(t => t.ToSelectableItem(existingTags)));
         }
 
-        public static SelectableItemList ToSelectableItemList(this IEnumerable<Permission> permissions, List<GroupPermission> existingPermissions)
+        internal static SelectableItemList ToSelectableItemList(this IEnumerable<Permission> permissions, List<GroupPermission> existingPermissions)
         {
             return new SelectableItemList(permissions.Select(t => t.ToSelectableItem(existingPermissions)));
         }
 
-        public static SelectableItemList ToSelectableItemList(this IEnumerable<Group> groups, List<UserGroup> existingGroups)
+        internal static SelectableItemList ToSelectableItemList(this IEnumerable<Group> groups, List<UserGroup> existingGroups)
         {
             return new SelectableItemList(groups.Select(t => t.ToSelectableItem(existingGroups)));
         }

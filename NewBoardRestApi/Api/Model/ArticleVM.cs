@@ -21,11 +21,11 @@ namespace NewBoardRestApi.Api.Model
             }
         }
 
-        public string Label { get; private set; }
+        public string Label { get; private set; } = "";
 
-        public string Description { get; private set; }
+        public string Description { get; private set; } = "";
 
-        public string Url { get; private set; }
+        public string Url { get; private set; } = "";
 
         public int Subscribers { get; private set; }
 
@@ -55,9 +55,9 @@ namespace NewBoardRestApi.Api.Model
         }
     }
 
-    public static class ArticleVMExtentions
+    internal static class ArticleVMExtentions
     {
-        public static ArticleVM ToArticle(this Article item, User currentUser)
+        internal static ArticleVM ToArticle(this Article item, User currentUser)
         {
             return new ArticleVM(item, currentUser);
         }

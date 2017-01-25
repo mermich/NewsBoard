@@ -1,23 +1,34 @@
 ﻿@model NewsBoard.wwwroot.Home.HomeModel
 
 <div class="col col-md-6">
-    <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","UserSubscription", new ArticleListFilterVM()) ">
+    <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","UserSubscription", new ArticleVMListFilter()) ">
         Chargement des flux ...
         <div class='loader'></div>
-    </asyncLoader>
-    <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","Index", new ArticleListFilterVM()) ">
+    </div>
+    <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","Index", new ArticleVMListFilter()) ">
         Chargement des flux ...
         <div class='loader'></div>
-    </asyncLoader>
+    </div>
 </div>
 
 <div class="col col-md-6">
-    <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","UserSubscription", new FeedListFilterVM()) ">
+    <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","UserSubscription", new ArticleVMListFilter()) ">
         Chargement des flux ...
         <div class='loader'></div>
-    </asyncLoader>
-    <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","Index", new FeedListFilterVM()) ">
+    </div>
+    <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","Index", new ArticleVMListFilter()) ">
         Chargement des flux ...
         <div class='loader'></div>
-    </asyncLoader>
+    </div>
 </div>
+
+
+
+<script>   
+    $(function () {
+        var fatalMessage = "@TempData["FatalMessage"]";
+        if (fatalMessage != undefined) {
+            $.notify({ message: fatalMessage }, { type: 'fatal' });
+        }
+    });
+</script>

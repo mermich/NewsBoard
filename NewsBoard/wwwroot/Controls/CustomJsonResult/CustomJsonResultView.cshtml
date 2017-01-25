@@ -1,15 +1,15 @@
 ﻿@model NewsBoard.wwwroot.Controls.CustomJsonResult.CustomJsonResultModel
-<simpleGetAction label="SucessMessage" action="@Url.Action("SucessMessage")" /><br />
-<simpleGetAction  label="ErrorMessage" action="@Url.Action("ErrorMessage")" /><br />
-<simpleGetAction  label="WarnMessage" action="@Url.Action("WarnMessage")" /><br />
+<button ns-action-type="simpleGetAction" ns-action-url="@Url.Action("SucessMessage")" />SucessMessage</button><br />
+<button ns-action-type="simpleGetAction" ns-action-url="@Url.Action("ErrorMessage")" />ErrorMessage</button><br />
+<button ns-action-type="simpleGetAction" ns-action-url="@Url.Action("WarnMessage")" />WarnMessage</button><br />
 <br />
-<simpleGetAction  label="Compose" action="@Url.Action("Compose")" /><br />
+<button ns-action-type="simpleGetAction" ns-action-url="@Url.Action("Compose")" />OpenNewWindow</button><br />
 
-<simpleGetAction  label="ReplaceHtml" action="@Url.Action("ReplaceHtml")" /><br />
+<button ns-action-type="simpleGetAction" ns-action-url="@Url.Action("ReplaceHtml")" />OpenNewWindow</button><br />
 <div id="replaceDiv">plop</div><br />
 
 
-<simpleGetAction label="AppendHtml" action="@Url.Action("AppendHtml")" /><br />
+<button ns-action-type="simpleGetAction" ns-action-url="@Url.Action("AppendHtml")" />OpenNewWindow</button><br />
 <div id="appendDiv">plopAppend</div><br />
 
-<simpleGetAction label="OpenNewWindow" action="@Url.Action("OpenNewWindow")" /><br />
+<button ns-action-type="simpleGetAction" ns-action-url="@Url.Action("OpenNewWindow")" />OpenNewWindow</button><br />

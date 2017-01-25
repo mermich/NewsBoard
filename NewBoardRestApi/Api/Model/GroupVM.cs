@@ -8,9 +8,9 @@ namespace NewBoardRestApi.Api.Model
     {
         public int Id { get; set; }
 
-        public string Label { get; set; }
+        public string Label { get; set; } = "";
 
-        public string Permissions { get; set; }
+        public string Permissions { get; set; } = "";
 
 
         public GroupVM()
@@ -25,14 +25,14 @@ namespace NewBoardRestApi.Api.Model
         }
     }
 
-    public static class GroupVMExtentions
+    internal static class GroupVMExtentions
     {
-        public static GroupVM ToGroup(this Group item)
+        internal static GroupVM ToGroup(this Group item)
         {
             return new GroupVM(item);
         }
 
-        public static List<GroupVM> ToGroups(this List<Group> items)
+        internal static List<GroupVM> ToGroups(this List<Group> items)
         {
             return items.Select(i => i.ToGroup()).ToList();
         }

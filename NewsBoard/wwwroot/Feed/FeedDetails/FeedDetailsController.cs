@@ -52,7 +52,7 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
             feedRepo.Refresh(feedId);
 
             return new ComposeResult(
-                new ReplaceHtmlResult("#articleList", NewsBoardUrlHelper.Action("Article", "ArticleList", "Index", new ArticleListFilterVM() { Feeds = new List<int> { feedId } })),
+                new ReplaceHtmlResult("#articleList", NewsBoardUrlHelper.Action("Article", "ArticleList", "Index", new ArticleVMListFilter() { Feeds = new List<int> { feedId } })),
                 new SuccessMessageResult("Flux Refreshed")
             );
         }

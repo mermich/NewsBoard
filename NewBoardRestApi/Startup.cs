@@ -27,7 +27,7 @@ namespace NewBoardRestApi
         {
             // Add framework services.
             services.AddMvc();
-            services.AddScoped<NewsBoardContext>();            
+            services.AddScoped<NewsBoardContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -82,9 +82,14 @@ namespace NewBoardRestApi.Api
                 SyndicationUrl = syndicationUrl,
                 LastTimeFetched = DateTime.Now,
                 Description = feedClient.SyndicationSummary().Description,
-                Title = feedClient.SyndicationSummary().Title,
-                WebSiteUrl = feedClient.SyndicationSummary().WebSiteUrl,
-
+                Title = feedClient.SyndicationSummary().Title
+                //,
+                //WebSite = new WebSite
+                //{
+                //    Url = feedClient.SyndicationSummary().WebSiteUrl,
+                //    Description = feedClient.SyndicationSummary().Description,
+                //    Title = feedClient.SyndicationSummary().Title
+                //}
             };
 
             NewsBoardContext.Feeds.Add(feed);
@@ -93,40 +98,41 @@ namespace NewBoardRestApi.Api
             return feed;
         }
 
-        public FeedVMList ListFeed(FeedListFilterVM filter)
+        public FeedVMList ListFeed(FeedVMListFilter filter)
         {
             // Filter
             if (filter == null)
-                filter = new FeedListFilterVM();
+                filter = new FeedVMListFilter();
 
-            if(currentUser == null)
+            if (currentUser == null)
             {
                 return NewsBoardContext
-               .Feeds
-               .Take(filter.MaxItems)
-               .Where(f => !filter.Tags.Any() || f.FeedTags.Any(ft => filter.Tags.Contains(ft.TagId)))
-               .Include(f => f.UserFeeds)
-               .ThenInclude(uf => uf.User)
-               .Include(f => f.Articles)
-               .ThenInclude(a => a.UserArticles)
-               .OrderBy(f => f.Title)
-               .Take(10)
-               .ToFeedVMList(currentUser);
+                    .Feeds
+                    .Take(filter.MaxItems)
+                    .Where(f => !filter.Tags.Any() || f.FeedTags.Any(ft => filter.Tags.Contains(ft.TagId)))
+                    .Include(f => f.UserFeeds)
+                    .ThenInclude(uf => uf.User)
+                    .Include(f => f.Articles)
+                    .ThenInclude(a => a.UserArticles)
+                    .OrderBy(f => f.Title)
+                    .Take(10)
+                    .ToFeedVMList(currentUser);
             }
-
-            // Initialize query.
-            return NewsBoardContext
-                .Feeds
-                .Take(filter.MaxItems)
-                .Where(f => !filter.Tags.Any() || f.FeedTags.Any(ft => filter.Tags.Contains(ft.TagId)))
-                .Where(f => !filter.OnlyUserSubscription || f.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsSubscribed))
-                .Where(f => filter.HideReported || !f.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsReported))
-                .Include(f => f.UserFeeds)
-                .ThenInclude(uf => uf.User)
-                .Include(f => f.Articles)
-                .ThenInclude(a=>a.UserArticles)
-                .OrderBy(f => f.Title)
-                .ToFeedVMList(currentUser);
+            else
+            {
+                return NewsBoardContext
+                    .Feeds
+                    .Take(filter.MaxItems)
+                    .Where(f => !filter.Tags.Any() || f.FeedTags.Any(ft => filter.Tags.Contains(ft.TagId)))
+                    .Where(f => !filter.OnlyUserSubscription || f.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsSubscribed))
+                    .Where(f => filter.HideReported || !f.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsReported))
+                    .Include(f => f.UserFeeds)
+                    .ThenInclude(uf => uf.User)
+                    .Include(f => f.Articles)
+                    .ThenInclude(a => a.UserArticles)
+                    .OrderBy(f => f.Title)
+                    .ToFeedVMList(currentUser);
+            }
         }
 
 
@@ -134,7 +140,7 @@ namespace NewBoardRestApi.Api
         {
             if (currentUser == null)
             {
-                throw new BusinessLogicException("Seuls les utilisateurs authentifies peuvent creer des abonnements.");
+                throw new NeedAuthenticationException();
             }
 
             if (NewsBoardContext.Feeds.Any(f => f.SyndicationUrl == addFeedUrl))
@@ -155,7 +161,7 @@ namespace NewBoardRestApi.Api
         {
             if (currentUser == null)
             {
-                throw new BusinessLogicException("Seuls les utilisateurs authentifies peuvent s'abonner.");
+                throw new NeedAuthenticationException();
             }
 
             var existingUserFeed = NewsBoardContext.UserFeeds
@@ -219,7 +225,7 @@ namespace NewBoardRestApi.Api
         {
             if (currentUser == null)
             {
-                throw new BusinessLogicException("Seuls les utilisateurs authentifies peuvent rapporter une anomalie.");
+                throw new NeedAuthenticationException();
             }
 
             var existingUserFeed = NewsBoardContext.UserFeeds.FirstOrDefault(uf => uf.UserId == currentUser.Id && uf.FeedId == feedId);
@@ -237,6 +243,7 @@ namespace NewBoardRestApi.Api
         public virtual FeedVM GetFeed(int feedId)
         {
             return NewsBoardContext.Feeds
+                //.Include(f => f.WebSite)
                 .Include(f => f.UserFeeds)
                 .Include(f => f.Articles).ThenInclude(article => article.UserArticles)
                 .FirstOrDefault(f => f.Id == feedId)
@@ -255,7 +262,7 @@ namespace NewBoardRestApi.Api
         {
             if (currentUser == null)
             {
-                throw new BusinessLogicException("Seuls les utilisateurs authentifies peuvent modifier un abonnement.");
+                throw new NeedAuthenticationException();
             }
 
             var feedDb = NewsBoardContext.Feeds
@@ -294,16 +301,15 @@ namespace NewBoardRestApi.Api
 
         public virtual FeedEditVM GetFeedEdit(int feedId)
         {
-
-            var feed = NewsBoardContext.Feeds
-               .Include(f => f.UserFeeds)
-               .Include(f => f.Articles).ThenInclude(article => article.UserArticles)
-               .Include(f => f.FeedTags)
-               .FirstOrDefault(f => f.Id == feedId);
-
             var possibleTags = NewsBoardContext.Tags.ToList();
 
-            var result = feed.ToFeedEdit(possibleTags, currentUser);
+            var result = NewsBoardContext.Feeds
+                //.Include(f => f.WebSite)
+                .Include(f => f.UserFeeds)
+                .Include(f => f.Articles).ThenInclude(article => article.UserArticles)
+                .Include(f => f.FeedTags)
+                .FirstOrDefault(f => f.Id == feedId)
+                .ToFeedEdit(possibleTags, currentUser);
 
             return result;
         }

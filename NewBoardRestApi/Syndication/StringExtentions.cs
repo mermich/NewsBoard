@@ -2,14 +2,14 @@
 
 namespace NewBoardRestApi.Syndication
 {
-    public static class StringExtentions
+    internal static class StringExtentions
     {
-        public static string RemoveHtmlTags(this string input)
+        internal static string RemoveHtmlTags(this string input)
         {
             return Regex.Replace(input, "<.*?>", string.Empty); ;
         }
 
-        public static string SafeSubtring(this string input, int maxLength)
+        internal static string SafeSubtring(this string input, int maxLength)
         {
             if (input.Length > maxLength)
                 return input.Substring(0, maxLength);

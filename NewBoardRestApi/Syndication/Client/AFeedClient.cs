@@ -12,7 +12,7 @@ namespace NewBoardRestApi.Syndication.Client
         public abstract SyndicationSummary SyndicationSummary();
 
 
-        public static DateTime ParseDate(string date)
+        internal static DateTime ParseDate(string date)
         {
             DateTime result;
             if (DateTime.TryParse(date, out result))
@@ -21,7 +21,7 @@ namespace NewBoardRestApi.Syndication.Client
                 return DateTime.Today;
         }
 
-        public static string GetValueOrEmpty(XElement element)
+        internal static string GetValueOrEmpty(XElement element)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace NewBoardRestApi.Syndication.Client
         }
 
 
-        public static string GetValueOrEmpty(XAttribute element)
+        internal static string GetValueOrEmpty(XAttribute element)
         {
             try
             {
@@ -54,19 +54,19 @@ namespace NewBoardRestApi.Syndication.Client
         }
     }
 
-    public static class AFeedClientExtentions
+    internal static class AFeedClientExtentions
     {
-        public static string GetValueOrEmpty(this XAttribute element)
+        internal static string GetValueOrEmpty(this XAttribute element)
         {
             return AFeedClient.GetValueOrEmpty(element);
         }
 
-        public static string GetValueOrEmpty(this XElement element)
+        internal static string GetValueOrEmpty(this XElement element)
         {
             return AFeedClient.GetValueOrEmpty(element);
         }
 
-        public static DateTime ParseDate(this string date)
+        internal static DateTime ParseDate(this string date)
         {
             return AFeedClient.ParseDate(date);
         }

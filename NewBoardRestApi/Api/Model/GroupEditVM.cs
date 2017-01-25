@@ -30,9 +30,9 @@ namespace NewBoardRestApi.Api.Model
         }
     }
 
-    public static class GroupEditVMExtentions
+    internal static class GroupEditVMExtentions
     {
-        public static GroupEditVM ToGroupEditVM(this Group item, List<Permission> allPermissions)
+        internal static GroupEditVM ToGroupEditVM(this Group item, List<Permission> allPermissions)
         {
             return new GroupEditVM(item, allPermissions);
         }

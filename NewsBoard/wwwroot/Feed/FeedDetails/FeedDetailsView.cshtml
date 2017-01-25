@@ -16,8 +16,8 @@
         <div>
             <div class="btn-group" role="group">
                 <button class="btn btn-info btn-sm"
-                        action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "RefreshFeed", new { feedId=Model.Id})"
-                        actiondata="" type="button" name="simpleGetAction">
+                        ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "RefreshFeed", new { feedId=Model.Id})"
+                        type="button" ns-action-type="simpleGetAction">
                     Refresh
                 </button>
                 <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -27,20 +27,20 @@
 
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Subscribe", new {feedId = Model.Id })"
-                           actiondata="" type="button" name="simpleGetAction">
+                        <a href="#" ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Subscribe", new {feedId = Model.Id })"
+                           type="button" ns-action-type="simpleGetAction">
                             S'abonner
                         </a>
                     </li>
                     <li>
-                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Unsubscribe", new {feedId = Model.Id })"
-                           actiondata="" type="button" name="simpleGetAction">
+                        <a href="#" ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Unsubscribe", new {feedId = Model.Id })"
+                           type="button" ns-action-type="simpleGetAction">
                             Se desabonner
                         </a>
                     </li>
                     <li>
-                        <a href="#" action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Report", new {feedId = Model.Id })"
-                           actiondata="" type="button" name="simpleGetAction">
+                        <a href="#" ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Report", new {feedId = Model.Id })"
+                           type="button" ns-action-type="simpleGetAction">
                             Report
                         </a>
                     </li>
@@ -51,8 +51,8 @@
 </div>
 
 <div id="articleList">
-    <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","Index", new ArticleListFilterVM() { Feeds = new List<int> { Model.Id } }) ">
+    <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","Index", new ArticleVMListFilter() { Feeds = new List<int> { Model.Id } }) ">
         Chargement des articles ...
         <div class='loader'></div>
-    </asyncLoader>
+    </div>
 </div>

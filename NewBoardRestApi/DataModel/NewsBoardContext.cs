@@ -3,24 +3,6 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace NewBoardRestApi.DataModel
 {
-    public class TemporaryDbContextFactory : IDbContextFactory<NewsBoardContext>
-    {
-        public NewsBoardContext Create()
-        {
-            var builder = new DbContextOptionsBuilder<NewsBoardContext>();
-            builder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\source\emermillod\CodingNight\Guild\src\NewBoardRestApi\NewsBoardContext.mdf;Integrated Security=True;Connect Timeout=30");
-            return new NewsBoardContext(builder.Options);
-        }
-
-        public NewsBoardContext Create(DbContextFactoryOptions options)
-        {
-            var builder = new DbContextOptionsBuilder<NewsBoardContext>();
-            builder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\source\emermillod\CodingNight\Guild\src\NewBoardRestApi\NewsBoardContext.mdf;Integrated Security=True;Connect Timeout=30");
-            return new NewsBoardContext(builder.Options);
-        }
-    }
-
-
     public class NewsBoardContext : DbContext
     {
         public NewsBoardContext(DbContextOptions<NewsBoardContext> options)
@@ -33,7 +15,7 @@ namespace NewBoardRestApi.DataModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\source\emermillod\CodingNight\Guild\src\NewBoardRestApi\NewsBoardContext.mdf;Integrated Security=True;Connect Timeout=30");
+            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\source\git\NewsBoard\NewBoardRestApi\DataModel\NewsBoardContext.mdf;Integrated Security=True;Connect Timeout=30");
             base.OnConfiguring(optionsBuilder);
         }
 

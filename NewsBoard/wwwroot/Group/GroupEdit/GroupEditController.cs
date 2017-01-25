@@ -21,7 +21,7 @@ namespace NewsBoard.wwwroot.Group.GroupCreate
         public ActionResult Update(GroupEditVM model)
         {
             var api = new GroupApi(UserId);
-            api.CreateGroup(model);
+            api.SaveGroup(model);
 
             return new ComposeResult(
                 new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Group", "GroupList", "Index")),

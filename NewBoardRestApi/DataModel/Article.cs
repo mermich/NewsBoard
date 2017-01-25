@@ -50,9 +50,9 @@ namespace NewBoardRestApi.DataModel
         }
     }
 
-    public static class ArticleExtentions
+    internal static class ArticleExtentions
     {
-        public static Article ToArticle(this SyndicationItem item, Feed feed)
+        internal static Article ToArticle(this SyndicationItem item, Feed feed)
         {
             var article = new Article
             {
@@ -66,7 +66,7 @@ namespace NewBoardRestApi.DataModel
             return article;
         }
 
-        public static IEnumerable<Article> ToArticles(this IEnumerable<SyndicationItem> items, Feed feed)
+        internal static IEnumerable<Article> ToArticles(this IEnumerable<SyndicationItem> items, Feed feed)
         {
             return items.Select(i => i.ToArticle(feed));
         }

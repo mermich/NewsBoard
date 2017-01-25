@@ -8,7 +8,7 @@ namespace NewBoardRestApi.Api.Model
     {
         public int Id { get; set; }
 
-        public string Label { get; set; }
+        public string Label { get; set; } = "";
 
         public int HitCount { get; set; }
 
@@ -25,14 +25,14 @@ namespace NewBoardRestApi.Api.Model
         }
     }
 
-    public static class TagVMExtentions
+    internal static class TagVMExtentions
     {
-        public static TagVM ToTag(this Tag item, List<FeedTag> allTags)
+        internal static TagVM ToTag(this Tag item, List<FeedTag> allTags)
         {
             return new TagVM(item, allTags);
         }
 
-        public static List<TagVM> ToTags(this List<Tag> items, List<FeedTag> allTags)
+        internal static List<TagVM> ToTags(this List<Tag> items, List<FeedTag> allTags)
         {
             return items.Select(i => i.ToTag(allTags)).ToList();
         }

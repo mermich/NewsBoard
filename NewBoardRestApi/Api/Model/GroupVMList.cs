@@ -17,9 +17,9 @@ namespace NewBoardRestApi.Api.Model
     }
 
 
-    public static class GroupVMListExtentions
+    internal static class GroupVMListExtentions
     {
-        public static GroupVMList ToGroupVMList(this IEnumerable<Group> items)
+        internal static GroupVMList ToGroupVMList(this IEnumerable<Group> items)
         {
             return new GroupVMList(items.Select(i => i.ToGroup()));
         }

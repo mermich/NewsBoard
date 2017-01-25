@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.Api;
 using NewsBoard.Tools;
 using NewsBoard.Tools.JsonResult;
@@ -6,6 +7,7 @@ using NewsBoard.Tools.JsonResult;
 namespace NewsBoard.wwwroot.Permission.PermissionList
 {
     [Area("User")]
+    [Authorize(Roles = "AdminUser")]
     public class UserListController : BaseController
     {
 

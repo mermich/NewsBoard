@@ -7,11 +7,14 @@ namespace NewBoardRestApi.Api.Model
 
     public class FeedVMList
     {
-        public List<FeedVM> Feeds { get; set; }
+        public FeedVMListOptions Options { get; set; } = new FeedVMListOptions();
 
-        public string Title { get; set; } = "Flux disponibles";
+        public List<FeedVM> Feeds { get; set; } = new List<FeedVM>();
 
-        public FeedVMList() { }
+        public FeedVMList()
+        {
+
+        }
 
         public FeedVMList(IEnumerable<FeedVM> feeds)
         {
@@ -19,9 +22,9 @@ namespace NewBoardRestApi.Api.Model
         }
     }
 
-    public static class FeedVMListExtentions
+    internal static class FeedVMListExtentions
     {
-        public static FeedVMList ToFeedVMList(this IEnumerable<Feed> items, User currentUser)
+        internal static FeedVMList ToFeedVMList(this IEnumerable<Feed> items, User currentUser)
         {
             return new FeedVMList(items.Select(i => i.ToFeedVM(currentUser)));
         }

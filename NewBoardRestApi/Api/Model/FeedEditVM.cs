@@ -9,6 +9,9 @@ namespace NewBoardRestApi.Api.Model
         
         public string WebSiteUrl { get; set; } = "";
 
+        public string IconUrl { get; set; } = "";
+        
+
         public string SyndicationUrl { get; set; } = "";
 
         public string Title { get; set; } = "";
@@ -27,7 +30,8 @@ namespace NewBoardRestApi.Api.Model
         public FeedEditVM(Feed feed, IEnumerable<Tag> possibleTags, User currentUser)
         {
             Id = feed.Id;
-            WebSiteUrl = feed.WebSiteUrl;
+            //WebSiteUrl = feed.WebSite.Url;
+            //IconUrl = feed.WebSite.IconUrl;
             SyndicationUrl = feed.SyndicationUrl;
             Title = feed.Title;
             Description = feed.Description;
@@ -40,9 +44,9 @@ namespace NewBoardRestApi.Api.Model
         }
     }
 
-    public static class FeedEditVMExtentions
+    internal static class FeedEditVMExtentions
     {
-        public static FeedEditVM ToFeedEdit(this Feed feed, IEnumerable<Tag> possibleTags, User currentUser)
+        internal static FeedEditVM ToFeedEdit(this Feed feed, IEnumerable<Tag> possibleTags, User currentUser)
         {
             return new FeedEditVM(feed, possibleTags, currentUser);
         }

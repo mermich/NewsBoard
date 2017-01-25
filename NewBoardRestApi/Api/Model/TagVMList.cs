@@ -17,9 +17,9 @@ namespace NewBoardRestApi.Api.Model
     }
 
 
-    public static class TagVMListExtentions
+    internal static class TagVMListExtentions
     {
-        public static TagVMList ToTagVMList(this IEnumerable<Tag> items, List<FeedTag> allTags)
+        internal static TagVMList ToTagVMList(this IEnumerable<Tag> items, List<FeedTag> allTags)
         {
             return new TagVMList(items.Select(i => i.ToTag(allTags)));
         }

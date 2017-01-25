@@ -11,7 +11,8 @@ namespace NewsBoard.Tools
             this.iUrlHelper = iUrlHelper;
         }
 
-        public string Action(string area, string controller, string action, object values = null)
+
+        public string Action(string area, string controller, string action, params object[] values)
         {
             var areaObject = new { area = area };
             var merged = areaObject.MergeObjects(values);

@@ -17,6 +17,8 @@ namespace NewBoardRestApi.Api.Model
 
         public string Description { get; set; } = "";
 
+        public string IconPath { get; set; } = "";
+
         public int Subscribers { get; set; }
 
 
@@ -27,7 +29,8 @@ namespace NewBoardRestApi.Api.Model
         public FeedVM(Feed feed, User currentUser)
         {
             Id = feed.Id;
-            WebSiteUrl = feed.WebSiteUrl;
+            //WebSiteUrl = feed.WebSite.Url;
+            //IconPath = feed.WebSite.IconUrl;
             SyndicationUrl = feed.SyndicationUrl;
             Title = feed.Title;
             Description = feed.Description;
@@ -40,9 +43,9 @@ namespace NewBoardRestApi.Api.Model
         }
     }
 
-    public static class FeedVMExtentions
+    internal static class FeedVMExtentions
     {
-        public static FeedVM ToFeedVM(this Feed feed, User currentUser)
+        internal static FeedVM ToFeedVM(this Feed feed, User currentUser)
         {
             return new FeedVM(feed, currentUser);
         }

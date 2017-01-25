@@ -5,7 +5,7 @@
 <link href="~/ressources/materialize/css/materialize.css" rel="stylesheet" />
 <script src="~/ressources/materialize/js/materialize.js"></script>
 
-<simpleGetAction action="test" />
-<simpleGetAction action="testwithParam" actionData="3" />
+<div ns-action-url="test" />
+<div ns-action-url="testwithParam" ns-action-data="3" />
 
-testwithLabel: <simpleGetAction action="test" label="testwithLabel" >
+testwithLabel: <div ns-action-url="test">testwithLabel</div>

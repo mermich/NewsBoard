@@ -17,9 +17,9 @@ namespace NewBoardRestApi.Api.Model
     }
 
 
-    public static class PermissionsVMListExtentions
+    internal static class PermissionsVMListExtentions
     {
-        public static PermissionVMList ToPermissionVMList(this IEnumerable<Permission> items)
+        internal static PermissionVMList ToPermissionVMList(this IEnumerable<Permission> items)
         {
             return new PermissionVMList(items.Select(i => i.ToPermission()));
         }

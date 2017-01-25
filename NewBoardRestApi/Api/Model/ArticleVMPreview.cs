@@ -29,9 +29,9 @@ namespace NewBoardRestApi.Api.Model
     }
 
 
-    public static class ArticleVMPreviewExtentions
+    internal static class ArticleVMPreviewExtentions
     {
-        public static ArticleVMPreview ToArticlePreview(this SyndicationItem item)
+        internal static ArticleVMPreview ToArticlePreview(this SyndicationItem item)
         {
             return new ArticleVMPreview(item);
         }

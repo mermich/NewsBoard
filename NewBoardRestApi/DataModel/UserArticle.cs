@@ -1,4 +1,6 @@
-﻿namespace NewBoardRestApi.DataModel
+﻿using System;
+
+namespace NewBoardRestApi.DataModel
 {
     public class UserArticle
     {
@@ -16,6 +18,8 @@
 
         public bool IsOpened { get; set; }
 
+        //public DateTime OpenedTime { get; set; } = DateTime.Now;
+
         public bool IsHidden { get; set; }
 
         public int Score { get; set; } = 2;
@@ -28,11 +32,6 @@
         {
             Article = article;
             User = user;
-        }
-
-        public virtual void Rate(int value)
-        {
-            Score = value;
         }
     }
 }

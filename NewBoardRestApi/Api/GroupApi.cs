@@ -80,7 +80,33 @@ namespace NewBoardRestApi.Api
             var group = NewsBoardContext.Groups.FirstOrDefault(t => t.Id == groupVM.Id);
             group.Label = groupVM.Label;
 
-            // TODO MERGE PERMISSSIONS.
+            var selectedPermissions = groupVM.Permissions.Items.Where(gr => gr.IsSelected);
+
+            //removing the old permissions
+            foreach (var permission in group.GroupPermissions.ToList())
+            {
+                if (!selectedPermissions.Any(gr => gr.Id == permission.PermissionId))
+                {
+                    //not in the posted list i should delete the item
+                    //I remove the item from the dbcontext rather than from the dbItem
+                    //  otherwise it will try to set the foreign key column to null instead of deleting the row. 
+                    NewsBoardContext.GroupPermissions.Remove(permission);
+                }
+            }
+
+            //adding the new ones
+            foreach (var permission in selectedPermissions)
+            {
+                //if is not in database
+                if (!group.GroupPermissions.Any(a => a.PermissionId == permission.Id))
+                {
+                    //create the row
+                    var gp = new GroupPermission();
+                    gp.Group = group;
+                    gp.Permission = NewsBoardContext.Permissions.FirstOrDefault(a => a.Id == permission.Id);
+                    group.GroupPermissions.Add(gp);
+                }
+            }
 
             NewsBoardContext.SaveChanges();
 

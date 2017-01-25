@@ -5,12 +5,12 @@ namespace NewBoardRestApi.Api.Model
 {
     public class UserEditVM
     {
-        public string Email { get; set; }
+        public string Email { get; set; } = "";
 
         public int Id { get; set; }
 
-        public string  Password { get; set; }
-        
+        public string  Password { get; set; } = "";
+
         public SelectableItemList Groups { get; set; }
 
         public UserEditVM()
@@ -31,9 +31,9 @@ namespace NewBoardRestApi.Api.Model
         }
     }
 
-    public static class UserEditVMExtenetions
+    internal static class UserEditVMExtenetions
     {
-        public static UserEditVM ToUserEditVM(this User user, List<Group> allGroups)
+        internal static UserEditVM ToUserEditVM(this User user, List<Group> allGroups)
         {
             return new UserEditVM(user, allGroups);
         }

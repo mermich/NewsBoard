@@ -26,7 +26,7 @@
     @RenderSection("scripts", required: false)
 
 </head>
-<body class="body" y>
+<body class="body">
     <nav class="navbar navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -43,19 +43,19 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetUserArticles")">Mes articles</a></li>
-                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetAllArticleList")">Tous les articles</a></li>
-                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetUserFeeds")">Mes Flux</a></li>
-                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetAllFeeds")">Tous les Flux</a></li>
-                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetAddFeed")">Ajouter un flux</a></li>
-                    <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetAboutPage")">A propos de l'auteur</a></li>
+                    <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetUserArticles")">Mes articles</a></li>
+                    <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetAllArticleList")">Tous les articles</a></li>
+                    <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetUserFeeds")">Mes Flux</a></li>
+                    <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetAllFeeds")">Tous les Flux</a></li>
+                    <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetAddFeed")">Ajouter un flux</a></li>
+                    <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetAboutPage")">A propos de l'auteur</a></li>
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetTagListPage")">Tags</a></li>
-                            <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetGroupListPage")">Groupes</a></li>
-                            <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetPermissionListPage")">Permissions</a></li>
-                            <li><a href="#" name="simpleGetAction" action="@Url.NewsBoardUrlHelper().Action("","Home","GetUserListPage")">Utilisateurs</a></li>
+                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetTagListPage")">Tags</a></li>
+                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetGroupListPage")">Groupes</a></li>
+                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetPermissionListPage")">Permissions</a></li>
+                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetUserListPage")">Utilisateurs</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -68,16 +68,13 @@
                             <li><a href="~/Controls/CustomJsonResult">CustomJsonResult</a></li>
                         </ul>
                     </li>
-
                 </ul>
 
-
-
                 <ul class="nav navbar-nav navbar-right" id="UserMenu">
-                    <asyncLoader url="@Url.NewsBoardUrlHelper().Action("User","UserMenu","Index")">
+                    <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("User","UserMenu","Index")">
                         Chargement du widget ...
                         <div class='loader'></div>
-                    </asyncLoader>
+                    </div>
                 </ul>
             </div>
         </div>
@@ -98,20 +95,20 @@
                 </form>
             </div>
             <div class="col-md-3">
-                <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Tag","TagCloud","Index")">
+                <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Tag","TagCloud","Index")">
                     Chargement du widget ...
                     <div class='loader'></div>
-                </asyncLoader>
+                </div>
 
-                <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","Index", new FeedListFilterVM { OnlyUserSubscription=false, OrderBy = "Subscribers", MaxItems=5 })">
+                <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","Index", new FeedVMListFilter { OnlyUserSubscription=false, OrderBy = "Subscribers", MaxItems=5 })">
                     Chargement du widget ...
                     <div class='loader'></div>
-                </asyncLoader>
+                </div>
 
-                <asyncLoader url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","Index", new ArticleListFilterVM {  OnlyUserSubscription=false,  OrderBy = "Open", MaxItems=5 })">
+                <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","Index", new ArticleVMListFilter {  OnlyUserSubscription=false,  OrderBy = "Open", MaxItems=5 })">
                     Chargement du widget ...
                     <div class='loader'></div>
-                </asyncLoader>
+                </div>
             </div>
         </div>
     </div>

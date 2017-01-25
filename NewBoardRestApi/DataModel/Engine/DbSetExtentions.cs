@@ -5,15 +5,15 @@ using System.Linq.Expressions;
 
 namespace NewBoardRestApi.DataModel.Engine
 {
-    public static class DbSetExtentions
+    internal static class DbSetExtentions
     {
-        public static T SingleResult<T>(this DbSet<T> source, Expression<Func<T, bool>> predicate)
+        internal static T SingleResult<T>(this DbSet<T> source, Expression<Func<T, bool>> predicate)
             where T : class, new()
         {
             return SingleResult(source, predicate, "Cannot find item");
         }
 
-        public static T SingleResult<T>(this DbSet<T> source, Expression<Func<T, bool>> predicate, string notFoundMessage)
+        internal static T SingleResult<T>(this DbSet<T> source, Expression<Func<T, bool>> predicate, string notFoundMessage)
            where T : class, new()
         {
             var item = source.FirstOrDefault(predicate);

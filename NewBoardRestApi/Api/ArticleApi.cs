@@ -25,10 +25,10 @@ namespace NewBoardRestApi.Api
         }
 
 
-        public ArticleVMList GetArticles(ArticleListFilterVM filter = null)
+        public ArticleVMList GetArticles(ArticleVMListFilter filter = null)
         {
             if (filter == null)
-                filter = new ArticleListFilterVM();
+                filter = new ArticleVMListFilter();
 
             if (currentUser == null)
             {

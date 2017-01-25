@@ -19,7 +19,7 @@
             <div class="form-group">
                 <label for="SyndicationUrl" class="col-sm-2 control-label">SyndicationUrl</label>
                 <div class="col-sm-10">
-                    <input type="url" class="form-control" id="SyndicationUrl"value="@Model.SyndicationUrl"  name="SyndicationUrl" placeholder="SyndicationUrl">
+                    <input type="url" class="form-control" id="SyndicationUrl" value="@Model.SyndicationUrl" name="SyndicationUrl" placeholder="SyndicationUrl">
                 </div>
             </div>
             <div class="form-group">
@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label for="WebSiteUrl" class="col-sm-2 control-label">WebSiteUrl</label>
                 <div class="col-sm-10">
-                    <input type="url" class="form-control" id="WebSiteUrl"value="@Model.WebSiteUrl"  name="WebSiteUrl" placeholder="WebSiteUrl">
+                    <input type="url" class="form-control" id="WebSiteUrl" value="@Model.WebSiteUrl"  name="WebSiteUrl" placeholder="WebSiteUrl">
                 </div>
             </div>
 
@@ -59,8 +59,8 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button class="btn btn-info"
-                            action="@Url.NewsBoardUrlHelper().Action("Feed", "FeedEdit", "Update")"
-                            actiondata="" type="button" name="simplePostAction">
+                            ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedEdit", "Update")"
+                            type="button" ns-action-type="simplePostAction">
                         Update
                     </button>
                 </div>

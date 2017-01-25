@@ -20,7 +20,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
         public ActionResult GetBrowseByTag(int id)
         {
-            var filter = new FeedListFilterVM();
+            var filter = new FeedVMListFilter();
             filter.Tags.Add(id);
 
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedList", "Index", filter));

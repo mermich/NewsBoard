@@ -43,7 +43,6 @@ namespace NewsBoard
                 options.IdleTimeout = TimeSpan.FromMinutes(10);
             });
 
-
             services.AddAuthentication();
         }
 
@@ -70,7 +69,8 @@ namespace NewsBoard
                 LoginPath = new PathString("/User/UserLogin/"),
                 AccessDeniedPath = new PathString("/User/Denied/"),
                 AutomaticAuthenticate = true,
-                AutomaticChallenge = true
+                AutomaticChallenge = true,
+                SlidingExpiration = true
             });
 
             app.UseStaticFiles();

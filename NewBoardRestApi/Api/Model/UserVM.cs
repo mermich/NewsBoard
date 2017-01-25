@@ -6,11 +6,11 @@ namespace NewBoardRestApi.Api.Model
 {
     public class UserVM
     {
-        public string Email { get; set; }
+        public string Email { get; set; } = "";
 
         public int Id { get; set; }
 
-        public string Password { get; set; }
+        public string Password { get; set; } = "";
 
         public List<string> Groups { get; set; } = new List<string>();
 
@@ -37,9 +37,9 @@ namespace NewBoardRestApi.Api.Model
         }
     }
 
-    public static class UserVMExtenetions
+    internal static class UserVMExtenetions
     {
-        public static UserVM ToUserVM(this User user)
+        internal static UserVM ToUserVM(this User user)
         {
             return new UserVM(user);
         }

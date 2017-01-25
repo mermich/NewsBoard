@@ -6,9 +6,9 @@ namespace NewBoardRestApi.Api.Model
 {
     public class ArticleVMList
     {
-        public string Title { get; set; }
+        public ArticleVMListOptions ArticleVMListOptions { get; set; }
 
-        public List<ArticleVM> Articles { get; set; }
+        public List<ArticleVM> Articles { get; set; } = new List<ArticleVM>();
 
         public ArticleVMList() { }
 
@@ -18,9 +18,9 @@ namespace NewBoardRestApi.Api.Model
         }
     }
 
-    public static class ArticleVMListExtentions
+    internal static class ArticleVMListExtentions
     {
-        public static ArticleVMList ToArticleList(this IEnumerable<DataModel.Article> items, User currentUser)
+        internal static ArticleVMList ToArticleList(this IEnumerable<DataModel.Article> items, User currentUser)
         {
             return new ArticleVMList(items.Select(i => i.ToArticle(currentUser)));
         }

@@ -17,9 +17,9 @@ namespace NewBoardRestApi.Api.Model
         }
     }
 
-    public static class SelectableItemExtentions
+    internal static class SelectableItemExtentions
     {
-        public static SelectableItem ToSelectableItem(this Tag tag, List<FeedTag> existingTags)
+        internal static SelectableItem ToSelectableItem(this Tag tag, List<FeedTag> existingTags)
         {
             return new SelectableItem
             {
@@ -29,7 +29,7 @@ namespace NewBoardRestApi.Api.Model
             };
         }
 
-        public static SelectableItem ToSelectableItem(this Permission permission, List<GroupPermission> existingPermissions)
+        internal static SelectableItem ToSelectableItem(this Permission permission, List<GroupPermission> existingPermissions)
         {
             return new SelectableItem
             {
@@ -39,7 +39,7 @@ namespace NewBoardRestApi.Api.Model
             };
         }
 
-        public static SelectableItem ToSelectableItem(this Group group, List<UserGroup> existingGroups)
+        internal static SelectableItem ToSelectableItem(this Group group, List<UserGroup> existingGroups)
         {
             return new SelectableItem
             {

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using NewBoardRestApi.DataModel;
 
 namespace NewBoardRestApi.Migrations
@@ -54,9 +55,11 @@ namespace NewBoardRestApi.Migrations
 
                     b.Property<string>("Title");
 
-                    b.Property<string>("WebSiteUrl");
+                    b.Property<int>("WebSiteId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("WebSiteId");
 
                     b.ToTable("Feeds");
                 });
@@ -166,6 +169,8 @@ namespace NewBoardRestApi.Migrations
 
                     b.Property<string>("Label");
 
+                    b.Property<DateTime>("OpenedTime");
+
                     b.Property<int>("Score");
 
                     b.Property<int>("UserId");
@@ -221,11 +226,37 @@ namespace NewBoardRestApi.Migrations
                     b.ToTable("UserGroups");
                 });
 
+            modelBuilder.Entity("NewBoardRestApi.DataModel.WebSite", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("IconUrl");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("Url");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WebSite");
+                });
+
             modelBuilder.Entity("NewBoardRestApi.DataModel.Article", b =>
                 {
                     b.HasOne("NewBoardRestApi.DataModel.Feed", "Feed")
                         .WithMany("Articles")
                         .HasForeignKey("FeedId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("NewBoardRestApi.DataModel.Feed", b =>
+                {
+                    b.HasOne("NewBoardRestApi.DataModel.WebSite", "WebSite")
+                        .WithMany("Feeds")
+                        .HasForeignKey("WebSiteId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
