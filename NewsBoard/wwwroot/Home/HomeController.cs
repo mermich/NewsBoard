@@ -26,22 +26,22 @@ namespace NewsBoard.wwwroot.Home
 
         public IActionResult GetUserArticles()
         {
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "UserSubscription", new ArticleVMListFilter()));
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().UserArticleListAction);
         }
 
         public IActionResult GetAllArticleList()
         {
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Index", new ArticleVMListFilter { OnlyUserSubscription = false, MaxItems = 50 }));
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().AllArticleListAction);
         }
 
         public IActionResult GetUserFeeds()
         {
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "UserSubscription", new FeedVMListFilter()));
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().UserFeedListAction);
         }
 
         public IActionResult GetAllFeeds()
         {
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Index", new FeedVMListFilter { OnlyUserSubscription = false, HideReported = false, MaxItems = 50 }));
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().AllFeedListAction);
         }
 
         public IActionResult GetAddFeed()

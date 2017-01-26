@@ -6,7 +6,7 @@ namespace NewBoardRestApi.Api.Model
 {
     public class ArticleVMList
     {
-        public ArticleVMListOptions ArticleVMListOptions { get; set; }
+        public ArticleVMListOptions Options { get; set; } = new ArticleVMListOptions();
 
         public List<ArticleVM> Articles { get; set; } = new List<ArticleVM>();
 

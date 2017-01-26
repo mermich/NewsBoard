@@ -7,6 +7,6 @@ namespace NewBoardRestApi.Api.Model
 {
     public class ArticleVMListOptions
     {
-        public string PageTitle { get; set; } = "";
+        public string Heading { get; set; } = "";
     }
 }

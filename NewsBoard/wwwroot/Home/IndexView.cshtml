@@ -1,22 +1,22 @@
 ﻿@model NewsBoard.wwwroot.Home.HomeModel
 
 <div class="col col-md-6">
-    <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","UserSubscription", new ArticleVMListFilter()) ">
+    <div ns-loader-url="@Url.NewsBoardUrlHelper().UserArticleListAction">
         Chargement des flux ...
         <div class='loader'></div>
     </div>
-    <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","Index", new ArticleVMListFilter()) ">
+    <div ns-loader-url="@Url.NewsBoardUrlHelper().AllArticleListAction">
         Chargement des flux ...
         <div class='loader'></div>
     </div>
 </div>
 
 <div class="col col-md-6">
-    <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","UserSubscription", new ArticleVMListFilter()) ">
+    <div ns-loader-url="@Url.NewsBoardUrlHelper().UserFeedListAction ">
         Chargement des flux ...
         <div class='loader'></div>
     </div>
-    <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","Index", new ArticleVMListFilter()) ">
+    <div ns-loader-url="@Url.NewsBoardUrlHelper().AllFeedListAction">
         Chargement des flux ...
         <div class='loader'></div>
     </div>

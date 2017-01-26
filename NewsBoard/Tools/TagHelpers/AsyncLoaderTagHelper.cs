@@ -10,8 +10,8 @@ namespace NewsBoard.Tools.TagHelpers
 
         [HtmlAttributeName(UrlAttributeName)]
         public string Url { get; set; }
-        
-        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+
+        public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.Attributes.Add("ns-loader-url", Url);
 

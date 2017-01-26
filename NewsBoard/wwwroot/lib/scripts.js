@@ -105,6 +105,10 @@ function HandleAjaxResult(result) {
         $.notify({ message: result.successMessage }, { type: 'success' });
     }
 
+    if (result.fatalMessage != undefined) {
+        $.notify({ message: result.fatalMessage }, { type: 'fatal' });
+    }
+
     if (result.OpenUrl != undefined) {
         $('#siteloader').show();
         $("#siteloader").attr("src", result.OpenUrl);
@@ -146,12 +150,7 @@ function HandleAjaxResult(result) {
         selector.hide();
     }
 
-    if (result.fatalMessage != undefined) {
-        $.notify({ message: result.fatalMessage }, { type: 'fatal' });
-    }
-
-
     if (result.loadUrl != undefined) {
-        location.href = reloadUrl;
+        location.href = result.loadUrl;
     }
 }

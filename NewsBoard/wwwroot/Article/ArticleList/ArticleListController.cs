@@ -16,7 +16,7 @@ namespace NewsBoard.wwwroot.Article.ArticleList
         {
             var articleRepo = new ArticleApi(UserId);
             var model = articleRepo.GetArticles(filter);
-            model.ArticleVMListOptions = options;
+            model.Options = options;
 
             return ReturnView("ArticleListView", model);
         }
@@ -25,7 +25,7 @@ namespace NewsBoard.wwwroot.Article.ArticleList
         {
             var articleRepo = new ArticleApi(UserId);
             var model = articleRepo.GetArticles(filter);
-            model.ArticleVMListOptions = options;
+            model.Options = options;
 
             return ReturnView("ArticleListView", model);
         }
