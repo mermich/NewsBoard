@@ -29,18 +29,7 @@
 
 
                 <div class="col-sm-10">
-                    @for (int i = 0; i < Model.Groups.Items.Count; i++)
-                    {
-                        var idName = "Groups.Items[" + i + "].Id";
-                        var isSelectedName = "Groups.Items[" + i + "].IsSelected";
-                        <div class="checkbox">
-                            <label>
-                                <input type="hidden" name="@idName" value="@Model.Groups.Items[i].Id" />
-                                <input type="checkbox" name="@isSelectedName" value="true" @(@Model.Groups.Items[i].IsSelected ? "checked=\"checked\"" : "") />
-                                @Model.Groups.Items[i].Label
-                            </label>
-                        </div>
-                    }
+                    @Html.NewsBoardUIHelper().CheckBoxListFor(m => m.Groups)
                 </div>
             </div>
 

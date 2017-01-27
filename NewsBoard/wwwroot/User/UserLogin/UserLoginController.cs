@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NewBoardRestApi.Api;
-using NewBoardRestApi.Api.Model;
+using NewBoardRestApi.BaseApi;
+using NewBoardRestApi.SecurityApi;
 using NewsBoard.Tools;
 using NewsBoard.Tools.JsonResult;
 using System.Collections.Generic;

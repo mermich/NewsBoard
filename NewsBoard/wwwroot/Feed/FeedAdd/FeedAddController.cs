@@ -1,8 +1,7 @@
 ﻿using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
-using NewBoardRestApi.Api;
 using NewsBoard.Tools.JsonResult;
-using NewBoardRestApi.Api.Model;
+using NewBoardRestApi.FeedApi;
 
 namespace NewsBoard.wwwroot.Feed.FeedAdd
 {

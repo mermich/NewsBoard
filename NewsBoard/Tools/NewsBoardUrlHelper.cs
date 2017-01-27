@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NewBoardRestApi.Api.Model;
+using NewBoardRestApi.ArticleApi;
+using NewBoardRestApi.FeedApi;
 using System.Linq;
 
 namespace NewsBoard.Tools
@@ -29,25 +30,34 @@ namespace NewsBoard.Tools
             return iUrlHelper.Action(action, controller, merged);
         }
 
-
+        public string FeedListAction(FeedVMSearch filter, FeedVMListOptions options) => Action("Feed", "FeedList", "Index", filter, options);
 
         public string AllFeedListAction =>
-            Action("Feed", "FeedList", "Index", 
-                new FeedVMListFilter { OnlyUserSubscription = false, HideReported = false, MaxItems = 50 },
+            FeedListAction(
+                new FeedVMSearch { OnlyUserSubscription = false, HideReported = false, MaxItems = 50 },
                 new FeedVMListOptions { Heading = "Les Flux" });
 
         public string UserFeedListAction =>
-            Action("Feed", "FeedList", "Index",
-                new FeedVMListFilter { MaxItems = 50 },
+            FeedListAction(
+                new FeedVMSearch { MaxItems = 50 },
                 new FeedVMListOptions { Heading = "Mes Flux" });
 
-        public string AllArticleListAction =>
-            Action("Article", "ArticleList", "Index", new ArticleVMListFilter { OnlyUserSubscription = false, MaxItems = 50 }, 
-                new ArticleVMListOptions { Heading="Tous les Articles" });
+        public string PopularFeedListAction =>
+            FeedListAction(
+                new FeedVMSearch { OnlyUserSubscription = false, HideReported = false, MaxItems = 5, OrderBy= null},
+                new FeedVMListOptions { Heading = "Les Flux populaires" });
 
-        public string UserArticleListAction =>
-            Action("Article", "ArticleList", "Index", new ArticleVMListFilter { OnlyUserSubscription = false, MaxItems = 50 },
-                new ArticleVMListOptions { Heading = "Articles de mes FLux" });
+
+        public string ArticleListAction(ArticleVMSearch filter, ArticleVMListOptions options) => Action("Article", "ArticleList", "Index", filter, options);
+
+        public string AllArticleListAction =>
+            ArticleListAction(
+                new ArticleVMSearch { OnlyUserSubscription = false, MaxItems = 50 }, 
+                new ArticleVMListOptions { Heading = "Tous les Articles" });
+
+        public string UserArticleListAction => ArticleListAction(
+            new ArticleVMSearch { OnlyUserSubscription = false, MaxItems = 50 }, 
+            new ArticleVMListOptions { Heading = "Articles de mes FLux" });
 
     }
 

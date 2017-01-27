@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using NewBoardRestApi.Http;
 using System.IO;
 
 namespace NewBoardRestApi

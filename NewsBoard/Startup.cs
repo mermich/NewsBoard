@@ -70,7 +70,8 @@ namespace NewsBoard
                 AccessDeniedPath = new PathString("/User/Denied/"),
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true,
-                SlidingExpiration = true
+                SlidingExpiration = true,
+                ExpireTimeSpan = new TimeSpan(DateTime.Now.AddDays(7).Ticks)
             });
 
             app.UseStaticFiles();
@@ -89,8 +90,6 @@ namespace NewsBoard
     {
         public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable<string> viewLocations)
         {
-            //return viewLocations.Select(f => f.Replace("/Views/", "/wwwroot/"));
-
             // Swap /Shared/ for /_Shared/
             var copy = viewLocations.ToList();
             copy.Add("~/wwwroot/{2}/{1}/{0}.cshtml");

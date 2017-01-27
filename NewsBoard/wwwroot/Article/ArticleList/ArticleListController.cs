@@ -1,8 +1,7 @@
 ﻿using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
-using NewBoardRestApi.Api;
-using NewBoardRestApi.Api.Model;
 using NewsBoard.Tools.JsonResult;
+using NewBoardRestApi.ArticleApi;
 
 namespace NewsBoard.wwwroot.Article.ArticleList
 {
@@ -12,16 +11,7 @@ namespace NewsBoard.wwwroot.Article.ArticleList
     [Area("Article")]
     public class ArticleListController : BaseController
     {
-        public IActionResult Index(ArticleVMListFilter filter, ArticleVMListOptions options)
-        {
-            var articleRepo = new ArticleApi(UserId);
-            var model = articleRepo.GetArticles(filter);
-            model.Options = options;
-
-            return ReturnView("ArticleListView", model);
-        }
-
-        public IActionResult UserSubscription(ArticleVMListFilter filter, ArticleVMListOptions options)
+        public IActionResult Index(ArticleVMSearch filter, ArticleVMListOptions options)
         {
             var articleRepo = new ArticleApi(UserId);
             var model = articleRepo.GetArticles(filter);

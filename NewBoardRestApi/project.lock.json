@@ -3757,6 +3757,19 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
+      },
+      "SiteParser/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "netstandard1.6/SiteParser.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/SiteParser.dll": {}
+        }
       }
     },
     ".NETCoreApp,Version=v1.0/win10-x64": {
@@ -7633,6 +7646,19 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
+        }
+      },
+      "SiteParser/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "netstandard1.6/SiteParser.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/SiteParser.dll": {}
         }
       }
     }
@@ -14628,6 +14654,11 @@
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._"
       ]
+    },
+    "SiteParser/1.0.0": {
+      "type": "project",
+      "path": "../SiteParser/project.json",
+      "msbuildProject": "../SiteParser/SiteParser.xproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -14647,6 +14678,7 @@
       "Microsoft.Extensions.Logging.Debug >= 1.1.0",
       "Microsoft.Extensions.Options.ConfigurationExtensions >= 1.1.0",
       "Microsoft.NETCore.App >= 1.1.0",
+      "SiteParser >= 1.0.0-*",
       "System.Linq >= 4.3.0",
       "System.Xml.XDocument >= 4.3.0",
       "System.Xml.XmlSerializer >= 4.3.0"

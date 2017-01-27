@@ -27,7 +27,7 @@
 <script>   
     $(function () {
         var fatalMessage = "@TempData["FatalMessage"]";
-        if (fatalMessage != undefined) {
+        if (fatalMessage != undefined && fatalMessage.length > 0) {
             $.notify({ message: fatalMessage }, { type: 'fatal' });
         }
     });

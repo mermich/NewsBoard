@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
-using NewBoardRestApi.Api.Model;
 using NewsBoard.Tools.JsonResult;
+using NewBoardRestApi.BaseApi;
 
 namespace NewsBoard.Tools
 {

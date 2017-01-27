@@ -1,8 +1,8 @@
 ﻿using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using NewsBoard.Tools.JsonResult;
-using NewBoardRestApi.Api;
-using NewBoardRestApi.Api.Model;
+using NewBoardRestApi.TagApi;
+using NewBoardRestApi.FeedApi;
 
 namespace NewsBoard.wwwroot.User.UserRegister
 {
@@ -20,10 +20,13 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
         public ActionResult GetBrowseByTag(int id)
         {
-            var filter = new FeedVMListFilter();
+            var tagModel = new TagApi(UserId).GetTag(id);
+            var filter = new FeedVMSearch();
             filter.Tags.Add(id);
 
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedList", "Index", filter));
+            var options = new FeedVMListOptions { Heading = "Flux du tag:" + tagModel.Label };
+
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.FeedListAction(filter, options));
         }
     }
 }

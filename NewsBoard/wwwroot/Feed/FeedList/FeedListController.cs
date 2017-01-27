@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NewBoardRestApi.Api;
-using NewBoardRestApi.Api.Model;
+using NewBoardRestApi.FeedApi;
 using NewsBoard.Tools;
 using NewsBoard.Tools.JsonResult;
 
@@ -13,7 +12,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
     public class FeedListController : BaseController
     {
         // GET: /<controller>/
-        public IActionResult Index(FeedVMListFilter filter, FeedVMListOptions options)
+        public IActionResult Index(FeedVMSearch filter, FeedVMListOptions options)
         {
             var feedRepo = new FeedApi(UserId);
             var model = feedRepo.ListFeed(filter);

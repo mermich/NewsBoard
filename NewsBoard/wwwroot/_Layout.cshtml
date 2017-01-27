@@ -97,12 +97,12 @@
                     <div class='loader'></div>
                 </div>
 
-                <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","Index", new FeedVMListFilter { OnlyUserSubscription=false, OrderBy = "Subscribers", MaxItems=5 })">
+                <div ns-loader-url="@Url.NewsBoardUrlHelper().UserFeedListAction)">
                     Chargement du widget ...
                     <div class='loader'></div>
                 </div>
 
-                <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","Index", new ArticleVMListFilter {  OnlyUserSubscription=false,  OrderBy = "Open", MaxItems=5 })">
+                <div ns-loader-url="@Url.NewsBoardUrlHelper().AllFeedListAction)">
                     Chargement du widget ...
                     <div class='loader'></div>
                 </div>

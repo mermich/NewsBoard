@@ -1,6 +1,5 @@
 ﻿using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
-using NewBoardRestApi.Api;
 
 namespace NewsBoard.wwwroot.Article.ArticleDetails
 {

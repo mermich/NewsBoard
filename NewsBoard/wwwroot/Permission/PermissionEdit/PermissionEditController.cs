@@ -1,8 +1,7 @@
 ﻿using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using NewsBoard.Tools.JsonResult;
-using NewBoardRestApi.Api;
-using NewBoardRestApi.Api.Model;
+using NewBoardRestApi.SecurityApi;
 
 namespace NewsBoard.wwwroot.Permission.PermissionCreate
 {

@@ -1,7 +1,7 @@
 ﻿using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using NewsBoard.Tools.JsonResult;
-using NewBoardRestApi.Api.Model;
+using NewBoardRestApi.ArticleApi;
 
 namespace NewsBoard.wwwroot.Home
 {
@@ -17,11 +17,6 @@ namespace NewsBoard.wwwroot.Home
         public IActionResult Index()
         {
             return ReturnView("IndexView", new HomeModel());
-        }
-
-        public IActionResult GetUserHomePage()
-        {
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Index", new ArticleVMListFilter()));
         }
 
         public IActionResult GetUserArticles()

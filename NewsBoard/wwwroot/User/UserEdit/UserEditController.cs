@@ -1,9 +1,8 @@
 ﻿using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using NewsBoard.Tools.JsonResult;
-using NewBoardRestApi.Api;
-using NewBoardRestApi.Api.Model;
 using Microsoft.AspNetCore.Authorization;
+using NewBoardRestApi.SecurityApi;
 
 namespace NewsBoard.wwwroot.Group.GroupCreate
 {
