@@ -21,12 +21,4 @@ namespace NewBoardRestApi.FeedApi
             Feeds = feeds.ToList();
         }
     }
-
-    internal static class FeedVMListExtentions
-    {
-        internal static FeedVMList ToFeedVMList(this IEnumerable<Feed> items, User currentUser)
-        {
-            return new FeedVMList(items.Select(i => i.ToFeedVM(currentUser)));
-        }
-    }
 }

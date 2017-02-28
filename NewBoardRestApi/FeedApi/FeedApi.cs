@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using NewBoardRestApi.BaseApi;
 using SiteParser;
 using NewBoardRestApi.ArticleApi;
+using NewBoardRestApi.FeedApi.Search;
 
 namespace NewBoardRestApi.FeedApi
 {

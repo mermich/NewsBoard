@@ -43,12 +43,4 @@ namespace NewBoardRestApi.FeedApi
             ArticleVMList = feed.Articles.ToArticleList(currentUser);
         }
     }
-
-    internal static class FeedVMExtentions
-    {
-        internal static FeedVM ToFeedVM(this Feed feed, User currentUser)
-        {
-            return new FeedVM(feed, currentUser);
-        }
-    }
 }

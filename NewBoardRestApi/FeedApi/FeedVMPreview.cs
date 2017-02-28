@@ -30,12 +30,4 @@ namespace NewBoardRestApi.FeedApi
             ArticlePreviews.AddRange(feedClient.Items().Select(i => i.ToArticlePreview()));
         }
     }
-
-    internal static class FeedVMPreviewExtentions
-    {
-        internal static FeedVMPreview ToFeedPreview(this AFeedClient feedClient)
-        {
-            return new FeedVMPreview(feedClient);
-        }
-    }
 }
