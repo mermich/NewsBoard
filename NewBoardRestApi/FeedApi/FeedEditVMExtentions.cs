@@ -1,6 +1,4 @@
-﻿using NewBoardRestApi.ArticleApi;
-using NewBoardRestApi.BaseApi;
-using NewBoardRestApi.DataModel;
+﻿using NewBoardRestApi.DataModel;
 using System.Collections.Generic;
 
 namespace NewBoardRestApi.FeedApi

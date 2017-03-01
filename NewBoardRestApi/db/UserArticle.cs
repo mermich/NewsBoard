@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NewBoardRestApi.DataModel
+﻿namespace NewBoardRestApi.DataModel
 {
     public class UserArticle
     {

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NewsBoard.Tools.JsonResult;
 using NewBoardRestApi.TagApi;
 using NewBoardRestApi.FeedApi;
+using NewBoardRestApi.FeedApi.Search;
 
 namespace NewsBoard.wwwroot.User.UserRegister
 {

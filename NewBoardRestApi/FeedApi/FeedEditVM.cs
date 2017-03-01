@@ -8,11 +8,11 @@ namespace NewBoardRestApi.FeedApi
     public class FeedEditVM
     {
         public int Id { get; set; }
-        
+
         public string WebSiteUrl { get; set; } = "";
 
         public string IconUrl { get; set; } = "";
-        
+
 
         public string SyndicationUrl { get; set; } = "";
 

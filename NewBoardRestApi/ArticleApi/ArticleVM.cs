@@ -54,12 +54,4 @@ namespace NewBoardRestApi.ArticleApi
                 IsNew = article.UserArticles == null || !article.UserArticles.Any(ua => ua.UserId == currentUser.Id);
         }
     }
-
-    internal static class ArticleVMExtentions
-    {
-        internal static ArticleVM ToArticle(this Article item, User currentUser)
-        {
-            return new ArticleVM(item, currentUser);
-        }
-    }
 }

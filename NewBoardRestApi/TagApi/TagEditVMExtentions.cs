@@ -2,7 +2,7 @@
 
 namespace NewBoardRestApi.TagApi
 {
-    internal static class TagEditVMExtentions
+    public static class TagEditVMExtentions
     {
         internal static TagEditVM ToTagEditVM(this Tag item)
         {
