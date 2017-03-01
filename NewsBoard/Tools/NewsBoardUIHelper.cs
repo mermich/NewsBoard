@@ -41,12 +41,4 @@ namespace NewsBoard.Tools
             return sb.ToString();
         }
     }
-
-    public static class NewsBoardUIHelperExtensions
-    {
-        public static NewsBoardUIHelper<TModel> NewsBoardUIHelper<TModel>(this IHtmlHelper<TModel> iUrlHelper)
-        {
-            return new NewsBoardUIHelper<TModel>(iUrlHelper);
-        }
-    }
 }

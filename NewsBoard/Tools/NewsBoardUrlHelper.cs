@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.FeedApi;
+using NewBoardRestApi.FeedApi.Search;
 using System.Linq;
 
 namespace NewsBoard.Tools
@@ -59,13 +60,5 @@ namespace NewsBoard.Tools
             new ArticleVMSearch { OnlyUserSubscription = false, MaxItems = 50 }, 
             new ArticleVMListOptions { Heading = "Articles de mes FLux" });
 
-    }
-
-    public static class UrlHelperExtensions
-    {
-        public static NewsBoardUrlHelper NewsBoardUrlHelper(this IUrlHelper iUrlHelper)
-        {
-            return new NewsBoardUrlHelper(iUrlHelper);
-        }
     }
 }

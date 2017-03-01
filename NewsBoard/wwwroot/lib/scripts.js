@@ -20,6 +20,13 @@
 $(function () {
     LoadCallback();
     $('[type="checkbox"]').not("[readonly='readonly']").bootstrapSwitch();
+
+    window.addEventListener("popstate", function (e) {
+        $.get(location.pathname, function (result) {
+            $("#page").html(result);
+            LoadCallback();
+        });
+    });
 });
 
 function LoadCallback(selector) {
@@ -123,7 +130,7 @@ function HandleAjaxResult(result) {
                 LoadCallback(selector);
 
                 //if we display a full page we add it to the user's page history
-                if (selector == "#page")
+                if (result.replaceHtml.selector == "#page")
                     history.pushState(null, "replaceHtml", url);
             });
         }
