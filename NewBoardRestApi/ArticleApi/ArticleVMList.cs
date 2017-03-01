@@ -17,12 +17,4 @@ namespace NewBoardRestApi.ArticleApi
             Articles = articles.ToList();
         }
     }
-
-    internal static class ArticleVMListExtentions
-    {
-        internal static ArticleVMList ToArticleList(this IEnumerable<DataModel.Article> items, User currentUser)
-        {
-            return new ArticleVMList(items.Select(i => i.ToArticle(currentUser)));
-        }
-    }
 }

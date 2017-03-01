@@ -1,11 +1,11 @@
-﻿using System;
-using NewBoardRestApi.DataModel;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using NewBoardRestApi.BaseApi;
-using SiteParser;
+﻿using Microsoft.EntityFrameworkCore;
 using NewBoardRestApi.ArticleApi;
+using NewBoardRestApi.BaseApi;
+using NewBoardRestApi.DataModel;
 using NewBoardRestApi.FeedApi.Search;
+using SiteParser;
+using System;
+using System.Linq;
 
 namespace NewBoardRestApi.FeedApi
 {

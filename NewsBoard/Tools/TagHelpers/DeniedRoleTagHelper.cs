@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace NewsBoard.Tools.TagHelpers
 {

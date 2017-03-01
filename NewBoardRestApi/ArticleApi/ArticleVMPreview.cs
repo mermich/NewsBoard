@@ -27,13 +27,4 @@ namespace NewBoardRestApi.ArticleApi
             Url = item.Url;
         }
     }
-
-
-    internal static class ArticleVMPreviewExtentions
-    {
-        internal static ArticleVMPreview ToArticlePreview(this SyndicationItem item)
-        {
-            return new ArticleVMPreview(item);
-        }
-    }
 }

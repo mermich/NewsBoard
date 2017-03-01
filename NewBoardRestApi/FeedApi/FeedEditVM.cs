@@ -8,12 +8,11 @@ namespace NewBoardRestApi.FeedApi
     public class FeedEditVM
     {
         public int Id { get; set; }
-        
+
         public string WebSiteUrl { get; set; } = "";
 
         public string IconUrl { get; set; } = "";
         
-
         public string SyndicationUrl { get; set; } = "";
 
         public string Title { get; set; } = "";
@@ -43,14 +42,6 @@ namespace NewBoardRestApi.FeedApi
 
             Tags = possibleTags.ToSelectableItemList(feed.FeedTags);
 
-        }
-    }
-
-    internal static class FeedEditVMExtentions
-    {
-        internal static FeedEditVM ToFeedEdit(this Feed feed, IEnumerable<Tag> possibleTags, User currentUser)
-        {
-            return new FeedEditVM(feed, possibleTags, currentUser);
         }
     }
 }

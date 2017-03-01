@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace NewBoardRestApi.BaseApi
+﻿namespace NewBoardRestApi.BaseApi
 {
     public class NeedAuthenticationException : BusinessLogicException
     {
