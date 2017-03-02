@@ -123,8 +123,10 @@ function HandleAjaxResult(result) {
                 LoadCallback(selector);
 
                 //if we display a full page we add it to the user's page history
-                if (selector == "#page")
+                if (result.replaceHtml.selector == "#page") {
                     history.pushState(null, "replaceHtml", url);
+                    document.body.scrollTop = document.documentElement.scrollTop = 0;
+                }
             });
         }
     }
