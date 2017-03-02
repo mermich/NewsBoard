@@ -5,29 +5,15 @@ namespace NewBoardRestApi.BaseApi
 {
     public class BaseApi : Controller
     {
-        private NewsBoardContext newsBoardContext;
-
-        public NewsBoardContext NewsBoardContext
-        {
-            get
-            {
-                if (newsBoardContext == null)
-                    newsBoardContext = new NewsBoardContext();
-                return newsBoardContext;
-            }
-            set
-            {
-                newsBoardContext = value;
-            }
-        }
+        public NewsBoardContext NewsBoardContext { get; set; }
 
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
 
-            if (newsBoardContext != null)
+            if (NewsBoardContext != null)
             {
-                newsBoardContext.Dispose();
+                NewsBoardContext.Dispose();
             }
         }
     }

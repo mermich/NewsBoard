@@ -67,5 +67,16 @@ namespace NewsBoard.wwwroot.Home
         {
             return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("User", "UserList", "Index"));
         }
+
+        public IActionResult GetSimpleGetAction()
+        {
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Controls", "SimpleGetAction", "Index"));
+        }
+
+
+        public IActionResult GetCustomJsonResult()
+        {
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Controls", "CustomJsonResult", "Index"));
+        }        
     }
 }

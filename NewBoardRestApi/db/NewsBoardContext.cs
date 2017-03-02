@@ -12,12 +12,6 @@ namespace NewBoardRestApi.DataModel
         public NewsBoardContext() :this (new DbContextOptions<NewsBoardContext>())
         { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\source\git\NewsBoard\NewBoardRestApi\db\NewsBoardContext.mdf;Integrated Security=True;Connect Timeout=30");
-            base.OnConfiguring(optionsBuilder);
-        }
-
         public DbSet<Article> Articles { get; set; }
 
 

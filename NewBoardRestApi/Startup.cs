@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -27,7 +28,9 @@ namespace NewBoardRestApi
         {
             // Add framework services.
             services.AddMvc();
-            services.AddScoped<NewsBoardContext>();
+            services.AddDbContext<NewsBoardContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("NewsBoardContext"))
+                );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Http;
 using System;
 using NewsBoard.Tools;
+using NewBoardRestApi.DataModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace NewsBoard
 {
@@ -45,6 +47,10 @@ namespace NewsBoard
             });
 
             services.AddAuthentication();
+
+            services.AddDbContext<NewsBoardContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("NewsBoardContext"))
+                );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
