@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Http;
 using System;
+using NewsBoard.Tools;
 
 namespace NewsBoard
 {
@@ -34,7 +35,7 @@ namespace NewsBoard
 
             services.Configure<RazorViewEngineOptions>(o =>
             {
-                o.ViewLocationExpanders.Add(new MySharedLocationRemapper());
+                o.ViewLocationExpanders.Add(new LocationExpander());
             });
 
             var session = services.AddSession(options =>
@@ -61,8 +62,6 @@ namespace NewsBoard
                 app.UseExceptionHandler("/Home/Error");
             }
 
-
-
             app.UseCookieAuthentication(new CookieAuthenticationOptions()
             {
                 AuthenticationScheme = "NewsBoardScheme",
@@ -83,26 +82,6 @@ namespace NewsBoard
                 routes.MapRoute(name: "areaRoute", template: "{area:exists}/{controller}/{action}", defaults: new { controller = "Home", action = "Index" });
                 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
-        }
-    }
-
-    public class MySharedLocationRemapper : IViewLocationExpander
-    {
-        public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable<string> viewLocations)
-        {
-            // Swap /Shared/ for /_Shared/
-            var copy = viewLocations.ToList();
-            copy.Add("~/wwwroot/{2}/{1}/{0}.cshtml");
-            copy.Add("~/wwwroot/{1}/{0}.cshtml");
-            copy.Add("~/wwwroot/{0}.cshtml");
-            return copy;
-
-        }
-
-        public void PopulateValues(ViewLocationExpanderContext context)
-        {
-            // do nothing.. not entirely needed for this 
-            //context.ViewName = context.ViewName.Replace("EditorTemplates/", "");
         }
     }
 }

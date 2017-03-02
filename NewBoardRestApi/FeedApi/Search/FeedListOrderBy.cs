@@ -1,11 +1,11 @@
-﻿using System.Linq;
-
+﻿using System;
+using System.Collections.Generic;
 
 namespace NewBoardRestApi.FeedApi.Search
 {
     public abstract class FeedListOrderBy
     {
-        public abstract IQueryable<NewBoardRestApi.DataModel.Feed> Filter(IQueryable<NewBoardRestApi.DataModel.Feed> query);
+        public abstract string GetFilter();
 
         public static FeedListOrderByName Name => new FeedListOrderByName();
 
@@ -13,6 +13,4 @@ namespace NewBoardRestApi.FeedApi.Search
 
         public static FeedListOrderByPopularityDesc PopularityDesc => new FeedListOrderByPopularityDesc();
     }
-
-   
 }

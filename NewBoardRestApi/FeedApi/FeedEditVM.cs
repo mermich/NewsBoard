@@ -12,8 +12,7 @@ namespace NewBoardRestApi.FeedApi
         public string WebSiteUrl { get; set; } = "";
 
         public string IconUrl { get; set; } = "";
-
-
+        
         public string SyndicationUrl { get; set; } = "";
 
         public string Title { get; set; } = "";

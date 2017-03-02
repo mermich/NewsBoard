@@ -11,23 +11,23 @@ namespace NewsBoard.Tools
             return (anonymousObject != null) ? new RouteValueDictionary(anonymousObject) : HtmlHelper.AnonymousObjectToHtmlAttributes(anonymousObject);
         }
 
-        public static IDictionary<string, object> MergeObjects(this object defaultHtmlAttributesObject, object htmlAttributesObject)
+        public static IDictionary<string, object> MergeObjects(this object defaultObject, object ovverideObject)
         {
-            var defaultHtmlAttributes = defaultHtmlAttributesObject.ToIDictionary();
+            var defaultAttributes = defaultObject.ToIDictionary();
 
-            if (htmlAttributesObject != null)
+            if (defaultAttributes != null)
             {
-                var htmlAttributes = htmlAttributesObject.ToIDictionary();
+                var ovverideAttributes = ovverideObject.ToIDictionary();
 
-                foreach (var item in htmlAttributes)
+                foreach (var item in ovverideAttributes)
                 {
-                    if (defaultHtmlAttributes.ContainsKey(item.Key))
-                        defaultHtmlAttributes[item.Key] = item.Value;
+                    if (defaultAttributes.ContainsKey(item.Key))
+                        defaultAttributes[item.Key] = item.Value;
                     else
-                        defaultHtmlAttributes.Add(item.Key, item.Value);
+                        defaultAttributes.Add(item.Key, item.Value);
                 }
             }
-            return defaultHtmlAttributes;
+            return defaultAttributes;
         }
     }
 }

@@ -1,15 +1,13 @@
-﻿using NewBoardRestApi.DataModel;
-using System;
-using System.Linq;
-
+﻿using System;
+using System.Collections.Generic;
 
 namespace NewBoardRestApi.FeedApi.Search
 {
     public class FeedListOrderByPopularityDesc : FeedListOrderBy
     {
-        public override IQueryable<Feed> Filter(IQueryable<Feed> query)
+        public override string GetFilter()
         {
-             throw new NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

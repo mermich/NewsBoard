@@ -61,12 +61,4 @@ namespace NewsBoard.Tools
             new ArticleVMListOptions { Heading = "Articles de mes FLux" });
 
     }
-
-    public static class UrlHelperExtensions
-    {
-        public static NewsBoardUrlHelper NewsBoardUrlHelper(this IUrlHelper iUrlHelper)
-        {
-            return new NewsBoardUrlHelper(iUrlHelper);
-        }
-    }
 }
