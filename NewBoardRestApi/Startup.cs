@@ -28,9 +28,7 @@ namespace NewBoardRestApi
         {
             // Add framework services.
             services.AddMvc();
-            services.AddDbContext<NewsBoardContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("NewsBoardContext"))
-                );
+            services.AddScoped<NewsBoardContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

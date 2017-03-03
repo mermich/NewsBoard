@@ -23,6 +23,8 @@ namespace NewBoardRestApi.DataModel
 
         public DbSet<Feed> Feeds { get; set; }
 
+        public DbSet<WebSite> WebSites { get; set; }
+
 
         public DbSet<Tag> Tags { get; set; }
 

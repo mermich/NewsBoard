@@ -19,8 +19,10 @@ namespace NewBoardRestApi.FeedApi
         {
         }
 
-        public FeedVMPreview GetPreview(string url)
+        public WebSiteVM GetWebSiteVM(string url)
         {
+
+
             var syndicationUrl = new HttpClientWrapper(url)
                 .GetResponse()
                 .ToPageSyndicationFinder()
@@ -84,14 +86,13 @@ namespace NewBoardRestApi.FeedApi
                 SyndicationUrl = syndicationUrl,
                 LastTimeFetched = DateTime.Now,
                 Description = feedClient.SyndicationSummary().Description,
-                Title = feedClient.SyndicationSummary().Title
-                //,
-                //WebSite = new WebSite
-                //{
-                //    Url = feedClient.SyndicationSummary().WebSiteUrl,
-                //    Description = feedClient.SyndicationSummary().Description,
-                //    Title = feedClient.SyndicationSummary().Title
-                //}
+                Title = feedClient.SyndicationSummary().Title,
+                WebSite = new WebSite
+                {
+                    Url = feedClient.SyndicationSummary().WebSiteUrl,
+                    Description = feedClient.SyndicationSummary().Description,
+                    Title = feedClient.SyndicationSummary().Title
+                }
             };
 
             NewsBoardContext.Feeds.Add(feed);

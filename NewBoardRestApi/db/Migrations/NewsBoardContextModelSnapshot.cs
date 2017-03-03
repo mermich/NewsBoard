@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using NewBoardRestApi.DataModel;
 
 namespace NewBoardRestApi.Migrations
@@ -168,8 +169,6 @@ namespace NewBoardRestApi.Migrations
 
                     b.Property<string>("Label");
 
-                    b.Property<DateTime>("OpenedTime");
-
                     b.Property<int>("Score");
 
                     b.Property<int>("UserId");
@@ -240,7 +239,7 @@ namespace NewBoardRestApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WebSite");
+                    b.ToTable("WebSites");
                 });
 
             modelBuilder.Entity("NewBoardRestApi.DataModel.Article", b =>

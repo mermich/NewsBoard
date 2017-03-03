@@ -8,9 +8,9 @@ namespace NewBoardRestApi.DataModel
     {
         public int Id { get; set; }
 
-        //public WebSite WebSite { get; set; }
+        public WebSite WebSite { get; set; }
 
-        //public int WebSiteId { get; set; }
+        public int WebSiteId { get; set; }
 
         public string Title { get; set; }
 
