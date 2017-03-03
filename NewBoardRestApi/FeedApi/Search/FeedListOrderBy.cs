@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace NewBoardRestApi.FeedApi.Search
+﻿namespace NewBoardRestApi.FeedApi.Search
 {
     public abstract class FeedListOrderBy
     {

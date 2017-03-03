@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NewBoardRestApi.ArticleApi;
-using NewBoardRestApi.FeedApi;
-using System.Linq;
 
 namespace NewsBoard.Tools
 {

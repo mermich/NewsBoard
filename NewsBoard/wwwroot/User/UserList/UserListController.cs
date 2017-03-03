@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NewBoardRestApi.SecurityApi;
+using NewBoardRestApi.UserApi;
 using NewsBoard.Tools;
 using NewsBoard.Tools.JsonResult;
 
