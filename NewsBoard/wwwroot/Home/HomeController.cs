@@ -77,6 +77,12 @@ namespace NewsBoard.wwwroot.Home
         public IActionResult GetCustomJsonResult()
         {
             return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Controls", "CustomJsonResult", "Index"));
-        }        
+        }
+
+        public IActionResult GetCascadingData()
+        {
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Controls", "CascadingData", "Index"));
+        }
+        
     }
 }

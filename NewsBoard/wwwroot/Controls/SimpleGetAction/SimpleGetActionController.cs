@@ -10,17 +10,17 @@ namespace NewsBoard.wwwroot.Controls.SimpleGetAction
     {
         public IActionResult Index()
         {
-            return PartialView("SimpleGetActionView", new SimpleGetActionModel());
+            return ReturnView("SimpleGetActionView", new SimpleGetActionModel());
         }
 
         public IActionResult test()
         {
-            return PartialView("SimpleGetActionView", new SimpleGetActionModel());
+            return ReturnView("SimpleGetActionView", new SimpleGetActionModel());
         }
 
         public IActionResult testwithParam(int id)
         {
-            return PartialView("SimpleGetActionView", new SimpleGetActionModel());
+            return ReturnView("SimpleGetActionView", new SimpleGetActionModel());
         }
     }
 }

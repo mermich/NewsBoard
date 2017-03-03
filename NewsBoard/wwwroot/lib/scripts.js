@@ -80,6 +80,25 @@ function LoadCallback(selector) {
         });
         return false;
     });
+
+    $("[ns-action-type=dataChanged]").change(function (e) {
+        let target = e.target;
+        
+        let targetUrl = target.getAttribute("ns-action-url");
+
+        console.log('clicked' + targetUrl);
+        $.ajax({
+            type: "POST",
+            url: targetUrl,
+            data: $(e.target).closest("form").serializeFormJSON(),
+            success: function (result) {
+                console.log(result);
+                HandleAjaxResult(result);
+                LoadCallback();
+            }
+        });
+        return false;
+    });
 }
 
 

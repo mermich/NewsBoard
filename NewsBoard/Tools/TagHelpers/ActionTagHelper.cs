@@ -2,9 +2,9 @@
 
 namespace NewsBoard.Tools.TagHelpers
 {
-    [HtmlTargetElement("abutton", Attributes = ActionDataTypeName)]
-    [HtmlTargetElement("adiv", Attributes = ActionDataTypeName)]
-    [HtmlTargetElement("aa", Attributes = ActionDataTypeName)]
+    [HtmlTargetElement("button", Attributes = ActionDataTypeName)]
+    [HtmlTargetElement("div", Attributes = ActionDataTypeName)]
+    [HtmlTargetElement("a", Attributes = ActionDataTypeName)]
     public class ActionTagHelper : TagHelper
     {
         private const string ActionAttributeName = "ns-action-url";
@@ -27,11 +27,5 @@ namespace NewsBoard.Tools.TagHelpers
 
             base.Process(context, output);
         }
-    }
-
-    public enum ActionTypeEnum
-    {
-        simpleGetAction,
-        simplePostAction
     }
 }

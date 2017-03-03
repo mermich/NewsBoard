@@ -45,10 +45,6 @@ namespace NewsBoard
             });
 
             services.AddAuthentication();
-
-            services.AddDbContext<NewsBoardContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("NewsBoardContext"))
-                );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

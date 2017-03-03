@@ -5,7 +5,7 @@ namespace NewBoardRestApi.BaseApi
 {
     public class BaseApi : Controller
     {
-        public NewsBoardContext NewsBoardContext { get; set; }
+        public NewsBoardContext NewsBoardContext { get; set; } = new NewsBoardContext();
 
         protected override void Dispose(bool disposing)
         {

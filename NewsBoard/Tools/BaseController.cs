@@ -81,7 +81,7 @@ namespace NewsBoard.Tools
                 context.ExceptionHandled = true;
             }
             else if (context.Exception != null)
-             {
+            {
                 var fatalMessage = "Application error, reloading the app.";
                 TempData.Add("FatalMessage", fatalMessage);
 
