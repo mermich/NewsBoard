@@ -3,7 +3,6 @@ using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.BaseApi;
 using NewBoardRestApi.DataModel;
 using NewBoardRestApi.FeedApi.Search;
-using SiteParser;
 using System;
 using System.Linq;
 
@@ -19,86 +18,86 @@ namespace NewBoardRestApi.FeedApi
         {
         }
 
-        public WebSiteVM GetWebSiteVM(string url)
-        {
+        //public WebSiteVM GetWebSiteVM(string url)
+        //{
 
 
-            var syndicationUrl = new HttpClientWrapper(url)
-                .GetResponse()
-                .ToPageSyndicationFinder()
-                .GetSyndicationURl(url);
+        //    var syndicationUrl = new HttpClientWrapper(url)
+        //        .GetResponse()
+        //        .ToPageSyndicationFinder()
+        //        .GetSyndicationURl(url);
 
-            var preview = new HttpClientWrapper(syndicationUrl)
-                .GetResponse()
-                .ToXDocument()
-                .ToFeedClientStrategy(syndicationUrl)
-                .FeedClient()
-                .ToFeedPreview();
+        //    var preview = new HttpClientWrapper(syndicationUrl)
+        //        .GetResponse()
+        //        .ToXDocument()
+        //        .ToFeedClientStrategy(syndicationUrl)
+        //        .FeedClient()
+        //        .ToFeedPreview();
 
-            return preview;
-        }
+        //    return preview;
+        //}
 
 
         public virtual void Refresh(int feedId)
         {
-            var feed = NewsBoardContext.Feeds.FirstOrDefault(f => f.Id == feedId);
+            //var feed = NewsBoardContext.Feeds.FirstOrDefault(f => f.Id == feedId);
 
-            var feedClient = new HttpClientWrapper(feed.SyndicationUrl)
-                .GetResponse()
-                .ToXDocument()
-                .ToFeedClientStrategy(feed.SyndicationUrl)
-                .FeedClient();
+            //var feedClient = new HttpClientWrapper(feed.SyndicationUrl)
+            //    .GetResponse()
+            //    .ToXDocument()
+            //    .ToFeedClientStrategy(feed.SyndicationUrl)
+            //    .FeedClient();
 
-            feed.LastTimeFetched = DateTime.Now;
-            feed.Description = feedClient.SyndicationSummary().Description;
-            feed.Title = feedClient.SyndicationSummary().Title;
+            //feed.LastTimeFetched = DateTime.Now;
+            //feed.Description = feedClient.SyndicationSummary().Description;
+            //feed.Title = feedClient.SyndicationSummary().Title;
 
-            NewsBoardContext.Articles.AddRange(feedClient.Items().ToArticles(feed));
+            //NewsBoardContext.Articles.AddRange(feedClient.Items().ToArticles(feed));
 
-            var existingUserFeed = NewsBoardContext.UserFeeds
-                .Include(uf => uf.User)
-                .FirstOrDefault(uf => uf.User.Id == currentUser.Id && uf.Feed.Id == feedId);
+            //var existingUserFeed = NewsBoardContext.UserFeeds
+            //    .Include(uf => uf.User)
+            //    .FirstOrDefault(uf => uf.User.Id == currentUser.Id && uf.Feed.Id == feedId);
 
-            if (existingUserFeed != null)
-            {
-                existingUserFeed.Subscribe();
-            }
-            else
-            {
-                var newSubscription = new UserFeed(currentUser, existingUserFeed.Feed);
-                NewsBoardContext.UserFeeds.Add(newSubscription);
-            }
+            //if (existingUserFeed != null)
+            //{
+            //    existingUserFeed.Subscribe();
+            //}
+            //else
+            //{
+            //    var newSubscription = new UserFeed(currentUser, existingUserFeed.Feed);
+            //    NewsBoardContext.UserFeeds.Add(newSubscription);
+            //}
 
-            NewsBoardContext.SaveChanges();
+            //NewsBoardContext.SaveChanges();
         }
 
 
         public Feed CreateSubscription(string syndicationUrl)
         {
-            var feedClient = new HttpClientWrapper(syndicationUrl)
-                .GetResponse()
-                .ToXDocument()
-                .ToFeedClientStrategy(syndicationUrl)
-                .FeedClient();
+            //var feedClient = new HttpClientWrapper(syndicationUrl)
+            //    .GetResponse()
+            //    .ToXDocument()
+            //    .ToFeedClientStrategy(syndicationUrl)
+            //    .FeedClient();
 
-            var feed = new Feed()
-            {
-                SyndicationUrl = syndicationUrl,
-                LastTimeFetched = DateTime.Now,
-                Description = feedClient.SyndicationSummary().Description,
-                Title = feedClient.SyndicationSummary().Title,
-                WebSite = new WebSite
-                {
-                    Url = feedClient.SyndicationSummary().WebSiteUrl,
-                    Description = feedClient.SyndicationSummary().Description,
-                    Title = feedClient.SyndicationSummary().Title
-                }
-            };
+            //var feed = new Feed()
+            //{
+            //    SyndicationUrl = syndicationUrl,
+            //    LastTimeFetched = DateTime.Now,
+            //    Description = feedClient.SyndicationSummary().Description,
+            //    Title = feedClient.SyndicationSummary().Title,
+            //    WebSite = new WebSite
+            //    {
+            //        Url = feedClient.SyndicationSummary().WebSiteUrl,
+            //        Description = feedClient.SyndicationSummary().Description,
+            //        Title = feedClient.SyndicationSummary().Title
+            //    }
+            //};
 
-            NewsBoardContext.Feeds.Add(feed);
-            NewsBoardContext.SaveChanges();
+            //NewsBoardContext.Feeds.Add(feed);
+            //NewsBoardContext.SaveChanges();
 
-            return feed;
+            return null;
         }
 
         public FeedVMList ListFeed(FeedVMSearch filter)

@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.BaseApi;
 using NewBoardRestApi.UserApi;
 using NewsBoard.Tools;
-using NewsBoard.Tools.JsonResult;
+using NewBoardRestApi.ArticleApi;
 using System.Collections.Generic;
 using System.Security.Claims;
+using WebAppUtilities.JsonResult;
 
 namespace NewsBoard.wwwroot.User.UserRegister
 {

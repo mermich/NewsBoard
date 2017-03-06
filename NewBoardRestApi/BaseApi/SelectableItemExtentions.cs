@@ -1,4 +1,5 @@
-﻿using NewBoardRestApi.DataModel;
+﻿using ApiUtilities;
+using NewBoardRestApi.DataModel;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,7 +23,7 @@ namespace NewBoardRestApi.BaseApi
             {
                 IsSelected = existingPermissions.Any(ft => ft.GroupId == permission.Id),
                 Label = permission.Label,
-                Id = permission.Id
+                Value = permission.Id
             };
         }
 
@@ -32,7 +33,7 @@ namespace NewBoardRestApi.BaseApi
             {
                 IsSelected = existingGroups.Any(ft => ft.GroupId == group.Id),
                 Label = group.Label,
-                Id = group.Id
+                Value = group.Id
             };
         }
     }

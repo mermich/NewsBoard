@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DiscoverWebSiteApi;
+using DiscoverWebSiteApi.HttpTools;
+using Microsoft.EntityFrameworkCore;
 using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.BaseApi;
 using NewBoardRestApi.DataModel;
+using NewBoardRestApi.FeedApi;
 using NewBoardRestApi.FeedApi.Search;
-using SiteParser;
 using System;
 using System.Linq;
 
@@ -21,19 +23,21 @@ namespace NewBoardRestApi.DiscoverApi
 
         public DiscoverWebSiteVM GetWebSiteVM(string url)
         {
-            var syndicationUrl = new HttpClientWrapper(url)
-                .GetResponse()
-                .ToPageSyndicationFinder()
-                .GetSyndicationURl(url);
+            var lookupWebSiteApi = new LookupWebSiteApi();
+            //lookupWebSiteApi.GetWebPageContent
+            //var syndicationUrl = new HttpClientWrapper(url)
+            //    .GetResponse()
+            //    .ToPageSyndicationFinder()
+            //    .GetSyndicationURl(url);
 
-            var preview = new HttpClientWrapper(syndicationUrl)
-                .GetResponse()
-                .ToXDocument()
-                .ToFeedClientStrategy(syndicationUrl)
-                .FeedClient()
-                .ToFeedPreview();
+            //var preview = new HttpClientWrapper(syndicationUrl)
+            //    .GetResponse()
+            //    .ToXDocument()
+            //    .ToFeedClientStrategy(syndicationUrl)
+            //    .FeedClient()
+            //    .ToFeedPreview();
 
-            return preview;
+            return null;
         }
 
 
@@ -41,31 +45,31 @@ namespace NewBoardRestApi.DiscoverApi
         {
             var feed = NewsBoardContext.Feeds.FirstOrDefault(f => f.Id == feedId);
 
-            var feedClient = new HttpClientWrapper(feed.SyndicationUrl)
-                .GetResponse()
-                .ToXDocument()
-                .ToFeedClientStrategy(feed.SyndicationUrl)
-                .FeedClient();
+            //var feedClient = new HttpClientWrapper(feed.SyndicationUrl)
+            //    .GetResponse()
+            //    .ToXDocument()
+            //    .ToFeedClientStrategy(feed.SyndicationUrl)
+            //    .FeedClient();
 
-            feed.LastTimeFetched = DateTime.Now;
-            feed.Description = feedClient.SyndicationSummary().Description;
-            feed.Title = feedClient.SyndicationSummary().Title;
+            //feed.LastTimeFetched = DateTime.Now;
+            //feed.Description = feedClient.SyndicationSummary().Description;
+            //feed.Title = feedClient.SyndicationSummary().Title;
 
-            NewsBoardContext.Articles.AddRange(feedClient.Items().ToArticles(feed));
+            //NewsBoardContext.Articles.AddRange(feedClient.Items().ToArticles(feed));
 
-            var existingUserFeed = NewsBoardContext.UserFeeds
-                .Include(uf => uf.User)
-                .FirstOrDefault(uf => uf.User.Id == currentUser.Id && uf.Feed.Id == feedId);
+            //var existingUserFeed = NewsBoardContext.UserFeeds
+            //    .Include(uf => uf.User)
+            //    .FirstOrDefault(uf => uf.User.Id == currentUser.Id && uf.Feed.Id == feedId);
 
-            if (existingUserFeed != null)
-            {
-                existingUserFeed.Subscribe();
-            }
-            else
-            {
-                var newSubscription = new UserFeed(currentUser, existingUserFeed.Feed);
-                NewsBoardContext.UserFeeds.Add(newSubscription);
-            }
+            //if (existingUserFeed != null)
+            //{
+            //    existingUserFeed.Subscribe();
+            //}
+            //else
+            //{
+            //    var newSubscription = new UserFeed(currentUser, existingUserFeed.Feed);
+            //    NewsBoardContext.UserFeeds.Add(newSubscription);
+            //}
 
             NewsBoardContext.SaveChanges();
         }
@@ -73,23 +77,19 @@ namespace NewBoardRestApi.DiscoverApi
 
         public Feed CreateSubscription(string syndicationUrl)
         {
-            var feedClient = new HttpClientWrapper(syndicationUrl)
-                .GetResponse()
-                .ToXDocument()
-                .ToFeedClientStrategy(syndicationUrl)
-                .FeedClient();
+            var syndicationContent = new SyndicationApi().GetSyndication(syndicationUrl);
 
             var feed = new Feed()
             {
                 SyndicationUrl = syndicationUrl,
                 LastTimeFetched = DateTime.Now,
-                Description = feedClient.SyndicationSummary().Description,
-                Title = feedClient.SyndicationSummary().Title,
+                Description = syndicationContent.Description,
+                Title = syndicationContent.Title,
                 WebSite = new WebSite
                 {
-                    Url = feedClient.SyndicationSummary().WebSiteUrl,
-                    Description = feedClient.SyndicationSummary().Description,
-                    Title = feedClient.SyndicationSummary().Title
+                    Url = syndicationContent.WebSiteUrl,
+                    Description = syndicationContent.Description,
+                    Title = syndicationContent.Title
                 }
             };
 
@@ -283,7 +283,7 @@ namespace NewBoardRestApi.DiscoverApi
                 {
                     if (item.IsSelected)
                     {
-                        var tagToattach = NewsBoardContext.Tags.FirstOrDefault(t => t.Id == item.Id);
+                        var tagToattach = NewsBoardContext.Tags.FirstOrDefault(t => t.Id.ToString() == item.Value);
                         feedDb.FeedTags.Add(new FeedTag { Feed = feedDb, Tag = tagToattach });
                     }
                 }

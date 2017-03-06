@@ -1,0 +1,46 @@
+﻿@model  WebSiteDetails
+@Model.IconUrl
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Afficher les information d'un site
+    </div>
+
+    <div class="panel-body panel-edit">
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label for="Label" class="col-sm-2 control-label">Titre</label>
+                <div class="col-sm-6">
+                    <input type="text" readonly="readonly" class="form-control" id="Label" name="Label" value="@Model.PageTitle" placeholder="Label">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Key" class="col-sm-2 control-label">Adresse</label>
+                <div class="col-sm-6">
+                    <input type="text" readonly="readonly" class="form-control" id="Label" name="Label" value="@Model.WebSiteAdress" placeholder="Label">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Key" class="col-sm-2 control-label">Icon</label>
+                <div class="col-sm-6">
+                    <input type="text" readonly="readonly" class="form-control" id="Label" name="Label" value="@Model.IconUrl" placeholder="Label">
+                    <img src="@Model.IconUrl" alt="website icon" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Key" class="col-sm-2 control-label">Contenu du flux</label>
+                <div class="col-sm-6"">
+                    <div ns-loader-url="@Url.Action("SyndicationContent", new { url=Model.SyndicationAdress})">
+                        Chargement du widget ...
+                        <div class='loader'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

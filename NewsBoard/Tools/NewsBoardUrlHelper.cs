@@ -3,6 +3,7 @@ using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.FeedApi;
 using NewBoardRestApi.FeedApi.Search;
 using System.Linq;
+using WebAppUtilities;
 
 namespace NewsBoard.Tools
 {

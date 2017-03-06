@@ -1,4 +1,5 @@
-﻿using NewBoardRestApi.ArticleApi;
+﻿using ApiUtilities;
+using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.BaseApi;
 using NewBoardRestApi.DataModel;
 using System.Collections.Generic;

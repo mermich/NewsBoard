@@ -18,7 +18,9 @@
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0",
     "System.Xml.XDocument": "4.3.0",
     "System.Xml.XmlSerializer": "4.3.0",
-    "SiteParser": "1.0.0-*"
+    "SiteParser": "1.0.0-*",
+    "ApiUtilities": "1.0.0-*",
+    "DiscoverWebSiteApi": "1.0.0-*"
   },
 
   "tools": {

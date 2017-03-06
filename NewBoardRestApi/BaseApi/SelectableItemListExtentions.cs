@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NewBoardRestApi.BaseApi
+namespace ApiUtilities
 {
     internal static class SelectableItemListExtentions
     {
