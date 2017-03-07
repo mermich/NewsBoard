@@ -1,15 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using ApiUtilities;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ApiUtilities
 {
     public static class SelectableItemExtentions
     {
-        public static SelectableItem ToSelectableItem(this ISelectable selectable, List<string> selectedValues)
+        public static SelectableItemt<T> ToSelectableItem<T>(this ISelectable<T> selectable)
+            where T : IEquatable<T>
         {
-            return new SelectableItem
+            return ToSelectableItem(selectable, new List<T>());
+        }
+
+        public static SelectableItemt<T> ToSelectableItem<T>(this ISelectable<T> selectable, IEnumerable<T> selectedValues)
+            where T : IEquatable<T>
+        {
+            return new SelectableItemt<T>
             {
-                IsSelected = selectedValues.Any(ft => ft == selectable.Value),
+                IsSelected = selectedValues.Any(ft => ft.Equals(selectable.Value)),
                 Label = selectable.Label,
                 Value = selectable.Value
             };

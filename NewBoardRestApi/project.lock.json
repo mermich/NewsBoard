@@ -1298,7 +1298,7 @@
           "Microsoft.NETCore.DotNetHostPolicy": "1.0.1",
           "Microsoft.NETCore.Runtime.CoreCLR": "1.0.4",
           "Microsoft.VisualBasic": "10.0.1",
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "System.Buffers": "4.0.0",
           "System.Collections.Immutable": "1.2.0",
           "System.ComponentModel": "4.0.1",
@@ -3762,7 +3762,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
-          "NETStandard.Library": "1.6.0"
+          "NETStandard.Library": "1.6.1"
         },
         "compile": {
           "netcoreapp1.0/ApiUtilities.dll": {}
@@ -3775,7 +3775,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "System.Xml.XDocument": "4.3.0",
           "System.Xml.XmlSerializer": "4.3.0"
         },
@@ -5065,7 +5065,7 @@
           "Microsoft.NETCore.DotNetHostPolicy": "1.0.1",
           "Microsoft.NETCore.Runtime.CoreCLR": "1.0.4",
           "Microsoft.VisualBasic": "10.0.1",
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "System.Buffers": "4.0.0",
           "System.Collections.Immutable": "1.2.0",
           "System.ComponentModel": "4.0.1",
@@ -7680,7 +7680,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
-          "NETStandard.Library": "1.6.0"
+          "NETStandard.Library": "1.6.1"
         },
         "compile": {
           "netcoreapp1.0/ApiUtilities.dll": {}
@@ -7693,7 +7693,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "System.Xml.XDocument": "4.3.0",
           "System.Xml.XmlSerializer": "4.3.0"
         },

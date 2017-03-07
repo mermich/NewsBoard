@@ -3,6 +3,7 @@ using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.BaseApi;
 using NewBoardRestApi.DataModel;
 using System.Collections.Generic;
+using NewBoardRestApi.GroupApi;
 
 namespace NewBoardRestApi.FeedApi
 {
@@ -22,7 +23,7 @@ namespace NewBoardRestApi.FeedApi
 
         public int Subscribers { get; set; }
 
-        public SelectableItemList Tags { get; set; }
+        public SelectableItemList<int> Tags { get; set; }
 
 
         public ArticleVMList ArticleVMList { get; set; } = new ArticleVMList();

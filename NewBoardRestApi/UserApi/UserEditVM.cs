@@ -1,5 +1,7 @@
-﻿using NewBoardRestApi.BaseApi;
+﻿using ApiUtilities;
+using NewBoardRestApi.BaseApi;
 using NewBoardRestApi.DataModel;
+using NewBoardRestApi.GroupApi;
 using System.Collections.Generic;
 
 namespace NewBoardRestApi.UserApi
@@ -12,7 +14,7 @@ namespace NewBoardRestApi.UserApi
 
         public string  Password { get; set; } = "";
 
-        public SelectableItemList Groups { get; set; }
+        public SelectableItemList<int> Groups { get; set; }
 
         public UserEditVM()
         {
@@ -20,7 +22,7 @@ namespace NewBoardRestApi.UserApi
 
         public UserEditVM(List<Group> allGroups)
         {
-            Groups = allGroups.ToSelectableItemList(new List<UserGroup>());
+            Groups = allGroups.ToSelectableItemList();
         }
 
         public UserEditVM(User user, List<Group> allGroups)

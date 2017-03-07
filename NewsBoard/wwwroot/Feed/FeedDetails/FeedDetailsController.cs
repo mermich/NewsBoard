@@ -4,6 +4,7 @@ using NewBoardRestApi.ArticleApi;
 using System.Collections.Generic;
 using NewBoardRestApi.FeedApi;
 using NewBoardRestApi.ArticleApi;
+using WebAppUtilities.JsonResult;
 
 namespace NewsBoard.wwwroot.Feed.FeedDetails
 {

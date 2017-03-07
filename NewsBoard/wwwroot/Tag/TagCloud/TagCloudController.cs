@@ -4,6 +4,7 @@ using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.TagApi;
 using NewBoardRestApi.FeedApi;
 using NewBoardRestApi.FeedApi.Search;
+using WebAppUtilities.JsonResult;
 
 namespace NewsBoard.wwwroot.User.UserRegister
 {

@@ -70,7 +70,7 @@ namespace NewBoardRestApi.UserApi
             //removing the old permissions
             foreach (var userGroup in user.UserGroups.ToList())
             {
-                if (!selectedGroups.Any(gr => gr.Id == userGroup.GroupId))
+                if (!selectedGroups.Any(gr => gr.Value == userGroup.GroupId))
                 {
                     //not in the posted list i should delete the item
                     //I remove the item from the dbcontext rather than from the dbItem
@@ -83,12 +83,12 @@ namespace NewBoardRestApi.UserApi
             foreach (var group in selectedGroups)
             {
                 //if is not in database
-                if (!user.UserGroups.Any(a => a.GroupId == group.Id))
+                if (!user.UserGroups.Any(a => a.GroupId == group.Value))
                 {
                     //create the row
                     var ug = new UserGroup();
                     ug.User = user;
-                    ug.Group = NewsBoardContext.Groups.FirstOrDefault(a => a.Id == group.Id);
+                    ug.Group = NewsBoardContext.Groups.FirstOrDefault(a => a.Id == group.Value);
                     user.UserGroups.Add(ug);
                 }
             }

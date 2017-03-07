@@ -1,4 +1,5 @@
-﻿using NewBoardRestApi.BaseApi;
+﻿using ApiUtilities;
+using NewBoardRestApi.BaseApi;
 using NewBoardRestApi.DataModel;
 using System.Collections.Generic;
 
@@ -12,7 +13,7 @@ namespace NewBoardRestApi.GroupApi
 
         public bool Enabled { get; set; }
 
-        public SelectableItemList Permissions { get; set; } = new SelectableItemList();
+        public SelectableItemList<int> Permissions { get; set; } = new SelectableItemList<int>();
 
         public GroupEditVM()
         {

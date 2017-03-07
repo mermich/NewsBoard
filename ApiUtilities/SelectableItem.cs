@@ -1,15 +1,14 @@
-﻿namespace ApiUtilities
+﻿using System;
+
+namespace ApiUtilities
 {
-    public class SelectableItem
+    public class SelectableItemt<T>
+        where T : IEquatable<T>
     {
-        public string Value { get; set; }
+        public T Value { get; set; }
 
         public bool IsSelected { get; set; }
 
-        public string Label { get; set; }
-
-        public SelectableItem()
-        {
-        }
+        public string Label { get; set; }        
     }
 }

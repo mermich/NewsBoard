@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace ApiUtilities
 {
-    public interface ISelectable
+    public interface ISelectable<T>
     {
-        string Value { get; set; }
+        T Value { get; set; }
 
         string Label { get; set; }
     }

@@ -65,7 +65,7 @@ namespace NewBoardRestApi.GroupApi
 
             foreach (var item in groupVM.Permissions.Items.Where(i => i.IsSelected))
             {
-                group.GroupPermissions.Add(new GroupPermission { Group = group, PermissionId = item.Id });
+                group.GroupPermissions.Add(new GroupPermission { Group = group, PermissionId = item.Value });
             }
 
             NewsBoardContext.Groups.Add(group);
@@ -85,7 +85,7 @@ namespace NewBoardRestApi.GroupApi
             //removing the old permissions
             foreach (var permission in group.GroupPermissions.ToList())
             {
-                if (!selectedPermissions.Any(gr => gr.Id == permission.PermissionId))
+                if (!selectedPermissions.Any(gr => gr.Value == permission.PermissionId))
                 {
                     //not in the posted list i should delete the item
                     //I remove the item from the dbcontext rather than from the dbItem
@@ -98,12 +98,12 @@ namespace NewBoardRestApi.GroupApi
             foreach (var permission in selectedPermissions)
             {
                 //if is not in database
-                if (!group.GroupPermissions.Any(a => a.PermissionId == permission.Id))
+                if (!group.GroupPermissions.Any(a => a.PermissionId == permission.Value))
                 {
                     //create the row
                     var gp = new GroupPermission();
                     gp.Group = group;
-                    gp.Permission = NewsBoardContext.Permissions.FirstOrDefault(a => a.Id == permission.Id);
+                    gp.Permission = NewsBoardContext.Permissions.FirstOrDefault(a => a.Id == permission.Value);
                     group.GroupPermissions.Add(gp);
                 }
             }

@@ -279,12 +279,12 @@ namespace NewBoardRestApi.FeedApi
             //merge tags
             foreach (var item in feed.Tags.Items)
             {
-                var existingTag = feedDb.FeedTags.FirstOrDefault(ft => ft.TagId == item.Id);
+                var existingTag = feedDb.FeedTags.FirstOrDefault(ft => ft.TagId == item.Value);
                 if (existingTag == null)
                 {
                     if (item.IsSelected)
                     {
-                        var tagToattach = NewsBoardContext.Tags.FirstOrDefault(t => t.Id == item.Id);
+                        var tagToattach = NewsBoardContext.Tags.FirstOrDefault(t => t.Id == item.Value);
                         feedDb.FeedTags.Add(new FeedTag { Feed = feedDb, Tag = tagToattach });
                     }
                 }

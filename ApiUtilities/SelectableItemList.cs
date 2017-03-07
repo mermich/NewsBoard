@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ApiUtilities
 {
-    public class SelectableItemList
+    public class SelectableItemList<T>
+        where T : IEquatable<T>
     {
-        public List<SelectableItem> Items { get; set; } = new List<SelectableItem>();
+        public List<SelectableItemt<T>> Items { get; set; } = new List<SelectableItemt<T>>();
 
         public SelectableItemList() { }
 
-        public SelectableItemList(IEnumerable<SelectableItem> items)
+        public SelectableItemList(IEnumerable<SelectableItemt<T>> items)
         {
             Items = items.ToList();
         }

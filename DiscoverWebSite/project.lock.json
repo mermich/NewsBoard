@@ -1343,7 +1343,7 @@
           "Microsoft.NETCore.DotNetHostPolicy": "1.0.1",
           "Microsoft.NETCore.Runtime.CoreCLR": "1.0.4",
           "Microsoft.VisualBasic": "10.0.1",
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "System.Buffers": "4.0.0",
           "System.Collections.Immutable": "1.2.0",
           "System.ComponentModel": "4.0.1",
@@ -1600,7 +1600,7 @@
       "NuGet.Common/3.5.0-beta2-1484": {
         "type": "package",
         "dependencies": {
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "System.Diagnostics.Process": "4.1.0",
           "System.Security.Cryptography.Algorithms": "4.2.0",
           "System.Threading.Thread": "4.0.0"
@@ -1615,7 +1615,7 @@
       "NuGet.Configuration/3.5.0-beta2-1484": {
         "type": "package",
         "dependencies": {
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "NuGet.Common": "3.5.0-beta2-1484",
           "System.Xml.XDocument": "4.0.11"
         },
@@ -1629,7 +1629,7 @@
       "NuGet.DependencyResolver.Core/3.5.0-beta2-1484": {
         "type": "package",
         "dependencies": {
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "NuGet.Frameworks": "3.5.0-beta2-1484",
           "NuGet.LibraryModel": "3.5.0-beta2-1484",
           "NuGet.Protocol.Core.v3": "3.5.0-beta2-1484",
@@ -1646,7 +1646,7 @@
       "NuGet.Frameworks/3.5.0-beta2-1484": {
         "type": "package",
         "dependencies": {
-          "NETStandard.Library": "1.6.0"
+          "NETStandard.Library": "1.6.1"
         },
         "compile": {
           "lib/netstandard1.3/NuGet.Frameworks.dll": {}
@@ -1658,7 +1658,7 @@
       "NuGet.LibraryModel/3.5.0-beta2-1484": {
         "type": "package",
         "dependencies": {
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "NuGet.Frameworks": "3.5.0-beta2-1484",
           "NuGet.Versioning": "3.5.0-beta2-1484"
         },
@@ -1672,7 +1672,7 @@
       "NuGet.Packaging/3.5.0-beta2-1484": {
         "type": "package",
         "dependencies": {
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "NuGet.Common": "3.5.0-beta2-1484",
           "NuGet.Packaging.Core": "3.5.0-beta2-1484",
           "System.IO.Compression": "4.1.0"
@@ -1687,7 +1687,7 @@
       "NuGet.Packaging.Core/3.5.0-beta2-1484": {
         "type": "package",
         "dependencies": {
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "NuGet.Common": "3.5.0-beta2-1484",
           "NuGet.Packaging.Core.Types": "3.5.0-beta2-1484",
           "System.Xml.XDocument": "4.0.11"
@@ -1702,7 +1702,7 @@
       "NuGet.Packaging.Core.Types/3.5.0-beta2-1484": {
         "type": "package",
         "dependencies": {
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "NuGet.Frameworks": "3.5.0-beta2-1484",
           "NuGet.Versioning": "3.5.0-beta2-1484"
         },
@@ -1716,7 +1716,7 @@
       "NuGet.ProjectModel/3.5.0-beta2-1484": {
         "type": "package",
         "dependencies": {
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "Newtonsoft.Json": "6.0.4",
           "NuGet.DependencyResolver.Core": "3.5.0-beta2-1484",
           "System.Dynamic.Runtime": "4.0.11",
@@ -1732,7 +1732,7 @@
       "NuGet.Protocol.Core.Types/3.5.0-beta2-1484": {
         "type": "package",
         "dependencies": {
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "NuGet.Common": "3.5.0-beta2-1484",
           "NuGet.Configuration": "3.5.0-beta2-1484",
           "NuGet.Packaging": "3.5.0-beta2-1484",
@@ -1748,7 +1748,7 @@
       "NuGet.Protocol.Core.v3/3.5.0-beta2-1484": {
         "type": "package",
         "dependencies": {
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "Newtonsoft.Json": "6.0.4",
           "NuGet.Common": "3.5.0-beta2-1484",
           "NuGet.Packaging": "3.5.0-beta2-1484",
@@ -1765,7 +1765,7 @@
       "NuGet.Repositories/3.5.0-beta2-1484": {
         "type": "package",
         "dependencies": {
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "NuGet.Packaging": "3.5.0-beta2-1484"
         },
         "compile": {
@@ -1778,7 +1778,7 @@
       "NuGet.RuntimeModel/3.5.0-beta2-1484": {
         "type": "package",
         "dependencies": {
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "Newtonsoft.Json": "6.0.4",
           "NuGet.Frameworks": "3.5.0-beta2-1484",
           "NuGet.Versioning": "3.5.0-beta2-1484",
@@ -1795,7 +1795,7 @@
       "NuGet.Versioning/3.5.0-beta2-1484": {
         "type": "package",
         "dependencies": {
-          "NETStandard.Library": "1.6.0"
+          "NETStandard.Library": "1.6.1"
         },
         "compile": {
           "lib/netstandard1.0/NuGet.Versioning.dll": {}
@@ -3730,7 +3730,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
-          "NETStandard.Library": "1.6.0"
+          "NETStandard.Library": "1.6.1"
         },
         "compile": {
           "netcoreapp1.0/ApiUtilities.dll": {}
@@ -3743,7 +3743,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "System.Xml.XDocument": "4.3.0",
           "System.Xml.XmlSerializer": "4.3.0"
         },
@@ -3760,7 +3760,7 @@
         "dependencies": {
           "ApiUtilities": "1.0.0",
           "Microsoft.AspNetCore.Mvc.Razor": "1.1.0",
-          "NETStandard.Library": "1.6.0"
+          "NETStandard.Library": "1.6.1"
         },
         "compile": {
           "netcoreapp1.0/WebAppUtilities.dll": {}

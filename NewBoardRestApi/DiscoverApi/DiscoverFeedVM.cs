@@ -1,5 +1,4 @@
-﻿using SiteParser.Client;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,12 +15,12 @@ namespace NewBoardRestApi.DiscoverApi
 
         public List<DiscoverArticleVM> Articles { get; set; } = new List<DiscoverArticleVM>();
 
-        public DiscoverFeedVM(AFeedClient feedClient)
+        public DiscoverFeedVM()
         {
-            SyndicationUrl = feedClient.SyndicationSummary().SyndicationUrl;
-            Title = feedClient.SyndicationSummary().Title;
-            Description = feedClient.SyndicationSummary().Description;
-            Articles.AddRange(feedClient.Items().Select(i => i.ToArticlePreview()));
+            //SyndicationUrl = feedClient.SyndicationSummary().SyndicationUrl;
+            //Title = feedClient.SyndicationSummary().Title;
+            //Description = feedClient.SyndicationSummary().Description;
+            //Articles.AddRange(feedClient.Items().Select(i => i.ToArticlePreview()));
         }
     }
 }

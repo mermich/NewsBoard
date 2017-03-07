@@ -9,7 +9,8 @@ namespace WebAppUtilities
 {
     public static class CheckBoxListForHelper
     {
-        public static string CheckBoxListFor<TModel>(this IHtmlHelper<TModel> helper,  Expression<Func<TModel, SelectableItemList>> expr)
+        public static string CheckBoxListFor<TModel,U>(this IHtmlHelper<TModel> helper,  Expression<Func<TModel, SelectableItemList<U>>> expr)
+            where U : IEquatable<U>
         {
             var defaultHtmlAttributesObject = new { data_label_width = "0", data_handle_width = "100", data_on_text = "Oui", data_off_text = "Non" };
             var sb = new StringBuilder();
