@@ -16,23 +16,23 @@ namespace DiscoverWebSite.Controllers
             return View();
         }
 
-        public JsonResult GetDiscoverWebSite(string url)
+        [HttpPost]
+        public JsonResult GetDiscoverWebSite(string webSiteUrl)
         {
-            return new ReplaceMainHtmlResult(Url.Action("DiscoverWebSite"));
+            return new ReplaceMainHtmlResult(Url.Action("DiscoverWebSite", new { webSiteUrl = webSiteUrl }));
         }
-
-
-        public IActionResult DiscoverWebSite(string url)
+        
+        public IActionResult DiscoverWebSite(string webSiteUrl)
         {
             var api = new LookupWebSiteApi();
-            var model = api.GetWebSiteDetails(url);
+            var model = api.GetWebSiteDetails(webSiteUrl);
             return ReturnView("DiscoverWebSite", model);
         }
 
-        public IActionResult SyndicationContent(string url)
+        public IActionResult SyndicationContent(string feedUrl)
         {
             var api = new SyndicationApi();
-            var model = api.GetSyndication(url);
+            var model = api.GetSyndication(feedUrl);
             return ReturnView("SyndicationContent", model);
         }
     }

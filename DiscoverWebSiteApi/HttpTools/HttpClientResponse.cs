@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 namespace DiscoverWebSiteApi.HttpTools
@@ -20,6 +21,10 @@ namespace DiscoverWebSiteApi.HttpTools
 
         public XDocument ToXDocument()
         {
+            response = Regex.Replace(response, "&raquo;", "-");
+            response = response.Replace("(<[^>]*[\\(.*?)([\"\\d\\w\\s])\\/>)", "$1></link>");
+            response = Regex.Replace(response, @"<script[^>]*>[\s\S]*?</script>", "");
+            Regex regex = new Regex(@"</?\w+((\s+\w+(\s*=\s*(?:"".*?""|'.*?'|[^'"">\s]+))?)+\s*|\s*)/?>", RegexOptions.Singleline);
             return XDocument.Parse(response);
         }
 

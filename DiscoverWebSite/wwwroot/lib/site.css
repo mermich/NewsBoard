@@ -1,0 +1,184 @@
+﻿body {
+    padding-bottom: 20px;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.panel {
+    margin-bottom: 10px;
+}
+
+.panel-body {
+    padding: 6px;
+}
+
+.btn-group {
+    min-width: 100px;
+    text-align: right;
+    padding: 0px;
+    display: flex;
+}
+
+.navbar-fixed-top {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    background-color: rgba(0,0,0,.3);
+}
+
+html, body.body {
+    background-color: #eee;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    -webkit-border-radius: 0 0 6px 6px;
+    -moz-border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+    box-shadow: 0 1px 2px rgba(0,0,0,.15);
+    margin-top: 0px;
+}
+
+.navbar {
+    margin-bottom: 0 !important;
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.material-icons {
+    margin-left: 2px;
+}
+
+#page > .col:first-child {
+    padding-left: 0px;
+}
+
+#page > .col:last-child {
+    padding-right: 0px;
+}
+
+
+@media (min-width: 1500px) {
+    .container {
+        width: 1470px !important;
+    }
+}
+
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+
+.page-header {
+    background: url(http://arpenterlechemin.com/wp-content/uploads/2017/02/1230619-2-1024x769.jpg) no-repeat scroll top;
+    background-size: 100% auto;
+    height: 300px;
+    margin: 0px;
+}
+
+.h1-header {
+    margin: 0;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    text-align: center;
+    color: white;
+    font-size: 60px;
+}
+
+    .h1-header small {
+        color: white;
+    }
+
+.navbar-header a, .navbar-nav a, .navbar-nav .dropdown-menu > li > a {
+    color: white;
+    background-image: initial;
+}
+
+a {
+    background-image: initial;
+    background-color: initial;
+}
+
+
+.dropdown > .dropdown-menu {
+    padding-top: 0px;
+}
+
+li.open {
+    background-image: initial;
+}
+
+.panel-default > .panel-heading {
+    font-size: large;
+}
+
+.panel-edit {
+    margin: 20px;
+}
+
+.navbar-brand:hover, .navbar-nav li a:hover, .navbar-nav li.open a:hover, .nav .open > a, nav .open > a:focus,
+.navbar-brand:active, .navbar-nav li a:active, .navbar-nav li.open a:active, .nav .open > a, nav .open > a:active,  a:active{
+    background-color: initial;
+}
+
+.navbar-nav > li > .dropdown-menu, li:hover {
+    background-color: rgba(0,0,0,.4);
+    border: 0px;
+}
+
+.navbar-nav > li > .dropdown-menu{
+    background-color: rgba(0,0,0,.4);
+}
+
+
+li.open > .dropdown-toggle, a.navbar-brand:hover {
+    background-color: rgba(0,0,0,.4);
+}
+
+a:focus:not(:hover){
+    background-color: rgba(0,0,0,.4) !important;
+}
+
+
+
+.alert-fatal {
+  background-color: crimson;
+  border-color: crimson;
+  color: crimson;
+}
+
+.alert-fatal hr {
+  border-top-color: #e4b9c0;
+}
+
+.alert-fatal .alert-link {
+  color: #843534;
+}

@@ -24,6 +24,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "WebAppUtilities", "WebAppUt
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ApiUtilities", "ApiUtilities\ApiUtilities.xproj", "{38845FAF-41C8-4743-9BD8-8862A0B4403F}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SiteParser", "SiteParser\SiteParser.xproj", "{18CD5602-4309-4AD5-887A-D40BA5CACE38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{38845FAF-41C8-4743-9BD8-8862A0B4403F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38845FAF-41C8-4743-9BD8-8862A0B4403F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38845FAF-41C8-4743-9BD8-8862A0B4403F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18CD5602-4309-4AD5-887A-D40BA5CACE38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18CD5602-4309-4AD5-887A-D40BA5CACE38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18CD5602-4309-4AD5-887A-D40BA5CACE38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18CD5602-4309-4AD5-887A-D40BA5CACE38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

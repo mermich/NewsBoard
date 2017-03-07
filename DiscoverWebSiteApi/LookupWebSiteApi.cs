@@ -29,13 +29,13 @@ namespace DiscoverWebSiteApi
             var details = new WebSiteDetails();
             details.WebSiteAdress = GetWebSiteAdress(adress);
             details.WebSiteTitle = GetPageTitle(details.WebSiteAdress);
-                      
+
             details.PageAdress = adress;
             details.PageTitle = GetPageTitle(adress);
 
             details.IconUrl = GetWebPageIcon(details.WebSiteAdress);
             details.SyndicationAdress = FindSyndication(details.WebSiteAdress);
-            
+
             return details;
         }
 
@@ -75,7 +75,7 @@ namespace DiscoverWebSiteApi
         public string GetWebSiteAdress(string adress)
         {
             Uri baseUrl = new Uri(adress);
-            return baseUrl.Host;
+            return baseUrl.Scheme + "://" + baseUrl.Host;
         }
     }
 }
