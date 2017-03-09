@@ -1,7 +1,9 @@
 ﻿using DiscoverWebSiteApi.HttpTools;
 using DiscoverWebSiteApi.Syndication;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace DiscoverWebSiteApi
 {
@@ -15,7 +17,21 @@ namespace DiscoverWebSiteApi
         public string GetPageTitle(string adress)
         {
             var document = new HttpClientWrapper(adress).GetResponse().ToXDocument();
-            return document.Elements().FirstOrDefault(i => i.Name.LocalName == "title").Value;
+            return GetElements(document, "title").FirstOrDefault().Value;
+        }
+
+
+        private IEnumerable<XElement> GetElements(XDocument doc, string elementName)
+        {
+            foreach (XNode node in doc.DescendantNodes())
+            {
+                if (node is XElement)
+                {
+                    XElement element = (XElement)node;
+                    if (element.Name.LocalName.Equals(elementName))
+                        yield return element;
+                }
+            }
         }
 
         public string GetWebSiteTitle(string adress)
@@ -42,15 +58,29 @@ namespace DiscoverWebSiteApi
         public string GetWebPageIcon(string adress)
         {
             var document = new HttpClientWrapper(adress).GetResponse().ToXDocument();
-            var icon = document.Elements().FirstOrDefault(i => i.Name.LocalName == "link" && i.Attribute("type") != null && i.Attribute("type").Value == "image/x-icon").Attribute("href").GetValueOrEmpty();
+            var icon = "";
+
+            var element = GetElements(document, "link").FirstOrDefault(i => i.Attribute("type") != null && i.Attribute("type").Value == "image/x-icon");
+            if (element != null)
+                icon = element.Attribute("href").GetValueOrEmpty();
 
             if (string.IsNullOrWhiteSpace(icon))
             {
-                icon = document.Elements().FirstOrDefault(i => i.Name.LocalName == "link" && i.Attribute("rel") != null && i.Attribute("rel").Value == "shortcut icon").Attribute("href").GetValueOrEmpty();
+                element = GetElements(document, "link").FirstOrDefault(i => i.Name.LocalName == "link" && i.Attribute("rel") != null && i.Attribute("rel").Value == "shortcut icon");
+                if (element != null)
+                    icon = element.Attribute("href").GetValueOrEmpty();
             }
-            else if (string.IsNullOrWhiteSpace(icon))
+
+            if (string.IsNullOrWhiteSpace(icon))
             {
-                icon = document.Elements().FirstOrDefault(i => i.Name.LocalName == "link" && i.Attribute("rel") != null && i.Attribute("rel").Value == "icon").Attribute("href").GetValueOrEmpty();
+                element = GetElements(document, "link").FirstOrDefault(i => i.Name.LocalName == "link" && i.Attribute("rel") != null && i.Attribute("rel").Value == "icon");
+                if (element != null)
+                    icon = element.Attribute("href").GetValueOrEmpty();
+            }
+
+            if (string.IsNullOrWhiteSpace(icon))
+            {
+                icon = GetWebSiteAdress(adress) + "/favicon.ico";
             }
 
             return icon;
