@@ -74,7 +74,7 @@ namespace DiscoverWebSiteApi
                 icon = "/favicon.ico";
             }
 
-            if (!icon.StartsWith("http://") || !icon.StartsWith("https://"))
+            if (!icon.StartsWith("http://") && !icon.StartsWith("https://"))
             {
                 if (!icon.StartsWith("/"))
                     icon = "/" + icon;
