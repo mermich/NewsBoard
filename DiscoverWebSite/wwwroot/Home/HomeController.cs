@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using DiscoverWebSiteApi;
 using WebAppUtilities;
 using WebAppUtilities.JsonResult;
@@ -19,9 +15,9 @@ namespace DiscoverWebSite.Controllers
         [HttpPost]
         public JsonResult GetDiscoverWebSite(string webSiteUrl)
         {
-            return new ReplaceMainHtmlResult(Url.Action("DiscoverWebSite", new { webSiteUrl = webSiteUrl }));
+            return new ReplaceHtmlResult("#websiteDetails", Url.Action("DiscoverWebSite", new { webSiteUrl = webSiteUrl }));
         }
-        
+
         public IActionResult DiscoverWebSite(string webSiteUrl)
         {
             var api = new LookupWebSiteApi();
@@ -35,5 +31,6 @@ namespace DiscoverWebSite.Controllers
             var model = api.GetSyndication(feedUrl);
             return ReturnView("SyndicationContent", model);
         }
+
     }
 }

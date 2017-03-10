@@ -106,6 +106,7 @@
 --reference:C:\Users\emermillod\.nuget\packages\Microsoft.VisualBasic\10.0.1\ref\netstandard1.1\Microsoft.VisualBasic.dll
 --reference:C:\Users\emermillod\.nuget\packages\Microsoft.Win32.Primitives\4.3.0\ref\netstandard1.3\Microsoft.Win32.Primitives.dll
 --reference:C:\Users\emermillod\.nuget\packages\Microsoft.Win32.Registry\4.3.0\ref\netstandard1.3\Microsoft.Win32.Registry.dll
+--reference:C:\Users\emermillod\.nuget\packages\MysticMind.HtmlAgilityPack\1.0.0\lib\netstandard1.6\MysticMind.HtmlAgilityPack.dll
 --reference:C:\Users\emermillod\.nuget\packages\Newtonsoft.Json\9.0.1\lib\netstandard1.0\Newtonsoft.Json.dll
 --reference:C:\Users\emermillod\.nuget\packages\NuGet.Common\3.5.0-beta2-1484\lib\netstandard1.3\NuGet.Common.dll
 --reference:C:\Users\emermillod\.nuget\packages\NuGet.Configuration\3.5.0-beta2-1484\lib\netstandard1.3\NuGet.Configuration.dll
@@ -141,6 +142,7 @@
 --reference:C:\Users\emermillod\.nuget\packages\System.Diagnostics.Process\4.3.0\ref\netstandard1.4\System.Diagnostics.Process.dll
 --reference:C:\Users\emermillod\.nuget\packages\System.Diagnostics.StackTrace\4.3.0\ref\netstandard1.3\System.Diagnostics.StackTrace.dll
 --reference:C:\Users\emermillod\.nuget\packages\System.Diagnostics.Tools\4.3.0\ref\netstandard1.0\System.Diagnostics.Tools.dll
+--reference:C:\Users\emermillod\.nuget\packages\System.Diagnostics.TraceSource\4.0.0\ref\netstandard1.3\System.Diagnostics.TraceSource.dll
 --reference:C:\Users\emermillod\.nuget\packages\System.Diagnostics.Tracing\4.3.0\ref\netstandard1.5\System.Diagnostics.Tracing.dll
 --reference:C:\Users\emermillod\.nuget\packages\System.Dynamic.Runtime\4.3.0\ref\netstandard1.3\System.Dynamic.Runtime.dll
 --reference:C:\Users\emermillod\.nuget\packages\System.Globalization\4.3.0\ref\netstandard1.3\System.Globalization.dll
@@ -207,7 +209,10 @@
 --reference:C:\Users\emermillod\.nuget\packages\System.Threading.Timer\4.3.0\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\emermillod\.nuget\packages\System.Xml.ReaderWriter\4.3.0\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\emermillod\.nuget\packages\System.Xml.XDocument\4.3.0\ref\netstandard1.3\System.Xml.XDocument.dll
+--reference:C:\Users\emermillod\.nuget\packages\System.Xml.XmlDocument\4.3.0\ref\netstandard1.3\System.Xml.XmlDocument.dll
 --reference:C:\Users\emermillod\.nuget\packages\System.Xml.XmlSerializer\4.3.0\ref\netstandard1.3\System.Xml.XmlSerializer.dll
+--reference:C:\Users\emermillod\.nuget\packages\System.Xml.XPath\4.0.1\ref\netstandard1.3\System.Xml.XPath.dll
+--reference:C:\Users\emermillod\.nuget\packages\System.Xml.XPath.XmlDocument\4.0.1\ref\netstandard1.3\System.Xml.XPath.XmlDocument.dll
 --reference:C:\source\git\NewsBoard\ApiUtilities\bin\Debug\netcoreapp1.0\ApiUtilities.dll
 --reference:C:\source\git\NewsBoard\DiscoverWebSiteApi\bin\Debug\netcoreapp1.0\DiscoverWebSiteApi.dll
 --reference:C:\source\git\NewsBoard\NewBoardRestApi\bin\Debug\netcoreapp1.0\NewBoardRestApi.dll

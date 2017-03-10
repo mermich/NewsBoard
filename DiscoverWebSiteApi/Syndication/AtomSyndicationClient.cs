@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using DiscoverWebSiteApi.HttpTools;
+using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 
 namespace DiscoverWebSiteApi.Syndication
 {
     public class AtomSyndicationClient : SyndicationClient
     {
-        XDocument doc;
+        XDocumentWrapper doc;
         string syndicationURl;
 
-        public AtomSyndicationClient(XDocument doc, string syndicationURl)
+        public AtomSyndicationClient(XDocumentWrapper doc, string syndicationURl)
         {
             this.doc = doc;
             this.syndicationURl = syndicationURl;
@@ -19,7 +19,7 @@ namespace DiscoverWebSiteApi.Syndication
         {
             var items = new List<SyndicationItem>();
 
-            foreach (var item in doc.Root.Elements().Where(i => i.Name.LocalName == "entry"))
+            foreach (var item in doc.Root().Elements().Where(i => i.Name.LocalName == "entry"))
             {
                 items.Add(new SyndicationItem
                 {
@@ -35,16 +35,16 @@ namespace DiscoverWebSiteApi.Syndication
         public override SyndicationContent SyndicationContent()
         {
             var result = new SyndicationContent();
-            result.Title = doc.Root.Elements().FirstOrDefault(i => i.Name.LocalName == "title").GetValueOrEmpty().RemoveHtmlTags().SafeSubtring(200);
+            result.Title = doc.Root().Elements().FirstOrDefault(i => i.Name.LocalName == "title").GetValueOrEmpty().RemoveHtmlTags().SafeSubtring(200);
 
-            var link = doc.Root.Descendants().FirstOrDefault(i => i.Name.LocalName == "link" && !(i.Attributes().Any(a => a.Name == "rel" && a.Value == "self") && i.Attributes().Any(a => a.Name == "type" && a.Value == "application/rss+xml")));
+            var link = doc.Root().Descendants().FirstOrDefault(i => i.Name.LocalName == "link" && !(i.Attributes().Any(a => a.Name == "rel" && a.Value == "self") && i.Attributes().Any(a => a.Name == "type" && a.Value == "application/rss+xml")));
             if (!string.IsNullOrWhiteSpace(link.GetValueOrEmpty()))
                 result.WebSiteUrl = link.GetValueOrEmpty();
             else
                 result.WebSiteUrl = link.Attribute("href").GetValueOrEmpty();
 
 
-            var selfLink = doc.Root.Descendants().FirstOrDefault(i => i.Name.LocalName == "link" && (i.Attributes().Any(a => a.Name == "rel" && a.Value == "self") && i.Attributes().Any(a => a.Name == "type" && a.Value == "application/rss+xml")));
+            var selfLink = doc.Root().Descendants().FirstOrDefault(i => i.Name.LocalName == "link" && (i.Attributes().Any(a => a.Name == "rel" && a.Value == "self") && i.Attributes().Any(a => a.Name == "type" && a.Value == "application/rss+xml")));
             if (selfLink == null)
                 result.SyndicationUrl = syndicationURl;
             else if (!string.IsNullOrWhiteSpace(selfLink.GetValueOrEmpty()))
@@ -53,8 +53,8 @@ namespace DiscoverWebSiteApi.Syndication
                 result.SyndicationUrl = selfLink.Attribute("href").GetValueOrEmpty();
 
 
-            result.PublishDate = doc.Root.Elements().FirstOrDefault(i => i.Name.LocalName == "updated").GetValueOrEmpty().ParseDate();
-            result.Description = doc.Root.Elements().FirstOrDefault(i => i.Name.LocalName == "subtitle").GetValueOrEmpty().RemoveHtmlTags().SafeSubtring(200);
+            result.PublishDate = doc.Root().Elements().FirstOrDefault(i => i.Name.LocalName == "updated").GetValueOrEmpty().ParseDate();
+            result.Description = doc.Root().Elements().FirstOrDefault(i => i.Name.LocalName == "subtitle").GetValueOrEmpty().RemoveHtmlTags().SafeSubtring(200);
 
             result.Items = Items();
 

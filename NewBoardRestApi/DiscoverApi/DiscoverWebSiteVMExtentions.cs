@@ -1,8 +1,4 @@
-﻿using NewBoardRestApi.ArticleApi;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace NewBoardRestApi.DiscoverApi
+﻿namespace NewBoardRestApi.DiscoverApi
 {
     public static class DiscoverWebSiteVMExtentions
     {

@@ -1,38 +1,17 @@
 ﻿using DiscoverWebSiteApi.HttpTools;
-using DiscoverWebSiteApi.Syndication;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 
 namespace DiscoverWebSiteApi
 {
     public class LookupWebSiteApi
     {
-        public string GetWebPageContent(string adress)
-        {
-            return new HttpClientWrapper(adress).GetResponse().ToDocument();
-        }
-
         public string GetPageTitle(string adress)
         {
-            var document = new HttpClientWrapper(adress).GetResponse().ToXDocument();
-            return GetElements(document, "title").FirstOrDefault().Value;
+            var document = new HttpClientWrapper(adress).GetResponse().ToHtmlDocument();
+            return document.GetNodes("title").FirstOrDefault().InnerHtml;
         }
-
-
-        private IEnumerable<XElement> GetElements(XDocument doc, string elementName)
-        {
-            foreach (XNode node in doc.DescendantNodes())
-            {
-                if (node is XElement)
-                {
-                    XElement element = (XElement)node;
-                    if (element.Name.LocalName.Equals(elementName))
-                        yield return element;
-                }
-            }
-        }
+        
 
         public string GetWebSiteTitle(string adress)
         {
@@ -57,25 +36,25 @@ namespace DiscoverWebSiteApi
 
         public string GetWebPageIcon(string adress)
         {
-            var document = new HttpClientWrapper(adress).GetResponse().ToXDocument();
+            var document = new HttpClientWrapper(adress).GetResponse().ToHtmlDocument();
             var icon = "";
 
-            var element = GetElements(document, "link").FirstOrDefault(i => i.Attribute("type") != null && i.Attribute("type").Value == "image/x-icon");
+            var element = document.GetNodesByExpression("//link[@type='image/icon']").FirstOrDefault();
             if (element != null)
-                icon = element.Attribute("href").GetValueOrEmpty();
+                icon = element.Attributes["href"].Value;
 
             if (string.IsNullOrWhiteSpace(icon))
             {
-                element = GetElements(document, "link").FirstOrDefault(i => i.Name.LocalName == "link" && i.Attribute("rel") != null && i.Attribute("rel").Value == "shortcut icon");
+                element = document.GetNodesByExpression("//link[@rel='shortcut icon']").FirstOrDefault();
                 if (element != null)
-                    icon = element.Attribute("href").GetValueOrEmpty();
+                    icon = element.Attributes["href"].Value;
             }
 
             if (string.IsNullOrWhiteSpace(icon))
             {
-                element = GetElements(document, "link").FirstOrDefault(i => i.Name.LocalName == "link" && i.Attribute("rel") != null && i.Attribute("rel").Value == "icon");
+                element = document.GetNodesByExpression("//link[@rel='icon']").FirstOrDefault();
                 if (element != null)
-                    icon = element.Attribute("href").GetValueOrEmpty();
+                    icon = element.Attributes["href"].Value;
             }
 
             if (string.IsNullOrWhiteSpace(icon))
@@ -90,9 +69,10 @@ namespace DiscoverWebSiteApi
         {
             Uri baseUrl = new Uri(adress);
 
-            var document = new HttpClientWrapper(adress).GetResponse().ToDocument();
-            var rssFeed = document.Split('<').Where(d => (d.Contains("type=\"application/rss+xml\"") || d.Contains("type=\"application/atom+xml\"")) && d.Contains("href=\"")).FirstOrDefault();
-            var url = rssFeed.Substring(rssFeed.IndexOf("href=\"")).Substring(6).Split('"')[0];
+            var document = new HttpClientWrapper(adress).GetResponse().ToHtmlDocument();
+            var feedNode = document.GetNodesByExpression("//link[@type='application/rss+xml'] | //link[@type='application/atom+xml']").FirstOrDefault();
+            
+            var url = feedNode.Attributes["href"].Value;
 
             if (url.StartsWith("http://"))
                 return url;

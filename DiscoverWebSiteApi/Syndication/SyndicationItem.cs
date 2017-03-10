@@ -1,8 +1,4 @@
 ﻿using System;
-using DiscoverWebSiteApi.Syndication;
-using System;
-using System.Linq;
-using System.Xml.Linq;
 
 namespace DiscoverWebSiteApi.Syndication
 {

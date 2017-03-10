@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.UserApi;
 using NewsBoard.Tools;
-using NewBoardRestApi.ArticleApi;
 using WebAppUtilities.JsonResult;
 
 namespace NewsBoard.wwwroot.User.UserMenu

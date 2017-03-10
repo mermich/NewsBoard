@@ -1,8 +1,5 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
-using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.BaseApi;
 using WebAppUtilities;
 using WebAppUtilities.JsonResult;

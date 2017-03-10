@@ -3,7 +3,6 @@ using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.BaseApi;
 using NewBoardRestApi.DataModel;
 using NewBoardRestApi.FeedApi.Search;
-using System;
 using System.Linq;
 
 namespace NewBoardRestApi.FeedApi

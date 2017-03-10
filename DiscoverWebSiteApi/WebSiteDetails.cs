@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace DiscoverWebSiteApi
+﻿namespace DiscoverWebSiteApi
 {
     public class WebSiteDetails
     {
@@ -11,12 +6,9 @@ namespace DiscoverWebSiteApi
 
         public string WebSiteTitle { get; set; }
 
-
         public string PageAdress { get; set; }
 
-        public string PageTitle { get; set; }     
-
-       
+        public string PageTitle { get; set; }
 
         public string IconUrl { get; set; }
 

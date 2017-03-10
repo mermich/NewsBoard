@@ -1,6 +1,5 @@
 ﻿using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
-using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.TagApi;
 using WebAppUtilities.JsonResult;
 

@@ -1,6 +1,5 @@
 ﻿using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
-using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.TagApi;
 using NewBoardRestApi.FeedApi;
 using NewBoardRestApi.FeedApi.Search;
