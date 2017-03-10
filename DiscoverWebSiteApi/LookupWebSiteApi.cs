@@ -1,4 +1,5 @@
 ﻿using DiscoverWebSiteApi.HttpTools;
+using HtmlAgilityPack;
 using System;
 using System.Linq;
 
@@ -11,7 +12,7 @@ namespace DiscoverWebSiteApi
             var document = new HttpClientWrapper(adress).GetResponse().ToHtmlDocument();
             return document.GetNodes("title").FirstOrDefault().InnerHtml;
         }
-        
+
 
         public string GetWebSiteTitle(string adress)
         {
@@ -38,10 +39,21 @@ namespace DiscoverWebSiteApi
         {
             var document = new HttpClientWrapper(adress).GetResponse().ToHtmlDocument();
             var icon = "";
+            HtmlNode element;
 
-            var element = document.GetNodesByExpression("//link[@type='image/icon']").FirstOrDefault();
-            if (element != null)
-                icon = element.Attributes["href"].Value;
+            if (string.IsNullOrWhiteSpace(icon))
+            {
+                element = document.GetNodesByExpression("//link[@type='image/icon']").FirstOrDefault();
+                if (element != null)
+                    icon = element.Attributes["href"].Value;
+            }
+
+            if (string.IsNullOrWhiteSpace(icon))
+            {
+                element = document.GetNodesByExpression("//link[@type='image/x-icon']").FirstOrDefault();
+                if (element != null)
+                    icon = element.Attributes["href"].Value;
+            }
 
             if (string.IsNullOrWhiteSpace(icon))
             {
@@ -59,7 +71,15 @@ namespace DiscoverWebSiteApi
 
             if (string.IsNullOrWhiteSpace(icon))
             {
-                icon = GetWebSiteAdress(adress) + "/favicon.ico";
+                icon = "/favicon.ico";
+            }
+
+            if (!icon.StartsWith("http://") || !icon.StartsWith("https://"))
+            {
+                if (!icon.StartsWith("/"))
+                    icon = "/" + icon;
+
+                icon = GetWebSiteAdress(adress) + icon;
             }
 
             return icon;
@@ -71,7 +91,7 @@ namespace DiscoverWebSiteApi
 
             var document = new HttpClientWrapper(adress).GetResponse().ToHtmlDocument();
             var feedNode = document.GetNodesByExpression("//link[@type='application/rss+xml'] | //link[@type='application/atom+xml']").FirstOrDefault();
-            
+
             var url = feedNode.Attributes["href"].Value;
 
             if (url.StartsWith("http://"))
