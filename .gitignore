@@ -11,3 +11,5 @@
 /.vs
 ApiUtilities/bin/*
 DiscoverWebSite/bin/*
+SiteParser/bin/*
+WebAppUtilities/bin/*
