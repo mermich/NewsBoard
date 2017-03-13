@@ -1,7 +1,7 @@
 ﻿using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.TagApi;
-using WebAppUtilities.JsonResult;
+using ServerSideSpaTools.JsonResult;
 
 namespace NewsBoard.wwwroot.User.UserRegister
 {

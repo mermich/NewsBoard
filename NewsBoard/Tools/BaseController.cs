@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using NewBoardRestApi.BaseApi;
-using WebAppUtilities;
-using WebAppUtilities.JsonResult;
+using ServerSideSpaTools;
+using ServerSideSpaTools.JsonResult;
 
 namespace NewsBoard.Tools
 {

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.ArticleApi;
 using System.Collections.Generic;
 using NewBoardRestApi.FeedApi;
-using WebAppUtilities.JsonResult;
+using ServerSideSpaTools.JsonResult;
 
 namespace NewsBoard.wwwroot.Feed.FeedDetails
 {

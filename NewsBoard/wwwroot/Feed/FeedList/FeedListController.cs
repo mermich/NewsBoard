@@ -2,7 +2,7 @@
 using NewBoardRestApi.FeedApi;
 using NewBoardRestApi.FeedApi.Search;
 using NewsBoard.Tools;
-using WebAppUtilities.JsonResult;
+using ServerSideSpaTools.JsonResult;
 
 namespace NewsBoard.wwwroot.Feed.FeedList
 {

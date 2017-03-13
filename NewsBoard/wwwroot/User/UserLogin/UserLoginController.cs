@@ -5,7 +5,7 @@ using NewBoardRestApi.UserApi;
 using NewsBoard.Tools;
 using System.Collections.Generic;
 using System.Security.Claims;
-using WebAppUtilities.JsonResult;
+using ServerSideSpaTools.JsonResult;
 
 namespace NewsBoard.wwwroot.User.UserRegister
 {

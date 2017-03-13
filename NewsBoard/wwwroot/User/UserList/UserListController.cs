@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.UserApi;
 using NewsBoard.Tools;
-using WebAppUtilities.JsonResult;
+using ServerSideSpaTools.JsonResult;
 
 namespace NewsBoard.wwwroot.Permission.PermissionList
 {

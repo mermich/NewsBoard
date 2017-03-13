@@ -1,6 +1,6 @@
 ﻿using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
-using WebAppUtilities.JsonResult;
+using ServerSideSpaTools.JsonResult;
 
 namespace NewsBoard.wwwroot.Home
 {

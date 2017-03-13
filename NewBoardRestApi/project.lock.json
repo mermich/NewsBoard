@@ -3822,25 +3822,12 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "ApiUtilities/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v1.0",
-        "dependencies": {
-          "NETStandard.Library": "1.6.0"
-        },
-        "compile": {
-          "netcoreapp1.0/ApiUtilities.dll": {}
-        },
-        "runtime": {
-          "netcoreapp1.0/ApiUtilities.dll": {}
-        }
-      },
       "DiscoverWebSiteApi/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
           "MysticMind.HtmlAgilityPack": "1.0.0",
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "System.Xml.XDocument": "4.3.0",
           "System.Xml.XmlSerializer": "4.3.0"
         },
@@ -3851,17 +3838,35 @@
           "netcoreapp1.0/DiscoverWebSiteApi.dll": {}
         }
       },
-      "SiteParser/1.0.0": {
+      "Selectable/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
           "NETStandard.Library": "1.6.1"
         },
         "compile": {
-          "netcoreapp1.0/SiteParser.dll": {}
+          "netcoreapp1.0/Selectable.dll": {}
         },
         "runtime": {
-          "netcoreapp1.0/SiteParser.dll": {}
+          "netcoreapp1.0/Selectable.dll": {}
+        }
+      },
+      "ServerSideSpaTools/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "1.1.0",
+          "Microsoft.AspNetCore.Mvc.Razor": "1.1.0",
+          "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.1.0",
+          "Microsoft.AspNetCore.Razor.Runtime": "1.1.0",
+          "NETStandard.Library": "1.6.1",
+          "Selectable": "1.0.0"
+        },
+        "compile": {
+          "netcoreapp1.0/ServerSideSpaTools.dll": {}
+        },
+        "runtime": {
+          "netcoreapp1.0/ServerSideSpaTools.dll": {}
         }
       }
     },
@@ -7798,25 +7803,12 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "ApiUtilities/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v1.0",
-        "dependencies": {
-          "NETStandard.Library": "1.6.0"
-        },
-        "compile": {
-          "netcoreapp1.0/ApiUtilities.dll": {}
-        },
-        "runtime": {
-          "netcoreapp1.0/ApiUtilities.dll": {}
-        }
-      },
       "DiscoverWebSiteApi/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
           "MysticMind.HtmlAgilityPack": "1.0.0",
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
           "System.Xml.XDocument": "4.3.0",
           "System.Xml.XmlSerializer": "4.3.0"
         },
@@ -7827,17 +7819,35 @@
           "netcoreapp1.0/DiscoverWebSiteApi.dll": {}
         }
       },
-      "SiteParser/1.0.0": {
+      "Selectable/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
           "NETStandard.Library": "1.6.1"
         },
         "compile": {
-          "netcoreapp1.0/SiteParser.dll": {}
+          "netcoreapp1.0/Selectable.dll": {}
         },
         "runtime": {
-          "netcoreapp1.0/SiteParser.dll": {}
+          "netcoreapp1.0/Selectable.dll": {}
+        }
+      },
+      "ServerSideSpaTools/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "1.1.0",
+          "Microsoft.AspNetCore.Mvc.Razor": "1.1.0",
+          "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.1.0",
+          "Microsoft.AspNetCore.Razor.Runtime": "1.1.0",
+          "NETStandard.Library": "1.6.1",
+          "Selectable": "1.0.0"
+        },
+        "compile": {
+          "netcoreapp1.0/ServerSideSpaTools.dll": {}
+        },
+        "runtime": {
+          "netcoreapp1.0/ServerSideSpaTools.dll": {}
         }
       }
     }
@@ -14921,25 +14931,24 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "ApiUtilities/1.0.0": {
-      "type": "project",
-      "path": "../ApiUtilities/project.json",
-      "msbuildProject": "../ApiUtilities/ApiUtilities.xproj"
-    },
     "DiscoverWebSiteApi/1.0.0": {
       "type": "project",
-      "path": "../DiscoverWebSiteApi/project.json",
-      "msbuildProject": "../DiscoverWebSiteApi/DiscoverWebSiteApi.xproj"
+      "path": "../../DiscoverWebSite/DiscoverWebSiteApi/project.json",
+      "msbuildProject": "../../DiscoverWebSite/DiscoverWebSiteApi/DiscoverWebSiteApi.xproj"
     },
-    "SiteParser/1.0.0": {
+    "Selectable/1.0.0": {
       "type": "project",
-      "path": "../SiteParser/project.json",
-      "msbuildProject": "../SiteParser/SiteParser.xproj"
+      "path": "../../Selectable/Selectable/project.json",
+      "msbuildProject": "../../Selectable/Selectable/Selectable.xproj"
+    },
+    "ServerSideSpaTools/1.0.0": {
+      "type": "project",
+      "path": "../../ServerSideSpaTools/ServerSideSpaTools/project.json",
+      "msbuildProject": "../../ServerSideSpaTools/ServerSideSpaTools/ServerSideSpaTools.xproj"
     }
   },
   "projectFileDependencyGroups": {
     "": [
-      "ApiUtilities >= 1.0.0-*",
       "DiscoverWebSiteApi >= 1.0.0-*",
       "Microsoft.AspNetCore.Mvc >= 1.1.0",
       "Microsoft.AspNetCore.Routing >= 1.1.0",
@@ -14956,7 +14965,7 @@
       "Microsoft.Extensions.Logging.Debug >= 1.1.0",
       "Microsoft.Extensions.Options.ConfigurationExtensions >= 1.1.0",
       "Microsoft.NETCore.App >= 1.1.0",
-      "SiteParser >= 1.0.0-*",
+      "ServerSideSpaTools >= 1.0.0-*",
       "System.Linq >= 4.3.0",
       "System.Xml.XDocument >= 4.3.0",
       "System.Xml.XmlSerializer >= 4.3.0"
