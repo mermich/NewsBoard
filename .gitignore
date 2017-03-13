@@ -9,3 +9,5 @@
 /NewsBoard/obj/Debug/netcoreapp1.0
 /NewsBoard/Properties/PublishProfiles
 /.vs
+ApiUtilities/bin/*
+DiscoverWebSite/bin/*
