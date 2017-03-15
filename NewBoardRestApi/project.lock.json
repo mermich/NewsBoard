@@ -3822,6 +3822,24 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
+      "ApiTools/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "1.1.0",
+          "Microsoft.AspNetCore.Mvc.Razor": "1.1.0",
+          "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.1.0",
+          "Microsoft.AspNetCore.Razor.Runtime": "1.1.0",
+          "NETStandard.Library": "1.6.1",
+          "Selectable": "1.0.0"
+        },
+        "compile": {
+          "netcoreapp1.0/ApiTools.dll": {}
+        },
+        "runtime": {
+          "netcoreapp1.0/ApiTools.dll": {}
+        }
+      },
       "DiscoverWebSiteApi/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
@@ -3855,6 +3873,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
+          "ApiTools": "1.0.0",
           "Microsoft.AspNetCore.Http.Features": "1.1.0",
           "Microsoft.AspNetCore.Mvc.Razor": "1.1.0",
           "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.1.0",
@@ -7803,6 +7822,24 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
+      "ApiTools/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "1.1.0",
+          "Microsoft.AspNetCore.Mvc.Razor": "1.1.0",
+          "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.1.0",
+          "Microsoft.AspNetCore.Razor.Runtime": "1.1.0",
+          "NETStandard.Library": "1.6.1",
+          "Selectable": "1.0.0"
+        },
+        "compile": {
+          "netcoreapp1.0/ApiTools.dll": {}
+        },
+        "runtime": {
+          "netcoreapp1.0/ApiTools.dll": {}
+        }
+      },
       "DiscoverWebSiteApi/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
@@ -7836,6 +7873,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
+          "ApiTools": "1.0.0",
           "Microsoft.AspNetCore.Http.Features": "1.1.0",
           "Microsoft.AspNetCore.Mvc.Razor": "1.1.0",
           "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.1.0",
@@ -14931,6 +14969,11 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
+    "ApiTools/1.0.0": {
+      "type": "project",
+      "path": "../../ServerSideSpaTools/ApiTools/project.json",
+      "msbuildProject": "../../ServerSideSpaTools/ApiTools/ApiTools.xproj"
+    },
     "DiscoverWebSiteApi/1.0.0": {
       "type": "project",
       "path": "../../DiscoverWebSite/DiscoverWebSiteApi/project.json",
@@ -14949,6 +14992,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "ApiTools >= 1.0.0-*",
       "DiscoverWebSiteApi >= 1.0.0-*",
       "Microsoft.AspNetCore.Mvc >= 1.1.0",
       "Microsoft.AspNetCore.Routing >= 1.1.0",

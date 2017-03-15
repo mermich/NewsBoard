@@ -29,7 +29,8 @@
     "Microsoft.EntityFrameworkCore.Tools": "1.1.0-preview4-final",
     "Microsoft.AspNetCore.Identity": "1.0.0",
     "Selectable": "1.0.0-*",
-    "ServerSideSpaTools": "1.0.0-*"
+    "ServerSideSpaTools": "1.0.0-*",
+    "ApiTools": "1.0.0-*"
   },
 
   "tools": {

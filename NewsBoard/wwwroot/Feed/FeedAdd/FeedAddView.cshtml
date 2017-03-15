@@ -9,11 +9,8 @@
     </div>
 
     <div class="panel-body" style="padding:0px">
-        Adresse du site: <input type="url" style="width:400px;" name="WebSiteUrl" value="" />
-        
-        <button class="btn btn-info"
-                ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedAdd", "GetPreview")"
-                type="button" ns-action-type="simplePostAction">
+        Adresse du site: <input type="url" style="width:400px;" name="urlToDiscover" value="" />
+        <button class="btn btn-info" ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedAdd", "GetPreview")" type="button" ns-action-type="simplePostAction">
             Obtenir les flux du site
         </button>
     </div>

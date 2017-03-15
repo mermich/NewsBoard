@@ -19,7 +19,8 @@
     "System.Xml.XDocument": "4.3.0",
     "System.Xml.XmlSerializer": "4.3.0",
     "DiscoverWebSiteApi": "1.0.0-*",
-    "ServerSideSpaTools": "1.0.0-*"
+    "ServerSideSpaTools": "1.0.0-*",
+    "ApiTools": "1.0.0-*"
   },
 
   "tools": {
