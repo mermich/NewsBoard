@@ -1,9 +1,9 @@
-﻿@model FeedVMPreview
+﻿@model DiscoverWebSiteApi.WebSiteDetails
 
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        @Html.DisplayFor(m => Model.Title) : @Html.DisplayFor(m => Model.SyndicationUrl)
+        @Html.DisplayFor(m => Model.Title) : @Html.DisplayFor(m => Model.SyndicationAdress)
         <input type="hidden" name="SyndicationUrl" value="@Model.SyndicationUrl" />
         <button class="btn btn-info"
                 ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedAdd", "CreateSubscription")"

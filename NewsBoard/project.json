@@ -30,7 +30,8 @@
     "Microsoft.AspNetCore.Identity": "1.0.0",
     "Selectable": "1.0.0-*",
     "ServerSideSpaTools": "1.0.0-*",
-    "ApiTools": "1.0.0-*"
+    "ApiTools": "1.0.0-*",
+    "DiscoverWebSiteApi": "1.0.0-*"
   },
 
   "tools": {
