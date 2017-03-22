@@ -34,72 +34,85 @@ function LoadCallback(selector) {
         });
     });
 
-    $("[ns-action-type=simpleGetAction]").off('click').click(function (e) {
-        let target = e.target;
+    $("[ns-action-type=simpleGetAction]").not('[ns-action="initialized"]').each(function () {
+        this.setAttribute("ns-action", "initialized");
 
-        //we could have clicked the icon <i> element
-        if ($(e.target).is("i"))
-            target = $(e.target).parent().first()[0];
+        $("[ns-action-type=simpleGetAction]").off('click').click(function (e) {
+            let target = e.target;
 
-        let targetUrl = target.getAttribute("ns-action-url");
+            //we could have clicked the icon <i> element
+            if ($(e.target).is("i"))
+                target = $(e.target).parent().first()[0];
 
-        console.log('clicked' + targetUrl);
-        $.ajax({
-            type: "GET",
-            url: targetUrl,
-            contentType: 'application/json; charset=utf-8',
-            dataType: "json",
-            success: function (result) {
-                console.log(result);
-                HandleAjaxResult(result);
-                LoadCallback();
-            }
+            let targetUrl = target.getAttribute("ns-action-url");
+
+            console.log('clicked' + targetUrl);
+            $.ajax({
+                type: "GET",
+                url: targetUrl,
+                contentType: 'application/json; charset=utf-8',
+                dataType: "json",
+                success: function (result) {
+                    console.log(result);
+                    HandleAjaxResult(result);
+                    LoadCallback();
+                }
+            });
+            return false;
         });
-        return false;
     });
 
-    $("[ns-action-type=simplePostAction]").off('click').click(function (e) {
-        let target = e.target;
+    $("[ns-action-type=simplePostAction]").not('[ns-action="initialized"]').each(function () {
+        this.setAttribute("ns-action", "initialized");
 
-        //we could have clicked the icon <i> element
-        if ($(e.target).is("i"))
-            target = $(e.target).parent().first()[0];
+        $(this).off('click').click(function (e) {
+            let target = e.target;
 
-        let targetUrl = target.getAttribute("ns-action-url");
+            //we could have clicked the icon <i> element
+            if ($(e.target).is("i"))
+                target = $(e.target).parent().first()[0];
 
-        console.log('clicked' + targetUrl);
-        $.ajax({
-            type: "POST",
-            url: targetUrl,
-            data: $(e.target).closest("form").serializeFormJSON(),
-            success: function (result) {
-                console.log(result);
-                HandleAjaxResult(result);
-                LoadCallback();
-            }
+            let targetUrl = target.getAttribute("ns-action-url");
+
+            console.log('clicked' + targetUrl);
+            $.ajax({
+                type: "POST",
+                url: targetUrl,
+                data: $(e.target).closest("form").serializeFormJSON(),
+                success: function (result) {
+                    console.log(result);
+                    HandleAjaxResult(result);
+                    LoadCallback();
+                }
+            });
+            return false;
         });
-        return false;
     });
 
-    $("[ns-action-type=dataChanged]").change(function (e) {
-        let target = e.target;
-        
-        let targetUrl = target.getAttribute("ns-action-url");
+    $("[ns-action-type=dataChanged]").not('[ns-action="initialized"]').each(function () {
+        this.setAttribute("ns-action", "initialized");
 
-        console.log('clicked' + targetUrl);
-        $.ajax({
-            type: "POST",
-            url: targetUrl,
-            data: $(e.target).closest("form").serializeFormJSON(),
-            success: function (result) {
-                console.log(result);
-                HandleAjaxResult(result);
-                LoadCallback();
-            }
+        $(this).change(function (e) {
+            let target = e.target;
+            let targetUrl = target.getAttribute("ns-action-url");
+
+            console.log('clicked' + targetUrl);
+            $.ajax({
+                type: "POST",
+                url: targetUrl,
+                data: $(e.target).closest("form").serializeFormJSON(),
+                success: function (result) {
+                    console.log(result);
+                    HandleAjaxResult(result);
+                    LoadCallback();
+                }
+            });
+            return false;
         });
-        return false;
     });
 }
+
+
 
 
 function HandleAjaxResult(result) {

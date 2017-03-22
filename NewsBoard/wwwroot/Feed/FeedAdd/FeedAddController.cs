@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DiscoverWebSiteApi;
+using Microsoft.AspNetCore.Mvc;
+using NewBoardRestApi.FeedApi;
 using NewsBoard.Tools;
 using ServerSideSpaTools.JsonResult;
 
@@ -12,7 +14,7 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
     {
         public IActionResult Index()
         {
-            return ReturnView("FeedAddView",null);
+            return ReturnView("FeedAddView", null);
         }
 
         public IActionResult GetPreview(string urlToDiscover)
@@ -22,14 +24,20 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
 
         public IActionResult Preview(string urlToDiscover)
         {
-            var preview = new FeedApi(UserId).GetPreview(urlToDiscover);
-            return ReturnView("FeedAddPreviewView", preview);
+            var preview = new LookupWebSiteApi().GetWebSiteDetails(urlToDiscover);
+            var syndication = new SyndicationApi().GetSyndication(preview.SyndicationAdress);
+            var model = new NewsBoard.wwwroot.Feed.FeedAdd.FeedAddPreview
+            {
+                WebSiteDetails = preview,
+                SyndicationContent = syndication
+            };
+            return ReturnView("FeedAddPreviewView", model);
         }
 
         [HttpPost]
-        public IActionResult CreateSubscription(FeedVMPreview addFeed)
+        public IActionResult CreateSubscription(WebSiteDetails details)
         {
-            var feed = new FeedApi(UserId).CreateSubscriptionAndSubScribe(addFeed.SyndicationUrl);
+            var feed = new FeedApi(UserId).CreateSubscriptionAndSubScribe(details.SyndicationAdress);
 
             return new ComposeResult(
                 new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("feed", "FeedList", "Index")),

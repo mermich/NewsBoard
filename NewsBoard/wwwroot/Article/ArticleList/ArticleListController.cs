@@ -40,6 +40,5 @@ namespace NewsBoard.wwwroot.Article.ArticleList
                 new HideHtmlResult("#article-" + articleId),
                 new SuccessMessageResult("Cet article ne sera plus affiche."));
         }
-
     }
 }

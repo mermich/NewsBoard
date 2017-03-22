@@ -16294,6 +16294,7 @@
   "projectFileDependencyGroups": {
     "": [
       "ApiTools >= 1.0.0-*",
+      "DiscoverWebSiteApi >= 1.0.0-*",
       "Microsoft.AspNetCore.Diagnostics >= 1.1.0",
       "Microsoft.AspNetCore.Html.Abstractions >= 1.1.0",
       "Microsoft.AspNetCore.Http.Abstractions >= 1.1.0",
