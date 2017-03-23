@@ -25,8 +25,8 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
         public IActionResult Preview(string urlToDiscover)
         {
             var preview = new LookupWebSiteApi().GetWebSiteDetails(urlToDiscover);
-            var syndication = new SyndicationApi().GetSyndication(preview.SyndicationAdress);
-            var model = new NewsBoard.wwwroot.Feed.FeedAdd.FeedAddPreview
+            var syndication = new SyndicationApi().GetSyndication(preview.SyndicationUrl);
+            var model = new FeedAddPreview
             {
                 WebSiteDetails = preview,
                 SyndicationContent = syndication
@@ -37,7 +37,7 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
         [HttpPost]
         public IActionResult CreateSubscription(WebSiteDetails details)
         {
-            var feed = new FeedApi(UserId).CreateSubscriptionAndSubScribe(details.SyndicationAdress);
+            var feed = new FeedApi(UserId).CreateSubscriptionAndSubScribe(details.SyndicationUrl);
 
             return new ComposeResult(
                 new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("feed", "FeedList", "Index")),

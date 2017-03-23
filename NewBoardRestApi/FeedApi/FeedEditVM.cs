@@ -22,7 +22,7 @@ namespace NewBoardRestApi.FeedApi
 
         public int Subscribers { get; set; }
 
-        public SelectableItemList<int> Tags { get; set; }
+        public SelectableItemList<int> Tags { get; set; } = new SelectableItemList<int>();
 
 
         public ArticleVMList ArticleVMList { get; set; } = new ArticleVMList();

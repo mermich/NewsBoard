@@ -1,5 +1,4 @@
 ﻿using DiscoverWebSiteApi;
-using DiscoverWebSiteApi.HttpTools;
 using Microsoft.EntityFrameworkCore;
 using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.BaseApi;
@@ -54,22 +53,31 @@ namespace NewBoardRestApi.FeedApi
             var feedDetails = new SyndicationApi().GetSyndication(syndicationUrl);
             var websiteDetails = new LookupWebSiteApi().GetWebSiteDetails(feedDetails.WebSiteUrl);
 
+            var website = NewsBoardContext.WebSites.FirstOrDefault(w => w.Url == websiteDetails.Url);
+            if (website == null)
+            {
+                website = new WebSite
+                {
+                    Title = websiteDetails.Title,
+                    Url = websiteDetails.Url,
+                    IconUrl = websiteDetails.IconUrl
+                };
+            }
+
             var feed = new Feed()
             {
                 SyndicationUrl = syndicationUrl,
                 LastTimeFetched = DateTime.Now,
                 Description = feedDetails.Description,
                 Title = feedDetails.Title,
-                WebSite = new WebSite
-                {
-                    Url = websiteDetails.WebSiteAdress,
-                    Title = websiteDetails.WebSiteTitle,
-                    IconUrl = websiteDetails.IconUrl
-                }
+                WebSite = website
             };
+            website.Feeds.Add(feed);
 
             NewsBoardContext.Feeds.Add(feed);
             NewsBoardContext.SaveChanges();
+
+            Refresh(feed.Id);
 
             return feed;
         }
@@ -219,7 +227,7 @@ namespace NewBoardRestApi.FeedApi
         public virtual FeedVM GetFeed(int feedId)
         {
             return NewsBoardContext.Feeds
-                //.Include(f => f.WebSite)
+                .Include(f => f.WebSite)
                 .Include(f => f.UserFeeds)
                 .Include(f => f.Articles).ThenInclude(article => article.UserArticles)
                 .FirstOrDefault(f => f.Id == feedId)
@@ -280,7 +288,7 @@ namespace NewBoardRestApi.FeedApi
             var possibleTags = NewsBoardContext.Tags.ToList();
 
             var result = NewsBoardContext.Feeds
-                //.Include(f => f.WebSite)
+                .Include(f => f.WebSite)
                 .Include(f => f.UserFeeds)
                 .Include(f => f.Articles).ThenInclude(article => article.UserArticles)
                 .Include(f => f.FeedTags)

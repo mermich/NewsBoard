@@ -59,7 +59,7 @@ namespace NewsBoard.Tools
 
         public string UserArticleListAction => ArticleListAction(
             new ArticleVMSearch { OnlyUserSubscription = false, MaxItems = 50 }, 
-            new ArticleVMListOptions { Heading = "Articles de mes FLux" });
+            new ArticleVMListOptions { Heading = "Articles de mes Flux" });
 
     }
 }

@@ -10,9 +10,7 @@ namespace NewBoardRestApi.DataModel
 
         public string Title { get; set; }
 
-        public string Description { get; set; }
-
-        public List<Feed> Feeds { get; set; }
+        public List<Feed> Feeds { get; set; } = new List<Feed>();
 
         public string Url { get; set; }
     }
