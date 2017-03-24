@@ -21,6 +21,8 @@ namespace NewBoardRestApi.ArticleApi
             }
         }
 
+        public string IconUrl { get; set; } = "";
+
         public string Label { get; private set; } = "";
 
         public string Description { get; private set; } = "";
@@ -46,6 +48,7 @@ namespace NewBoardRestApi.ArticleApi
             Url = article.Url;
             Score = article.Score;
             FeedId = article.FeedId;
+            IconUrl = article.Feed.WebSite.IconUrl;
 
             if (currentUser != null)
                 IsSubscribed = article.Feed.UserFeeds != null && article.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsSubscribed);

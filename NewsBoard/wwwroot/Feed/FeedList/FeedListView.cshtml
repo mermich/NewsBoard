@@ -12,8 +12,8 @@
                 @for (int i = 0; i < Model.Feeds.Count; i++)
                 {
                     <tr id="article-@Model.Feeds[i].Id">
+                        <td><img style="height:24px" src="@Model.Feeds[i].IconUrl" alt="" /> </td>
                         <td>@Model.Feeds[i].Title</td>
-
                         <td>
                             <div class="btn-group" role="group">
                                 <button class="btn btn-info btn-sm"

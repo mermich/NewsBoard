@@ -18,7 +18,8 @@ namespace NewBoardRestApi.ArticleApi
         public ArticleVM GetArticle(int articleId)
         {
             return NewsBoardContext.Articles
-                .Include(a => a.Feed).ThenInclude(f=>f.UserFeeds)
+                .Include(a => a.Feed).ThenInclude(f => f.UserFeeds)
+                .Include(a => a.Feed).ThenInclude(f=>f.WebSite)
                 .Include(a => a.UserArticles)
                 .FirstOrDefault(a => a.Id == articleId)
                 .ToArticle(currentUser);
@@ -33,7 +34,7 @@ namespace NewBoardRestApi.ArticleApi
             if (currentUser == null)
             {
                 var result = NewsBoardContext.Articles
-                    .Include(a => a.Feed)
+                    .Include(a => a.Feed).ThenInclude(f => f.WebSite)
                     .Include(a => a.UserArticles)
                     .Where(a => !filter.Feeds.Any() || filter.Feeds.Contains(a.FeedId))
                     .OrderBy(a => a.PublishDate)
@@ -45,7 +46,7 @@ namespace NewBoardRestApi.ArticleApi
             else
             {
                 var result = NewsBoardContext.Articles
-                    .Include(a => a.Feed)
+                    .Include(a => a.Feed).ThenInclude(f => f.WebSite)
                     .Include(a => a.UserArticles)
                     .Where(a => !filter.OnlyUserSubscription || a.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsSubscribed))
                     .Where(a => !filter.HideReported || !a.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsReported))

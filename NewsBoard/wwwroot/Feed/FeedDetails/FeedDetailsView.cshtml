@@ -8,6 +8,7 @@
     <div class="panel-body">
         Id: @Html.DisplayFor(m => Model.Id)<br />
         Title: @Html.DisplayFor(m => Model.Title)<br />
+        IconUrl: @Html.DisplayFor(m => Model.IconUrl)<br />
         Description: @Html.DisplayFor(m => Model.Description)<br />
         WebSiteUrl: @Html.DisplayFor(m => Model.WebSiteUrl)<br />
         SyndicationUrl: @Html.DisplayFor(m => Model.SyndicationUrl)<br />
@@ -51,7 +52,7 @@
 </div>
 
 <div id="articleList">
-    <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","Index", new ArticleVMListFilter() { Feeds = new List<int> { Model.Id } }) ">
+    <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","Index", new ArticleVMSearch() { Feeds = new List<int> { Model.Id } }) ">
         Chargement des articles ...
         <div class='loader'></div>
     </div>

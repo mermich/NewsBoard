@@ -18,7 +18,7 @@ namespace NewBoardRestApi.FeedApi
 
         public string Description { get; set; } = "";
 
-        public string IconPath { get; set; } = "";
+        public string IconUrl { get; set; } = "";
 
         public int Subscribers { get; set; }
 
@@ -30,8 +30,8 @@ namespace NewBoardRestApi.FeedApi
         public FeedVM(Feed feed, User currentUser)
         {
             Id = feed.Id;
-            //WebSiteUrl = feed.WebSite.Url;
-            //IconPath = feed.WebSite.IconUrl;
+            WebSiteUrl = feed.WebSite.Url;
+            IconUrl = feed.WebSite.IconUrl;
             SyndicationUrl = feed.SyndicationUrl;
             Title = feed.Title;
             Description = feed.Description;

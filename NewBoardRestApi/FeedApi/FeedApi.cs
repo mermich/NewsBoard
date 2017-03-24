@@ -40,7 +40,7 @@ namespace NewBoardRestApi.FeedApi
             }
             else
             {
-                var newSubscription = new UserFeed(currentUser, existingUserFeed.Feed);
+                var newSubscription = new UserFeed(currentUser, feed);
                 NewsBoardContext.UserFeeds.Add(newSubscription);
             }
 
@@ -94,8 +94,8 @@ namespace NewBoardRestApi.FeedApi
                     .Feeds
                     .Take(filter.MaxItems)
                     .Where(f => !filter.Tags.Any() || f.FeedTags.Any(ft => filter.Tags.Contains(ft.TagId)))
-                    .Include(f => f.UserFeeds)
-                    .ThenInclude(uf => uf.User)
+                    .Include(f => f.UserFeeds).ThenInclude(uf => uf.User)
+                    .Include(f => f.WebSite)
                     .Include(f => f.Articles)
                     .ThenInclude(a => a.UserArticles)
                     .OrderBy(f => f.Title)
@@ -114,6 +114,7 @@ namespace NewBoardRestApi.FeedApi
                     .ThenInclude(uf => uf.User)
                     .Include(f => f.Articles)
                     .ThenInclude(a => a.UserArticles)
+                    .Include(f => f.WebSite)
                     .OrderBy(f => f.Title)
                     .ToFeedVMList(currentUser);
             }
@@ -256,6 +257,7 @@ namespace NewBoardRestApi.FeedApi
             feedDb.Description = feed.Description;
             feedDb.SyndicationUrl = feed.SyndicationUrl;
             feedDb.Title = feed.Title;
+            feedDb.WebSite.IconUrl = feed.IconUrl;
             feed.WebSiteUrl = feed.WebSiteUrl;
 
             //merge tags
