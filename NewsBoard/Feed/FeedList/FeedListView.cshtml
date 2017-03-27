@@ -1,0 +1,38 @@
+﻿@model FeedVMList
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        @Model.Options.Heading
+    </div>
+
+    <div class="panel-body" style="padding:0px">
+        <table class="table table-striped table-condensed">
+            <tbody>
+                @for (int i = 0; i < Model.Feeds.Count; i++)
+                {
+                    <tr name="feed-@Model.Feeds[i].Id">
+                        <td><img style="height:24px" src="@Model.Feeds[i].IconUrl" alt="" /> </td>
+                        <td>@Model.Feeds[i].Title</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-info btn-sm"
+                                        ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new { feedId = Model.Feeds[i].Id })"
+                                        type="button" ns-action-type="simpleGetAction">
+                                    Ouvrir
+                                </button>
+
+                                <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+
+                                <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","FeedAction", new { feedId = Model.Feeds[i].Id })">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 ﻿using NewBoardRestApi.DataModel;
+using Selectable;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,6 +15,12 @@ namespace NewBoardRestApi.PermissionApi
         internal static List<PermissionVM> ToPermissions(this List<Permission> items)
         {
             return items.Select(i => i.ToPermission()).ToList();
+        }
+
+
+        internal static SelectableItem<int> ToSelectableItem(this Permission item, List<GroupPermission> selected)
+        {
+            return new SelectableItem<int>(item.Id, item.Label, selected.Any(at => at.GroupId == item.Id));
         }
     }
 }

@@ -252,6 +252,7 @@ namespace NewBoardRestApi.FeedApi
 
             var feedDb = NewsBoardContext.Feeds
                 .Include(f => f.FeedTags)
+                .Include(f => f.WebSite)
                 .FirstOrDefault(f => f.Id == feed.Id);
 
             feedDb.Description = feed.Description;

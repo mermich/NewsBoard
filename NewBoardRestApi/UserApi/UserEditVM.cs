@@ -21,7 +21,7 @@ namespace NewBoardRestApi.UserApi
 
         public UserEditVM(List<Group> allGroups)
         {
-            Groups = allGroups.ToSelectableItemList();
+            Groups = allGroups.ToSelectableItemList(new List<UserGroup>());
         }
 
         public UserEditVM(User user, List<Group> allGroups)

@@ -22,7 +22,7 @@ $(function () {
     $('[type="checkbox"]').not("[readonly='readonly']").bootstrapSwitch();
 });
 
-function LoadCallback(selector) {
+function LoadCallback() {
     $("[ns-loader-url]").each(function (e) {
         let thisdiv = $(this);
         let url = $(this).attr("ns-loader-url");
@@ -34,10 +34,10 @@ function LoadCallback(selector) {
         });
     });
 
-    $("[ns-action-type=simpleGetAction]").not('[ns-action="initialized"]').each(function () {
+    $("[ns-action-type='simpleGetAction']").not("[ns-action='initialized']").each(function () {
         this.setAttribute("ns-action", "initialized");
 
-        $("[ns-action-type=simpleGetAction]").off('click').click(function (e) {
+        $("[ns-action-type='simpleGetAction']").off('click').click(function (e) {
             let target = e.target;
 
             //we could have clicked the icon <i> element
@@ -62,7 +62,7 @@ function LoadCallback(selector) {
         });
     });
 
-    $("[ns-action-type=simplePostAction]").not('[ns-action="initialized"]').each(function () {
+    $("[ns-action-type='simplePostAction']").not("[ns-action='initialized']").each(function () {
         this.setAttribute("ns-action", "initialized");
 
         $(this).off('click').click(function (e) {
@@ -89,7 +89,7 @@ function LoadCallback(selector) {
         });
     });
 
-    $("[ns-action-type=dataChanged]").not('[ns-action="initialized"]').each(function () {
+    $("[ns-action-type='dataChanged']").not("[ns-action='initialized']").each(function () {
         this.setAttribute("ns-action", "initialized");
 
         $(this).change(function (e) {

@@ -1,0 +1,21 @@
+﻿@model TagVMList
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Les Tags
+    </div>
+
+    <div class="panel-body" style="padding:0px">
+        @for (int i = 0; i < Model.Tags.Count; i++)
+        {
+            <button class="btn btn-info btn-sm"
+                    ns-action-url="@Url.NewsBoardUrlHelper().Action("Tag", "TagCloud", "GetBrowseByTag", new { Id=Model.Tags[i].Id})"
+                    type="button" ns-action-type="simpleGetAction">
+                @Model.Tags[i].Label
+            </button>
+        }
+    </div>
+</div>
+
+

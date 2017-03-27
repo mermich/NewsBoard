@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <AssemblyName>NewsBoard</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>NewsBoard</PackageId>
+    <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\lib\bootstrap-switch\bootstrap-switch.css" />
+    <Content Include="wwwroot\lib\bootstrap-switch\bootstrap-switch.js" />
+    <Content Include="wwwroot\lib\scripts.js" />
+    <Content Include="wwwroot\lib\site.css" />
+    <Content Include="wwwroot\lib\toastr\bootstrap-notify.js" />
+    <Content Include="wwwroot\lib\_readMe.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="wwwroot\lib\bootstrap-switch\bootstrap-switch.css" />
+    <None Include="wwwroot\lib\bootstrap-switch\bootstrap-switch.js" />
+    <None Include="wwwroot\lib\scripts.js" />
+    <None Include="wwwroot\lib\site.css" />
+    <None Include="wwwroot\lib\toastr\bootstrap-notify.js" />
+    <None Include="wwwroot\lib\_readMe.txt" />
+    <None Update="wwwroot\**\*">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NewBoardRestApi\NewBoardRestApi.csproj" />
+    <ProjectReference Include="..\..\Selectable\Selectable\Selectable.csproj" />
+    <ProjectReference Include="..\..\ServerSideSpaTools\ServerSideSpaTools\ServerSideSpaTools.csproj" />
+    <ProjectReference Include="..\..\ServerSideSpaTools\ApiTools\ApiTools.csproj" />
+    <ProjectReference Include="..\..\DiscoverWebSite\DiscoverWebSiteApi\DiscoverWebSiteApi.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
+    <PackageReference Include="System.Interactive.Async" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration.Tools" Version="1.1.0-preview4-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="1.0.2" />
+  </ItemGroup>
+
+</Project>

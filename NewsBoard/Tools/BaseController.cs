@@ -62,7 +62,9 @@ namespace NewsBoard.Tools
             else if (context.Exception != null)
             {
                 var fatalMessage = "Application error, reloading the app.";
-                TempData.Add("FatalMessage", fatalMessage);
+
+                if(!TempData.ContainsKey("FatalMessage"))
+                    TempData.Add("FatalMessage", fatalMessage);
 
                 context.Result = new ComposeResult(
                     new FatalResult(fatalMessage),

@@ -1,4 +1,5 @@
 ﻿using NewBoardRestApi.DataModel;
+using Selectable;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,6 +16,11 @@ namespace NewBoardRestApi.GroupApi
         {
             return items.Select(i => i.ToGroup()).ToList();
         }
-    }
 
+
+        internal static SelectableItem<int> ToSelectableItem(this Group item, List<UserGroup> selected)
+        {
+            return new SelectableItem<int>(item.Id, item.Label, selected.Any(at => at.GroupId == item.Id));
+        }
+    }
 }

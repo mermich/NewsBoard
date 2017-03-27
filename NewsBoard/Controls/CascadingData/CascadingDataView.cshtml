@@ -1,0 +1,28 @@
+﻿@model NewsBoard.wwwroot.Controls.CascadingData.CascadingDataModel
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Demo de selection et update
+    </div>
+
+    <div class="panel-body panel-edit">
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label for="Label" class="col-sm-2 control-label">La drop down</label>
+                <div class="col-sm-6">
+                    <select name="someDropDown" ns-action-type="dataChanged" ns-action-url="@Url.NewsBoardUrlHelper().Action("Controls", "CascadingData", "SelectChanged")">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group" id="someUpdatedContent">
+                startup content
+            </div>
+        </div>
+    </div>
+</div>

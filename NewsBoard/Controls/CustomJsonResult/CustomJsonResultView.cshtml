@@ -1,0 +1,15 @@
+﻿@model NewsBoard.wwwroot.Controls.CustomJsonResult.CustomJsonResultModel
+<button ns-action-type="simpleGetAction" ns-action-url="@Url.Action("SucessMessage")">SucessMessage</button><br />
+<button ns-action-type="simpleGetAction" ns-action-url="@Url.Action("ErrorMessage")">ErrorMessage</button><br />
+<button ns-action-type="simpleGetAction" ns-action-url="@Url.Action("WarnMessage")">WarnMessage</button><br />
+<br />
+<button ns-action-type="simpleGetAction" ns-action-url="@Url.Action("Compose")">OpenNewWindow</button><br />
+
+<button ns-action-type="simpleGetAction" ns-action-url="@Url.Action("ReplaceHtml")">OpenNewWindow</button><br />
+<div id="replaceDiv">plop</div><br />
+
+
+<button ns-action-type="simpleGetAction" ns-action-url="@Url.Action("AppendHtml")">OpenNewWindow</button><br />
+<div id="appendDiv">plopAppend</div><br />
+
+<button ns-action-type="simpleGetAction" ns-action-url="@Url.Action("OpenNewWindow")">OpenNewWindow</button><br />
