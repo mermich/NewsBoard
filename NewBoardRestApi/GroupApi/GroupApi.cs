@@ -78,13 +78,18 @@ namespace NewBoardRestApi.GroupApi
 
         public GroupVM SaveGroup(GroupEditVM groupVM)
         {
-            var group = NewsBoardContext.Groups.FirstOrDefault(t => t.Id == groupVM.Id);
+            var group = NewsBoardContext
+                .Groups
+                .Include(g=>g.GroupPermissions)
+                .ThenInclude(gp=>gp.Permission)
+                .FirstOrDefault(t => t.Id == groupVM.Id);
+
             group.Label = groupVM.Label;
 
             var selectedPermissions = groupVM.Permissions.Items.Where(gr => gr.IsSelected);
 
             //removing the old permissions
-            foreach (var permission in group.GroupPermissions.ToList())
+            foreach (var permission in group.GroupPermissions)
             {
                 if (!selectedPermissions.Any(gr => gr.Value == permission.PermissionId))
                 {

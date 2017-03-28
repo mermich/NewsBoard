@@ -19,7 +19,9 @@ namespace NewsBoard.wwwroot.Controls.CascadingData
         [HttpPost]
         public JsonResult SelectChanged(CascadingDataModel model)
         {
-            return new ComposeResult(new ReplaceHtmlResult("#someUpdatedContent", Url.Action("GetTime")), new ErrorMessageResult("drop down value was:" + model.someDropDown));
+            return new ComposeResult(
+                new ReplaceHtmlResult("#someUpdatedContent", Url.Action("GetTime")), 
+                new ErrorMessageResult("drop down value was:" + model.someDropDown));
         }
 
 

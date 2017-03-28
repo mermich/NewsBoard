@@ -12,8 +12,8 @@ namespace NewsBoard.wwwroot.Group.GroupList
         public IActionResult Index()
         {
             var api = new GroupApi(UserId);
-            var model =api.GetGroups();
-            
+            var model = api.GetGroups();
+
             return ReturnView("GroupListView", model);
         }
 

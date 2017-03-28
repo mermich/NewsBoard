@@ -16,7 +16,7 @@ namespace NewsBoard.wwwroot.Group.GroupCreate
             var api = new UserApi(UserId);
             var model = api.GetUserEdit(userId);
             
-            return ReturnView("GroupEditView", model);
+            return ReturnView("UserEditView", model);
         }
 
         public ActionResult Update(UserEditVM model)

@@ -13,12 +13,12 @@ namespace NewsBoard.wwwroot.Controls.SimpleGetAction
             return ReturnView("SimpleGetActionView", new SimpleGetActionModel());
         }
 
-        public IActionResult test()
+        public IActionResult Test()
         {
             return ReturnView("SimpleGetActionView", new SimpleGetActionModel());
         }
 
-        public IActionResult testwithParam(int id)
+        public IActionResult TestwithParam(int id)
         {
             return ReturnView("SimpleGetActionView", new SimpleGetActionModel());
         }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NewBoardRestApi.BaseApi;
 using NewBoardRestApi.UserApi;
 using NewsBoard.Tools;
 using System.Collections.Generic;

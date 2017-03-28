@@ -20,7 +20,7 @@ namespace NewBoardRestApi.PermissionApi
 
         internal static SelectableItem<int> ToSelectableItem(this Permission item, List<GroupPermission> selected)
         {
-            return new SelectableItem<int>(item.Id, item.Label, selected.Any(at => at.GroupId == item.Id));
+            return new SelectableItem<int>(item.Id, item.Label, selected.Any(at => at.PermissionId == item.Id));
         }
     }
 }
