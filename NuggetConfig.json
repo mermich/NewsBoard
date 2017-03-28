@@ -1,8 +1,0 @@
-{
-  "buildtools": "https://www.myget.org/F/dotnet-buildtools/api/v3/index.json",
-  "corefx": "https://www.myget.org/F/dotnet-corefxtestdata/api/v3/index.json",
-  "core": "https://www.myget.org/F/dotnet-core/api/v3/index.json",
-  "coreclr": "https://www.myget.org/F/dotnet-coreclr/api/v3/index.json",
-  "aspnetmaster": "https://www.myget.org/F/aspnetmaster/api/v2",
-  "nuget": "https://api.nuget.org/v3/index.json"
-}
