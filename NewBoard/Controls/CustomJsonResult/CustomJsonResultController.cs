@@ -49,7 +49,7 @@ namespace NewsBoard.wwwroot.Controls.CustomJsonResult
 
         public IActionResult OpenNewWindow()
         {
-            return new OpenNewWindowResult("www.google.com");
+            return new OpenNewWindowResult("http://www.google.com");
         }
 
         public ActionResult GetTime()
