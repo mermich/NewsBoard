@@ -23,7 +23,7 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ext\DiscoverWebSite\DiscoverWebSite\DiscoverWebSite.csproj" />
+    <ProjectReference Include="..\ext\DiscoverWebSite\DiscoverWebSite.csproj" />
     <ProjectReference Include="..\ext\ext\ApiTools\ApiTools.csproj" />
     <ProjectReference Include="..\ext\ext\ServerSideSpaTools\ServerSideSpaTools.csproj" />
   </ItemGroup>
