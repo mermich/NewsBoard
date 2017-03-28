@@ -3,6 +3,7 @@ using NewBoardRestApi.DataModel;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using NewBoardRestApi.BaseApi;
+using ApiTools;
 
 namespace NewBoardRestApi.ArticleApi
 {

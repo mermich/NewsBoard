@@ -1,4 +1,4 @@
-﻿using DiscoverWebSiteApi.Syndication;
+﻿using ApiTools.Syndication;
 using System;
 
 namespace NewBoardRestApi.DiscoverApi

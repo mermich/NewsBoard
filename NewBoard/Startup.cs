@@ -49,8 +49,6 @@ namespace NewsBoard
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseStaticFiles();
-
             app.UseCookieAuthentication(new CookieAuthenticationOptions()
             {
                 AuthenticationScheme = "NewsBoardScheme",
@@ -62,12 +60,13 @@ namespace NewsBoard
                 ExpireTimeSpan = new TimeSpan(DateTime.Now.AddDays(7).Ticks)
             });
 
+            app.UseStaticFiles();
             app.UseSession();
 
             app.UseMvc(routes =>
             {
                 // add the new route here.
-                routes.MapRoute(name: "areaRoute", template: "{area:exists}/{controller}/{action}", defaults: new { controller = "Home", action = "Index" });
+                routes.MapRoute(name: "areaRoute", template: "{area:exists}/{controller}/{action}", defaults: new { controller = "Home", action = "Index" } );
                 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
         }

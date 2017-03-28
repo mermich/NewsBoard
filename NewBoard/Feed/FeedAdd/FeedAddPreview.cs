@@ -1,5 +1,5 @@
-﻿using DiscoverWebSiteApi;
-using DiscoverWebSiteApi.Syndication;
+﻿using ApiTools;
+using ApiTools.Syndication;
 using System;
 using System.Collections.Generic;
 using System.Linq;

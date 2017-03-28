@@ -6,14 +6,15 @@
         Les Tags
     </div>
 
-    <div class="panel-body" style="padding:0px">
+    <div class="panel-body">
         @for (int i = 0; i < Model.Tags.Count; i++)
         {
-            <button class="btn btn-info btn-sm"
-                    ns-action-url="@Url.NewsBoardUrlHelper().Action("Tag", "TagCloud", "GetBrowseByTag", new { Id=Model.Tags[i].Id})"
-                    type="button" ns-action-type="simpleGetAction">
+            <a class="btn btn-info btn-sm" href="#"
+               ns-action-url="@Url.NewsBoardUrlHelper().Action("Tag", "TagCloud", "GetBrowseByTag", new { Id=Model.Tags[i].Id})"
+               type="button"
+               ns-action-type="simpleGetAction">
                 @Model.Tags[i].Label
-            </button>
+            </a>
         }
     </div>
 </div>

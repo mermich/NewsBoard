@@ -1,5 +1,4 @@
-﻿using DiscoverWebSiteApi;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.BaseApi;
 using NewBoardRestApi.DataModel;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using DiscoverWebSiteApi.Syndication;
+using ApiTools.Syndication;
 
 namespace NewBoardRestApi.DataModel
 {

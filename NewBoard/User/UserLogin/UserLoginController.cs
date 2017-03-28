@@ -6,6 +6,7 @@ using NewsBoard.Tools;
 using System.Collections.Generic;
 using System.Security.Claims;
 using ServerSideSpaTools.JsonResult;
+using ApiTools;
 
 namespace NewsBoard.wwwroot.User.UserRegister
 {
