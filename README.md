@@ -1,5 +1,4 @@
 # NewsBoard
-
 This app is a community feed agregator.
 
 ## Projects organization
