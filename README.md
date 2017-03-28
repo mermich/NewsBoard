@@ -12,12 +12,10 @@ This app is a community feed agregator.
 - Any registered user can report any feed.
 - Any user can browse the list of feed.
 - Any user can browse the articles of any feed.
-- Admins can edit feed tags
-- Feeds can be filtered by tags
+- Admins can edit feed tags.
+- Feeds can be filtered by tags.
 
 
 #### To Fix
 - Move database connection string to the config
-- Parse a web page into a correct xml
-- Define properly the api routes
 
