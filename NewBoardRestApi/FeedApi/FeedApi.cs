@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ApiTools;
+using Microsoft.EntityFrameworkCore;
 using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.BaseApi;
 using NewBoardRestApi.DataModel;
 using NewBoardRestApi.FeedApi.Search;
 using System;
 using System.Linq;
-using ApiTools;
 
 namespace NewBoardRestApi.FeedApi
 {
@@ -28,11 +28,28 @@ namespace NewBoardRestApi.FeedApi
             feed.Description = feedDetails.Description;
             feed.Title = feedDetails.Title;
 
-            NewsBoardContext.Articles.AddRange(feedDetails.Items.ToArticles(feed));
+            // Merge the list of articles.
+            var existingArticles = NewsBoardContext.Articles.Where(a => a.FeedId == feedId);
+            foreach (var article in feedDetails.Items.ToArticles(feed))
+            {
+                var existingArticle = existingArticles.FirstOrDefault(a => a.Url == article.Url);
+                if (existingArticle != null)
+                {
+                    // Article exists.
+                    existingArticle.Label = article.Label;
+                    existingArticle.LastUpdatedTime = article.LastUpdatedTime;
+                    existingArticle.PublishDate = article.PublishDate;
+                    existingArticle.Summary = article.Summary;
+                }
+                else
+                {
+                    NewsBoardContext.Articles.Add(article);
+                }
+            }
 
-            var existingUserFeed = NewsBoardContext.UserFeeds
-                .Include(uf => uf.User)
-                .FirstOrDefault(uf => uf.User.Id == currentUser.Id && uf.Feed.Id == feedId);
+           
+
+            var existingUserFeed = NewsBoardContext.UserFeeds.Include(uf => uf.User).FirstOrDefault(uf => uf.User.Id == currentUser.Id && uf.Feed.Id == feedId);
 
             if (existingUserFeed != null)
             {
@@ -45,6 +62,26 @@ namespace NewBoardRestApi.FeedApi
             }
 
             NewsBoardContext.SaveChanges();
+        }
+
+
+
+        public virtual void RefreshAll()
+        {
+            try
+            {
+                var feeds = NewsBoardContext.Feeds.ToList();
+                foreach (var feed in feeds)
+                {
+                    Refresh(feed.Id);
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+           
         }
 
 

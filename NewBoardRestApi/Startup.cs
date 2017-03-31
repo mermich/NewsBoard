@@ -18,6 +18,9 @@ namespace NewBoardRestApi
                 .AddEnvironmentVariables();
 
             Configuration = builder.Build();
+
+
+            new FeedApi.FeedApi(3).RefreshAll();
         }
 
         public IConfigurationRoot Configuration { get; }

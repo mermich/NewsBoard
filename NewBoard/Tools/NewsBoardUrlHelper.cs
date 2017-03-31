@@ -58,7 +58,7 @@ namespace NewsBoard.Tools
                 new ArticleVMListOptions { Heading = "Tous les Articles" });
 
         public string UserArticleListAction => ArticleListAction(
-            new ArticleVMSearch { OnlyUserSubscription = false, MaxItems = 50 }, 
+            new ArticleVMSearch { OnlyUserSubscription = true, MaxItems = 50 }, 
             new ArticleVMListOptions { Heading = "Articles de mes Flux" });
 
     }

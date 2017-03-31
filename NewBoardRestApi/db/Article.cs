@@ -60,7 +60,7 @@ namespace NewBoardRestApi.DataModel
                 Label = item.Title,
                 Summary = item.Content,
                 Url = item.Url,
-                PublishDate = item.PublishDate
+                PublishDate = item.PublishDate.UtcDateTime
             };
 
             return article;

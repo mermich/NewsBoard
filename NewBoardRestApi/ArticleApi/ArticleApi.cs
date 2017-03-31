@@ -38,7 +38,7 @@ namespace NewBoardRestApi.ArticleApi
                     .Include(a => a.Feed).ThenInclude(f => f.WebSite)
                     .Include(a => a.UserArticles)
                     .Where(a => !filter.Feeds.Any() || filter.Feeds.Contains(a.FeedId))
-                    .OrderBy(a => a.PublishDate)
+                    .OrderByDescending(a => a.PublishDate)
                     .Take(filter.MaxItems)
                     .ToArticleList(currentUser);
 
@@ -49,10 +49,10 @@ namespace NewBoardRestApi.ArticleApi
                 var result = NewsBoardContext.Articles
                     .Include(a => a.Feed).ThenInclude(f => f.WebSite)
                     .Include(a => a.UserArticles)
-                    .Where(a => !filter.OnlyUserSubscription || a.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsSubscribed))
+                    .Where(a => !filter.OnlyUserSubscription || !a.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && !uf.IsSubscribed))
                     .Where(a => !filter.HideReported || !a.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsReported))
                     .Where(a => !filter.Feeds.Any() || filter.Feeds.Contains(a.FeedId))
-                    .OrderBy(a => a.PublishDate)
+                    .OrderByDescending(a => a.PublishDate)
                     .Take(filter.MaxItems)
                     .ToArticleList(currentUser);
 
