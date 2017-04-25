@@ -65,11 +65,6 @@ namespace NewBoardRestApi.ArticleApi
         [Route("OpenArticle")]
         public virtual ArticleVM OpenArticle(int id)
         {
-            if (currentUser == null)
-            {
-                throw new BusinessLogicException("Seuls les utilisateurs authentifies peuvent ouvrir des articles.");
-            }
-
             var article = NewsBoardContext.Articles
                 .Include(a => a.Feed)
                 .Include(a => a.UserArticles)

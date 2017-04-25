@@ -6,7 +6,7 @@ namespace NewBoardRestApi.FeedApi.Search
     {
         public List<int> Tags { get; set; } = new List<int>();
 
-        public int MaxItems { get; set; } = 20;
+        public int MaxItems { get; set; } = 10;
 
         public bool OnlyUserSubscription { get; set; } = true;
 

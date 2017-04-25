@@ -40,7 +40,7 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
             var feed = new FeedApi(UserId).CreateSubscriptionAndSubScribe(details.SyndicationUrl);
 
             return new ComposeResult(
-                new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("feed", "FeedList", "Index")),
+                new ReplaceMainHtmlResult(NewsBoardUrlHelper.UserFeedListAction),
                 new SuccessMessageResult("Feed Created")
                 );
         }
