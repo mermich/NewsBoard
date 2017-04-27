@@ -20,7 +20,8 @@ namespace NewBoardRestApi
             Configuration = builder.Build();
 
 
-            new FeedApi.FeedApi(3).RefreshAll();
+            new FeedApi.FeedApi(3).RefreshFeedArticles();
+            new FeedApi.FeedApi(3).RefreshFeedInformations();
         }
 
         public IConfigurationRoot Configuration { get; }

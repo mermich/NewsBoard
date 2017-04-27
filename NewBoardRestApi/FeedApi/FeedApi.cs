@@ -47,7 +47,7 @@ namespace NewBoardRestApi.FeedApi
                 }
             }
 
-           
+
 
             var existingUserFeed = NewsBoardContext.UserFeeds.Include(uf => uf.User).FirstOrDefault(uf => uf.User.Id == currentUser.Id && uf.Feed.Id == feedId);
 
@@ -66,22 +66,27 @@ namespace NewBoardRestApi.FeedApi
 
 
 
-        public virtual void RefreshAll()
+        public void RefreshFeedArticles()
         {
-            try
+            var feeds = NewsBoardContext.Feeds.ToList();
+            foreach (var feed in feeds)
             {
-                var feeds = NewsBoardContext.Feeds.ToList();
-                foreach (var feed in feeds)
-                {
-                    Refresh(feed.Id);
-                }
+                Refresh(feed.Id);
             }
-            catch (Exception e)
-            {
+        }
 
-                throw;
+        public void RefreshFeedInformations()
+        {
+            var feeds = NewsBoardContext.Feeds
+                .Include(f=>f.WebSite)
+                .ToList();
+
+            foreach (var feed in feeds)
+            {
+                var details = new LookupWebSiteApi().GetWebSiteDetails(feed.WebSite.Url);
+                feed.WebSite.IconUrl = details.IconUrl;
+                NewsBoardContext.SaveChanges();
             }
-           
         }
 
 

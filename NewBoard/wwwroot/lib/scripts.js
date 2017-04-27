@@ -44,6 +44,9 @@ function LoadCallback() {
             if ($(e.target).is("i"))
                 target = $(e.target).parent().first()[0];
 
+            if ($(e.target).is("img"))
+                target = $(e.target).parent()[0];
+
             let targetUrl = target.getAttribute("ns-action-url");
 
             console.log('clicked' + targetUrl);
@@ -150,6 +153,10 @@ function HandleAjaxResult(result) {
         let selector = $(result.replaceHtml.selector);
         if (selector.length > 0) {
             var url = result.replaceHtml.action;
+
+            // display a loader
+            selector.html("<div class='loader'></div>");
+
             $.get(url, function (result2) {
                 selector.html(result2).hide().fadeIn(1000);
                 LoadCallback(selector);

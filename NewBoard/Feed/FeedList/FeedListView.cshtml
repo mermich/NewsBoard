@@ -12,8 +12,20 @@
                 @for (int i = 0; i < Model.Feeds.Count; i++)
                 {
                     <tr name="feed-@Model.Feeds[i].Id">
-                        <td><img style="height:24px" src="@Model.Feeds[i].IconUrl" alt="" /> </td>
-                        <td>@Model.Feeds[i].Title</td>
+                        <td>
+                            <a href="#"
+                               ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new { feedId = Model.Feeds[i].Id })"
+                               ns-action-type="simpleGetAction">
+                                <img style="height:24px" src="@Model.Feeds[i].IconUrl" alt="" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#"
+                               ns-action-type="simpleGetAction"
+                               ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new { articleId=Model.Feeds[i].Id})">
+                                @Model.Feeds[i].Title
+                            </a>
+                        </td>
                         <td>
                             <div class="btn-group" role="group">
                                 <button class="btn btn-info btn-sm"
