@@ -195,6 +195,6 @@ a:focus:not(:hover) {
     border: 0px solid;
 }
 
-    #loginMenuLink:hover, #loginMenuLink:active, #loginMenuLink:focus {
-        background-color: #449D44 !important;
-    }
+#loginMenuLink:hover, #loginMenuLink:active, #loginMenuLink:focus {
+    background-color: #449D44 !important;
+}

@@ -18,24 +18,14 @@
                                ns-action-type="simpleGetAction">
                                 <img style="height:24px" src="@Model.Feeds[i].IconUrl" alt="" />
                             </a>
-                        </td>
-                        <td>
                             <a href="#"
                                ns-action-type="simpleGetAction"
                                ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new { articleId=Model.Feeds[i].Id})">
                                 @Model.Feeds[i].Title
                             </a>
-                        </td>
-                        <td>
-                            <div class="btn-group" role="group">
-                                <button class="btn btn-info btn-sm"
-                                        ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new { feedId = Model.Feeds[i].Id })"
-                                        type="button" ns-action-type="simpleGetAction">
-                                    Ouvrir
-                                </button>
-
-                                <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+                            <div class="btn-group pull-right" role="group">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
                                 </button>
 
                                 <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Feed","FeedList","FeedAction", new { feedId = Model.Feeds[i].Id })">
