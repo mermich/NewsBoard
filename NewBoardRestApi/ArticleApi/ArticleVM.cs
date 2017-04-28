@@ -40,7 +40,7 @@ namespace NewBoardRestApi.ArticleApi
         {
         }
 
-        public ArticleVM(Article article, User currentUser)
+        public ArticleVM(Article article, int userId)
         {
             Id = article.Id;
             Label = article.Label;
@@ -50,11 +50,8 @@ namespace NewBoardRestApi.ArticleApi
             FeedId = article.FeedId;
             IconUrl = article.Feed.WebSite.IconUrl;
 
-            if (currentUser != null)
-                IsSubscribed = article.Feed.UserFeeds != null && article.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsSubscribed);
-
-            if (currentUser != null)
-                IsNew = article.UserArticles == null || !article.UserArticles.Any(ua => ua.UserId == currentUser.Id);
+            IsSubscribed = article.Feed.UserFeeds != null && article.Feed.UserFeeds.Any(uf => uf.UserId == userId && uf.IsSubscribed);
+            IsNew = article.UserArticles == null || !article.UserArticles.Any(ua => ua.UserId == userId);
         }
     }
 }

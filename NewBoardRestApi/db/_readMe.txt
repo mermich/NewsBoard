@@ -13,3 +13,10 @@ dotnet ef migrations add <nomDeUpdate>
 
 pour migreer la databse:
 dotnet ef database update
+
+
+
+sur vs2017
+se placer dans le repertoire NewBoardRestApi/db a coups de cd
+Add-Migration <nomDeUpdate>
+Update-Database

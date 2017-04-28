@@ -11,17 +11,10 @@ namespace NewBoardRestApi.UserApi
         {
         }
 
-        public UserApi(User user) : base(user)
+        public User Get()
         {
-
+            return NewsBoardContext.Users.FirstOrDefault(u => u.Id == UserId);
         }
-
-
-        internal User Get()
-        {
-            return currentUser;
-        }
-
 
         public UserVMList ListUsers()
         {

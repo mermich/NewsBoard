@@ -20,10 +20,10 @@ namespace NewBoardRestApi.ArticleApi
         {
             return NewsBoardContext.Articles
                 .Include(a => a.Feed).ThenInclude(f => f.UserFeeds)
-                .Include(a => a.Feed).ThenInclude(f=>f.WebSite)
+                .Include(a => a.Feed).ThenInclude(f => f.WebSite)
                 .Include(a => a.UserArticles)
                 .FirstOrDefault(a => a.Id == articleId)
-                .ToArticle(currentUser);
+                .ToArticle(UnAuthenticatedUserId);
         }
 
 
@@ -32,32 +32,17 @@ namespace NewBoardRestApi.ArticleApi
             if (filter == null)
                 filter = new ArticleVMSearch();
 
-            if (currentUser == null)
-            {
-                var result = NewsBoardContext.Articles
-                    .Include(a => a.Feed).ThenInclude(f => f.WebSite)
-                    .Include(a => a.UserArticles)
-                    .Where(a => !filter.Feeds.Any() || filter.Feeds.Contains(a.FeedId))
-                    .OrderByDescending(a => a.PublishDate)
-                    .Take(filter.MaxItems)
-                    .ToArticleList(currentUser);
+            var result = NewsBoardContext.Articles
+                .Include(a => a.Feed).ThenInclude(f => f.WebSite)
+                .Include(a => a.UserArticles)
+                .Where(a => !filter.OnlyUserSubscription || !a.Feed.UserFeeds.Any(uf => uf.UserId == UserId && !uf.IsSubscribed))
+                .Where(a => !filter.HideReported || !a.Feed.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsReported))
+                .Where(a => !filter.Feeds.Any() || filter.Feeds.Contains(a.FeedId))
+                .OrderByDescending(a => a.PublishDate)
+                .Take(filter.MaxItems)
+                .ToArticleList(UserId);
 
-                return result;
-            }
-            else
-            {
-                var result = NewsBoardContext.Articles
-                    .Include(a => a.Feed).ThenInclude(f => f.WebSite)
-                    .Include(a => a.UserArticles)
-                    .Where(a => !filter.OnlyUserSubscription || !a.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && !uf.IsSubscribed))
-                    .Where(a => !filter.HideReported || !a.Feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsReported))
-                    .Where(a => !filter.Feeds.Any() || filter.Feeds.Contains(a.FeedId))
-                    .OrderByDescending(a => a.PublishDate)
-                    .Take(filter.MaxItems)
-                    .ToArticleList(currentUser);
-
-                return result;
-            }
+            return result;
         }
 
 
@@ -73,7 +58,7 @@ namespace NewBoardRestApi.ArticleApi
             var userArticle = NewsBoardContext.UserArticles.FirstOrDefault(ua => ua.ArticleId == id);
             if (userArticle == null)
             {
-                userArticle = new UserArticle(currentUser, article);
+                userArticle = new UserArticle(UserId, article);
                 NewsBoardContext.UserArticles.Add(userArticle);
             }
             userArticle.IsOpened = true;
@@ -87,7 +72,7 @@ namespace NewBoardRestApi.ArticleApi
         [Route("HideArticle")]
         public virtual void HideArticle(int id)
         {
-            if (currentUser == null)
+            if (IsAnonymous)
             {
                 throw new BusinessLogicException("Seuls les utilisateurs authentifies peuvent masquer des articles.");
             }
@@ -100,7 +85,7 @@ namespace NewBoardRestApi.ArticleApi
             var userArticle = NewsBoardContext.UserArticles.FirstOrDefault(ua => ua.ArticleId == id);
             if (userArticle == null)
             {
-                userArticle = new UserArticle(currentUser, article);
+                userArticle = new UserArticle(UserId, article);
                 NewsBoardContext.UserArticles.Add(userArticle);
             }
             userArticle.IsHidden = true;

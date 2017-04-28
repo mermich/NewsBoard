@@ -71,9 +71,21 @@ namespace NewsBoard.wwwroot.Feed.FeedList
 
             return new ComposeResult(
                   new SuccessMessageResult("Reported"),
-                  new ReplaceHtmlResult("#UserSubscription", NewsBoardUrlHelper.Action("Feed", "UserSubscription", "Index")),
                   new ReplaceHtmlResult("[name='feed-" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId = feedId })));
         }
+
+
+        public IActionResult StopDisplay(int feedId)
+        {
+            var feedRepo = new FeedApi(UserId);
+            feedRepo.StopDisplayFeed(feedId);
+
+            return new ComposeResult(
+                  new SuccessMessageResult("StopDisplay"),
+                  new ReplaceHtmlResult("[name='feed-" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId = feedId })));
+        }
+
+        
 
         public IActionResult ShowDetails(int feedId)
         {

@@ -18,11 +18,13 @@ namespace NewsBoard.Tools
             }
         }
 
+
+
         public int UserId
         {
             get
             {
-                return HttpContext.Session.GetInt32("UserId").GetValueOrDefault();
+                return HttpContext.Session.GetInt32("UserId").GetValueOrDefault(BaseAuthenticatedApi.UnAuthenticatedUserId);
             }
         }
 
@@ -30,7 +32,7 @@ namespace NewsBoard.Tools
         {
             get
             {
-                return UserId > 1;
+                return UserId != BaseAuthenticatedApi.UnAuthenticatedUserId;
             }
         }
 
@@ -38,7 +40,7 @@ namespace NewsBoard.Tools
         {
             get
             {
-                return UserId == 0;
+                return UserId == BaseAuthenticatedApi.UnAuthenticatedUserId;
             }
         }
 

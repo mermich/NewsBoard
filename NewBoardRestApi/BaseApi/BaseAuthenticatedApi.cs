@@ -1,20 +1,40 @@
-﻿using NewBoardRestApi.DataModel;
-using System.Linq;
+﻿using ApiTools;
 
 namespace NewBoardRestApi.BaseApi
 {
     public class BaseAuthenticatedApi : BaseApi
     {
-        protected User currentUser;
+        public static readonly int UnAuthenticatedUserId = 0;
+
+        public readonly int UserId;
 
         public BaseAuthenticatedApi(int userId)
         {
-            currentUser = NewsBoardContext.Users.FirstOrDefault(u => u.Id == userId);
+            this.UserId = userId;
         }
 
-        public BaseAuthenticatedApi(User user)
+        public void ThrowExIfUnAuthenticated()
         {
-            currentUser = user;
+            if (IsAnonymous)
+            {
+                throw new NeedAuthenticationException();
+            }
+        }
+
+        public bool IsAuthenticated
+        {
+            get
+            {
+                return UserId != BaseAuthenticatedApi.UnAuthenticatedUserId;
+            }
+        }
+
+        public bool IsAnonymous
+        {
+            get
+            {
+                return UserId == BaseAuthenticatedApi.UnAuthenticatedUserId;
+            }
         }
     }
 }

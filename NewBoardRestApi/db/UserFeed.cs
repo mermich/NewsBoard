@@ -14,18 +14,22 @@
 
         public int UserId { get; set; }
 
-        public bool IsSubscribed { get; set; } = true;
+        public bool IsSubscribed { get; set; }
 
         public bool IsReported { get; set; }
+
+        public bool IsHidden { get; set; }
+
+        public bool IsOpened { get; set; }
 
         public UserFeed()
         {
         }
 
 
-        public UserFeed(User user, Feed feed)
+        public UserFeed(int userId, Feed feed)
         {
-            User = user;
+            UserId = userId;
             Feed = feed;
         }
 
@@ -34,6 +38,8 @@
             UserId = userId;
             FeedId = feedId;
         }
+
+
 
         public virtual void Subscribe()
         {
@@ -47,11 +53,20 @@
 
         public virtual void Open()
         {
+            IsOpened = true;
         }
 
         public virtual void Report()
         {
             IsReported = true;
+            StopDisplay();
+           
+        }
+
+        public virtual void StopDisplay()
+        {
+            IsHidden = true;
+            UnSubscribe();
         }
     }
 }

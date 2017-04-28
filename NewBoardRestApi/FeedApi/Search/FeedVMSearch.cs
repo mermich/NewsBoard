@@ -8,10 +8,26 @@ namespace NewBoardRestApi.FeedApi.Search
 
         public int MaxItems { get; set; } = 10;
 
-        public bool OnlyUserSubscription { get; set; } = true;
+        public SubscriptionFilter SubscriptionFilter { get; set; } = SubscriptionFilter.OnlySubscribbed;
 
         public bool HideReported { get; set; } = true;
 
         public FeedListOrderBy OrderBy { get; set; } = FeedListOrderBy.Name;
+    }
+
+    public enum SubscriptionFilter
+    {
+        All,
+        OnlySubscribbed,
+        OnlyUnSubscribbed
+    }
+
+    public enum StatusFilter
+    {
+        All,
+        HideHidden,
+        HideReported,
+        HideOpened,
+        
     }
 }

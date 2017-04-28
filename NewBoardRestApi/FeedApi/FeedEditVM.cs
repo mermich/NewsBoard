@@ -29,7 +29,7 @@ namespace NewBoardRestApi.FeedApi
 
         public FeedEditVM() { }
 
-        public FeedEditVM(Feed feed, IEnumerable<Tag> possibleTags, User currentUser)
+        public FeedEditVM(Feed feed, IEnumerable<Tag> possibleTags, int userId)
         {
             Id = feed.Id;
             WebSiteUrl = feed.WebSite.Url;
@@ -39,7 +39,7 @@ namespace NewBoardRestApi.FeedApi
             Description = feed.Description;
             Subscribers = feed.Subscribers;
 
-            ArticleVMList = feed.Articles.ToArticleList(currentUser);
+            ArticleVMList = feed.Articles.ToArticleList(userId);
 
             Tags = possibleTags.ToSelectableItemList(feed.FeedTags);
 

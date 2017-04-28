@@ -6,9 +6,9 @@ namespace NewBoardRestApi.FeedApi
 {
     internal static class FeedVMListExtentions
     {
-        internal static FeedVMList ToFeedVMList(this IEnumerable<Feed> items, User currentUser)
+        internal static FeedVMList ToFeedVMList(this IEnumerable<Feed> items, int userId)
         {
-            return new FeedVMList(items.Select(i => i.ToFeedVM(currentUser)));
+            return new FeedVMList(items.Select(i => i.ToFeedVM(userId)));
         }
     }
 }

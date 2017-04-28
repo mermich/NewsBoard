@@ -16,8 +16,6 @@
 
         public bool IsOpened { get; set; }
 
-        //public DateTime OpenedTime { get; set; } = DateTime.Now;
-
         public bool IsHidden { get; set; }
 
         public int Score { get; set; } = 2;
@@ -30,6 +28,12 @@
         {
             Article = article;
             User = user;
+        }
+
+        public UserArticle(int userId, Article article)
+        {
+            Article = article;
+            UserId = userId;
         }
     }
 }

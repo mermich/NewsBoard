@@ -36,18 +36,18 @@ namespace NewsBoard.Tools
 
         public string AllFeedListAction =>
             FeedListAction(
-                new FeedVMSearch { OnlyUserSubscription = false, HideReported = false, MaxItems = 50 },
+                new FeedVMSearch { SubscriptionFilter= SubscriptionFilter.All, HideReported = false, MaxItems = 50 },
                 new FeedVMListOptions { Heading = "Les Flux" });
 
         public string UserFeedListAction =>
             FeedListAction(
                 new FeedVMSearch { MaxItems = 50 },
                 new FeedVMListOptions { Heading = "Mes Flux" });
-
-        public string PopularFeedListAction =>
+        
+        public string SuggestedFeedListAction =>
             FeedListAction(
-                new FeedVMSearch { OnlyUserSubscription = false, HideReported = false, MaxItems = 5, OrderBy= null},
-                new FeedVMListOptions { Heading = "Les Flux populaires" });
+                new FeedVMSearch { SubscriptionFilter = SubscriptionFilter.OnlyUnSubscribbed, HideReported = false, MaxItems = 5, OrderBy = null },
+                new FeedVMListOptions { Heading = "Les Flux suggeres" });        
 
 
         public string ArticleListAction(ArticleVMSearch filter, ArticleVMListOptions options) => Action("Article", "ArticleList", "Index", filter, options);
@@ -60,6 +60,7 @@ namespace NewsBoard.Tools
         public string UserArticleListAction => ArticleListAction(
             new ArticleVMSearch { OnlyUserSubscription = true, MaxItems = 50 }, 
             new ArticleVMListOptions { Heading = "Articles de mes Flux" });
+
 
     }
 }

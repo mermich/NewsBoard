@@ -13,7 +13,7 @@ namespace NewBoardRestApi.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
+                .HasAnnotation("ProductVersion", "1.1.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("NewBoardRestApi.DataModel.Article", b =>
@@ -189,6 +189,10 @@ namespace NewBoardRestApi.Migrations
 
                     b.Property<int>("FeedId");
 
+                    b.Property<bool>("IsHidden");
+
+                    b.Property<bool>("IsOpened");
+
                     b.Property<bool>("IsReported");
 
                     b.Property<bool>("IsSubscribed");
@@ -228,8 +232,6 @@ namespace NewBoardRestApi.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Description");
 
                     b.Property<string>("IconUrl");
 

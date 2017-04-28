@@ -3,7 +3,6 @@ using NewBoardRestApi.BaseApi;
 using NewBoardRestApi.DataModel;
 using System.Collections.Generic;
 using System.Linq;
-using NewBoardRestApi.GroupApi;
 
 namespace NewBoardRestApi.GroupApi
 {

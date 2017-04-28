@@ -27,7 +27,7 @@ namespace NewBoardRestApi.FeedApi
 
         public FeedVM() { }
 
-        public FeedVM(Feed feed, User currentUser)
+        public FeedVM(Feed feed, int userId)
         {
             Id = feed.Id;
             WebSiteUrl = feed.WebSite.Url;
@@ -36,11 +36,9 @@ namespace NewBoardRestApi.FeedApi
             Title = feed.Title;
             Description = feed.Description;
             Subscribers = feed.Subscribers;
+            IsSubscribed = feed.UserFeeds != null && feed.UserFeeds.Any(uf => uf.UserId == userId && uf.IsSubscribed);
 
-            if(currentUser!= null)
-                IsSubscribed = feed.UserFeeds != null && feed.UserFeeds.Any(uf => uf.UserId == currentUser.Id && uf.IsSubscribed);
-
-            ArticleVMList = feed.Articles.ToArticleList(currentUser);
+            ArticleVMList = feed.Articles.ToArticleList(userId);
         }
     }
 }

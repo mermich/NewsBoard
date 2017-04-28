@@ -91,7 +91,7 @@ namespace NewBoardRestApi.TagApi
             return NewsBoardContext.Feeds
                 .Include(f=>f.Articles).ThenInclude(article=>article.UserArticles)
                 .Where(f => f.FeedTags.Any(ft => ft.TagId == tagId))
-                .ToFeedVMList(currentUser);
+                .ToFeedVMList(UserId);
         }
     }
 }
