@@ -7,6 +7,10 @@
   <PropertyGroup>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="appsettings.json" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
@@ -26,9 +30,19 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\ext\ext\ApiTools\ApiTools.csproj" />
     <ProjectReference Include="..\ext\ext\ServerSideSpaTools\ServerSideSpaTools.csproj" />
     <ProjectReference Include="..\NewBoardRestApi\NewBoardRestApi.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

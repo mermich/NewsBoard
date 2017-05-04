@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System;
 
 namespace NewBoardRestApi.DataModel
 {
@@ -14,7 +16,14 @@ namespace NewBoardRestApi.DataModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\source\git\NewsBoard\NewBoardRestApi\db\NewsBoardContext.mdf;Integrated Security=True;Connect Timeout=30");
+            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{environmentName}.json", true);
+
+            optionsBuilder.UseSqlServer(builder.Build().GetConnectionString("DefaultConnection"));
             base.OnConfiguring(optionsBuilder);
         }
 
