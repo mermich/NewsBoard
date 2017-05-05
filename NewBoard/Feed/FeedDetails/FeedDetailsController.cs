@@ -25,7 +25,7 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
         public IActionResult RefreshFeed(int feedId)
         {
             var feedRepo = new FeedApi(UserId);
-            feedRepo.Refresh(feedId);
+            feedRepo.RefreshFeedArticles(feedId);
 
             return new ComposeResult(
                 new ReplaceHtmlResult("#articleList", NewsBoardUrlHelper.Action("Article", "ArticleList", "Index", new ArticleVMSearch() { Feeds = new List<int> { feedId } })),

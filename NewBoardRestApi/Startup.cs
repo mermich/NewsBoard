@@ -20,7 +20,7 @@ namespace NewBoardRestApi
             Configuration = builder.Build();
 
 
-            new FeedApi.FeedApi(3).RefreshFeedArticles();
+            new FeedApi.FeedApi(3).RefreshFeedsArticles();
             new FeedApi.FeedApi(3).RefreshFeedInformations();
         }
 

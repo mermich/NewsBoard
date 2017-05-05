@@ -11,6 +11,10 @@
   <ItemGroup>
     <Content Remove="appsettings.json" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\lib\blank.ico" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />

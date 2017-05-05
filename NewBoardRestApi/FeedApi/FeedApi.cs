@@ -15,7 +15,7 @@ namespace NewBoardRestApi.FeedApi
         {
         }
 
-        public virtual void Refresh(int feedId)
+        public virtual void RefreshFeedArticles(int feedId)
         {
             var feed = NewsBoardContext.Feeds.FirstOrDefault(f => f.Id == feedId);
             var feedDetails = new SyndicationApi().GetSyndication(feed.SyndicationUrl);
@@ -62,12 +62,12 @@ namespace NewBoardRestApi.FeedApi
 
 
 
-        public void RefreshFeedArticles()
+        public void RefreshFeedsArticles()
         {
             var feeds = NewsBoardContext.Feeds.ToList();
             foreach (var feed in feeds)
             {
-                Refresh(feed.Id);
+                RefreshFeedArticles(feed.Id);
             }
         }
 
@@ -115,7 +115,7 @@ namespace NewBoardRestApi.FeedApi
             NewsBoardContext.Feeds.Add(feed);
             NewsBoardContext.SaveChanges();
 
-            Refresh(feed.Id);
+            RefreshFeedArticles(feed.Id);
 
             return feed;
         }

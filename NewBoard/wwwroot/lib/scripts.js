@@ -17,9 +17,18 @@
     };
 })(jQuery);
 
+
+window.onpopstate = function (event) {
+    $.get(event.state.url, function (r) {
+        $("#page").html(r).hide().fadeIn(1000);
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+    });
+}
+
 $(function () {
     LoadCallback();
     $('[type="checkbox"]').not("[readonly='readonly']").bootstrapSwitch();
+    history.pushState({ url: location.href }, "replaceHtml", location.href);
 });
 
 function LoadCallback() {
@@ -163,7 +172,7 @@ function HandleAjaxResult(result) {
 
                 //if we display a full page we add it to the user's page history
                 if (result.replaceHtml.selector == "#page") {
-                    history.pushState(null, "replaceHtml", url);
+                    history.pushState({ url: url }, "replaceHtml", url);
                     document.body.scrollTop = document.documentElement.scrollTop = 0;
                 }
             });
