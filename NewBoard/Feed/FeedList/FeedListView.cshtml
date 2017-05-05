@@ -20,7 +20,7 @@
                             </a>
                             <a href="#"
                                ns-action-type="simpleGetAction"
-                               ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new { articleId=Model.Feeds[i].Id})">
+                               ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new { feedId = Model.Feeds[i].Id})">
                                 @Model.Feeds[i].Title
                             </a>
                             <div class="btn-group pull-right" role="group">

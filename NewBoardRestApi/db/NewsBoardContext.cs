@@ -29,11 +29,9 @@ namespace NewBoardRestApi.DataModel
 
         public DbSet<Article> Articles { get; set; }
 
-
         public DbSet<Feed> Feeds { get; set; }
 
         public DbSet<WebSite> WebSites { get; set; }
-
 
         public DbSet<Tag> Tags { get; set; }
 
@@ -48,7 +46,6 @@ namespace NewBoardRestApi.DataModel
         public DbSet<GroupPermission> GroupPermissions { get; set; }
 
         public DbSet<Group> Groups { get; set; }
-
 
         public DbSet<User> Users { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using NewBoardRestApi.DataModel;
+using System;
 using System.Linq;
 
 namespace NewBoardRestApi.ArticleApi
@@ -7,19 +8,9 @@ namespace NewBoardRestApi.ArticleApi
     {
         public int Id { get; private set; }
 
-        public bool IsNew { get; set; }
-
         public bool IsSubscribed { get; set; }
 
-        public string IsNewClass
-        {
-            get
-            {
-                if (IsNew)
-                    return "IsNewClass";
-                return "";
-            }
-        }
+        public string Class { get; private set; }
 
         public string IconUrl { get; set; } = "";
 
@@ -51,7 +42,8 @@ namespace NewBoardRestApi.ArticleApi
             IconUrl = article.Feed.WebSite.IconUrl;
 
             IsSubscribed = article.Feed.UserFeeds != null && article.Feed.UserFeeds.Any(uf => uf.UserId == userId && uf.IsSubscribed);
-            IsNew = article.UserArticles == null || !article.UserArticles.Any(ua => ua.UserId == userId);
+
+            Class = article.PublishDate.Date == DateTime.Today ? "new" : "";
         }
     }
 }
