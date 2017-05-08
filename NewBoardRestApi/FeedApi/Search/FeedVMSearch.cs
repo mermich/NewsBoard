@@ -27,7 +27,12 @@ namespace NewBoardRestApi.FeedApi.Search
         All,
         HideHidden,
         HideReported,
-        HideOpened,
-        
+        HideOpened
+    }
+
+    public enum FeedListOrderBy
+    {
+        Name,
+        Subscriptions
     }
 }

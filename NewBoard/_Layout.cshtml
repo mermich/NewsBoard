@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+    <link rel="icon" type="image/png" href="~/lib/favico.ico">
 
     <!--Our stuff-->
     <link href="~/lib/site.css" rel="stylesheet" />
@@ -44,12 +45,25 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetUserArticles")">Mes articles</a></li>
-                    <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetAllArticleList")">Tous les articles</a></li>
-                    <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetUserFeeds")">Mes Flux</a></li>
-                    <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetAllFeeds")">Tous les Flux</a></li>
-                    <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetAddFeed")">Ajouter un flux</a></li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Articles<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetUserArticles")">Mes articles</a></li>
+                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetArticleSearch")">Les autres articles</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Flux<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetUserFeeds")">Mes Flux</a></li>
+                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetFeedSearch")">Les autres Flux</a></li>
+                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetAddFeed")">Ajouter un flux</a></li>
+                        </ul>
+                    </li>
+
                     <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetAboutPage")">A propos de l'auteur</a></li>
+
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -57,14 +71,6 @@
                             <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetGroupListPage")">Groupes</a></li>
                             <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetPermissionListPage")">Permissions</a></li>
                             <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetUserListPage")">Utilisateurs</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Control Testing<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetSimpleGetAction")">SimpleGetAction</a></li>
-                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetCustomJsonResult")">CustomJsonResult</a></li>
-                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetCascadingData")">CascadingData</a></li>
                         </ul>
                     </li>
                 </ul>

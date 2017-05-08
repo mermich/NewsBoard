@@ -153,11 +153,16 @@ function HandleAjaxResult(result) {
         $.notify({ message: result.fatalMessage }, { type: 'fatal' });
     }
 
-    if (result.OpenUrl != undefined) {
+    if (result.openUrl != undefined) {
         $('#siteloader').show();
-        $("#siteloader").attr("src", result.OpenUrl);
+        $("#siteloader").attr("src", result.openUrl);
     }
 
+    if (result.removeHtml != undefined) {
+        let selector = $(result.removeHtml.selector);
+        $(selector).remove();
+    }
+    
     if (result.replaceHtml != undefined) {
         let selector = $(result.replaceHtml.selector);
         if (selector.length > 0) {

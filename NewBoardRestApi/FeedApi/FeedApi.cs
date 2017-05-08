@@ -1,11 +1,13 @@
 ﻿using ApiTools;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.BaseApi;
 using NewBoardRestApi.DataModel;
 using NewBoardRestApi.FeedApi.Search;
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace NewBoardRestApi.FeedApi
 {
@@ -126,22 +128,49 @@ namespace NewBoardRestApi.FeedApi
             if (filter == null)
                 filter = new FeedVMSearch();
 
-                return NewsBoardContext
-                    .Feeds
-                    .Take(filter.MaxItems)
-                    .Where(f => !filter.Tags.Any() || f.FeedTags.Any(ft => filter.Tags.Contains(ft.TagId)))
-                    .Where(f => f.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsSubscribed))
-                    //.Where(f => !filter.OnlyUserSubscription || f.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsSubscribed))
-                    .Where(f => filter.HideReported || !f.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsReported))
-                    .Include(f => f.UserFeeds)
-                    .ThenInclude(uf => uf.User)
-                    .Include(f => f.Articles)
-                    .ThenInclude(a => a.UserArticles)
-                    .Include(f => f.WebSite)
-                    .OrderBy(f => f.Title)
-                    .ToFeedVMList(UserId);
+            return NewsBoardContext
+                .Feeds
+                .Take(filter.MaxItems)
+                .Where(f => !filter.Tags.Any() || f.FeedTags.Any(ft => filter.Tags.Contains(ft.TagId)))
+                .Where(subscriptionFilter(filter.SubscriptionFilter))
+                .Where(f => filter.HideReported || !f.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsReported))
+                .Include(f => f.UserFeeds)
+                .ThenInclude(uf => uf.User)
+                .Include(f => f.Articles)
+                .ThenInclude(a => a.UserArticles)
+                .Include(f => f.WebSite)
+                .OrderBy(orderBy(filter.OrderBy))
+                .ToFeedVMList(UserId);
         }
 
+
+        Expression<Func<Feed, string>> orderBy(FeedListOrderBy by)
+        {
+            switch (by)
+            {
+                case FeedListOrderBy.Name:
+                    return f => f.Title;
+                case FeedListOrderBy.Subscriptions:
+                    return f => f.Title;
+                default:
+                    return f => f.Title;
+            }
+        }
+
+        Expression<Func<Feed, bool>> subscriptionFilter(SubscriptionFilter filter)
+        {
+            switch (filter)
+            {
+                case SubscriptionFilter.All:
+                    return f => true;
+                case SubscriptionFilter.OnlySubscribbed:
+                    return f => f.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsSubscribed);
+                case SubscriptionFilter.OnlyUnSubscribbed:
+                    return f => !f.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsSubscribed);
+                default:
+                    return f => true;
+            }
+        }
 
         public Feed CreateSubscriptionAndSubScribe(string addFeedUrl)
         {
@@ -276,7 +305,7 @@ namespace NewBoardRestApi.FeedApi
             feedDb.WebSite.IconUrl = feed.IconUrl;
             feed.WebSiteUrl = feed.WebSiteUrl;
 
-            //merge tags
+            // Merge tags
             foreach (var item in feed.Tags.Items)
             {
                 var existingTag = feedDb.FeedTags.FirstOrDefault(ft => ft.TagId == item.Value);
@@ -290,7 +319,7 @@ namespace NewBoardRestApi.FeedApi
                 }
                 else
                 {
-                    //remove  tag
+                    // Remove  tag
                     if (!item.IsSelected)
                     {
                         NewsBoardContext.FeedTags.Remove(existingTag);

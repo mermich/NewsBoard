@@ -37,7 +37,7 @@ namespace NewsBoard.wwwroot.Article.ArticleList
             articleApi.HideArticle(articleId);
             
             return new ComposeResult(
-                new HideHtmlResult("#article-" + articleId),
+                new HideHtmlResult("[article='" + articleId+"']"),
                 new SuccessMessageResult("Cet article ne sera plus affiche."));
         }
     }

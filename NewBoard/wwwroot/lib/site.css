@@ -180,7 +180,7 @@ a:focus:not(:hover) {
 .alert-fatal {
     background-color: crimson;
     border-color: crimson;
-    color: crimson;
+    color: white;
 }
 
     .alert-fatal hr {
@@ -188,7 +188,7 @@ a:focus:not(:hover) {
     }
 
     .alert-fatal .alert-link {
-        color: #843534;
+        color: white;
     }
 
 #loginMenuLink {

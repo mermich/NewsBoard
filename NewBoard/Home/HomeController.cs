@@ -23,20 +23,27 @@ namespace NewsBoard.wwwroot.Home
             return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().UserArticleListAction);
         }
 
-        public IActionResult GetAllArticleList()
+        public IActionResult GetArticleSearch()
         {
             return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().AllArticleListAction);
         }
+
 
         public IActionResult GetUserFeeds()
         {
             return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().UserFeedListAction);
         }
 
-        public IActionResult GetAllFeeds()
+        public IActionResult GetFeedSearch()
         {
             return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().AllFeedListAction);
         }
+
+        
+
+        
+
+      
 
         public IActionResult GetAddFeed()
         {
@@ -67,22 +74,5 @@ namespace NewsBoard.wwwroot.Home
         {
             return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("User", "UserList", "Index"));
         }
-
-        public IActionResult GetSimpleGetAction()
-        {
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Controls", "SimpleGetAction", "Index"));
-        }
-
-
-        public IActionResult GetCustomJsonResult()
-        {
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Controls", "CustomJsonResult", "Index"));
-        }
-
-        public IActionResult GetCascadingData()
-        {
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("Controls", "CascadingData", "Index"));
-        }
-        
     }
 }

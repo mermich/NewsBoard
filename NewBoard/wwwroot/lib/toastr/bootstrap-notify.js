@@ -33,7 +33,7 @@
             from: "top",
             align: "right"
         },
-        offset: 20,
+        offset: 40,
         spacing: 10,
         z_index: 1031,
         delay: 5000,
@@ -111,12 +111,10 @@
             end: 'webkitAnimationEnd oanimationend MSAnimationEnd animationend'
         };
 
-        if (typeof this.settings.offset === 'number') {
-            this.settings.offset = {
-                x: this.settings.offset,
-                y: this.settings.offset
-            };
-        }
+        this.settings.offset = {
+            x: 20,
+            y: 50
+        };
 
         //if duplicate messages are not allowed, then only continue if this new message is not a duplicate of one that it already showing
         if (this.settings.allow_duplicates || (!this.settings.allow_duplicates && !isDuplicateNotification(this))) {

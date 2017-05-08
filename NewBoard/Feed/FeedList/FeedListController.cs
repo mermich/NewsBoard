@@ -50,7 +50,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
             return new ComposeResult(
                new SuccessMessageResult("Subscribed"),
                new ReplaceHtmlResult("#UserSubscription", NewsBoardUrlHelper.Action("Feed", "UserSubscription", "Index")),
-               new ReplaceHtmlResult("[name='feed-" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId = feedId })));
+               new ReplaceHtmlResult("[feed='" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId = feedId })));
         }
 
         public IActionResult Unsubscribe(int feedId)
@@ -60,8 +60,8 @@ namespace NewsBoard.wwwroot.Feed.FeedList
 
             return new ComposeResult(
                 new SuccessMessageResult("Unsubscribed"),
-                new ReplaceHtmlResult("#UserSubscription", NewsBoardUrlHelper.Action("Feed", "UserSubscription", "Index")),
-                new ReplaceHtmlResult("[name='feed-" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId = feedId })));
+                new RemoveHtmlResult("[article-feed='" + feedId + "']"),
+                new ReplaceHtmlResult("[feed='" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId = feedId })));
         }
 
         public IActionResult Report(int feedId)
@@ -71,7 +71,8 @@ namespace NewsBoard.wwwroot.Feed.FeedList
 
             return new ComposeResult(
                   new SuccessMessageResult("Reported"),
-                  new ReplaceHtmlResult("[name='feed-" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId = feedId })));
+                  new RemoveHtmlResult("[article-feed='"+ feedId + "']"),
+                  new ReplaceHtmlResult("[feed='" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId = feedId })));
         }
 
 
@@ -82,7 +83,8 @@ namespace NewsBoard.wwwroot.Feed.FeedList
 
             return new ComposeResult(
                   new SuccessMessageResult("StopDisplay"),
-                  new ReplaceHtmlResult("[name='feed-" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId = feedId })));
+                  new RemoveHtmlResult("[article-feed='" + feedId + "']"),
+                  new ReplaceHtmlResult("[feed='" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId = feedId })));
         }
 
         

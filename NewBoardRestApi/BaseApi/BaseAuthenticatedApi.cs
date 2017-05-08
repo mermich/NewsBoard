@@ -25,7 +25,7 @@ namespace NewBoardRestApi.BaseApi
         {
             get
             {
-                return UserId != BaseAuthenticatedApi.UnAuthenticatedUserId;
+                return UserId != UnAuthenticatedUserId;
             }
         }
 
@@ -33,7 +33,7 @@ namespace NewBoardRestApi.BaseApi
         {
             get
             {
-                return UserId == BaseAuthenticatedApi.UnAuthenticatedUserId;
+                return UserId == UnAuthenticatedUserId;
             }
         }
     }

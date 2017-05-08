@@ -46,7 +46,7 @@ namespace NewsBoard.Tools
         
         public string SuggestedFeedListAction =>
             FeedListAction(
-                new FeedVMSearch { SubscriptionFilter = SubscriptionFilter.OnlyUnSubscribbed, HideReported = false, MaxItems = 5, OrderBy = null },
+                new FeedVMSearch { SubscriptionFilter = SubscriptionFilter.OnlyUnSubscribbed, HideReported = true, MaxItems = 5 },
                 new FeedVMListOptions { Heading = "Les Flux suggeres" });        
 
 
