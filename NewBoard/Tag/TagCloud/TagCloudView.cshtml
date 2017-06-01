@@ -3,7 +3,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        Les Tags
+        Tags
     </div>
 
     <div class="panel-body">
@@ -11,7 +11,7 @@
         {
             <button type="button"
                     class="btn btn-info btn-xs"
-                    ns-action-url="@Url.NewsBoardUrlHelper().Action("Tag", "TagCloud", "GetBrowseByTag", new { Id=Model.Tags[i].Id})"
+                    ns-action-url="@Url.NewsBoardUrlHelper().Action("Tag", "TagCloud", "GetArticlesByTag", new { Id=Model.Tags[i].Id})"
                     ns-action-type="simpleGetAction"
                     aria-haspopup="true"
                     aria-expanded="false">

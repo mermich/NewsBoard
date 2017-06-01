@@ -14,5 +14,7 @@ namespace NewBoardRestApi.ArticleApi
 
         public string OrderBy { get; set; }
 
+        public List<int> Tags { get; set; } = new List<int>();
+
     }
 }

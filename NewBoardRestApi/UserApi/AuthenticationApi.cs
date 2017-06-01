@@ -1,8 +1,11 @@
 ﻿using ApiTools;
 using Microsoft.EntityFrameworkCore;
 using NewBoardRestApi.DataModel;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace NewBoardRestApi.UserApi
 {
@@ -10,9 +13,14 @@ namespace NewBoardRestApi.UserApi
     {
         public User Register(UserRegisterVM model)
         {
+            Regex r = new Regex(@"^\w + ([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$");
             if (NewsBoardContext.Users.Any(u => u.Email == model.Email))
             {
                 throw new BusinessLogicException("Un utilisateur existe deja avec cet email.");
+            }
+            else if (!r.IsMatch(model.Email))
+            {
+                throw new BusinessLogicException("Adresse email invalide.");
             }
             else
             {
@@ -23,9 +31,22 @@ namespace NewBoardRestApi.UserApi
                 NewsBoardContext.Users.Add(user);
                 NewsBoardContext.SaveChanges();
 
+                var msg = new SendGridMessage()
+                {
+                    From = new EmailAddress("emd747@gmail.com", "News Board Admin !"),
+                    Subject = "Hello World from the NewsBoard!",
+                    PlainTextContent = "Hello, Email!",
+                    HtmlContent = $@"<strong>Hello, Email</strong>"
+                };
+                msg.AddTo(new EmailAddress(model.Email));
+                var client = new SendGridClient("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");
+                client.SendEmailAsync(msg);
+
                 return user;
             }
         }
+
+
 
         public UserVM Login(UserLoginVM model)
         {

@@ -38,6 +38,7 @@ namespace NewBoardRestApi.ArticleApi
                 .Where(a => !filter.OnlyUserSubscription || !a.Feed.UserFeeds.Any(uf => uf.UserId == UserId && !uf.IsSubscribed))
                 .Where(a => !filter.HideReported || !a.Feed.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsReported))
                 .Where(a => !filter.Feeds.Any() || filter.Feeds.Contains(a.FeedId))
+                .Where(a => !filter.Tags.Any() ||a.Feed.FeedTags.Any(ft => filter.Tags.Contains(ft.TagId)))
                 .OrderByDescending(a => a.PublishDate)
                 .Take(filter.MaxItems)
                 .ToArticleList(UserId);
@@ -67,9 +68,7 @@ namespace NewBoardRestApi.ArticleApi
 
             return GetArticle(id);
         }
-
-        [HttpGet("{id}")]
-        [Route("HideArticle")]
+        
         public virtual void HideArticle(int id)
         {
             if (IsAnonymous)

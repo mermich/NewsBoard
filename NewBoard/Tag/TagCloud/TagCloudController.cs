@@ -4,6 +4,7 @@ using NewBoardRestApi.TagApi;
 using NewBoardRestApi.FeedApi;
 using NewBoardRestApi.FeedApi.Search;
 using ServerSideSpaTools.JsonResult;
+using NewBoardRestApi.ArticleApi;
 
 namespace NewsBoard.wwwroot.User.UserRegister
 {
@@ -19,15 +20,15 @@ namespace NewsBoard.wwwroot.User.UserRegister
             return ReturnView("TagCloudView", model);
         }
 
-        public ActionResult GetBrowseByTag(int id)
+        public ActionResult GetArticlesByTag(int id)
         {
             var tagModel = new TagApi(UserId).GetTag(id);
-            var filter = new FeedVMSearch();
+            var filter = new ArticleVMSearch();
             filter.Tags.Add(id);
 
-            var options = new FeedVMListOptions { Heading = "Flux du Tag : " + tagModel.Label };
+            var options = new ArticleVMListOptions { Heading = "Articles du Tag : " + tagModel.Label };
 
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.FeedListAction(filter, options));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.ArticleListAction(filter, options));
         }
     }
 }
