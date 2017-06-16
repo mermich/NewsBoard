@@ -13,14 +13,12 @@
                 {
                     <tr feed="@Model.Feeds[i].Id">
                         <td>
-                            <a href="#"
-                               ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new { feedId = Model.Feeds[i].Id })"
+                            <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new { feedId = Model.Feeds[i].Id })"
                                ns-action-type="simpleGetAction">
                                 <img style="height:24px" src="@Model.Feeds[i].IconUrl" alt="" />
                             </a>
-                            <a href="#"
-                               ns-action-type="simpleGetAction"
-                               ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new { feedId = Model.Feeds[i].Id})">
+                            <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new { feedId = Model.Feeds[i].Id})"
+                               ns-action-type="simpleGetAction">
                                 @Model.Feeds[i].Title
                             </a>
                             <div class="btn-group pull-right" role="group">

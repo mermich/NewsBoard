@@ -28,19 +28,19 @@
 
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="#" ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Subscribe", new {feedId = Model.Id })"
+                        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Subscribe", new {feedId = Model.Id })"
                            type="button" ns-action-type="simpleGetAction">
                             S'abonner
                         </a>
                     </li>
                     <li>
-                        <a href="#" ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Unsubscribe", new {feedId = Model.Id })"
+                        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Unsubscribe", new {feedId = Model.Id })"
                            type="button" ns-action-type="simpleGetAction">
                             Se desabonner
                         </a>
                     </li>
                     <li>
-                        <a href="#" ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Report", new {feedId = Model.Id })"
+                        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Report", new {feedId = Model.Id })"
                            type="button" ns-action-type="simpleGetAction">
                             Report
                         </a>

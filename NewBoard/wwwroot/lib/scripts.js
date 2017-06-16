@@ -57,6 +57,8 @@ function LoadCallback() {
                 target = $(e.target).parent()[0];
 
             let targetUrl = target.getAttribute("ns-action-url");
+            if (targetUrl == undefined || targetUrl == "" )
+                targetUrl = target.getAttribute("href");
 
             console.log('clicked' + targetUrl);
             $.ajax({
@@ -85,6 +87,8 @@ function LoadCallback() {
                 target = $(e.target).parent().first()[0];
 
             let targetUrl = target.getAttribute("ns-action-url");
+            if (targetUrl == undefined || targetUrl == "")
+                targetUrl = target.getAttribute("href");
 
             console.log('clicked' + targetUrl);
             $.ajax({
@@ -106,7 +110,10 @@ function LoadCallback() {
 
         $(this).change(function (e) {
             let target = e.target;
+
             let targetUrl = target.getAttribute("ns-action-url");
+            if (targetUrl == undefined || targetUrl == "")
+                targetUrl = target.getAttribute("href");
 
             console.log('clicked' + targetUrl);
             $.ajax({

@@ -27,10 +27,18 @@ namespace NewsBoard.wwwroot.Feed.FeedList
             var feedRepo = new FeedApi(UserId);
             var feed = feedRepo.GetFeed(feedId);
 
-            // Opens the article and should also update stats.
-            return new ComposeResult(
-                new OpenNewWindowResult(feed.WebSiteUrl),
-                new WarnMessageResult("Ouverture dans une nouvelle fenetre."));
+            if (IsAjaxRequest)
+            {
+                // Opens the article and should also update stats.
+                return new ComposeResult(
+                    new OpenNewWindowResult(feed.WebSiteUrl),
+                    new WarnMessageResult("Ouverture dans une nouvelle fenetre."));
+
+            }
+            else
+            {
+                return new RedirectResult(feed.WebSiteUrl);
+            }
         }
 
 
@@ -71,7 +79,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
 
             return new ComposeResult(
                   new SuccessMessageResult("Reported"),
-                  new RemoveHtmlResult("[article-feed='"+ feedId + "']"),
+                  new RemoveHtmlResult("[article-feed='" + feedId + "']"),
                   new ReplaceHtmlResult("[feed='" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId = feedId })));
         }
 
@@ -87,7 +95,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
                   new ReplaceHtmlResult("[feed='" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId = feedId })));
         }
 
-        
+
 
         public IActionResult ShowDetails(int feedId)
         {

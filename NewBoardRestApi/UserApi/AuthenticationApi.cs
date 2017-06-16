@@ -51,7 +51,10 @@ namespace NewBoardRestApi.UserApi
         public UserVM Login(UserLoginVM model)
         {
             var user = NewsBoardContext.Users
-                .Include(u => u.UserGroups).ThenInclude(ug => ug.Group).ThenInclude(g => g.GroupPermissions).ThenInclude(gp => gp.Permission)
+                .Include(u => u.UserGroups)
+                .ThenInclude(ug => ug.Group)
+                .ThenInclude(g => g.GroupPermissions)
+                .ThenInclude(gp => gp.Permission)
                 .FirstOrDefault(u => u.Email == model.Email);
 
             if (user == null)
@@ -71,8 +74,11 @@ namespace NewBoardRestApi.UserApi
 
         public List<string> GetPermissions(int userId)
         {
-            var result = NewsBoardContext.Groups.Where(g => g.UserGroups.Any(ug => ug.UserId == userId))
-                 .SelectMany(g => g.GroupPermissions.Select(gp => gp.Permission.Key)).ToList();
+            var result = NewsBoardContext
+                .Groups
+                .Where(g => g.UserGroups.Any(ug => ug.UserId == userId))
+                .SelectMany(g => g.GroupPermissions.Select(gp => gp.Permission.Key))
+                .ToList();
 
 
             return result;
