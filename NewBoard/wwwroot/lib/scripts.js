@@ -1,6 +1,6 @@
 ﻿(function ($) {
+    // Serialize a form, surely coming from: https://jsfiddle.net/gabrieleromanato/bynaK/
     $.fn.serializeFormJSON = function () {
-
         var o = {};
         var a = this.serializeArray();
         $.each(a, function () {
@@ -17,7 +17,7 @@
     };
 })(jQuery);
 
-
+// On history.back
 window.onpopstate = function (event) {
     $.get(event.state.url, function (r) {
         $("#page").html(r).hide().fadeIn(1000);
@@ -43,29 +43,48 @@ function LoadCallback() {
         });
     });
 
+    // Hook to a jquery click on ns-action-type='simpleGetAction' .
     $("[ns-action-type='simpleGetAction']").not("[ns-action='initialized']").each(function () {
-        this.setAttribute("ns-action", "initialized");
+        console.log('clicked simpleGetAction' + targetUrl);
+        performSimpleAjaxAction(this, "GET", null);
+    });
 
-        $("[ns-action-type='simpleGetAction']").off('click').click(function (e) {
+    // Hook to a jquery click on ns-action-type='simplePostAction' .
+    $("[ns-action-type='simplePostAction']").not("[ns-action='initialized']").each(function () {
+        console.log('clicked simplePostAction' + targetUrl);
+        performSimpleAjaxAction(this, "POST", $(this).closest("form").serializeFormJSON());
+    });
+
+    // Hook to a jquery click on ns-action-type='dataChanged' .
+    $("[ns-action-type='dataChanged']").not("[ns-action='initialized']").each(function () {
+        performSimpleAjaxAction(this, "POST", $(this).closest("form").serializeFormJSON());
+    });
+
+    function performSimpleAjaxAction(element, verb, dataToSend) {
+        element.setAttribute("ns-action", "initialized");
+
+        $(element).off('click').click(function (e) {
             let target = e.target;
 
-            //we could have clicked the icon <i> element
+            // We could have clicked the icon <i> element. Should be refactored.
             if ($(e.target).is("i"))
                 target = $(e.target).parent().first()[0];
 
-            if ($(e.target).is("img"))
+            // We could have clicked the icon <img> element. Should be refactored.
+            else if ($(e.target).is("img"))
                 target = $(e.target).parent()[0];
 
             let targetUrl = target.getAttribute("ns-action-url");
-            if (targetUrl == undefined || targetUrl == "" )
+            if (targetUrl == undefined || targetUrl == "")
                 targetUrl = target.getAttribute("href");
 
-            console.log('clicked' + targetUrl);
+            console.log('performSimpleAjaxAction: ' + targetUrl);
             $.ajax({
-                type: "GET",
+                type: verb,
                 url: targetUrl,
                 contentType: 'application/json; charset=utf-8',
                 dataType: "json",
+                data: dataToSend,
                 success: function (result) {
                     console.log(result);
                     HandleAjaxResult(result);
@@ -74,70 +93,16 @@ function LoadCallback() {
             });
             return false;
         });
-    });
-
-    $("[ns-action-type='simplePostAction']").not("[ns-action='initialized']").each(function () {
-        this.setAttribute("ns-action", "initialized");
-
-        $(this).off('click').click(function (e) {
-            let target = e.target;
-
-            //we could have clicked the icon <i> element
-            if ($(e.target).is("i"))
-                target = $(e.target).parent().first()[0];
-
-            let targetUrl = target.getAttribute("ns-action-url");
-            if (targetUrl == undefined || targetUrl == "")
-                targetUrl = target.getAttribute("href");
-
-            console.log('clicked' + targetUrl);
-            $.ajax({
-                type: "POST",
-                url: targetUrl,
-                data: $(e.target).closest("form").serializeFormJSON(),
-                success: function (result) {
-                    console.log(result);
-                    HandleAjaxResult(result);
-                    LoadCallback();
-                }
-            });
-            return false;
-        });
-    });
-
-    $("[ns-action-type='dataChanged']").not("[ns-action='initialized']").each(function () {
-        this.setAttribute("ns-action", "initialized");
-
-        $(this).change(function (e) {
-            let target = e.target;
-
-            let targetUrl = target.getAttribute("ns-action-url");
-            if (targetUrl == undefined || targetUrl == "")
-                targetUrl = target.getAttribute("href");
-
-            console.log('clicked' + targetUrl);
-            $.ajax({
-                type: "POST",
-                url: targetUrl,
-                data: $(e.target).closest("form").serializeFormJSON(),
-                success: function (result) {
-                    console.log(result);
-                    HandleAjaxResult(result);
-                    LoadCallback();
-                }
-            });
-            return false;
-        });
-    });
+    }
 }
 
 
 
-
+// When getting a reponse from a ajax call, decides what to do.
 function HandleAjaxResult(result) {
     console.debug(result);
 
-    //multiple results, we call HandleAjaxResult for every item.
+    // Multiple results, we call HandleAjaxResult for every item.
     if (Array.isArray(result)) {
         for (var i = 0; i < result.length; i++) {
             HandleAjaxResult(result[i].value);
@@ -175,14 +140,14 @@ function HandleAjaxResult(result) {
         if (selector.length > 0) {
             var url = result.replaceHtml.action;
 
-            // display a loader
+            // Display a loader.
             selector.html("<div class='loader'></div>");
 
             $.get(url, function (result2) {
                 selector.html(result2).hide().fadeIn(1000);
                 LoadCallback(selector);
 
-                //if we display a full page we add it to the user's page history
+                // If we display a full page we add it to the user's page history.
                 if (result.replaceHtml.selector == "#page") {
                     history.pushState({ url: url }, "replaceHtml", url);
                     document.body.scrollTop = document.documentElement.scrollTop = 0;
