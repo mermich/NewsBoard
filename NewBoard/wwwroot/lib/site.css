@@ -42,6 +42,7 @@ html, body.body {
     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
     box-shadow: 0 1px 2px rgba(0,0,0,.15);
     margin-top: 0px;
+    width:100% !important;
 }
 
 .navbar {
@@ -104,14 +105,14 @@ html, body.body {
 .page-header {
     background: url(http://arpenterlechemin.com/wp-content/uploads/2017/02/1230619-2-1024x769.jpg) no-repeat scroll top;
     background-size: 100% auto;
-    height: 300px;
+    height: 250px;
     margin: 0px;
 }
 
 .h1-header {
     margin: 0;
     position: relative;
-    top: 50%;
+    top: 150px;
     left: 50%;
     -webkit-transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);

@@ -12,8 +12,8 @@ namespace NewsBoard.wwwroot.Permission.PermissionList
         public IActionResult Index()
         {
             var api = new PermissionApi(UserId);
-            var model =api.GetPermissions();
-            
+            var model = api.GetPermissions();
+
             return ReturnView("PermissionListView", model);
         }
 

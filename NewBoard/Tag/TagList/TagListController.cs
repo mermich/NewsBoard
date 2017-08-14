@@ -12,14 +12,14 @@ namespace NewsBoard.wwwroot.User.UserRegister
         public IActionResult Index()
         {
             var api = new TagApi(UserId);
-            var model =api.GetTags();
-            
+            var model = api.GetTags();
+
             return ReturnView("TagListView", model);
         }
 
         public ActionResult GetEdit(int tagId)
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Tag", "TagEdit","Index", new { tagId = tagId }));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Tag", "TagEdit", "Index", new { tagId = tagId }));
         }
 
         public ActionResult GetCreate()

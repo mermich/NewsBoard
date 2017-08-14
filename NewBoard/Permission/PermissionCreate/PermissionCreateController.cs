@@ -13,7 +13,7 @@ namespace NewsBoard.wwwroot.Permission.PermissionCreate
         {
             var api = new PermissionApi(UserId);
             var model = api.GetNewPermissionEditVM();
-            
+
             return ReturnView("PermissionCreateView", model);
         }
 
