@@ -31,7 +31,10 @@
             <div class="form-group">
                 <label for="Title" class="col-sm-2 control-label">IconUrl</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="Title" value="@Model.IconUrl" name="IconUrl" placeholder="IconUrl">
+                    <div class=" input-group">
+                        <input type="text" class="form-control" id="Title" value="@Model.IconUrl" name="IconUrl" placeholder="IconUrl">
+                        <span class="input-group-addon" alt="website icon" style="background-image: url(@Model.IconUrl); background-size: contain; background-repeat-x: no-repeat; background-repeat-y: no-repeat; background-position: center;"></span>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
