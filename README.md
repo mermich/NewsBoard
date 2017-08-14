@@ -1,5 +1,9 @@
 # NewsBoard
-This app is a community feed agregator.
+This app is a community feed agregator. 
+- As a user you can add feeds that youll subscribe. 
+- You can also directly paset a website adress, and the engine will try to find any feed to subscribe
+- On top of it the app can suggest you feed used from other users that you can subscribe.
+- No personall info are gathered, no ads, all clean !
 
 ## Projects organization
 - NewsBoard folder contains the main web project.
@@ -19,6 +23,8 @@ This app is a community feed agregator.
 
 
 #### To Do
+- Automaticly refresh feeds on a daily basics ?
+- Chrome extention, or snippet ?
 - Add a Friends feature
 - Display feeds of friends
 - Suggest feeds better
