@@ -49,9 +49,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ext\ext\ApiTools\ApiTools.csproj" />
-    <ProjectReference Include="..\ext\ext\ServerSideSpaTools\ServerSideSpaTools.csproj" />
+    <ProjectReference Include="..\ApiTools\ApiTools.csproj" />
     <ProjectReference Include="..\NewBoardRestApi\NewBoardRestApi.csproj" />
+    <ProjectReference Include="..\ServerSideSpaTools\ServerSideSpaTools.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="appsettings.json">
