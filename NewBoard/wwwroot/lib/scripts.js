@@ -45,13 +45,11 @@ function LoadCallback() {
 
     // Hook to a jquery click on ns-action-type='simpleGetAction' .
     $("[ns-action-type='simpleGetAction']").not("[ns-action='initialized']").each(function () {
-        console.log('clicked simpleGetAction' + targetUrl);
         performSimpleAjaxAction(this, "GET", null);
     });
 
     // Hook to a jquery click on ns-action-type='simplePostAction' .
     $("[ns-action-type='simplePostAction']").not("[ns-action='initialized']").each(function () {
-        console.log('clicked simplePostAction' + targetUrl);
         performSimpleAjaxAction(this, "POST", $(this).closest("form").serializeFormJSON());
     });
 
