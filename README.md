@@ -1,5 +1,5 @@
 # NewsBoard
-This app is a community feed agregator. 
+This app is a community feed aggregator. 
 - As a user you can add feeds that youll subscribe. 
 - You can also directly paset a website adress, and the engine will try to find any feed to subscribe
 - On top of it the app can suggest you feed used from other users that you can subscribe.
