@@ -4,9 +4,8 @@ This app is a community feed agregator.
 ## Projects organization
 - NewsBoard folder contains the main web project.
 - NewBoardRestApi folder contains the webapi project that implements the business logic.
-- 'ext/DiscoverWebSite' is a small project to browse and parse a webpage in order to discover the tss/atom feeds.
-- 'ext/ext/ApiTools' contains tools to build restapi.
-- 'ext/ext/ServerSideSpaTools' contains tools to build a single page app.
+- ApiTools contains tools to build restapi.
+- ServerSideSpaTools contains tools to build a single page app.
 
 #### Current features
 - Any registered user can add need feeds and subscribe to them.
@@ -19,6 +18,12 @@ This app is a community feed agregator.
 - Feeds can be filtered by tags.
 
 
-#### To Fix
-- Move database connection string to the config
-
+#### To Do
+- Add a Friends feature
+- Display feeds of friends
+- Suggest feeds better
+- Revamp home page to insists on community
+- Prevent from spamming
+- ApiTools and ServerSideSpaTools should be refactored into something else (smaller)
+- Merge code into a fluent api ?
+- Immuatability ?
