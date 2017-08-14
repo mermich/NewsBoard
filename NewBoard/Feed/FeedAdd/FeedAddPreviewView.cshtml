@@ -7,7 +7,44 @@
         <input type="hidden" name="SyndicationUrl" value="@Model.WebSiteDetails.SyndicationUrl" />
     </div>
 
-    <div class="panel-body" style="padding:0px">
+    <div class="form-horizontal">
+
+        <div class="panel-body panel-edit">
+            <div class="form-group">
+                <label for="Description" class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="Description" value="@Model.WebSiteDetails.Description" name="Description" placeholder="Description">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="SyndicationUrl" class="col-sm-2 control-label">SyndicationUrl</label>
+                <div class="col-sm-10">
+                    <input type="url" class="form-control" id="SyndicationUrl" value="@Model.WebSiteDetails.SyndicationUrl" name="SyndicationUrl" placeholder="SyndicationUrl">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Title" class="col-sm-2 control-label">Title</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="Title" value="@Model.WebSiteDetails.Title" name="Title" placeholder="Title">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Title" class="col-sm-2 control-label">IconUrl</label>
+                <div class="col-sm-10">
+                    <div class=" input-group">
+                        <input type="text" class="form-control" id="Title" value="@Model.WebSiteDetails.IconUrl" name="IconUrl" placeholder="IconUrl">
+                        <span class="input-group-addon" alt="website icon" style="background-image: url(@Model.WebSiteDetails.IconUrl); background-size: contain; background-repeat-x: no-repeat; background-repeat-y: no-repeat; background-position: center;"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="WebSiteUrl" class="col-sm-2 control-label">WebSiteUrl</label>
+                <div class="col-sm-10">
+                    <input type="url" class="form-control" id="WebSiteUrl" value="@Model.WebSiteDetails.Url" name="WebSiteUrl" placeholder="WebSiteUrl">
+                </div>
+            </div>
+
+        </div>
         <table class="table table-striped table-condensed">
             <tbody>
                 @for (int i = 0; i < Model.SyndicationContent.Items.Count; i++)
@@ -28,4 +65,5 @@
             </tbody>
         </table>
     </div>
+
 </div>
