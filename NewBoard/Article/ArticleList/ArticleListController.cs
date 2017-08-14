@@ -26,18 +26,27 @@ namespace NewsBoard.wwwroot.Article.ArticleList
             var article = articleApi.OpenArticle(articleId);
 
             // Opens the article and should also update stats.
-            return new ComposeResult(
+            if (IsAjaxRequest)
+            {
+                // Opens the article and should also update stats.
+                return new ComposeResult(
                 new OpenNewWindowResult(article.Url),
                 new WarnMessageResult("Ouverture dans une nouvelle fenetre."));
+
+            }
+            else
+            {
+                return new RedirectResult(article.Url);
+            }
         }
 
         public IActionResult Hide(int articleId)
         {
             var articleApi = new ArticleApi(UserId);
             articleApi.HideArticle(articleId);
-            
+
             return new ComposeResult(
-                new HideHtmlResult("[article='" + articleId+"']"),
+                new HideHtmlResult("[article='" + articleId + "']"),
                 new SuccessMessageResult("Cet article ne sera plus affiche."));
         }
     }

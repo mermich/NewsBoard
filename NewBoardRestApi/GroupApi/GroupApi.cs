@@ -49,10 +49,10 @@ namespace NewBoardRestApi.GroupApi
 
 
             return NewsBoardContext
-                   .Groups
-                   .Include(t => t.GroupPermissions)
-                   .FirstOrDefault(t => t.Id == groupId)
-                   .ToGroupEditVM(permissions);
+                .Groups
+                .Include(t => t.GroupPermissions)
+                .FirstOrDefault(t => t.Id == groupId)
+                .ToGroupEditVM(permissions);
         }
 
         public GroupVM CreateGroup(GroupEditVM groupVM)
@@ -79,8 +79,8 @@ namespace NewBoardRestApi.GroupApi
         {
             var group = NewsBoardContext
                 .Groups
-                .Include(g=>g.GroupPermissions)
-                .ThenInclude(gp=>gp.Permission)
+                .Include(g => g.GroupPermissions)
+                .ThenInclude(gp => gp.Permission)
                 .FirstOrDefault(t => t.Id == groupVM.Id);
 
             group.Label = groupVM.Label;

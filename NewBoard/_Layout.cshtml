@@ -70,7 +70,8 @@
                             <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetTagListPage")">Tags</a></li>
                             <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetGroupListPage")">Groupes</a></li>
                             <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetPermissionListPage")">Permissions</a></li>
-                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetUserListPage")">Utilisateurs</a></li>
+                            <li ns-authorized-roles="AdminUser"><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetUserListPage")">Utilisateurs</a></li>
+
                         </ul>
                     </li>
                 </ul>

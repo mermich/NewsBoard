@@ -29,11 +29,11 @@
                         <td>@Model.Groups[i].Permissions</td>
                         <td>
                             <div class="btn-group" role="group">
-                                <button class="btn btn-info btn-sm"
+                                <a class="btn btn-info btn-sm" href="#" 
                                         ns-action-url="@Url.NewsBoardUrlHelper().Action("Group", "GroupList", "GetEdit", new { groupId=Model.Groups[i].Id})"
                                         type="button" ns-action-type="simpleGetAction">
                                     Editer
-                                </button>
+                                </a>
                             </div>
                         </td>
                     </tr>
