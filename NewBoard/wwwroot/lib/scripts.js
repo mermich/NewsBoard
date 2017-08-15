@@ -27,7 +27,6 @@ window.onpopstate = function (event) {
 
 $(function () {
     LoadCallback();
-    $('[type="checkbox"]').not("[readonly='readonly']").bootstrapSwitch();
     history.pushState({ url: location.href }, "replaceHtml", location.href);
 });
 
