@@ -43,6 +43,8 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
                 return new ComposeResult(
                     new SuccessMessageResult("Logged"),
+                    new ReplaceHtmlResult("#tagCloud", NewsBoardUrlHelper.Action("Tag", "TagCloud", "Index")),
+                    new ReplaceHtmlResult("#suggestedFeedListAction", NewsBoardUrlHelper.SuggestedFeedListAction),
                     new ReplaceHtmlResult("#UserMenu", NewsBoardUrlHelper.Action("User", "UserMenu", "Index")),
                     new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("", "Home", "Index")));
             }
@@ -59,6 +61,8 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
             return new ComposeResult(
                     new SuccessMessageResult("Signed Out"),
+                    new ReplaceHtmlResult("#tagCloud", NewsBoardUrlHelper.Action("Tag", "TagCloud", "Index")),
+                    new ReplaceHtmlResult("#suggestedFeedListAction", NewsBoardUrlHelper.SuggestedFeedListAction),
                     new ReplaceHtmlResult("#UserMenu", NewsBoardUrlHelper.Action("User", "UserMenu", "Index")),
                     new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("", "Home", "Index")));
         }

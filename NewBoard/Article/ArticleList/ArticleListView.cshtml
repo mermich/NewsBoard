@@ -17,44 +17,51 @@
                                ns-action-type="simpleGetAction">
                                 <img style="height:24px" src="@Model.Articles[i].IconUrl" alt="" />
                             </a>
-                        
-                        <a href="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Open", new { articleId=Model.Articles[i].Id})"
-                           ns-action-type="simpleGetAction">
-                            @Model.Articles[i].Label</a>
 
-                        <div class="btn-group pull-right" role="group">
-                            <button type="button" class="btn btn-default btn-xs dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
-                            </button>
+                            <a href="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Open", new { articleId=Model.Articles[i].Id})"
+                               ns-action-type="simpleGetAction">
+                                @Model.Articles[i].Label
+                            </a>
 
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Hide", new {articleId = Model.Articles[i].Id })"
-                                       type="button"
-                                       ns-action-type="simpleGetAction">
-                                        Ne plus afficher cet article
-                                    </a>
-                                </li>
-                                <li th-is-visible="Model.Articles[i].IsSubscribed">
-                                    <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Subscribe", new { feedId = Model.Articles[i].FeedId })"
-                                        type="button" ns-action-type="simpleGetAction">
-                                        S'abonner au flux
-                                    </a>
-                                </li>
-                                <li th-is-visible="!Model.Articles[i].IsSubscribed">
-                                    <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Report", new {feedId = Model.Articles[i].FeedId })"
-                                        type="button" ns-action-type="simpleGetAction">
-                                        Signaler le contenu
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Unsubscribe", new {feedId = Model.Articles[i].FeedId })"
-                                        type="button" ns-action-type="simpleGetAction">
-                                        Se desabonner
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                            <div class="btn-group pull-right" role="group">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+                                </button>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Hide", new {articleId = Model.Articles[i].Id })"
+                                           type="button"
+                                           ns-action-type="simpleGetAction">
+                                            Ne plus afficher cet article
+                                        </a>
+                                    </li>
+                                    <li th-is-visible="Model.Articles[i].IsSubscribed">
+                                        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Subscribe", new { feedId = Model.Articles[i].FeedId })"
+                                           type="button" ns-action-type="simpleGetAction">
+                                            S'abonner au flux
+                                        </a>
+                                    </li>
+                                    <li th-is-visible="!Model.Articles[i].IsSubscribed">
+                                        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Report", new {feedId = Model.Articles[i].FeedId })"
+                                           type="button" ns-action-type="simpleGetAction">
+                                            Signaler le contenu
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Unsubscribe", new {feedId = Model.Articles[i].FeedId })"
+                                           type="button" ns-action-type="simpleGetAction">
+                                            Se desabonner
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </tr>
+                }
+                @if (Model.Articles.Count == 0)
+                {
+                    <tr>
+                        <td>@Model.Options.NoDataToDisplay</td>
                     </tr>
                 }
             </tbody>

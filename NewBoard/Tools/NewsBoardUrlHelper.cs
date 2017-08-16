@@ -36,29 +36,29 @@ namespace NewsBoard.Tools
 
         public string AllFeedListAction =>
             FeedListAction(
-                new FeedVMSearch { SubscriptionFilter= SubscriptionFilter.All, HideReported = false, MaxItems = 50 },
+                new FeedVMSearch { SubscriptionFilter = SubscriptionFilter.All, HideReported = false, MaxItems = 50 },
                 new FeedVMListOptions { Heading = "Les Flux" });
 
         public string UserFeedListAction =>
             FeedListAction(
                 new FeedVMSearch { MaxItems = 50 },
                 new FeedVMListOptions { Heading = "Mes Flux" });
-        
+
         public string SuggestedFeedListAction =>
             FeedListAction(
                 new FeedVMSearch { SubscriptionFilter = SubscriptionFilter.OnlyUnSubscribbed, HideReported = true, MaxItems = 5 },
-                new FeedVMListOptions { Heading = "Les Flux suggeres" });        
+                new FeedVMListOptions { Heading = "Les Flux suggeres" });
 
 
         public string ArticleListAction(ArticleVMSearch filter, ArticleVMListOptions options) => Action("Article", "ArticleList", "Index", filter, options);
 
         public string AllArticleListAction =>
             ArticleListAction(
-                new ArticleVMSearch { OnlyUserSubscription = false, MaxItems = 50 }, 
+                new ArticleVMSearch { SubscriptionFilter = SubscriptionFilter.All, MaxItems = 50 },
                 new ArticleVMListOptions { Heading = "Tous les Articles" });
 
         public string UserArticleListAction => ArticleListAction(
-            new ArticleVMSearch { OnlyUserSubscription = true, MaxItems = 50 }, 
+            new ArticleVMSearch { SubscriptionFilter = SubscriptionFilter.OnlySubscribbed, MaxItems = 50 },
             new ArticleVMListOptions { Heading = "Articles de mes Flux" });
 
 

@@ -32,6 +32,12 @@
                         </td>
                     </tr>
                 }
+                @if (Model.Feeds.Count == 0)
+                {
+                    <tr>
+                        <td>@Model.Options.NoDataToDisplay</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

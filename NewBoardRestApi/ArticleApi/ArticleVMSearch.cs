@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using NewBoardRestApi.FeedApi.Search;
+using System.Collections.Generic;
 
 namespace NewBoardRestApi.ArticleApi
 {
@@ -8,7 +9,7 @@ namespace NewBoardRestApi.ArticleApi
 
         public int MaxItems { get; set; } = 10;
 
-        public bool OnlyUserSubscription { get; set; } = true;
+        public SubscriptionFilter SubscriptionFilter { get; set; } = SubscriptionFilter.All;
 
         public bool HideReported { get; set; } = true;
 

@@ -13,14 +13,9 @@ namespace NewBoardRestApi.UserApi
     {
         public User Register(UserRegisterVM model)
         {
-            Regex r = new Regex(@"^\w + ([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$");
             if (NewsBoardContext.Users.Any(u => u.Email == model.Email))
             {
                 throw new BusinessLogicException("Un utilisateur existe deja avec cet email.");
-            }
-            else if (!r.IsMatch(model.Email))
-            {
-                throw new BusinessLogicException("Adresse email invalide.");
             }
             else
             {
@@ -39,8 +34,9 @@ namespace NewBoardRestApi.UserApi
                     HtmlContent = $@"<strong>Hello, Email</strong>"
                 };
                 msg.AddTo(new EmailAddress(model.Email));
+                // dat key is invalid
                 var client = new SendGridClient("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");
-                client.SendEmailAsync(msg);
+                //client.SendEmailAsync(msg);
 
                 return user;
             }

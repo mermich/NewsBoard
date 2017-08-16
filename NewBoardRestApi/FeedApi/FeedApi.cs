@@ -133,7 +133,7 @@ namespace NewBoardRestApi.FeedApi
                 .Take(filter.MaxItems)
                 .Where(f => !filter.Tags.Any() || f.FeedTags.Any(ft => filter.Tags.Contains(ft.TagId)))
                 .Where(subscriptionFilter(filter.SubscriptionFilter))
-                .Where(f => filter.HideReported || !f.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsReported))
+                //.Where(f => filter.HideReported || !f.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsReported))
                 .Include(f => f.UserFeeds)
                 .ThenInclude(uf => uf.User)
                 .Include(f => f.Articles)
@@ -159,14 +159,21 @@ namespace NewBoardRestApi.FeedApi
 
         Expression<Func<Feed, bool>> subscriptionFilter(SubscriptionFilter filter)
         {
+
             switch (filter)
             {
                 case SubscriptionFilter.All:
                     return f => true;
                 case SubscriptionFilter.OnlySubscribbed:
-                    return f => f.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsSubscribed);
+                    if (UserId == UnAuthenticatedUserId)
+                        return f => false;
+                    else
+                        return f => f.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsSubscribed);
                 case SubscriptionFilter.OnlyUnSubscribbed:
-                    return f => !f.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsSubscribed);
+                    if (UserId == UnAuthenticatedUserId)
+                        return f => false;
+                    else
+                        return f => !f.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsSubscribed);
                 default:
                     return f => true;
             }

@@ -31,6 +31,7 @@
         {
             UserId = userId;
             Feed = feed;
+            IsSubscribed = true;
         }
 
         public UserFeed(int userId, int feedId)

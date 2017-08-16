@@ -4,6 +4,9 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using NewBoardRestApi.BaseApi;
 using ApiTools;
+using NewBoardRestApi.FeedApi.Search;
+using System.Linq.Expressions;
+using System;
 
 namespace NewBoardRestApi.ArticleApi
 {
@@ -35,7 +38,7 @@ namespace NewBoardRestApi.ArticleApi
             var result = NewsBoardContext.Articles
                 .Include(a => a.Feed).ThenInclude(f => f.WebSite)
                 .Include(a => a.UserArticles)
-                .Where(a => !filter.OnlyUserSubscription || !a.Feed.UserFeeds.Any(uf => uf.UserId == UserId && !uf.IsSubscribed))
+                .Where(subscriptionFilter(filter.SubscriptionFilter))
                 .Where(a => !filter.HideReported || !a.Feed.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsReported))
                 .Where(a => !filter.Feeds.Any() || filter.Feeds.Contains(a.FeedId))
                 .Where(a => !filter.Tags.Any() ||a.Feed.FeedTags.Any(ft => filter.Tags.Contains(ft.TagId)))
@@ -44,6 +47,21 @@ namespace NewBoardRestApi.ArticleApi
                 .ToArticleList(UserId);
 
             return result;
+        }
+
+        Expression<Func<Article, bool>> subscriptionFilter(SubscriptionFilter filter)
+        {
+            switch (filter)
+            {
+                case SubscriptionFilter.All:
+                    return f => true;
+                case SubscriptionFilter.OnlySubscribbed:
+                    return f => f.Feed.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsSubscribed);
+                case SubscriptionFilter.OnlyUnSubscribbed:
+                    return f => !f.Feed.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsSubscribed);
+                default:
+                    return f => true;
+            }
         }
 
 

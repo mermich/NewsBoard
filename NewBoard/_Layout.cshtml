@@ -100,17 +100,22 @@
                     </section>
                 </form>
             </div>
-            <div class="col-md-3">
-                <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Tag","TagCloud","Index")">
-                    Chargement du widget ...
-                    <div class='loader'></div>
-                </div>
 
-                <div ns-loader-url="@Url.NewsBoardUrlHelper().SuggestedFeedListAction">
-                    Chargement des flux ...
-                    <div class='loader'></div>
+            <div class="col-md-3">
+                <div id="tagCloud">
+                    <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Tag","TagCloud","Index")">
+                        Chargement du widget ...
+                        <div class='loader'></div>
+                    </div>
+                </div>
+                <div id="suggestedFeedListAction">
+                    <div ns-loader-url="@Url.NewsBoardUrlHelper().SuggestedFeedListAction">
+                        Chargement des flux ...
+                        <div class='loader'></div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
     <iframe id="siteloader" style="display:none"></iframe>
