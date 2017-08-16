@@ -8,6 +8,8 @@ namespace NewBoardRestApi.FeedApi.Search
 
         public int MaxItems { get; set; } = 10;
 
+        public bool ShouldPickRandomItems { get; set; } = false;
+
         public SubscriptionFilter SubscriptionFilter { get; set; } = SubscriptionFilter.OnlySubscribbed;
 
         public bool HideReported { get; set; } = true;

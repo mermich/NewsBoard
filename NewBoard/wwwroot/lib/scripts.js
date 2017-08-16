@@ -44,25 +44,28 @@ function LoadCallback() {
 
     // Hook to a jquery click on ns-action-type='simpleGetAction' .
     $("[ns-action-type='simpleGetAction']").not("[ns-action='initialized']").each(function () {
-        performSimpleAjaxAction(this, "GET", null);
+        performSimpleAjaxAction(this, "GET");
     });
 
     // Hook to a jquery click on ns-action-type='simplePostAction' .
     $("[ns-action-type='simplePostAction']").not("[ns-action='initialized']").each(function () {
-        performSimpleAjaxAction(this, "POST", $(this).closest("form").serializeFormJSON());
+        performSimpleAjaxAction(this, "POST");
     });
 
     // Hook to a jquery click on ns-action-type='dataChanged' .
     $("[ns-action-type='dataChanged']").not("[ns-action='initialized']").each(function () {
-        performSimpleAjaxAction(this, "POST", $(this).closest("form").serializeFormJSON());
+        performSimpleAjaxAction(this, "POST");
     });
 
-    function performSimpleAjaxAction(element, verb, dataToSend) {
+    function performSimpleAjaxAction(element, verb) {
         element.setAttribute("ns-action", "initialized");
 
         $(element).off('click').click(function (e) {
             let target = e.target;
 
+            var dataToSend = "";
+            if (verb == "POST")
+                dataToSend = $(this).closest("form").serializeFormJSON();
             // We could have clicked the icon <i> element. Should be refactored.
             if ($(e.target).is("i"))
                 target = $(e.target).parent().first()[0];
@@ -79,8 +82,6 @@ function LoadCallback() {
             $.ajax({
                 type: verb,
                 url: targetUrl,
-                contentType: 'application/json; charset=utf-8',
-                dataType: "json",
                 data: dataToSend,
                 success: function (result) {
                     console.log(result);

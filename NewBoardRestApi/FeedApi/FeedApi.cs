@@ -139,12 +139,39 @@ namespace NewBoardRestApi.FeedApi
                 .Include(f => f.Articles)
                 .ThenInclude(a => a.UserArticles)
                 .Include(f => f.WebSite)
+                .OrderBy(pickRadomItemsFilter(filter))
+                .ToList()
                 .OrderBy(orderBy(filter.OrderBy))
                 .ToFeedVMList(UserId);
         }
 
+        Expression<Func<Feed, string>> pickRadomItemsFilter(FeedVMSearch by)
+        {
+            if (by.ShouldPickRandomItems)
+            {
+                return f => new Guid().ToString();
+            }
+            else
+            {
+                return orderByExpr(by.OrderBy);
+            }
+        }
 
-        Expression<Func<Feed, string>> orderBy(FeedListOrderBy by)
+
+        Expression<Func<Feed, string>> orderByExpr(FeedListOrderBy by)
+        {
+            switch (by)
+            {
+                case FeedListOrderBy.Name:
+                    return f => f.Title;
+                case FeedListOrderBy.Subscriptions:
+                    return f => f.Title;
+                default:
+                    return f => f.Title;
+            }
+        }
+
+        Func<Feed, string> orderBy(FeedListOrderBy by)
         {
             switch (by)
             {
@@ -173,7 +200,7 @@ namespace NewBoardRestApi.FeedApi
                     if (UserId == UnAuthenticatedUserId)
                         return f => false;
                     else
-                        return f => !f.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsSubscribed);
+                        return f => f.UserFeeds.Where(uf=> uf.UserId != UserId).Any(uf => uf.IsSubscribed);
                 default:
                     return f => true;
             }
