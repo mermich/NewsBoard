@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -7,6 +8,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ServerSideSpaTools;
 using System;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace NewsBoard
 {
@@ -37,37 +42,60 @@ namespace NewsBoard
 
             var session = services.AddSession(options =>
             {
-                options.CookieName = ".NewsBoard.Session";
+                options.Cookie.Name = ".NewsBoard.Session";
                 options.IdleTimeout = TimeSpan.FromMinutes(10);
             });
 
-            services.AddAuthentication();
+
+            services.AddAuthentication(sharedOptions =>
+            {
+                sharedOptions.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                sharedOptions.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                sharedOptions.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            });
+
+            // services.AddCookieAuthentication();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1",
+                new Info
+                {
+                    Title = "Stop Web Crawlers Update API",
+                    Version = "v1",
+                    Description = "Stop Web Crawlers Update API to enable the update of Referer Spammer Lists",
+                    TermsOfService = "None"
+                    //Contact = new Contact { Name = "threenine.co.uk", Email = "support@threenine.co.uk", Url = "https://threenine.co.uk" }
+                });
+
+                c.DescribeAllEnumsAsStrings();
+                // var filePath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "SWCapi.xml");
+                //c.IncludeXmlComments(filePath);
+            });
+
+
+           services.AddAuthentication();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
-            app.UseCookieAuthentication(new CookieAuthenticationOptions()
-            {
-                AuthenticationScheme = "NewsBoardScheme",
-                LoginPath = new PathString("/User/UserLogin/"),
-                AccessDeniedPath = new PathString("/User/Denied/"),
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true,
-                SlidingExpiration = true,
-                ExpireTimeSpan = new TimeSpan(DateTime.Now.AddDays(7).Ticks)
-            });
-
+            
             app.UseStaticFiles();
             app.UseSession();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
                 // add the new route here.
                 routes.MapRoute(name: "areaRoute", template: "{area:exists}/{controller}/{action}", defaults: new { controller = "Home", action = "Index" } );
                 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
         }
     }

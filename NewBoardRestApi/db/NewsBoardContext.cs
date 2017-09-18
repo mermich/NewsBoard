@@ -24,7 +24,6 @@ namespace NewBoardRestApi.DataModel
                 .AddJsonFile($"appsettings.{environmentName}.json", true);
 
             optionsBuilder.UseSqlServer(builder.Build().GetConnectionString("DefaultConnection"));
-            //optionsBuilder.UseSqlServer("Data Source=tcp:newsb-server.database.windows.net,1433;Initial Catalog=freedb;User ID=mermich@newsb-server;Password=123456789aQ!");
             base.OnConfiguring(optionsBuilder);
         }
 

@@ -10,6 +10,9 @@ using System;
 
 namespace NewBoardRestApi.ArticleApi
 {
+    /// <summary>
+    /// plop
+    /// </summary>
     [Route("api/[controller]")]
     public class ArticleApi : BaseAuthenticatedApi
     {
@@ -17,6 +20,7 @@ namespace NewBoardRestApi.ArticleApi
         {
         }
 
+        
 
         [HttpGet("{id}")]
         public ArticleVM GetArticle(int articleId)
