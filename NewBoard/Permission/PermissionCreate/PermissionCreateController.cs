@@ -8,7 +8,7 @@ namespace NewsBoard.wwwroot.Permission.PermissionCreate
     [Area("Permission")]
     public class PermissionCreateController : BaseController
     {
-
+        [ResponseCache(Duration = 300)]
         public IActionResult Index()
         {
             var api = new PermissionApi(UserId);

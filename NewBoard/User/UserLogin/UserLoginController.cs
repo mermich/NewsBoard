@@ -6,12 +6,14 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using ServerSideSpaTools.JsonResult;
 using ApiTools;
+using Microsoft.AspNetCore.Authentication;
 
 namespace NewsBoard.wwwroot.User.UserRegister
 {
     [Area("User")]
     public class UserLoginController : BaseController
     {
+        [ResponseCache(Duration = 300)]
         public IActionResult Index()
         {
             var model = new AuthenticationApi().GetNewUserLoginVM();
@@ -26,10 +28,11 @@ namespace NewsBoard.wwwroot.User.UserRegister
                 var api = new AuthenticationApi();
                 var user = api.Login(model);
 
-                var claims = new List<Claim>();
-
-                // create *required* claims
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Email));
+                var claims = new List<Claim>
+                {
+                    // create *required* claims
+                    new Claim(ClaimTypes.NameIdentifier, user.Email)
+                };
 
                 var permissions = api.GetPermissions(user.Id);
                 foreach (var permission in permissions)
@@ -38,7 +41,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
                 }
                 var principal = new ClaimsPrincipal(new ClaimsIdentity(claims, "Basic"));
 
-                HttpContext.Authentication.SignInAsync("NewsBoardScheme", principal);
+                HttpContext.SignInAsync("NewsBoardScheme", principal);
                 HttpContext.Session.SetInt32("UserId", user.Id);
 
                 return new ComposeResult(
@@ -56,7 +59,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
         public ActionResult SignOut()
         {
-            HttpContext.Authentication.SignOutAsync("NewsBoardScheme");
+            HttpContext.SignOutAsync("NewsBoardScheme");
             HttpContext.Session.Clear();
 
             return new ComposeResult(

@@ -13,7 +13,7 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
     [Area("Feed")]
     public class FeedDetailsController : BaseController
     {
-        // GET: /<controller>/
+        [ResponseCache(Duration = 300)]
         public IActionResult Index(int feedId)
         {
             var feedRepo = new FeedApi(UserId);
@@ -22,6 +22,7 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
             return ReturnView("FeedDetailsView", feed);
         }
 
+        [ResponseCache(Duration = 300)]
         public IActionResult RefreshFeed(int feedId)
         {
             var feedRepo = new FeedApi(UserId);

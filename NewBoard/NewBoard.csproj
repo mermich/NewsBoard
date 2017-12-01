@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+	<MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -12,6 +13,11 @@
     <Content Remove="appsettings.Development.json" />
     <Content Remove="appsettings.json" />
     <Content Remove="appsettings.Release.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Properties\PublishProfiles\NewBoard20171129055848 - Web Deploy.pubxml" />
+    <None Remove="Properties\PublishProfiles\news-board - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
@@ -28,10 +34,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="1.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="1.0.0" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ApiTools\ApiTools.csproj" />
     <ProjectReference Include="..\NewBoardRestApi\NewBoardRestApi.csproj" />
     <ProjectReference Include="..\ServerSideSpaTools\ServerSideSpaTools.csproj" />
@@ -40,6 +42,10 @@
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EditorTemplates\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 
 </Project>

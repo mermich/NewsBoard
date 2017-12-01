@@ -9,7 +9,7 @@ namespace NewsBoard.wwwroot.Article.ArticleDetails
     [Area("Article")]
     public class ArticleDetailsController : BaseController
     {
-
+        [ResponseCache(Duration = 300)]
         public IActionResult Index(int articleId)
         {
             return ReturnView("", null);

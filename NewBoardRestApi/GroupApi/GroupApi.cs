@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NewBoardRestApi.BaseApi;
 using NewBoardRestApi.DataModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using NewBoardRestApi.DataModel.Engine;
 
 namespace NewBoardRestApi.GroupApi
 {
@@ -85,33 +87,16 @@ namespace NewBoardRestApi.GroupApi
 
             group.Label = groupVM.Label;
 
-            var selectedPermissions = groupVM.Permissions.Items.Where(gr => gr.IsSelected);
+            var selectedPermissions = groupVM.Permissions.SelectedValues;
 
-            //removing the old permissions
-            foreach (var permission in group.GroupPermissions)
+            Func<GroupPermission, int> existingIdentifier = g => g.PermissionId;
+            Func<int, GroupPermission> convertFunc = g => new GroupPermission
             {
-                if (!selectedPermissions.Any(gr => gr.Value == permission.PermissionId))
-                {
-                    //not in the posted list i should delete the item
-                    //I remove the item from the dbcontext rather than from the dbItem
-                    //  otherwise it will try to set the foreign key column to null instead of deleting the row. 
-                    NewsBoardContext.GroupPermissions.Remove(permission);
-                }
-            }
-
-            //adding the new ones
-            foreach (var permission in selectedPermissions)
-            {
-                //if is not in database
-                if (!group.GroupPermissions.Any(a => a.PermissionId == permission.Value))
-                {
-                    //create the row
-                    var gp = new GroupPermission();
-                    gp.Group = group;
-                    gp.Permission = NewsBoardContext.Permissions.FirstOrDefault(a => a.Id == permission.Value);
-                    group.GroupPermissions.Add(gp);
-                }
-            }
+                Group = group,
+                Permission = NewsBoardContext.Permissions.FirstOrDefault(a => a.Id == g)
+            };
+            
+            NewsBoardContext.GroupPermissions.MergeLists(existingIdentifier, selectedPermissions, convertFunc);
 
             NewsBoardContext.SaveChanges();
 

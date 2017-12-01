@@ -21,7 +21,7 @@ namespace NewsBoard.wwwroot.Controls.CascadingData
         {
             return new ComposeResult(
                 new ReplaceHtmlResult("#someUpdatedContent", Url.Action("GetTime")), 
-                new ErrorMessageResult("drop down value was:" + model.someDropDown));
+                new ErrorMessageResult("drop down value was:" + model.SomeDropDown));
         }
 
 

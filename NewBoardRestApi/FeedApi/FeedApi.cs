@@ -1,6 +1,5 @@
 ﻿using ApiTools;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.BaseApi;
 using NewBoardRestApi.DataModel;
@@ -132,20 +131,20 @@ namespace NewBoardRestApi.FeedApi
                 .Feeds
                 .Take(filter.MaxItems)
                 .Where(f => !filter.Tags.Any() || f.FeedTags.Any(ft => filter.Tags.Contains(ft.TagId)))
-                .Where(subscriptionFilter(filter.SubscriptionFilter))
+                .Where(SubscriptionFilter(filter.SubscriptionFilter))
                 //.Where(f => filter.HideReported || !f.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsReported))
                 .Include(f => f.UserFeeds)
                 .ThenInclude(uf => uf.User)
                 .Include(f => f.Articles)
                 .ThenInclude(a => a.UserArticles)
                 .Include(f => f.WebSite)
-                .OrderBy(pickRadomItemsFilter(filter))
+                .OrderBy(PickRadomItemsFilter(filter))
                 .ToList()
-                .OrderBy(orderBy(filter.OrderBy))
+                .OrderBy(OrderBy(filter.OrderBy))
                 .ToFeedVMList(UserId);
         }
 
-        Expression<Func<Feed, string>> pickRadomItemsFilter(FeedVMSearch by)
+        Expression<Func<Feed, string>> PickRadomItemsFilter(FeedVMSearch by)
         {
             if (by.ShouldPickRandomItems)
             {
@@ -153,12 +152,12 @@ namespace NewBoardRestApi.FeedApi
             }
             else
             {
-                return orderByExpr(by.OrderBy);
+                return OrderByExpr(by.OrderBy);
             }
         }
 
 
-        Expression<Func<Feed, string>> orderByExpr(FeedListOrderBy by)
+        Expression<Func<Feed, string>> OrderByExpr(FeedListOrderBy by)
         {
             switch (by)
             {
@@ -171,7 +170,7 @@ namespace NewBoardRestApi.FeedApi
             }
         }
 
-        Func<Feed, string> orderBy(FeedListOrderBy by)
+        Func<Feed, string> OrderBy(FeedListOrderBy by)
         {
             switch (by)
             {
@@ -184,23 +183,23 @@ namespace NewBoardRestApi.FeedApi
             }
         }
 
-        Expression<Func<Feed, bool>> subscriptionFilter(SubscriptionFilter filter)
+        Expression<Func<Feed, bool>> SubscriptionFilter(SubscriptionFilter filter)
         {
 
             switch (filter)
             {
-                case SubscriptionFilter.All:
+                case Search.SubscriptionFilter.All:
                     return f => true;
-                case SubscriptionFilter.OnlySubscribbed:
+                case Search.SubscriptionFilter.OnlySubscribbed:
                     if (UserId == UnAuthenticatedUserId)
                         return f => false;
                     else
                         return f => f.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsSubscribed);
-                case SubscriptionFilter.OnlyUnSubscribbed:
+                case Search.SubscriptionFilter.OnlyUnSubscribbed:
                     if (UserId == UnAuthenticatedUserId)
                         return f => false;
                     else
-                        return f => f.UserFeeds.Where(uf=> uf.UserId != UserId).Any(uf => uf.IsSubscribed);
+                        return f => f.UserFeeds.Where(uf => uf.UserId != UserId).Any(uf => uf.IsSubscribed);
                 default:
                     return f => true;
             }
@@ -210,19 +209,31 @@ namespace NewBoardRestApi.FeedApi
         {
             ThrowExIfUnAuthenticated();
 
-            if (NewsBoardContext.Feeds.Any(f => f.SyndicationUrl == addFeedUrl))
+            if (DoesFeedExists(addFeedUrl))
             {
-                throw new BusinessLogicException("Le flux existe deja.");
+                // Feed exists.
             }
             else
             {
-                var feed = CreateSubscription(addFeedUrl);
-                SubscribeFeed(feed.Id);
-
-                return feed;
+                CreateSubscription(addFeedUrl);
             }
+
+            var feed = GetFeed(addFeedUrl);
+            SubscribeFeed(feed.Id);
+
+            return feed;
         }
 
+        public virtual bool DoesFeedExists(string feedUrl)
+        {
+            return NewsBoardContext.Feeds.Any(f => f.SyndicationUrl == feedUrl);
+        }
+
+
+        private Feed GetFeed(string feedUrl)
+        {
+            return NewsBoardContext.Feeds.FirstOrDefault(f => f.SyndicationUrl == feedUrl);
+        }
 
         public virtual void SubscribeFeed(int feedId)
         {
@@ -250,10 +261,7 @@ namespace NewBoardRestApi.FeedApi
 
         public virtual void UnSubscribeFeed(int feedId)
         {
-            if (IsAnonymous)
-            {
-                throw new BusinessLogicException("Seuls les utilisateurs authentifies peuvent se desabonner.");
-            }
+            ThrowExIfUnAuthenticated();
 
             var existingUserFeed = NewsBoardContext.UserFeeds.FirstOrDefault(uf => uf.UserId == UserId && uf.FeedId == feedId);
             if (existingUserFeed != null)

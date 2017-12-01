@@ -2,6 +2,6 @@
 {
     public class CascadingDataModel
     {
-        public int someDropDown { get; set; }
+        public int SomeDropDown { get; set; }
     }
 }

@@ -12,6 +12,7 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
     [Area("Feed")]
     public class FeedAddController : BaseController
     {
+        [ResponseCache(Duration = 300)]
         public IActionResult Index()
         {
             return ReturnView("FeedAddView", null);

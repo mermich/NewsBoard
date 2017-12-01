@@ -5,7 +5,6 @@ using SendGrid;
 using SendGrid.Helpers.Mail;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace NewBoardRestApi.UserApi
 {
@@ -19,9 +18,11 @@ namespace NewBoardRestApi.UserApi
             }
             else
             {
-                var user = new User();
-                user.Email = model.Email;
-                user.Password = model.Password;
+                var user = new User
+                {
+                    Email = model.Email,
+                    Password = model.Password
+                };
 
                 NewsBoardContext.Users.Add(user);
                 NewsBoardContext.SaveChanges();
@@ -34,6 +35,7 @@ namespace NewBoardRestApi.UserApi
                     HtmlContent = $@"<strong>Hello, Email</strong>"
                 };
                 msg.AddTo(new EmailAddress(model.Email));
+
                 // dat key is invalid
                 var client = new SendGridClient("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");
                 //client.SendEmailAsync(msg);

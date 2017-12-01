@@ -17,10 +17,8 @@
 
     <!--Our stuff-->
     <link href="~/lib/site.css" rel="stylesheet" />
-    <link href="~/lib/bootstrap-switch/bootstrap-switch.css" rel="stylesheet" />
 
     <script src="~/lib/toastr/bootstrap-notify.js"></script>
-    <script src="~/lib/bootstrap-switch/bootstrap-switch.js"></script>
     <script src="~/lib/scripts.js"></script>
 
     <!--Let browser know website is optimized for mobile-->
@@ -87,7 +85,7 @@
     </nav>
 
     <div class="page-header">
-        <h1 class="h1-header">News Board <small>Le premier agrégateur <b>communautaire</b> de flux</small></h1>
+        <h1 class="h1-header">News Board <small>Le premier aggrégateur <b>communautaire</b> de flux</small></h1>
     </div>
 
     <div class="container">
@@ -104,7 +102,7 @@
             <div class="col-md-3">
                 <div id="tagCloud">
                     <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Tag","TagCloud","Index")">
-                        Chargement du widget ...
+                        Chargement des tags ...
                         <div class='loader'></div>
                     </div>
                 </div>

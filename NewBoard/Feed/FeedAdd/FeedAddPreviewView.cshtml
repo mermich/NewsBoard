@@ -43,7 +43,14 @@
                     <input type="url" class="form-control" id="WebSiteUrl" value="@Model.WebSiteDetails.Url" name="WebSiteUrl" placeholder="WebSiteUrl">
                 </div>
             </div>
-
+            <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+                <button class="btn btn-info"
+                        ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedAdd", "CreateSubscription")"
+                        type="button" ns-action-type="simplePostAction">
+                    Ajouter ce flux
+                </button>
+            </div>
         </div>
         <table class="table table-striped table-condensed">
             <tbody>

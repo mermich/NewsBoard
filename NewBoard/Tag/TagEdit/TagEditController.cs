@@ -8,7 +8,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
     [Area("Tag")]
     public class TagEditController : BaseController
     {
-
+        [ResponseCache(Duration = 300)]
         public IActionResult Index(int tagId)
         {
             var api = new TagApi(UserId);

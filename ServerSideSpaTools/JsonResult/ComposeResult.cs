@@ -2,6 +2,9 @@
 
 namespace ServerSideSpaTools.JsonResult
 {
+    /// <summary>
+    /// Wraps multiple CustomJsonResult into one result.
+    /// </summary>
     public class ComposeResult : CustomJsonResult
     {
         public ComposeResult(params CustomJsonResult[] results) : base(new { })

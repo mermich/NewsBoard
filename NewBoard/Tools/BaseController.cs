@@ -73,7 +73,7 @@ namespace NewsBoard.Tools
                     new FatalResult(fatalMessage),
                     new LoadUrlResult(Url.NewsBoardUrlHelper().Action("", "Home", "Index")));
 
-                context.ExceptionHandled = true;
+                context.ExceptionHandled = false;
             }
         }
     }

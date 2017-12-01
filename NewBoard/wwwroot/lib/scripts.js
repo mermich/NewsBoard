@@ -63,6 +63,8 @@ function LoadCallback() {
         $(element).off('click').click(function (e) {
             let target = e.target;
 
+            disableElement(target);
+
             var dataToSend = "";
             if (verb == "POST")
                 dataToSend = $(this).closest("form").serializeFormJSON();
@@ -87,6 +89,7 @@ function LoadCallback() {
                     console.log(result);
                     HandleAjaxResult(result);
                     LoadCallback();
+                    enableElement(target);
                 }
             });
             return false;
@@ -94,7 +97,15 @@ function LoadCallback() {
     }
 }
 
+function disableElement(element) {
+    $(element).addClass("disabled");
+    $(element).attr("disabled", "disabled");
+}
 
+function enableElement(element) {
+    $(element).removeClass("disabled");
+    $(element).removeAttr("disabled");
+}
 
 // When getting a reponse from a ajax call, decides what to do.
 function HandleAjaxResult(result) {

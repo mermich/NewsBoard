@@ -8,6 +8,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
     [Area("User")]
     public class UserRegisterController : BaseController
     {
+        [ResponseCache(Duration = 300)]
         public IActionResult Index()
         {
             var model = new UserRegisterVM();

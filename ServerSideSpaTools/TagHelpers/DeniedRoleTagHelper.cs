@@ -24,7 +24,7 @@ namespace ServerSideSpaTools.TagHelpers
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             var splittedDeniedRoles = DeniedRoles.Split(',');
-            var isInDeniedRoles = splittedDeniedRoles.Any(r => ViewContext.HttpContext.Authentication.HttpContext.User.IsInRole(r));
+            var isInDeniedRoles = splittedDeniedRoles.Any(r => ViewContext.HttpContext.User.IsInRole(r));
 
             if (isInDeniedRoles)
             {

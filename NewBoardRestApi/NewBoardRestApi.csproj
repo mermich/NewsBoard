@@ -4,7 +4,6 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp2.0\SWCapi.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
@@ -15,12 +14,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Sendgrid" Version="9.9.0" />
-    <PackageReference Include="ServiceStack.Api.Swagger" Version="4.5.14" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="1.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
+	<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="appsettings.json">

@@ -12,7 +12,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
     [Area("Feed")]
     public class FeedListController : BaseController
     {
-        // GET: /<controller>/
+        [ResponseCache(Duration = 300)]
         public IActionResult Index(FeedVMSearch filter, FeedVMListOptions options)
         {
             var feedRepo = new FeedApi(UserId);
@@ -105,6 +105,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedDetails", "Index", new { feedId = feedId }));
         }
 
+        [ResponseCache(Duration = 300)]
         public IActionResult GetEdit(int feedId)
         {
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedEdit", "Index", new { feedId = feedId }));

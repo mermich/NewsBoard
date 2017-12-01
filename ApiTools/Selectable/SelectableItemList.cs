@@ -15,5 +15,7 @@ namespace ApiTools.Selectable
         {
             Items = items.ToList();
         }
+
+        public IEnumerable<T> SelectedValues => Items.Where(i => i.IsSelected).Select(i => i.Value);
     }
 }

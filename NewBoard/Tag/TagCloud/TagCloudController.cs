@@ -9,7 +9,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
     [Area("Tag")]
     public class TagCloudController : BaseController
     {
-
+        [ResponseCache(Duration = 300)]
         public IActionResult Index()
         {
             var api = new TagApi(UserId);
@@ -18,6 +18,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
             return ReturnView("TagCloudView", model);
         }
 
+        [ResponseCache(Duration = 300)]
         public ActionResult GetArticlesByTag(int id)
         {
             var tagModel = new TagApi(UserId).GetTag(id);

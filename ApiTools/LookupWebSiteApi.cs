@@ -22,10 +22,18 @@ namespace ApiTools
                 Url = GetWebSiteAdress(uriAdress),
                 Title = FindPageTitle(doc),
                 SyndicationUrl = FindSyndication(uriAdress)?.AbsoluteUri,
-                IconUrl = FindWebPageIcon(doc, uriAdress)?.AbsoluteUri               
+                IconUrl = FindWebPageIcon(doc, uriAdress)?.AbsoluteUri
             };
 
+
             details.Description = new SyndicationApi().GetSyndication(details.SyndicationUrl).Description;
+
+            // get channel  id :
+            // host == "www.youtube.com";
+            // var channelId = doc.GetNodesByExpression("//meta[@itemprop='channelId']").First().GetAttributeValue("content");
+
+            // now builds the rss feed from that id:
+            // https://www.youtube.com/feeds/videos.xml?channel_id=UCBcRF18a7Qf58cCRy5xuWwQ
 
             return details;
         }

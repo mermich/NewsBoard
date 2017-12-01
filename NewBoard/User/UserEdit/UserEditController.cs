@@ -10,7 +10,7 @@ namespace NewsBoard.wwwroot.Group.GroupCreate
     [Authorize(Roles = "AdminUser")]
     public class UserEditController : BaseController
     {
-
+        [ResponseCache(Duration = 300)]
         public IActionResult Index(int userId)
         {
             var api = new UserApi(UserId);

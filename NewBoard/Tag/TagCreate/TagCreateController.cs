@@ -8,7 +8,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
     [Area("Tag")]
     public class TagCreateController : BaseController
     {
-
+        [ResponseCache(Duration = 300)]
         public IActionResult Index()
         {
             var api = new TagApi(UserId);
@@ -16,7 +16,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
             
             return ReturnView("TagCreateView", model);
         }
-
+        
         public ActionResult Create(TagEditVM model)
         {
             var api = new TagApi(UserId);

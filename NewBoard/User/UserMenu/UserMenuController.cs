@@ -13,7 +13,7 @@ namespace NewsBoard.wwwroot.User.UserMenu
             if (IsAuthenticated)
             {
                 var model = new UserApi(UserId).GetUser(UserId);
-                return ReturnView("UserSignOut", model); 
+                return ReturnView("UserSignOut", model);
             }
             else
             {

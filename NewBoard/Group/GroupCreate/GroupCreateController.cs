@@ -8,7 +8,7 @@ namespace NewsBoard.wwwroot.Group.GroupCreate
     [Area("Group")]
     public class GroupCreateController : BaseController
     {
-
+        [ResponseCache(Duration = 300)]
         public IActionResult Index()
         {
             var api = new GroupApi(UserId);

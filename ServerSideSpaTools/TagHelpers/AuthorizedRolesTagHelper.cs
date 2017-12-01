@@ -23,8 +23,8 @@ namespace ServerSideSpaTools.TagHelpers
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            var splittedAuthorizedRoles = AuthorizedRoles.Split(',');
-            var isInAuthorizedRoles = splittedAuthorizedRoles.Any(r => ViewContext.HttpContext.Authentication.HttpContext.User.IsInRole(r));
+            var splittedAuthorizedRoles = AuthorizedRoles.Split(',');            
+            var isInAuthorizedRoles = splittedAuthorizedRoles.Any(r => ViewContext.HttpContext.User.IsInRole(r));
 
             if (!isInAuthorizedRoles)
             {

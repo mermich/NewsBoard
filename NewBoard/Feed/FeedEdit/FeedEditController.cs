@@ -11,7 +11,7 @@ namespace NewsBoard.wwwroot.Feed.FeedEdit
     [Area("Feed")]
     public class FeedEditController : BaseController
     {
-        // GET: /<controller>/
+        [ResponseCache(Duration = 300)]
         public IActionResult Index(int feedId)
         {
             var model = new FeedApi(UserId).GetFeedEdit(feedId);
