@@ -8,19 +8,25 @@ namespace NewsBoard.wwwroot.Permission.PermissionCreate
     [Area("Permission")]
     public class PermissionEditController : BaseController
     {
+        PermissionApi permissionApi;
+
+        public PermissionEditController(PermissionApi permissionApi)
+        {
+            this.permissionApi = permissionApi;
+        }
+
+
         [ResponseCache(Duration = 300)]
         public IActionResult Index(int PermissionId)
         {
-            var api = new PermissionApi(UserId);
-            var model = api.GetPermission(PermissionId);
+            var model = permissionApi.GetPermission(PermissionId);
             
             return ReturnView("PermissionEditView", model);
         }
 
         public ActionResult Update(PermissionVM model)
         {
-            var api = new PermissionApi(UserId);
-            api.SavePermission(model);
+            permissionApi.SavePermission(model);
 
             return new ComposeResult(
                 new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Permission", "PermissionList", "Index")),

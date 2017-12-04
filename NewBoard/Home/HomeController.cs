@@ -11,9 +11,9 @@ namespace NewsBoard.wwwroot.Home
     {
         public HomeController() : base()
         {
+           var tt = new Microsoft.Extensions.DependencyInjection.ServiceCollection();
         }
-
-        [ResponseCache(Duration = 300)]
+        
         public IActionResult Index()
         {
             return ReturnView("IndexView", new HomeModel());

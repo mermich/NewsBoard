@@ -10,11 +10,18 @@ namespace NewsBoard.wwwroot.Permission.PermissionList
     [Authorize(Roles = "AdminUser")]
     public class UserListController : BaseController
     {
+        UserApi userApi;
+
+        public UserListController(UserApi userApi)
+        {
+            this.userApi = userApi;
+        }
+
+
         [ResponseCache(Duration = 300)]
         public IActionResult Index()
         {
-            var api = new UserApi(UserId);
-            var model = api.ListUsers();
+            var model = userApi.ListUsers();
 
             return ReturnView("UserListView", model);
         }

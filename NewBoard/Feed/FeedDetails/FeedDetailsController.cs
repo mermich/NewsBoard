@@ -13,11 +13,18 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
     [Area("Feed")]
     public class FeedDetailsController : BaseController
     {
+        FeedApi feedApi;
+
+        public FeedDetailsController(FeedApi feedApi)
+        {
+            this.feedApi = feedApi;
+        }
+
+
         [ResponseCache(Duration = 300)]
         public IActionResult Index(int feedId)
         {
-            var feedRepo = new FeedApi(UserId);
-            var feed = feedRepo.GetFeed(feedId);
+            var feed = feedApi.GetFeed(feedId);
 
             return ReturnView("FeedDetailsView", feed);
         }
@@ -25,8 +32,7 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
         [ResponseCache(Duration = 300)]
         public IActionResult RefreshFeed(int feedId)
         {
-            var feedRepo = new FeedApi(UserId);
-            feedRepo.RefreshFeedArticles(feedId);
+            feedApi.RefreshFeedArticles(feedId);
 
             return new ComposeResult(
                 new ReplaceHtmlResult("#articleList", NewsBoardUrlHelper.Action("Article", "ArticleList", "Index", new ArticleVMSearch() { Feeds = new List<int> { feedId } })),

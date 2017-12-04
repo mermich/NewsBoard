@@ -8,11 +8,18 @@ namespace NewsBoard.wwwroot.Permission.PermissionList
     [Area("Permission")]
     public class PermissionListController : BaseController
     {
+        PermissionApi permissionApi;
+
+        public PermissionListController(PermissionApi permissionApi)
+        {
+            this.permissionApi = permissionApi;
+        }
+
+
         [ResponseCache(Duration = 300)]
         public IActionResult Index()
         {
-            var api = new PermissionApi(UserId);
-            var model = api.GetPermissions();
+            var model = permissionApi.GetPermissions();
 
             return ReturnView("PermissionListView", model);
         }

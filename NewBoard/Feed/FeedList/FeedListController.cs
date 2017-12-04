@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Session;
 using NewBoardRestApi.FeedApi;
 using NewBoardRestApi.FeedApi.Search;
 using NewsBoard.Tools;
@@ -12,11 +14,20 @@ namespace NewsBoard.wwwroot.Feed.FeedList
     [Area("Feed")]
     public class FeedListController : BaseController
     {
+        FeedApi feedApi;
+
+        public FeedListController(FeedApi feedApi)
+        {
+            this.feedApi = feedApi;
+        }
+
         [ResponseCache(Duration = 300)]
         public IActionResult Index(FeedVMSearch filter, FeedVMListOptions options)
         {
-            var feedRepo = new FeedApi(UserId);
-            var model = feedRepo.ListFeed(filter);
+
+            HttpContext.Session.SetInt32("UserId", 22);
+            
+            var model = feedApi.ListFeed(filter);
             model.Options = options;
 
             return ReturnView("FeedListView", model);
@@ -24,8 +35,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
 
         public IActionResult Open(int feedId)
         {
-            var feedRepo = new FeedApi(UserId);
-            var feed = feedRepo.GetFeed(feedId);
+            var feed = feedApi.GetFeed(feedId);
 
             if (IsAjaxRequest)
             {
@@ -44,15 +54,13 @@ namespace NewsBoard.wwwroot.Feed.FeedList
 
         public IActionResult FeedAction(int feedId)
         {
-            var feedRepo = new FeedApi(UserId);
-            var model = feedRepo.GetFeed(feedId);
+            var model = feedApi.GetFeed(feedId);
             return ReturnView("FeedAction", model);
         }
 
         public IActionResult Subscribe(int feedId)
         {
-            var feedRepo = new FeedApi(UserId);
-            feedRepo.SubscribeFeed(feedId);
+            feedApi.SubscribeFeed(feedId);
 
 
             return new ComposeResult(
@@ -63,8 +71,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
 
         public IActionResult Unsubscribe(int feedId)
         {
-            var feedRepo = new FeedApi(UserId);
-            feedRepo.UnSubscribeFeed(feedId);
+            feedApi.UnSubscribeFeed(feedId);
 
             return new ComposeResult(
                 new SuccessMessageResult("Unsubscribed"),
@@ -74,8 +81,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
 
         public IActionResult Report(int feedId)
         {
-            var feedRepo = new FeedApi(UserId);
-            feedRepo.ReportFeed(feedId);
+            feedApi.ReportFeed(feedId);
 
             return new ComposeResult(
                   new SuccessMessageResult("Reported"),
@@ -86,8 +92,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
 
         public IActionResult StopDisplay(int feedId)
         {
-            var feedRepo = new FeedApi(UserId);
-            feedRepo.StopDisplayFeed(feedId);
+            feedApi.StopDisplayFeed(feedId);
 
             return new ComposeResult(
                   new SuccessMessageResult("StopDisplay"),
@@ -99,8 +104,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
 
         public IActionResult ShowDetails(int feedId)
         {
-            var feedRepo = new FeedApi(UserId);
-            feedRepo.OpenFeed(feedId);
+            feedApi.OpenFeed(feedId);
 
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedDetails", "Index", new { feedId = feedId }));
         }

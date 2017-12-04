@@ -10,19 +10,25 @@ namespace NewsBoard.wwwroot.Group.GroupCreate
     [Authorize(Roles = "AdminUser")]
     public class UserEditController : BaseController
     {
+        UserApi userApi;
+
+        public UserEditController(UserApi userApi)
+        {
+            this.userApi = userApi;
+        }
+
+
         [ResponseCache(Duration = 300)]
         public IActionResult Index(int userId)
         {
-            var api = new UserApi(UserId);
-            var model = api.GetUserEdit(userId);
+            var model = userApi.GetUserEdit(userId);
             
             return ReturnView("UserEditView", model);
         }
 
         public ActionResult Update(UserEditVM model)
         {
-            var api = new UserApi(UserId);
-            api.SaveUser(model);
+            userApi.SaveUser(model);
 
             return new ComposeResult(
                 new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserList", "Index")),

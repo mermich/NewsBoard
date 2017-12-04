@@ -8,19 +8,25 @@ namespace NewsBoard.wwwroot.Group.GroupCreate
     [Area("Group")]
     public class GroupEditController : BaseController
     {
+        GroupApi groupApi;
+
+        public GroupEditController(GroupApi groupApi)
+        {
+            this.groupApi = groupApi;
+        }
+
+
         [ResponseCache(Duration = 300)]
         public IActionResult Index(int groupId)
         {
-            var api = new GroupApi(UserId);
-            var model = api.GetEditGroup(groupId);
+            var model = groupApi.GetEditGroup(groupId);
             
             return ReturnView("GroupEditView", model);
         }
 
         public ActionResult Update(GroupEditVM model)
         {
-            var api = new GroupApi(UserId);
-            api.SaveGroup(model);
+            groupApi.SaveGroup(model);
 
             return new ComposeResult(
                 new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Group", "GroupList", "Index")),

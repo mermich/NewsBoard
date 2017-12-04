@@ -8,11 +8,19 @@ namespace NewsBoard.wwwroot.User.UserMenu
     [Area("User")]
     public class UserMenuController : BaseController
     {
+        UserApi userApi;
+
+        public UserMenuController(UserApi userApi)
+        {
+            this.userApi = userApi;
+        }
+
+
         public IActionResult Index()
         {
             if (IsAuthenticated)
             {
-                var model = new UserApi(UserId).GetUser(UserId);
+                var model = userApi.GetUser(UserId);
                 return ReturnView("UserSignOut", model);
             }
             else

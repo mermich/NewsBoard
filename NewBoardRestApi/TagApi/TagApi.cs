@@ -8,7 +8,7 @@ namespace NewBoardRestApi.TagApi
 {
     public class TagApi : BaseAuthenticatedApi
     {
-        public TagApi(int userId) : base(userId)
+        public TagApi(NewsBoardContext newsBoardContext, SessionObject sessionObject) : base(newsBoardContext, sessionObject)
         {
         }
 

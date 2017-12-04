@@ -8,19 +8,25 @@ namespace NewsBoard.wwwroot.User.UserRegister
     [Area("Tag")]
     public class TagEditController : BaseController
     {
+        TagApi tagApi;
+
+        public TagEditController(TagApi tagApi)
+        {
+            this.tagApi = tagApi;
+        }
+
+
         [ResponseCache(Duration = 300)]
         public IActionResult Index(int tagId)
         {
-            var api = new TagApi(UserId);
-            var model = api.GetEditTag(tagId);
+            var model = tagApi.GetEditTag(tagId);
             
             return ReturnView("TagEditView", model);
         }
 
         public ActionResult Update(TagEditVM model)
         {
-            var api = new TagApi(UserId);
-            api.SaveTag(model);
+            tagApi.SaveTag(model);
 
             return new ComposeResult(
                 new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Tag", "TagList", "Index")),

@@ -6,7 +6,7 @@ namespace NewBoardRestApi.PermissionApi
 {
     public class PermissionApi : BaseAuthenticatedApi
     {
-        public PermissionApi(int userId) : base(userId)
+        public PermissionApi(NewsBoardContext newsBoardContext, SessionObject sessionObject) : base(newsBoardContext, sessionObject)
         {
         }
 

@@ -44,6 +44,15 @@ namespace NewsBoard.Tools
             }
         }
 
+        public bool IsFirstVisit
+        {
+            get
+            {
+                return UserId == BaseAuthenticatedApi.UnAuthenticatedUserId;
+            }
+        }
+
+
 
         public override void OnActionExecuted(ActionExecutedContext context)
         {

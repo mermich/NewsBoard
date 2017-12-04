@@ -1,4 +1,19 @@
 ﻿using ApiTools;
+using NewBoardRestApi.DataModel;
+
+namespace NewBoardRestApi
+{
+    public class SessionObject
+    {
+        public int UserId { get; set; }
+
+        public SessionObject(int userId)
+        {
+            UserId = userId;
+        }
+    }
+}
+
 
 namespace NewBoardRestApi.BaseApi
 {
@@ -8,9 +23,9 @@ namespace NewBoardRestApi.BaseApi
 
         public readonly int UserId;
 
-        public BaseAuthenticatedApi(int userId)
+        public BaseAuthenticatedApi(NewsBoardContext newsBoardContext, SessionObject sessionObject) : base(newsBoardContext)
         {
-            this.UserId = userId;
+            this.UserId = sessionObject.UserId;
         }
 
         public void ThrowExIfUnAuthenticated()

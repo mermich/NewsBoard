@@ -8,11 +8,18 @@ namespace NewsBoard.wwwroot.Group.GroupList
     [Area("Group")]
     public class GroupListController : BaseController
     {
+        GroupApi groupApi;
+
+        public GroupListController(GroupApi groupApi)
+        {
+            this.groupApi = groupApi;
+        }
+
+
         [ResponseCache(Duration = 300)]
         public IActionResult Index()
         {
-            var api = new GroupApi(UserId);
-            var model = api.GetGroups();
+            var model = groupApi.GetGroups();
 
             return ReturnView("GroupListView", model);
         }

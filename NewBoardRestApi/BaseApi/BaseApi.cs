@@ -1,11 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using NewBoardRestApi.DataModel;
 
 namespace NewBoardRestApi.BaseApi
 {
     public class BaseApi : Controller
     {
-        public NewsBoardContext NewsBoardContext { get; set; } = new NewsBoardContext();
+        public NewsBoardContext NewsBoardContext { get; set; }
+
+        public BaseApi(NewsBoardContext newsBoardContext)
+        {
+            NewsBoardContext = newsBoardContext;
+        }
 
         protected override void Dispose(bool disposing)
         {
@@ -17,4 +23,7 @@ namespace NewBoardRestApi.BaseApi
             }
         }
     }
+
+
+    
 }

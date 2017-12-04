@@ -1,22 +1,30 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ApiTools;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.UserApi;
 using NewsBoard.Tools;
+using ServerSideSpaTools.JsonResult;
 using System.Collections.Generic;
 using System.Security.Claims;
-using ServerSideSpaTools.JsonResult;
-using ApiTools;
-using Microsoft.AspNetCore.Authentication;
 
 namespace NewsBoard.wwwroot.User.UserRegister
 {
     [Area("User")]
     public class UserLoginController : BaseController
     {
+        AuthenticationApi authenticationApi;
+
+        public UserLoginController(AuthenticationApi authenticationApi)
+        {
+            this.authenticationApi = authenticationApi;
+        }
+
+
         [ResponseCache(Duration = 300)]
         public IActionResult Index()
         {
-            var model = new AuthenticationApi().GetNewUserLoginVM();
+            var model = authenticationApi.GetNewUserLoginVM();
 
             return ReturnView("UserLoginView", model);
         }
@@ -25,8 +33,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
         {
             try
             {
-                var api = new AuthenticationApi();
-                var user = api.Login(model);
+                var user = authenticationApi.Login(model);
 
                 var claims = new List<Claim>
                 {
@@ -34,7 +41,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
                     new Claim(ClaimTypes.NameIdentifier, user.Email)
                 };
 
-                var permissions = api.GetPermissions(user.Id);
+                var permissions = authenticationApi.GetPermissions(user.Id);
                 foreach (var permission in permissions)
                 {
                     claims.Add(new Claim(ClaimTypes.Role, permission));

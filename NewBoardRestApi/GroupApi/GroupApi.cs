@@ -10,9 +10,10 @@ namespace NewBoardRestApi.GroupApi
 {
     public class GroupApi : BaseAuthenticatedApi
     {
-        public GroupApi(int userId) : base(userId)
+        public GroupApi(NewsBoardContext newsBoardContext, SessionObject sessionObject) : base(newsBoardContext, sessionObject)
         {
         }
+
 
         public GroupVMList GetGroups()
         {

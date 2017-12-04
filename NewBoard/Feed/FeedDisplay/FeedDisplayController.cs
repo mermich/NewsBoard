@@ -9,15 +9,15 @@ namespace NewsBoard.wwwroot.Feed.FeedEdit
     /// Controller for a single feed
     /// </summary>
     [Area("Feed")]
-    public class FeedEditController : BaseController
+    public class FeedDisplayController : BaseController
     {
         FeedApi feedApi;
 
-        public FeedEditController(FeedApi feedApi)
+
+        public FeedDisplayController(FeedApi feedApi)
         {
             this.feedApi = feedApi;
         }
-
 
 
         [ResponseCache(Duration = 300)]
@@ -26,13 +26,6 @@ namespace NewsBoard.wwwroot.Feed.FeedEdit
             var model = feedApi.GetFeedEdit(feedId);
 
             return ReturnView("FeedEditView", model);
-        }
-
-
-        public IActionResult Update(FeedEditVM feed)
-        {
-            feedApi.SaveFeed(feed);
-            return new SuccessMessageResult("Feed Updated");
         }
     }
 }

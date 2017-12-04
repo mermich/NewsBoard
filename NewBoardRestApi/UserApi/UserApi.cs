@@ -7,7 +7,7 @@ namespace NewBoardRestApi.UserApi
 {
     public class UserApi : BaseAuthenticatedApi
     {
-        public UserApi(int userId) : base(userId)
+        public UserApi(NewsBoardContext newsBoardContext, SessionObject sessionObject) : base(newsBoardContext, sessionObject)
         {
         }
 

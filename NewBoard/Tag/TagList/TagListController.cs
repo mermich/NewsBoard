@@ -8,11 +8,17 @@ namespace NewsBoard.wwwroot.User.UserRegister
     [Area("Tag")]
     public class TagListController : BaseController
     {
+        TagApi tagApi;
+
+        public TagListController(TagApi tagApi)
+        {
+            this.tagApi = tagApi;
+        }
+
         [ResponseCache(Duration = 300)]
         public IActionResult Index()
         {
-            var api = new TagApi(UserId);
-            var model = api.GetTags();
+            var model = tagApi.GetTags();
 
             return ReturnView("TagListView", model);
         }

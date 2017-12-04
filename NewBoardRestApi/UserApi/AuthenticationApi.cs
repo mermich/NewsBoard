@@ -10,6 +10,10 @@ namespace NewBoardRestApi.UserApi
 {
     public class AuthenticationApi : BaseApi.BaseApi
     {
+        public AuthenticationApi(NewsBoardContext newsBoardContext) : base(newsBoardContext)
+        {
+        }
+
         public User Register(UserRegisterVM model)
         {
             if (NewsBoardContext.Users.Any(u => u.Email == model.Email))

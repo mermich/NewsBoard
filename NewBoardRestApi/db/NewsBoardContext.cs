@@ -22,8 +22,7 @@ namespace NewBoardRestApi.DataModel
                 .SetBasePath(AppContext.BaseDirectory)
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile($"appsettings.{environmentName}.json", true);
-
-            optionsBuilder.UseSqlServer(builder.Build().GetConnectionString("DefaultConnection"));
+            
             base.OnConfiguring(optionsBuilder);
         }
 

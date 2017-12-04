@@ -12,7 +12,7 @@ namespace NewBoardRestApi.FeedApi
 {
     public class FeedApi : BaseAuthenticatedApi
     {
-        public FeedApi(int userId) : base(userId)
+        public FeedApi(NewsBoardContext newsBoardContext, SessionObject sessionObject) : base(newsBoardContext, sessionObject)
         {
         }
 

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.ArticleApi;
 using ServerSideSpaTools.JsonResult;
+using NewBoardRestApi.TagApi;
 
 namespace NewsBoard.wwwroot.Article.ArticleList
 {
@@ -11,10 +12,17 @@ namespace NewsBoard.wwwroot.Article.ArticleList
     [Area("Article")]
     public class ArticleListController : BaseController
     {
+        ArticleApi articleApi;
+
+        public ArticleListController(ArticleApi articleApi)
+        {
+            this.articleApi = articleApi;
+        }
+
+        [ResponseCache(Duration = 300)]
         public IActionResult Index(ArticleVMSearch filter, ArticleVMListOptions options)
         {
-            var articleRepo = new ArticleApi(UserId);
-            var model = articleRepo.GetArticles(filter);
+            var model = articleApi.GetArticles(filter);
             model.Options = options;
 
             return ReturnView("ArticleListView", model);
@@ -22,7 +30,6 @@ namespace NewsBoard.wwwroot.Article.ArticleList
 
         public IActionResult Open(int articleId)
         {
-            var articleApi = new ArticleApi(UserId);
             var article = articleApi.OpenArticle(articleId);
 
             // Opens the article and should also update stats.
@@ -42,7 +49,6 @@ namespace NewsBoard.wwwroot.Article.ArticleList
 
         public IActionResult Hide(int articleId)
         {
-            var articleApi = new ArticleApi(UserId);
             articleApi.HideArticle(articleId);
 
             return new ComposeResult(

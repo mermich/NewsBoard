@@ -8,6 +8,17 @@ using Microsoft.Extensions.Logging;
 using ServerSideSpaTools;
 using System;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using NewBoardRestApi.TagApi;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Session;
+using NewBoardRestApi;
+using Microsoft.EntityFrameworkCore;
+using NewBoardRestApi.DataModel;
+using NewBoardRestApi.ArticleApi;
+using NewBoardRestApi.FeedApi;
+using NewBoardRestApi.GroupApi;
+using NewBoardRestApi.PermissionApi;
+using NewBoardRestApi.UserApi;
 
 namespace NewsBoard
 {
@@ -38,10 +49,19 @@ namespace NewsBoard
             var session = services.AddSession(options =>
             {
                 options.Cookie.Name = ".NewsBoard.Session";
-                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.IdleTimeout = TimeSpan.MaxValue;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+
+
             });
+            var sp = services.BuildServiceProvider();
+            var iHttpContextAccessor = sp.GetService<IHttpContextAccessor>();
+            services.AddScoped((i) => new SessionObject(iHttpContextAccessor.HttpContext.Session.GetInt32("UserId").GetValueOrDefault()));
 
 
+            services.AddDbContext<NewsBoardContext>(o => o.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
+            
+         
             services.AddAuthentication(sharedOptions =>
             {
                 sharedOptions.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -49,8 +69,18 @@ namespace NewsBoard
                 sharedOptions.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
             });
 
-            // services.AddCookieAuthentication();
+            services.AddScoped((i) => new ArticleApi(i.GetService< NewsBoardContext >(), i.GetService<SessionObject>()));
+            services.AddScoped((i) => new FeedApi(i.GetService<NewsBoardContext>(), i.GetService<SessionObject>()));
+            services.AddScoped((i) => new GroupApi(i.GetService<NewsBoardContext>(), i.GetService<SessionObject>()));
+            services.AddScoped((i) => new PermissionApi(i.GetService<NewsBoardContext>(), i.GetService<SessionObject>()));
+            services.AddScoped((i) => new TagApi(i.GetService<NewsBoardContext>(), i.GetService<SessionObject>()));
+            services.AddScoped((i) => new UserApi(i.GetService<NewsBoardContext>(), i.GetService<SessionObject>()));
+            services.AddScoped((i) => new AuthenticationApi(i.GetService<NewsBoardContext>()));
             
+
+
+            // services.AddCookieAuthentication();
+
             services.AddResponseCaching();
             services.AddAuthentication();
         }

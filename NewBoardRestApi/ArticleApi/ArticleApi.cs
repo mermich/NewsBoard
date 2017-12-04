@@ -16,11 +16,9 @@ namespace NewBoardRestApi.ArticleApi
     [Route("api/[controller]")]
     public class ArticleApi : BaseAuthenticatedApi
     {
-        public ArticleApi(int userId) : base(userId)
+        public ArticleApi(NewsBoardContext newsBoardContext, SessionObject sessionObject) : base(newsBoardContext, sessionObject)
         {
         }
-
-        
 
         [HttpGet("{id}")]
         public ArticleVM GetArticle(int articleId)

@@ -12,6 +12,14 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
     [Area("Feed")]
     public class FeedAddController : BaseController
     {
+        FeedApi feedApi;
+
+        public FeedAddController(FeedApi feedApi)
+        {
+            this.feedApi = feedApi;
+        }
+
+
         [ResponseCache(Duration = 300)]
         public IActionResult Index()
         {
@@ -38,7 +46,7 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
         [HttpPost]
         public IActionResult CreateSubscription(WebSiteDetails details)
         {
-            var feed = new FeedApi(UserId).CreateSubscriptionAndSubScribe(details.SyndicationUrl);
+            var feed = feedApi.CreateSubscriptionAndSubScribe(details.SyndicationUrl);
 
             return new ComposeResult(
                 new ReplaceMainHtmlResult(NewsBoardUrlHelper.UserFeedListAction),

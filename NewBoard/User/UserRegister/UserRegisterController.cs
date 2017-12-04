@@ -8,6 +8,14 @@ namespace NewsBoard.wwwroot.User.UserRegister
     [Area("User")]
     public class UserRegisterController : BaseController
     {
+        AuthenticationApi authenticationApi;
+
+        public UserRegisterController(AuthenticationApi authenticationApi)
+        {
+            this.authenticationApi = authenticationApi;
+        }
+
+
         [ResponseCache(Duration = 300)]
         public IActionResult Index()
         {
@@ -17,8 +25,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
         public ActionResult Register(UserRegisterVM model)
         {
-            var api = new AuthenticationApi();
-            var userId = api.Register(model);
+            var userId = authenticationApi.Register(model);
 
             return new ComposeResult(
                     new SuccessMessageResult("Votre compte est creer, veuilliez vous connecter"),
