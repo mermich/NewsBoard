@@ -31,4 +31,10 @@
             Modifier
         </a>
     </li>
+    <li>
+        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Refresh", new {feedId = Model.Id })"
+           type="button" ns-action-type="simpleGetAction">
+            Rafraichir
+        </a>
+    </li>
 </ul>

@@ -7,7 +7,7 @@ using ServerSideSpaTools.JsonResult;
 namespace NewsBoard.wwwroot.Group.GroupCreate
 {
     [Area("User")]
-    [Authorize(Roles = "AdminUser")]
+    //[Authorize(Roles = "AdminUser")]
     public class UserEditController : BaseController
     {
         UserApi userApi;

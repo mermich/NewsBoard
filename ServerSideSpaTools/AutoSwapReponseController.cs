@@ -24,6 +24,20 @@ namespace ServerSideSpaTools
         public ActionResult ReturnView(string viewName, object model)
         {
             if (IsAjaxRequest)
+            {
+                return PartialView(viewName, model);
+            }
+
+            else
+            {
+                var wasThere = HttpContext.Request.Cookies["wasThere"];
+                return View(viewName, model);
+            }
+        }
+
+        public ActionResult ReturnView2(string viewName, object model)
+        {
+            if (IsAjaxRequest)
                 return PartialView(viewName, model);
 
             return View(viewName, model);

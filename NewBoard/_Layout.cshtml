@@ -55,7 +55,7 @@
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Flux<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetUserFeeds")">Mes Flux</a></li>
-                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetFeedSearch")">Les autres Flux</a></li>
+                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetAllFeed")">Tous les flux</a></li>
                             <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetAddFeed")">Ajouter un flux</a></li>
                         </ul>
                     </li>
@@ -68,6 +68,9 @@
                             <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetTagListPage")">Tags</a></li>
                             <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetGroupListPage")">Groupes</a></li>
                             <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetPermissionListPage")">Permissions</a></li>
+                            <li>
+                                <a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetUserListPage")">Utilisateurs</a>
+                            </li>
                             <li ns-authorized-roles="AdminUser">
                                 <a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetUserListPage")">Utilisateurs</a>
                             </li>

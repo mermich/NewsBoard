@@ -23,10 +23,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
 
         [ResponseCache(Duration = 300)]
         public IActionResult Index(FeedVMSearch filter, FeedVMListOptions options)
-        {
-
-            HttpContext.Session.SetInt32("UserId", 22);
-            
+        {            
             var model = feedApi.ListFeed(filter);
             model.Options = options;
 
@@ -113,6 +110,13 @@ namespace NewsBoard.wwwroot.Feed.FeedList
         public IActionResult GetEdit(int feedId)
         {
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedEdit", "Index", new { feedId = feedId }));
+        }
+        
+        public IActionResult Refresh(int feedId)
+        {
+            feedApi.RefreshFeedArticles(feedId);
+
+            return new SuccessMessageResult("Updated");
         }
     }
 }

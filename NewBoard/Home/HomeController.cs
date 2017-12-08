@@ -11,9 +11,9 @@ namespace NewsBoard.wwwroot.Home
     {
         public HomeController() : base()
         {
-           var tt = new Microsoft.Extensions.DependencyInjection.ServiceCollection();
+
         }
-        
+
         public IActionResult Index()
         {
             return ReturnView("IndexView", new HomeModel());
@@ -38,10 +38,10 @@ namespace NewsBoard.wwwroot.Home
         }
 
         [ResponseCache(Duration = 300)]
-        public IActionResult GetFeedSearch()
+        public IActionResult GetAllFeed()
         {
             return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().AllFeedListAction);
-        }        
+        }
 
 
         [ResponseCache(Duration = 300)]

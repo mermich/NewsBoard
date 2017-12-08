@@ -1,4 +1,5 @@
 ﻿using ApiTools;
+using Microsoft.AspNetCore.Http;
 using NewBoardRestApi.DataModel;
 
 namespace NewBoardRestApi
@@ -7,9 +8,9 @@ namespace NewBoardRestApi
     {
         public int UserId { get; set; }
 
-        public SessionObject(int userId)
+        public SessionObject(ISession isession)
         {
-            UserId = userId;
+            UserId = isession.GetInt32("UserId").GetValueOrDefault();
         }
     }
 }

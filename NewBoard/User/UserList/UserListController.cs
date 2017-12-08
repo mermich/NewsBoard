@@ -7,7 +7,7 @@ using ServerSideSpaTools.JsonResult;
 namespace NewsBoard.wwwroot.Permission.PermissionList
 {
     [Area("User")]
-    [Authorize(Roles = "AdminUser")]
+    //[Authorize(Roles = "AdminUser")]
     public class UserListController : BaseController
     {
         UserApi userApi;

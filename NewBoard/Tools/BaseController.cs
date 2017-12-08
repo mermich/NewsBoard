@@ -51,8 +51,7 @@ namespace NewsBoard.Tools
                 return UserId == BaseAuthenticatedApi.UnAuthenticatedUserId;
             }
         }
-
-
+        
 
         public override void OnActionExecuted(ActionExecutedContext context)
         {
