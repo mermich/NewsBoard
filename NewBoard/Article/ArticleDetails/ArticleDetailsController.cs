@@ -1,4 +1,4 @@
-﻿using NewsBoard.Tools;
+using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 
 namespace NewsBoard.wwwroot.Article.ArticleDetails
@@ -7,10 +7,10 @@ namespace NewsBoard.wwwroot.Article.ArticleDetails
     /// Controller for a single feed
     /// </summary>
     [Area("Article")]
-    public class ArticleDetailsController : BaseController
+    public partial class ArticleDetailsController : BaseController
     {
         [ResponseCache(Duration = 300)]
-        public IActionResult Index(int articleId)
+        public virtual IActionResult Index(int articleId)
         {
             return ReturnView("", null);
         }

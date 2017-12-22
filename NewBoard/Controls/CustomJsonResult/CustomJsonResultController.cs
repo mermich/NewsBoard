@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using ServerSideSpaTools.JsonResult;
@@ -9,50 +9,50 @@ namespace NewsBoard.wwwroot.Controls.CustomJsonResult
     /// Handles everything for the home page
     /// </summary>        
     [Area("Controls")]
-    public class CustomJsonResultController : BaseController
+    public partial class CustomJsonResultController : BaseController
     {
-        public IActionResult Index()
+        public virtual IActionResult Index()
         {
             return ReturnView("CustomJsonResultView", new CustomJsonResultModel());
         }
 
 
-        public IActionResult SucessMessage()
+        public virtual IActionResult SucessMessage()
         {
             return new SuccessMessageResult("Its superb sucess");
         }
 
-        public IActionResult ErrorMessage()
+        public virtual IActionResult ErrorMessage()
         {
             return new ErrorMessageResult("Its superb error");
         }
 
-        public IActionResult WarnMessage()
+        public virtual IActionResult WarnMessage()
         {
             return new WarnMessageResult("Its superb warn");
         }
 
-        public IActionResult Compose()
+        public virtual IActionResult Compose()
         {
             return new ComposeResult(new WarnMessageResult("Its superb Warn"), new ErrorMessageResult("Its superb error"));
         }
 
-        public IActionResult ReplaceHtml()
+        public virtual IActionResult ReplaceHtml()
         {
             return new ReplaceHtmlResult("#replaceDiv", Url.Action("GetTime"));
         }
 
-        public IActionResult AppendHtml()
+        public virtual IActionResult AppendHtml()
         {
             return new AppendHtmlResult("#appendDiv", Url.Action("GetTime"));
         }
 
-        public IActionResult OpenNewWindow()
+        public virtual IActionResult OpenNewWindow()
         {
             return new OpenNewWindowResult("http://www.google.com");
         }
 
-        public ActionResult GetTime()
+        public virtual ActionResult GetTime()
         {
             return ReturnView("TimeView", DateTime.Now.Second);
         }

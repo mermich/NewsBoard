@@ -1,4 +1,4 @@
-﻿using NewsBoard.Tools;
+using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 namespace NewsBoard.wwwroot.Controls.SimpleGetAction
 {
@@ -6,19 +6,19 @@ namespace NewsBoard.wwwroot.Controls.SimpleGetAction
     /// Handles everything for the home page
     /// </summary>        
     [Area("Controls")]
-    public class SimpleGetActionController : BaseController
+    public partial class SimpleGetActionController : BaseController
     {
-        public IActionResult Index()
+        public virtual IActionResult Index()
         {
             return ReturnView("SimpleGetActionView", new SimpleGetActionModel());
         }
 
-        public IActionResult Test()
+        public virtual IActionResult Test()
         {
             return ReturnView("SimpleGetActionView", new SimpleGetActionModel());
         }
 
-        public IActionResult TestwithParam(int id)
+        public virtual IActionResult TestwithParam(int id)
         {
             return ReturnView("SimpleGetActionView", new SimpleGetActionModel());
         }

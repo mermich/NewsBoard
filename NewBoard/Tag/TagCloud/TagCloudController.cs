@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.TagApi;
 using NewsBoard.Tools;
@@ -7,7 +7,7 @@ using ServerSideSpaTools.JsonResult;
 namespace NewsBoard.wwwroot.User.UserRegister
 {
     [Area("Tag")]
-    public class TagCloudController : BaseController
+    public partial class TagCloudController : BaseController
     {
         TagApi tagApi;
 
@@ -17,7 +17,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
         }
 
         [ResponseCache(Duration = 300)]
-        public IActionResult Index()
+        public virtual IActionResult Index()
         {
             var model = tagApi.GetUsedTags();
 
@@ -25,7 +25,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
         }
 
         [ResponseCache(Duration = 300)]
-        public ActionResult GetArticlesByTag(int id)
+        public virtual ActionResult GetArticlesByTag(int id)
         {
             var tagModel = tagApi.GetTag(id);
             var filter = new ArticleVMSearch();

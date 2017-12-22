@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.UserApi;
 using NewsBoard.Tools;
 using ServerSideSpaTools.JsonResult;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace NewsBoard.wwwroot.Permission.PermissionList
 {
     [Area("User")]
     //[Authorize(Roles = "AdminUser")]
-    public class UserListController : BaseController
+    public partial class UserListController : BaseController
     {
         UserApi userApi;
 
@@ -19,7 +20,7 @@ namespace NewsBoard.wwwroot.Permission.PermissionList
 
 
         [ResponseCache(Duration = 300)]
-        public IActionResult Index()
+        public virtual IActionResult Index()
         {
             var model = userApi.ListUsers();
 
@@ -27,13 +28,13 @@ namespace NewsBoard.wwwroot.Permission.PermissionList
         }
 
         [ResponseCache(Duration = 300)]
-        public ActionResult GetEdit(int userId)
+        public virtual ActionResult GetEdit(int userId)
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserEdit", "Index", new { UserId = userId }));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserEdit", "Index", new {  userId } ));
         }
 
         [ResponseCache(Duration = 300)]
-        public ActionResult GetCreate()
+        public virtual ActionResult GetCreate()
         {
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserCreate", "Index"));
         }

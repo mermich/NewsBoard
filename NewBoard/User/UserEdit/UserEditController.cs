@@ -1,4 +1,4 @@
-﻿using NewsBoard.Tools;
+using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using NewBoardRestApi.UserApi;
@@ -8,7 +8,7 @@ namespace NewsBoard.wwwroot.Group.GroupCreate
 {
     [Area("User")]
     //[Authorize(Roles = "AdminUser")]
-    public class UserEditController : BaseController
+    public partial class UserEditController : BaseController
     {
         UserApi userApi;
 
@@ -19,14 +19,14 @@ namespace NewsBoard.wwwroot.Group.GroupCreate
 
 
         [ResponseCache(Duration = 300)]
-        public IActionResult Index(int userId)
+        public virtual IActionResult Index(int userId)
         {
             var model = userApi.GetUserEdit(userId);
             
             return ReturnView("UserEditView", model);
         }
 
-        public ActionResult Update(UserEditVM model)
+        public virtual ActionResult Update(UserEditVM model)
         {
             userApi.SaveUser(model);
 

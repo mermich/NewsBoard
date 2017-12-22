@@ -1,4 +1,4 @@
-﻿using ApiTools;
+using ApiTools;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +11,7 @@ using System.Security.Claims;
 namespace NewsBoard.wwwroot.User.UserRegister
 {
     [Area("User")]
-    public class UserLoginController : BaseController
+    public partial class UserLoginController : BaseController
     {
         AuthenticationApi authenticationApi;
 
@@ -22,14 +22,14 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
 
         [ResponseCache(Duration = 300)]
-        public IActionResult Index()
+        public virtual IActionResult Index()
         {
             var model = authenticationApi.GetNewUserLoginVM();
 
             return ReturnView("UserLoginView", model);
         }
 
-        public ActionResult Login(UserLoginVM model)
+        public virtual ActionResult Login(UserLoginVM model)
         {
             try
             {

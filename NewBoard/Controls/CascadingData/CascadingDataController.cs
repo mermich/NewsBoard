@@ -1,4 +1,4 @@
-﻿using NewsBoard.Tools;
+using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using ServerSideSpaTools.JsonResult;
@@ -9,15 +9,15 @@ namespace NewsBoard.wwwroot.Controls.CascadingData
     /// Handles everything for the home page
     /// </summary>        
     [Area("Controls")]
-    public class CascadingDataController : BaseController
+    public partial class CascadingDataController : BaseController
     {
-        public IActionResult Index()
+        public virtual IActionResult Index()
         {
             return ReturnView("CascadingDataView", new CascadingDataModel());
         }
 
         [HttpPost]
-        public JsonResult SelectChanged(CascadingDataModel model)
+        public virtual JsonResult SelectChanged(CascadingDataModel model)
         {
             return new ComposeResult(
                 new ReplaceHtmlResult("#someUpdatedContent", Url.Action("GetTime")), 
@@ -25,7 +25,7 @@ namespace NewsBoard.wwwroot.Controls.CascadingData
         }
 
 
-        public ActionResult GetTime()
+        public virtual ActionResult GetTime()
         {
             return ReturnView("TimeView", DateTime.Now.Second);
         }

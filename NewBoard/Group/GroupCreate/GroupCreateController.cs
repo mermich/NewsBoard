@@ -1,4 +1,4 @@
-﻿using NewsBoard.Tools;
+using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.GroupApi;
 using ServerSideSpaTools.JsonResult;
@@ -6,7 +6,7 @@ using ServerSideSpaTools.JsonResult;
 namespace NewsBoard.wwwroot.Group.GroupCreate
 {
     [Area("Group")]
-    public class GroupCreateController : BaseController
+    public partial class GroupCreateController : BaseController
     {
         GroupApi groupApi;
 
@@ -17,14 +17,14 @@ namespace NewsBoard.wwwroot.Group.GroupCreate
 
 
         [ResponseCache(Duration = 300)]
-        public IActionResult Index()
+        public virtual IActionResult Index()
         {
             var model = groupApi.GetNewGroupEditVM();
             
             return ReturnView("GroupCreateView", model);
         }
 
-        public ActionResult Create(GroupEditVM model)
+        public virtual ActionResult Create(GroupEditVM model)
         {
             groupApi.CreateGroup(model);
 

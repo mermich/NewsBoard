@@ -1,12 +1,12 @@
-﻿using NewsBoard.Tools;
+using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 
 namespace NewsBoard.wwwroot.User.UserRegister
 {
-    public class TutorialController : BaseController
+    public partial class TutorialController : BaseController
     {
         [ResponseCache(Duration = 300)]
-        public IActionResult FirstTime()
+        public virtual IActionResult FirstTime()
         {
             return View("FirstTimeView");
         }

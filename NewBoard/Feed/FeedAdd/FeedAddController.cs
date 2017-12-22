@@ -1,4 +1,4 @@
-﻿using ApiTools;
+using ApiTools;
 using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.FeedApi;
 using NewsBoard.Tools;
@@ -10,7 +10,7 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
     /// Controller for a single feed
     /// </summary>
     [Area("Feed")]
-    public class FeedAddController : BaseController
+    public partial class FeedAddController : BaseController
     {
         FeedApi feedApi;
 
@@ -21,17 +21,17 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
 
 
         [ResponseCache(Duration = 300)]
-        public IActionResult Index()
+        public virtual IActionResult Index()
         {
             return ReturnView("FeedAddView", null);
         }
 
-        public IActionResult GetPreview(string urlToDiscover)
+        public virtual IActionResult GetPreview(string urlToDiscover)
         {
             return new ReplaceHtmlResult("#preview", Url.Action("Preview", "FeedAdd", new { urlToDiscover = urlToDiscover }));
         }
 
-        public IActionResult Preview(string urlToDiscover)
+        public virtual IActionResult Preview(string urlToDiscover)
         {
             var preview = new LookupWebSiteApi().GetWebSiteDetails(urlToDiscover);
             var syndication = new SyndicationApi().GetSyndication(preview.SyndicationUrl);
@@ -44,7 +44,7 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
         }
 
         [HttpPost]
-        public IActionResult CreateSubscription(WebSiteDetails details)
+        public virtual IActionResult CreateSubscription(WebSiteDetails details)
         {
             var feed = feedApi.CreateSubscriptionAndSubScribe(details.SyndicationUrl);
 

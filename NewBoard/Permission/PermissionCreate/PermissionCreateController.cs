@@ -1,4 +1,4 @@
-﻿using NewsBoard.Tools;
+using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.PermissionApi;
 using ServerSideSpaTools.JsonResult;
@@ -6,7 +6,7 @@ using ServerSideSpaTools.JsonResult;
 namespace NewsBoard.wwwroot.Permission.PermissionCreate
 {
     [Area("Permission")]
-    public class PermissionCreateController : BaseController
+    public partial class PermissionCreateController : BaseController
     {
         PermissionApi permissionApi;
 
@@ -18,14 +18,14 @@ namespace NewsBoard.wwwroot.Permission.PermissionCreate
 
 
         [ResponseCache(Duration = 300)]
-        public IActionResult Index()
+        public virtual IActionResult Index()
         {
             var model = permissionApi.GetNewPermissionEditVM();
 
             return ReturnView("PermissionCreateView", model);
         }
 
-        public ActionResult Create(PermissionVM model)
+        public virtual ActionResult Create(PermissionVM model)
         {
             permissionApi.CreatePermission(model);
 

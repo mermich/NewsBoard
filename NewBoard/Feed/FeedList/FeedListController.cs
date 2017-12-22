@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Session;
 using NewBoardRestApi.FeedApi;
@@ -12,7 +12,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
     /// Controller for a single feed
     /// </summary>
     [Area("Feed")]
-    public class FeedListController : BaseController
+    public partial class FeedListController : BaseController
     {
         FeedApi feedApi;
 
@@ -22,7 +22,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
         }
 
         [ResponseCache(Duration = 300)]
-        public IActionResult Index(FeedVMSearch filter, FeedVMListOptions options)
+        public virtual IActionResult Index(FeedVMSearch filter, FeedVMListOptions options)
         {            
             var model = feedApi.ListFeed(filter);
             model.Options = options;
@@ -30,7 +30,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
             return ReturnView("FeedListView", model);
         }
 
-        public IActionResult Open(int feedId)
+        public virtual IActionResult Open(int feedId)
         {
             var feed = feedApi.GetFeed(feedId);
 
@@ -49,13 +49,13 @@ namespace NewsBoard.wwwroot.Feed.FeedList
         }
 
 
-        public IActionResult FeedAction(int feedId)
+        public virtual IActionResult FeedAction(int feedId)
         {
             var model = feedApi.GetFeed(feedId);
             return ReturnView("FeedAction", model);
         }
 
-        public IActionResult Subscribe(int feedId)
+        public virtual IActionResult Subscribe(int feedId)
         {
             feedApi.SubscribeFeed(feedId);
 
@@ -66,7 +66,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
                new ReplaceHtmlResult("[feed='" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId = feedId })));
         }
 
-        public IActionResult Unsubscribe(int feedId)
+        public virtual IActionResult Unsubscribe(int feedId)
         {
             feedApi.UnSubscribeFeed(feedId);
 
@@ -76,7 +76,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
                 new ReplaceHtmlResult("[feed='" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId = feedId })));
         }
 
-        public IActionResult Report(int feedId)
+        public virtual IActionResult Report(int feedId)
         {
             feedApi.ReportFeed(feedId);
 
@@ -87,7 +87,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
         }
 
 
-        public IActionResult StopDisplay(int feedId)
+        public virtual IActionResult StopDisplay(int feedId)
         {
             feedApi.StopDisplayFeed(feedId);
 
@@ -99,7 +99,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
 
 
 
-        public IActionResult ShowDetails(int feedId)
+        public virtual IActionResult ShowDetails(int feedId)
         {
             feedApi.OpenFeed(feedId);
 
@@ -107,12 +107,12 @@ namespace NewsBoard.wwwroot.Feed.FeedList
         }
 
         [ResponseCache(Duration = 300)]
-        public IActionResult GetEdit(int feedId)
+        public virtual IActionResult GetEdit(int feedId)
         {
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedEdit", "Index", new { feedId = feedId }));
         }
         
-        public IActionResult Refresh(int feedId)
+        public virtual IActionResult Refresh(int feedId)
         {
             feedApi.RefreshFeedArticles(feedId);
 

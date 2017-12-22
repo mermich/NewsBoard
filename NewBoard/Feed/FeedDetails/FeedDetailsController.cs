@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.ArticleApi;
 using NewBoardRestApi.FeedApi;
 using NewsBoard.Tools;
@@ -11,7 +11,7 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
     /// Controller for a single feed
     /// </summary>
     [Area("Feed")]
-    public class FeedDetailsController : BaseController
+    public partial class FeedDetailsController : BaseController
     {
         FeedApi feedApi;
 
@@ -22,7 +22,7 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
 
 
         [ResponseCache(Duration = 300)]
-        public IActionResult Index(int feedId)
+        public virtual IActionResult Index(int feedId)
         {
             var feed = feedApi.GetFeed(feedId);
 
@@ -30,7 +30,7 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
         }
 
         [ResponseCache(Duration = 300)]
-        public IActionResult RefreshFeed(int feedId)
+        public virtual IActionResult RefreshFeed(int feedId)
         {
             feedApi.RefreshFeedArticles(feedId);
 

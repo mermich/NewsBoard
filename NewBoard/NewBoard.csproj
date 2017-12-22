@@ -10,6 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="EditorTemplates\**" />
+    <Content Remove="EditorTemplates\**" />
+    <EmbeddedResource Remove="EditorTemplates\**" />
+    <None Remove="EditorTemplates\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="appsettings.Development.json" />
     <Content Remove="appsettings.json" />
     <Content Remove="appsettings.Release.json" />
@@ -44,7 +51,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="EditorTemplates\" />
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>

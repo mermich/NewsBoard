@@ -1,4 +1,4 @@
-﻿using NewsBoard.Tools;
+using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.TagApi;
 using ServerSideSpaTools.JsonResult;
@@ -6,7 +6,7 @@ using ServerSideSpaTools.JsonResult;
 namespace NewsBoard.wwwroot.User.UserRegister
 {
     [Area("Tag")]
-    public class TagCreateController : BaseController
+    public partial class TagCreateController : BaseController
     {
         TagApi tagApi;
 
@@ -17,14 +17,14 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
 
         [ResponseCache(Duration = 300)]
-        public IActionResult Index()
+        public virtual IActionResult Index()
         {
             var model = tagApi.GetNewCreateTag();
             
             return ReturnView("TagCreateView", model);
         }
         
-        public ActionResult Create(TagEditVM model)
+        public virtual ActionResult Create(TagEditVM model)
         {
             tagApi.CreateTag(model);
 

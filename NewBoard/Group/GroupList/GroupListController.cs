@@ -1,4 +1,4 @@
-﻿using NewsBoard.Tools;
+using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.GroupApi;
 using ServerSideSpaTools.JsonResult;
@@ -6,7 +6,7 @@ using ServerSideSpaTools.JsonResult;
 namespace NewsBoard.wwwroot.Group.GroupList
 {
     [Area("Group")]
-    public class GroupListController : BaseController
+    public partial class GroupListController : BaseController
     {
         GroupApi groupApi;
 
@@ -17,7 +17,7 @@ namespace NewsBoard.wwwroot.Group.GroupList
 
 
         [ResponseCache(Duration = 300)]
-        public IActionResult Index()
+        public virtual IActionResult Index()
         {
             var model = groupApi.GetGroups();
 
@@ -25,13 +25,13 @@ namespace NewsBoard.wwwroot.Group.GroupList
         }
 
         [ResponseCache(Duration = 300)]
-        public ActionResult GetEdit(int groupId)
+        public virtual ActionResult GetEdit(int groupId)
         {
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Group", "GroupEdit", "Index", new { groupId = groupId }));
         }
 
         [ResponseCache(Duration = 300)]
-        public ActionResult GetCreate()
+        public virtual ActionResult GetCreate()
         {
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Group", "GroupCreate", "Index"));
         }

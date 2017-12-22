@@ -1,4 +1,4 @@
-﻿using NewsBoard.Tools;
+using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.ArticleApi;
 using ServerSideSpaTools.JsonResult;
@@ -10,7 +10,7 @@ namespace NewsBoard.wwwroot.Article.ArticleList
     /// Controller for a single feed
     /// </summary>
     [Area("Article")]
-    public class ArticleListController : BaseController
+    public partial class ArticleListController : BaseController
     {
         ArticleApi articleApi;
 
@@ -20,7 +20,7 @@ namespace NewsBoard.wwwroot.Article.ArticleList
         }
 
         [ResponseCache(Duration = 300)]
-        public IActionResult Index(ArticleVMSearch filter, ArticleVMListOptions options)
+        public virtual IActionResult Index(ArticleVMSearch filter, ArticleVMListOptions options)
         {
             var model = articleApi.GetArticles(filter);
             model.Options = options;
@@ -28,7 +28,7 @@ namespace NewsBoard.wwwroot.Article.ArticleList
             return ReturnView("ArticleListView", model);
         }
 
-        public IActionResult Open(int articleId)
+        public virtual IActionResult Open(int articleId)
         {
             var article = articleApi.OpenArticle(articleId);
 
@@ -47,7 +47,7 @@ namespace NewsBoard.wwwroot.Article.ArticleList
             }
         }
 
-        public IActionResult Hide(int articleId)
+        public virtual IActionResult Hide(int articleId)
         {
             articleApi.HideArticle(articleId);
 

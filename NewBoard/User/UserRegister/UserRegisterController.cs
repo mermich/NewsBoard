@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.UserApi;
 using NewsBoard.Tools;
 using ServerSideSpaTools.JsonResult;
@@ -6,7 +6,7 @@ using ServerSideSpaTools.JsonResult;
 namespace NewsBoard.wwwroot.User.UserRegister
 {
     [Area("User")]
-    public class UserRegisterController : BaseController
+    public partial class UserRegisterController : BaseController
     {
         AuthenticationApi authenticationApi;
 
@@ -17,13 +17,13 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
 
         [ResponseCache(Duration = 300)]
-        public IActionResult Index()
+        public virtual IActionResult Index()
         {
             var model = new UserRegisterVM();
             return ReturnView("UserRegisterView", model);
         }
 
-        public ActionResult Register(UserRegisterVM model)
+        public virtual ActionResult Register(UserRegisterVM model)
         {
             var userId = authenticationApi.Register(model);
 

@@ -1,4 +1,4 @@
-﻿using NewsBoard.Tools;
+using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.TagApi;
 using ServerSideSpaTools.JsonResult;
@@ -6,7 +6,7 @@ using ServerSideSpaTools.JsonResult;
 namespace NewsBoard.wwwroot.User.UserRegister
 {
     [Area("Tag")]
-    public class TagListController : BaseController
+    public partial class TagListController : BaseController
     {
         TagApi tagApi;
 
@@ -16,7 +16,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
         }
 
         [ResponseCache(Duration = 300)]
-        public IActionResult Index()
+        public virtual IActionResult Index()
         {
             var model = tagApi.GetTags();
 
@@ -24,13 +24,13 @@ namespace NewsBoard.wwwroot.User.UserRegister
         }
 
         [ResponseCache(Duration = 300)]
-        public ActionResult GetEdit(int tagId)
+        public virtual ActionResult GetEdit(int tagId)
         {
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Tag", "TagEdit", "Index", new { tagId = tagId }));
         }
 
         [ResponseCache(Duration = 300)]
-        public ActionResult GetCreate()
+        public virtual ActionResult GetCreate()
         {
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Tag", "TagCreate", "Index"));
         }
