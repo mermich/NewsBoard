@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace ApiTools.Syndication
+namespace ApiTools.SyndicationClient
 {
     public static class DateTimeOffsetExtentions
     {
@@ -64,24 +64,29 @@ namespace ApiTools.Syndication
                 "ddd, dd MMM yyyy HH:mm:ss UTC",
                 "yyyy-MM-HH"
             };
-            
+
 
             return formats;
         });
 
         internal static DateTimeOffset ParseDate(this string date)
         {
+            DateTimeOffset res = DateTime.UtcNow;
+
             for (int i = 0; i < Formats.Value.Count; i++)
             {
-                if (DateTimeOffset.TryParseExact(date, Formats.Value[i], null, DateTimeStyles.None, out DateTimeOffset result))
-                    return result;
+                if (DateTimeOffset.TryParseExact(date, Formats.Value[i], null, DateTimeStyles.None, out DateTimeOffset resultExact))
+                {
+                    res = resultExact;
+                }
             }
 
-            if (DateTimeOffset.TryParse(date, out DateTimeOffset res))
-                return res;
+            if (DateTimeOffset.TryParse(date, out DateTimeOffset result))
+            {
+                res = result;
+            }
 
-
-            return DateTime.UtcNow;
+            return res;
         }
     }
 }

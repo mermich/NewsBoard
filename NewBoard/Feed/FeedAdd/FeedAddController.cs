@@ -1,8 +1,11 @@
 using ApiTools;
+using ApiTools.HttpTools;
+using ApiTools.SyndicationClient;
 using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.FeedApi;
 using NewsBoard.Tools;
 using ServerSideSpaTools.JsonResult;
+using System;
 
 namespace NewsBoard.wwwroot.Feed.FeedAdd
 {
@@ -33,8 +36,11 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
 
         public virtual IActionResult Preview(string urlToDiscover)
         {
-            var preview = new LookupWebSiteApi().GetWebSiteDetails(urlToDiscover);
-            var syndication = new SyndicationApi().GetSyndication(preview.SyndicationUrl);
+            var uri = new Uri(urlToDiscover);
+            var preview = new LookupWebSiteApi().GetWebSiteDetails(uri);
+            var xdoc = new XDocumentPageWrapper(preview.SyndicationUri, new HttpClientWrapper(preview.SyndicationUri).FetchResponse());
+            var syndication = new SyndicationClientStrategy(xdoc).GetSyndicationClientOrDefault().GetSyndicationContent();
+
             var model = new FeedAddPreview
             {
                 WebSiteDetails = preview,
@@ -46,7 +52,7 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
         [HttpPost]
         public virtual IActionResult CreateSubscription(WebSiteDetails details)
         {
-            var feed = feedApi.CreateSubscriptionAndSubScribe(details.SyndicationUrl);
+            var feed = feedApi.CreateSubscriptionAndSubScribe(details.SyndicationUri);
 
             return new ComposeResult(
                 new ReplaceMainHtmlResult(NewsBoardUrlHelper.UserFeedListAction),

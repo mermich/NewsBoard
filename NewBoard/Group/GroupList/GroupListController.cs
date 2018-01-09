@@ -24,16 +24,15 @@ namespace NewsBoard.wwwroot.Group.GroupList
             return ReturnView("GroupListView", model);
         }
 
-        [ResponseCache(Duration = 300)]
+        
         public virtual ActionResult GetEdit(int groupId)
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Group", "GroupEdit", "Index", new { groupId = groupId }));
+            return ReturnReplaceMainView(new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Group", "GroupEdit", "Index", new { groupId })));
         }
-
-        [ResponseCache(Duration = 300)]
+        
         public virtual ActionResult GetCreate()
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Group", "GroupCreate", "Index"));
+            return ReturnReplaceMainView(new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Group", "GroupCreate", "Index")));
         }
     }
 }

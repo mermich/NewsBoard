@@ -9,15 +9,17 @@ namespace ApiTools.HttpTools
     {
         private XDocument xDocument;
 
+        public XDocumentWrapper(string html) : this(new MemoryStream(Encoding.UTF8.GetBytes(html)))
+        {
+        }
+
+
         public XDocumentWrapper(Stream stream)
         {
             xDocument = XDocument.Load(stream);
         }
 
-        public XDocumentWrapper(string response)
-        {
-            xDocument = XDocument.Load(new MemoryStream(Encoding.UTF8.GetBytes(response)));
-        }
+        
 
         public IEnumerable<XElement> Elements()
         {

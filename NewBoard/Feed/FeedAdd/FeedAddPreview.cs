@@ -1,5 +1,5 @@
 ﻿using ApiTools;
-using ApiTools.Syndication;
+using ApiTools.SyndicationClient;
 
 namespace NewsBoard.wwwroot.Feed.FeedAdd
 {

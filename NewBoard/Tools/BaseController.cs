@@ -1,5 +1,6 @@
 ﻿using ApiTools;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using NewBoardRestApi.BaseApi;
 using ServerSideSpaTools;
@@ -82,6 +83,19 @@ namespace NewsBoard.Tools
                     new LoadUrlResult(Url.NewsBoardUrlHelper().Action("", "Home", "Index")));
 
                 context.ExceptionHandled = false;
+            }
+        }
+
+        public ActionResult ReturnReplaceMainView(ReplaceMainHtmlResult res)
+        {
+            if (IsAjaxRequest)
+            {
+                return res;
+            }
+
+            else
+            {
+                return Redirect(res.Action);
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Linq;
 
-namespace ApiTools.Syndication
+namespace ApiTools.HttpTools
 {
     public static class XAttributeExtentions
     {

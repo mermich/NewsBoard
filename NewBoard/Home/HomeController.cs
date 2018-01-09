@@ -22,7 +22,7 @@ namespace NewsBoard.wwwroot.Home
         [ResponseCache(Duration = 300)]
         public virtual IActionResult GetUserArticles()
         {
-            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().UserArticleListAction);
+            return ReturnReplaceMainView(new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().UserArticleListAction));
         }
 
         [ResponseCache(Duration = 300)]

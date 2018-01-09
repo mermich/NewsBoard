@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using ApiTools.Syndication;
+using ApiTools.SyndicationClient;
 
 namespace NewBoardRestApi.DataModel
 {
@@ -9,21 +9,30 @@ namespace NewBoardRestApi.DataModel
     {
         public int Id { get; set; }
 
+
         public string Label { get; set; }
+
 
         public string Summary { get; set; }
 
+
         public string Url { get; set; }
+
 
         public DateTime PublishDate { get; set; }
 
+
         public DateTime LastUpdatedTime { get; set; }
+
 
         public Feed Feed { get; set; }
 
+
         public int FeedId { get; set; }
 
+
         public List<UserArticle> UserArticles { get; set; }
+
 
         public decimal Score
         {

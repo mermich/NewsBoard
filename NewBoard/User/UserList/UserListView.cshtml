@@ -6,7 +6,7 @@
         Utilisateurs
     </div>
 
-    <a class="btn btn-info btn-sm" href="#" ns-action-url="@Url.NewsBoardUrlHelper().Action("User", "UserList", "GetCreate")"
+    <a class="btn btn-info btn-sm" href="@Url.NewsBoardUrlHelper().Action("User", "UserList", "GetCreate")"
        type="button" ns-action-type="simpleGetAction">
         Creer un nouvel utilisateur
     </a>
@@ -30,7 +30,7 @@
                         <td>
                             <div class="btn-group" role="group">
                                 <button class="btn btn-info btn-sm"
-                                        ns-action-url="@Url.NewsBoardUrlHelper().Action("User", "UserList", "GetEdit", new { userId=Model.Users[i].Id})"
+                                        href="@Url.NewsBoardUrlHelper().Action("User", "UserList", "GetEdit", new { userId=Model.Users[i].Id})"
                                         type="button" ns-action-type="simpleGetAction">
                                     Editer
                                 </button>
@@ -42,7 +42,7 @@
         </table>
     </div>
 
-    <a class="btn btn-info btn-sm" href="#" ns-action-url="@Url.NewsBoardUrlHelper().Action("User", "UserList", "GetCreate")"
+    <a class="btn btn-info btn-sm" href="@Url.NewsBoardUrlHelper().Action("User", "UserList", "GetCreate")"
        type="button" ns-action-type="simpleGetAction">
         Creer un nouvel utilisateur
     </a>

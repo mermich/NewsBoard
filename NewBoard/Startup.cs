@@ -24,6 +24,7 @@ namespace NewsBoard
     public class Startup
     {
         public IConfigurationRoot Configuration { get; set; }
+        public IHostingEnvironment env { get; set; }
 
         public Startup(IHostingEnvironment env)
         {
@@ -33,6 +34,9 @@ namespace NewsBoard
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+
+
+            this.env = env;
         }
 
 
@@ -58,8 +62,15 @@ namespace NewsBoard
             services.AddScoped((i) => new SessionObject(iHttpContextAccessor.HttpContext.Session));
 
 
-            services.AddDbContext<NewsBoardContext>(o => o.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
-            
+            // Use in memory for debug.
+            if (env.IsDevelopment())
+            {
+                services.AddDbContext<NewsBoardContext>(o => o.UseInMemoryDatabase("NewsBoardContext"));
+            }
+            else
+            {
+                services.AddDbContext<NewsBoardContext>(o => o.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
+            }
 
             services.AddAuthentication(sharedOptions =>
             {
@@ -76,10 +87,6 @@ namespace NewsBoard
             services.AddScoped<TagApi>();
             services.AddScoped<UserApi>();
             services.AddScoped<AuthenticationApi>();
-
-
-
-            // services.AddCookieAuthentication();
 
             services.AddResponseCaching();
             services.AddAuthentication();

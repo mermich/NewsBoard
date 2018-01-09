@@ -2,12 +2,12 @@
 
 namespace ApiTools.HttpTools
 {
-    public class UriTester
+    public class UriTest
     {
         Uri uri;
 
 
-        public UriTester(Uri uri)
+        public UriTest(Uri uri)
         {
             this.uri = uri;
         }

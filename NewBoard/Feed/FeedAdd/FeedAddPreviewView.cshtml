@@ -3,8 +3,8 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        @Model.WebSiteDetails.Title : <a href="@Model.WebSiteDetails.Url">@Model.WebSiteDetails.Url</a>
-        <input type="hidden" name="SyndicationUrl" value="@Model.WebSiteDetails.SyndicationUrl" />
+        @Model.WebSiteDetails.Title : <a href="@Model.WebSiteDetails.Uri">@Model.WebSiteDetails.Uri</a>
+        <input type="hidden" name="SyndicationUrl" value="@Model.WebSiteDetails.SyndicationUri" />
     </div>
 
     <div class="form-horizontal">
@@ -19,7 +19,7 @@
             <div class="form-group">
                 <label for="SyndicationUrl" class="col-sm-2 control-label">SyndicationUrl</label>
                 <div class="col-sm-10">
-                    <input type="url" class="form-control" id="SyndicationUrl" value="@Model.WebSiteDetails.SyndicationUrl" name="SyndicationUrl" placeholder="SyndicationUrl">
+                    <input type="url" class="form-control" id="SyndicationUrl" value="@Model.WebSiteDetails.SyndicationUri" name="SyndicationUrl" placeholder="SyndicationUrl">
                 </div>
             </div>
             <div class="form-group">
@@ -32,21 +32,21 @@
                 <label for="Title" class="col-sm-2 control-label">IconUrl</label>
                 <div class="col-sm-10">
                     <div class=" input-group">
-                        <input type="text" class="form-control" id="Title" value="@Model.WebSiteDetails.IconUrl" name="IconUrl" placeholder="IconUrl">
-                        <span class="input-group-addon" alt="website icon" style="background-image: url(@Model.WebSiteDetails.IconUrl); background-size: contain; background-repeat-x: no-repeat; background-repeat-y: no-repeat; background-position: center;"></span>
+                        <input type="text" class="form-control" id="Title" value="@Model.WebSiteDetails.IconUri" name="IconUrl" placeholder="IconUrl">
+                        <span class="input-group-addon" alt="website icon" style="background-image: url(@Model.WebSiteDetails.IconUri); background-size: contain; background-repeat-x: no-repeat; background-repeat-y: no-repeat; background-position: center;"></span>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="WebSiteUrl" class="col-sm-2 control-label">WebSiteUrl</label>
                 <div class="col-sm-10">
-                    <input type="url" class="form-control" id="WebSiteUrl" value="@Model.WebSiteDetails.Url" name="WebSiteUrl" placeholder="WebSiteUrl">
+                    <input type="url" class="form-control" id="WebSiteUrl" value="@Model.WebSiteDetails.Uri" name="WebSiteUrl" placeholder="WebSiteUrl">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label"></label>
                 <button class="btn btn-info"
-                        ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedAdd", "CreateSubscription")"
+                        href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedAdd", "CreateSubscription")"
                         type="button" ns-action-type="simplePostAction">
                     Ajouter ce flux
                 </button>
@@ -63,7 +63,7 @@
                 <tr>
                     <td>
                         <button class="btn btn-info"
-                                ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedAdd", "CreateSubscription")"
+                                href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedAdd", "CreateSubscription")"
                                 type="button" ns-action-type="simplePostAction">
                             Ajouter ce flux
                         </button>

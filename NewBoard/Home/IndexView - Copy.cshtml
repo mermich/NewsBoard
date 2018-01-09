@@ -17,12 +17,12 @@
             <div class="form-group">
                 <label for="Label" class="col-sm-3 control-label"> Veux-tu avoir un petit tour des fonctionnalites que ce site possede ?</label>
                 <div class="col-sm-8">
-                    <a href="#" class="btn btn-primary" id="loginMenuLink" ns-action-url="@Url.NewsBoardUrlHelper().Action("Tutorial", "Tutorial", "GetStep0")" type="button" ns-action-type="simpleGetAction">OUI</a>
+                    <a class="btn btn-primary" id="loginMenuLink" href="@Url.NewsBoardUrlHelper().Action("Tutorial", "Tutorial", "GetStep0")" type="button" ns-action-type="simpleGetAction">OUI</a>
                 </div>
             </div>
 
             <div class="form-group">
-                <a href="#" class="btn btn-success" id="loginMenuLink" ns-action-url="@Url.NewsBoardUrlHelper().Action("User","UserMenu", "GetLogin")" type="button" ns-action-type="simpleGetAction">Non, je suis ici chez moi, redirige moi vers la page de login.</a>
+                <a class="btn btn-success" id="loginMenuLink" href="@Url.NewsBoardUrlHelper().Action("User","UserMenu", "GetLogin")" type="button" ns-action-type="simpleGetAction">Non, je suis ici chez moi, redirige moi vers la page de login.</a>
             </div>
         </div>
     </div>

@@ -17,7 +17,7 @@
         <div>
             <div class="btn-group" role="group">
                 <button class="btn btn-info btn-sm"
-                        ns-action-url="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "RefreshFeed", new { feedId=Model.Id})"
+                        href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "RefreshFeed", new { feedId=Model.Id})"
                         type="button" ns-action-type="simpleGetAction">
                     Refresh
                 </button>

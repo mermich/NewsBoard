@@ -76,21 +76,23 @@ function LoadCallback() {
             else if ($(e.target).is("img"))
                 target = $(e.target).parent()[0];
 
-            let targetUrl = target.getAttribute("ns-action-url");
-            if (targetUrl == undefined || targetUrl == "")
-                targetUrl = target.getAttribute("href");
+            let targetUrl = target.getAttribute("href");
 
             console.log('performSimpleAjaxAction: ' + targetUrl);
             $.ajax({
                 type: verb,
                 url: targetUrl,
                 data: dataToSend,
+                headers: { 'X-Requested-With': 'XMLHttpRequest' },
                 success: function (result) {
                     console.log(result);
                     HandleAjaxResult(result);
                     LoadCallback();
                     enableElement(target);
-                }
+                },
+                error: function (result) {
+                    $.notify({ message: "Une erreur s'est produite." }, { type: 'fatal' });
+                },
             });
             return false;
         });
@@ -152,14 +154,22 @@ function HandleAjaxResult(result) {
             // Display a loader.
             selector.html("<div class='loader'></div>");
 
-            $.get(url, function (result2) {
-                selector.html(result2).hide().fadeIn(1000);
-                LoadCallback(selector);
+            $.ajax({
+                headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                type: "GET",
+                url: url,
+                success: function (result2) {
+                    selector.html(result2).hide().fadeIn(1000);
+                    LoadCallback(selector);
 
-                // If we display a full page we add it to the user's page history.
-                if (result.replaceHtml.selector == "#page") {
-                    history.pushState({ url: url }, "replaceHtml", url);
-                    document.body.scrollTop = document.documentElement.scrollTop = 0;
+                    // If we display a full page we add it to the user's page history.
+                    if (result.replaceHtml.selector == "#page") {
+                        history.pushState({ url: url }, "replaceHtml", url);
+                        document.body.scrollTop = document.documentElement.scrollTop = 0;
+                    }
+                },
+                error: function (result) {
+                    $.notify({ message: "Une erreur s'est produite, redirection vers la page d'accueil" }, { type: 'fatal' });
                 }
             });
         }

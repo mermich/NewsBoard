@@ -6,7 +6,7 @@
         Les Permissions
     </div>
 
-    <a class="btn btn-info btn-sm" href="#" ns-action-url="@Url.NewsBoardUrlHelper().Action("Permission", "PermissionList", "GetCreate")"
+    <a class="btn btn-info btn-sm" href="@Url.NewsBoardUrlHelper().Action("Permission", "PermissionList", "GetCreate")"
        type="button" ns-action-type="simpleGetAction">
         Creer une nouvelle permission
     </a>
@@ -30,7 +30,7 @@
                         <td>
                             <div class="btn-group" role="group">
                                 <button class="btn btn-info btn-sm"
-                                        ns-action-url="@Url.NewsBoardUrlHelper().Action("Permission", "PermissionList", "GetEdit", new { PermissionId=Model.Permissions[i].Id})"
+                                        href="@Url.NewsBoardUrlHelper().Action("Permission", "PermissionList", "GetEdit", new { PermissionId=Model.Permissions[i].Id})"
                                         type="button" ns-action-type="simpleGetAction">
                                     Editer
                                 </button>
@@ -42,7 +42,7 @@
         </table>
     </div>
 
-    <a class="btn btn-info btn-sm" href="#" ns-action-url="@Url.NewsBoardUrlHelper().Action("Permission", "PermissionList", "GetCreate")"
+    <a class="btn btn-info btn-sm" href="@Url.NewsBoardUrlHelper().Action("Permission", "PermissionList", "GetCreate")"
        type="button" ns-action-type="simpleGetAction">
         Creer une nouvelle permission
     </a>

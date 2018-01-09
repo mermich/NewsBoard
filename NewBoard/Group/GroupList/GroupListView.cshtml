@@ -29,8 +29,8 @@
                         <td>@Model.Groups[i].Permissions</td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a class="btn btn-info btn-sm" href="#" 
-                                        ns-action-url="@Url.NewsBoardUrlHelper().Action("Group", "GroupList", "GetEdit", new { groupId=Model.Groups[i].Id})"
+                                <a class="btn btn-info btn-sm" 
+                                        href="@Url.NewsBoardUrlHelper().Action("Group", "GroupList", "GetEdit", new { groupId=Model.Groups[i].Id})"
                                         type="button" ns-action-type="simpleGetAction">
                                     Editer
                                 </a>
@@ -42,7 +42,7 @@
         </table>
     </div>
 
-    <a class="btn btn-info btn-sm" href="#" ns-action-url="@Url.NewsBoardUrlHelper().Action("Group", "GroupList", "GetCreate")"
+    <a class="btn btn-info btn-sm" href="@Url.NewsBoardUrlHelper().Action("Group", "GroupList", "GetCreate")"
        type="button" ns-action-type="simpleGetAction">
         Creer un nouveau Groupe
     </a>

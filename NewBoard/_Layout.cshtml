@@ -44,35 +44,35 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Articles<b class="caret"></b></a>
+                        <a data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Articles<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetUserArticles")">Mes articles</a></li>
-                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetArticleSearch")">Les autres articles</a></li>
+                            <li><a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetUserArticles")">Mes articles</a></li>
+                            <li><a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetArticleSearch")">Les autres articles</a></li>
                         </ul>
                     </li>
 
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Flux<b class="caret"></b></a>
+                        <a data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Flux<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetUserFeeds")">Mes Flux</a></li>
-                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetAllFeed")">Tous les flux</a></li>
-                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetAddFeed")">Ajouter un flux</a></li>
+                            <li><a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetUserFeeds")">Mes Flux</a></li>
+                            <li><a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetAllFeed")">Tous les flux</a></li>
+                            <li><a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetAddFeed")">Ajouter un flux</a></li>
                         </ul>
                     </li>
 
-                    <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetAboutPage")">A propos de l'auteur</a></li>
+                    <li><a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetAboutPage")">A propos de l'auteur</a></li>
 
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
+                        <a data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetTagListPage")">Tags</a></li>
-                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetGroupListPage")">Groupes</a></li>
-                            <li><a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetPermissionListPage")">Permissions</a></li>
+                            <li><a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetTagListPage")">Tags</a></li>
+                            <li><a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetGroupListPage")">Groupes</a></li>
+                            <li><a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetPermissionListPage")">Permissions</a></li>
                             <li>
-                                <a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetUserListPage")">Utilisateurs</a>
+                                <a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetUserListPage")">Utilisateurs</a>
                             </li>
                             <li ns-authorized-roles="AdminUser">
-                                <a href="#" ns-action-type="simpleGetAction" ns-action-url="@Url.NewsBoardUrlHelper().Action("","Home","GetUserListPage")">Utilisateurs</a>
+                                <a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetUserListPage")">Utilisateurs</a>
                             </li>
                         </ul>
                     </li>

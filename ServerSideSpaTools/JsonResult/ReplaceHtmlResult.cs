@@ -5,9 +5,12 @@
     /// </summary>
     public class ReplaceHtmlResult : CustomJsonResult
     {
-        public ReplaceHtmlResult(string selector, string action) : base(new { ReplaceHtml = new { selector = selector, action = action } })
-        {
+        public string Action { get; set; }
 
+
+        public ReplaceHtmlResult(string selector, string action) : base(new { ReplaceHtml = new { selector, action } })
+        {
+            Action = action;
         }
     }
 }

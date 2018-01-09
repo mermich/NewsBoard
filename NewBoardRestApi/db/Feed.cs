@@ -18,6 +18,8 @@ namespace NewBoardRestApi.DataModel
 
         public string SyndicationUrl { get; set; }
 
+        public Uri SyndicationUri => new Uri(SyndicationUrl);
+
         public DateTime LastTimeFetched { get; set; }
 
         public bool IsActive { get; set; }

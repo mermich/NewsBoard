@@ -11,12 +11,17 @@ namespace ServerSideSpaTools
             get
             {
                 if (Request == null)
+                {
                     throw new ArgumentNullException("request");
-
-                if (Request.Headers != null)
+                }
+                else if (Request.Headers != null)
+                {
                     return Request.Headers["X-Requested-With"] == "XMLHttpRequest";
-
-                return false;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
@@ -33,14 +38,6 @@ namespace ServerSideSpaTools
                 var wasThere = HttpContext.Request.Cookies["wasThere"];
                 return View(viewName, model);
             }
-        }
-
-        public ActionResult ReturnView2(string viewName, object model)
-        {
-            if (IsAjaxRequest)
-                return PartialView(viewName, model);
-
-            return View(viewName, model);
         }
     }
 }

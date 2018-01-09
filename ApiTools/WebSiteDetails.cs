@@ -1,15 +1,21 @@
-﻿namespace ApiTools
+﻿using System;
+
+namespace ApiTools
 {
     public class WebSiteDetails
     {
-        public string Url { get; set; }
-
+        public Uri Uri { get; set; }
+        
+        
         public string Title { get; set; }
+
 
         public string Description { get; set; }
 
-        public string IconUrl { get; set; }
 
-        public string SyndicationUrl { get; set; }
+        public Uri IconUri { get; set; }
+
+
+        public Uri SyndicationUri { get; set; }
     }
 }
