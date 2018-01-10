@@ -90,13 +90,13 @@ namespace NewBoardRestApi.FeedApi
         }
 
 
-        public Feed CreateSubscription(string syndicationUrl)
+        public Feed CreateSubscription(Uri websiteUri, Uri syndicationUri)
         {
-            var uri = new Uri(syndicationUrl);
-            var xdoc = new XDocumentPageWrapper(uri, new HttpClientWrapper(uri).FetchResponse());
+            var xdoc = new XDocumentPageWrapper(syndicationUri, new HttpClientWrapper(syndicationUri).FetchResponse());
             var feedDetails = new SyndicationClientStrategy(xdoc).GetSyndicationClientOrDefault().GetSyndicationContent();
-            var websiteDetails = new LookupWebSiteApi().GetWebSiteDetails(feedDetails.WebSiteUri);
 
+
+            var websiteDetails = new LookupWebSiteApi().GetWebSiteDetails(websiteUri);
             var website = NewsBoardContext.WebSites.FirstOrDefault(w => w.Uri == websiteDetails.Uri);
             if (website == null)
             {
@@ -110,7 +110,7 @@ namespace NewBoardRestApi.FeedApi
 
             var feed = new Feed()
             {
-                SyndicationUrl = syndicationUrl,
+                SyndicationUrl = syndicationUri.AbsoluteUri,
                 LastTimeFetched = DateTime.Now,
                 Description = feedDetails.Description,
                 Title = feedDetails.Title,
@@ -210,34 +210,34 @@ namespace NewBoardRestApi.FeedApi
             }
         }
 
-        public Feed CreateSubscriptionAndSubScribe(Uri addFeedUri)
+        public Feed CreateSubscriptionAndSubScribe(Uri websiteUri, Uri feedUri)
         {
             ThrowExIfUnAuthenticated();
 
-            if (DoesFeedExists(addFeedUri.AbsoluteUri))
+            if (DoesFeedExists(feedUri))
             {
                 // Feed exists.
             }
             else
             {
-                CreateSubscription(addFeedUri.AbsoluteUri);
+                CreateSubscription(websiteUri, feedUri);
             }
 
-            var feed = GetFeed(addFeedUri.AbsoluteUri);
+            var feed = GetFeed(feedUri);
             SubscribeFeed(feed.Id);
 
             return feed;
         }
 
-        public virtual bool DoesFeedExists(string feedUrl)
+        public virtual bool DoesFeedExists(Uri feedUri)
         {
-            return NewsBoardContext.Feeds.Any(f => f.SyndicationUrl == feedUrl);
+            return NewsBoardContext.Feeds.Any(f => f.SyndicationUrl == feedUri.AbsoluteUri);
         }
 
 
-        private Feed GetFeed(string feedUrl)
+        private Feed GetFeed(Uri feedUri)
         {
-            return NewsBoardContext.Feeds.FirstOrDefault(f => f.SyndicationUrl == feedUrl);
+            return NewsBoardContext.Feeds.FirstOrDefault(f => f.SyndicationUrl == feedUri.AbsoluteUri);
         }
 
         public virtual void SubscribeFeed(int feedId)

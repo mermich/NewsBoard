@@ -1,5 +1,6 @@
 ﻿body {
     padding-bottom: 20px;
+    overflow-y:scroll;
 }
 
 .navbar {
@@ -198,4 +199,9 @@ a:focus:not(:hover) {
 
 #loginMenuLink:hover, #loginMenuLink:active, #loginMenuLink:focus {
     background-color: #449D44 !important;
+}
+
+
+.no-deco, .no-deco:hover, .no-deco:visited {
+    text-decoration: none;
 }

@@ -13,14 +13,9 @@
                 {
                     <tr article-feed="@Model.Articles[i].FeedId" article="@Model.Articles[i].Id" class="@Model.Articles[i].Class">
                         <td>
-                            <a href="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Open", new { articleId=Model.Articles[i].Id})"
+                            <a class="no-deco" href="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Open", new { articleId=Model.Articles[i].Id})"
                                ns-action-type="simpleGetAction">
-                                <img style="height:24px" src="@Model.Articles[i].IconUrl" alt="" />
-                            </a>
-
-                            <a href="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "Open", new { articleId=Model.Articles[i].Id})"
-                               ns-action-type="simpleGetAction">
-                                @Model.Articles[i].Label
+                                <img class="no-deco" style="height:24px;margin-right:3px" src="@Model.Articles[i].IconUrl" alt="" />@Model.Articles[i].Label
                             </a>
 
                             <div class="btn-group pull-right" role="group">

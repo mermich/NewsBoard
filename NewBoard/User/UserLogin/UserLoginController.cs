@@ -55,7 +55,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
                     new SuccessMessageResult("Logged"),
                     new ReplaceHtmlResult("#tagCloud", NewsBoardUrlHelper.Action("Tag", "TagCloud", "Index")),
                     new ReplaceHtmlResult("#suggestedFeedListAction", NewsBoardUrlHelper.SuggestedFeedListAction),
-                    new ReplaceHtmlResult("#UserMenu", NewsBoardUrlHelper.Action("User", "UserMenu", "Index")),
+                    new ReplaceHtmlResult("#UserMenu", NewsBoardUrlHelper.Action("User", "UserMenu", "Index"), "smallloader"),
                     new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("", "Home", "Index")));
             }
             catch (BusinessLogicException ex)
@@ -73,7 +73,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
                     new SuccessMessageResult("Signed Out"),
                     new ReplaceHtmlResult("#tagCloud", NewsBoardUrlHelper.Action("Tag", "TagCloud", "Index")),
                     new ReplaceHtmlResult("#suggestedFeedListAction", NewsBoardUrlHelper.SuggestedFeedListAction),
-                    new ReplaceHtmlResult("#UserMenu", NewsBoardUrlHelper.Action("User", "UserMenu", "Index")),
+                    new ReplaceHtmlResult("#UserMenu", NewsBoardUrlHelper.Action("User", "UserMenu", "Index"), "smallloader"),
                     new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("", "Home", "Index")));
         }
     }

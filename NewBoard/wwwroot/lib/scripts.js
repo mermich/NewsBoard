@@ -151,8 +151,13 @@ function HandleAjaxResult(result) {
         if (selector.length > 0) {
             var url = result.replaceHtml.action;
 
+            let loaderClass = "loader";
+            if (result.replaceHtml.loaderClass != undefined && result.replaceHtml.loaderClass != null && result.replaceHtml.loaderClass != "") {
+                loaderClass = result.replaceHtml.loaderClass;
+            }
+                
             // Display a loader.
-            selector.html("<div class='loader'></div>");
+            selector.html("<div class='" + loaderClass + "'></div>");
 
             $.ajax({
                 headers: { 'X-Requested-With': 'XMLHttpRequest' },

@@ -2,7 +2,6 @@ using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.ArticleApi;
 using ServerSideSpaTools.JsonResult;
-using NewBoardRestApi.TagApi;
 
 namespace NewsBoard.wwwroot.Article.ArticleList
 {
@@ -18,8 +17,7 @@ namespace NewsBoard.wwwroot.Article.ArticleList
         {
             this.articleApi = articleApi;
         }
-
-        [ResponseCache(Duration = 300)]
+        
         public virtual IActionResult Index(ArticleVMSearch filter, ArticleVMListOptions options)
         {
             var model = articleApi.GetArticles(filter);

@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Session;
 using NewBoardRestApi.FeedApi;
 using NewBoardRestApi.FeedApi.Search;
 using NewsBoard.Tools;
@@ -20,8 +18,8 @@ namespace NewsBoard.wwwroot.Feed.FeedList
         {
             this.feedApi = feedApi;
         }
+        
 
-        [ResponseCache(Duration = 300)]
         public virtual IActionResult Index(FeedVMSearch filter, FeedVMListOptions options)
         {            
             var model = feedApi.ListFeed(filter);

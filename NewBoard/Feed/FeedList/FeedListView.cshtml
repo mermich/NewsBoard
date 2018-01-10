@@ -15,11 +15,7 @@
                         <td>
                             <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new { feedId = Model.Feeds[i].Id })"
                                ns-action-type="simpleGetAction">
-                                <img style="height:24px" src="@Model.Feeds[i].IconUrl" alt="" />
-                            </a>
-                            <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new { feedId = Model.Feeds[i].Id})"
-                               ns-action-type="simpleGetAction">
-                                @Model.Feeds[i].Title
+                                <img class="no-deco" style="height:24px;margin-right:3px" src="@Model.Feeds[i].IconUrl" alt="" />@Model.Feeds[i].Title
                             </a>
                             <div class="btn-group pull-right" role="group">
                                 <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

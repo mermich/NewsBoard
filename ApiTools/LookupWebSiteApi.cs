@@ -2,7 +2,6 @@
 using ApiTools.IconSearch;
 using ApiTools.SyndicationClient;
 using ApiTools.SyndicationSearch;
-using ApiTools.WebPage;
 using System;
 using System.Linq;
 
@@ -22,8 +21,8 @@ namespace ApiTools
 
             var details = new WebSiteDetails
             {
-                Uri = new RootUriFinder(uri).GetWebSiteRoot(),
-                Title = FindPageTitle(hdoc),
+                Uri = uri,
+                Title = FindPageTitle(hdoc).Trim(),
                 SyndicationUri = new SyndicationSearchStrategy(hdoc).GetFeedSearchOrDefault().GetSyndicationUri(),
                 IconUri = new IconSearchStrategy(hdoc).GetIconSearchOrDefault().GetIconUri()
             };
@@ -31,7 +30,7 @@ namespace ApiTools
 
             var xdoc = new XDocumentPageWrapper(details.SyndicationUri, new HttpClientWrapper(details.SyndicationUri).FetchResponse());
             var content = new SyndicationClientStrategy(xdoc).GetSyndicationClientOrDefault().GetSyndicationContent();
-            details.Description = content.Description;
+            details.Description = content.Description.Trim();
 
             return details;
         }

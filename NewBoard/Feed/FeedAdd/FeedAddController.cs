@@ -52,7 +52,7 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
         [HttpPost]
         public virtual IActionResult CreateSubscription(WebSiteDetails details)
         {
-            var feed = feedApi.CreateSubscriptionAndSubScribe(details.SyndicationUri);
+            var feed = feedApi.CreateSubscriptionAndSubScribe(details.Uri, details.SyndicationUri);
 
             return new ComposeResult(
                 new ReplaceMainHtmlResult(NewsBoardUrlHelper.UserFeedListAction),

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ApiTools
+namespace ApiTools.HttpTools
 {
     public class UriPart
     {

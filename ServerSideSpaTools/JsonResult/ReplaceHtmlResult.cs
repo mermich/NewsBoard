@@ -8,7 +8,7 @@
         public string Action { get; set; }
 
 
-        public ReplaceHtmlResult(string selector, string action) : base(new { ReplaceHtml = new { selector, action } })
+        public ReplaceHtmlResult(string selector, string action, string loaderClass = "") : base(new { ReplaceHtml = new { selector, action, loaderClass } })
         {
             Action = action;
         }
