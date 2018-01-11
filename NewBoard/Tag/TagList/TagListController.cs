@@ -26,7 +26,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
         [ResponseCache(Duration = 300)]
         public virtual ActionResult GetEdit(int tagId)
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Tag", "TagEdit", "Index", new { tagId = tagId }));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Tag", "TagEdit", "Index", new {  tagId }));
         }
 
         [ResponseCache(Duration = 300)]

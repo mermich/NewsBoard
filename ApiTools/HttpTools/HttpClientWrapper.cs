@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 
 namespace ApiTools.HttpTools
@@ -16,9 +17,19 @@ namespace ApiTools.HttpTools
         {
             using (var client = new HttpClient())
             {
-                var queryTask = client.GetStringAsync(Uri);
-                queryTask.Wait();
-                return queryTask.Result;
+                var response = client.GetAsync(Uri);
+                response.Wait();
+
+                if (response.Result.IsSuccessStatusCode)
+                {
+                    var res = response.Result.Content.ReadAsStringAsync();
+                    res.Wait();
+                    return res.Result;
+                }
+                else
+                {
+                    throw new Exception("Didn't get a repsonse from:" + Uri + " error code:" + response.Result.StatusCode);
+                }
             };
         }
 

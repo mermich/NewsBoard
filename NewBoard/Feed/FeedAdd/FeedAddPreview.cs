@@ -7,6 +7,7 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
     {
         public WebSiteDetails WebSiteDetails { get; set; }
 
+
         public SyndicationContent SyndicationContent { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace NewsBoard.Tools
 
         public string Action(string area, string controller, string action, params object[] values)
         {
-            var areaItem = new { area = area };
+            var areaItem = new {  area };
             var merged = areaItem.MergeObjects(null);
 
             if (values != null && values.Any())

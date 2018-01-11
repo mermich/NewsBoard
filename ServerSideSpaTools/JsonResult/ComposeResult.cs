@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace ServerSideSpaTools.JsonResult
 {
@@ -12,6 +13,6 @@ namespace ServerSideSpaTools.JsonResult
             var build = new List<CustomJsonResult>();
             build.AddRange(results);
             Value = build;
-        }
+        }       
     }
 }

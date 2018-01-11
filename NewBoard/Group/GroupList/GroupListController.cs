@@ -27,12 +27,12 @@ namespace NewsBoard.wwwroot.Group.GroupList
         
         public virtual ActionResult GetEdit(int groupId)
         {
-            return ReturnReplaceMainView(new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Group", "GroupEdit", "Index", new { groupId })));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Group", "GroupEdit", "Index", new { groupId }));
         }
         
         public virtual ActionResult GetCreate()
         {
-            return ReturnReplaceMainView(new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Group", "GroupCreate", "Index")));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Group", "GroupCreate", "Index"));
         }
     }
 }

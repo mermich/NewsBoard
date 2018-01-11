@@ -31,7 +31,7 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
 
         public virtual IActionResult GetPreview(string urlToDiscover)
         {
-            return new ReplaceHtmlResult("#preview", Url.Action("Preview", "FeedAdd", new { urlToDiscover = urlToDiscover }));
+            return new ReplaceHtmlResult("#preview", Url.Action("Preview", "FeedAdd", new {  urlToDiscover }));
         }
 
         public virtual IActionResult Preview(string urlToDiscover)

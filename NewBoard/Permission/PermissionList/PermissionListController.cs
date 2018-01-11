@@ -27,7 +27,7 @@ namespace NewsBoard.wwwroot.Permission.PermissionList
         [ResponseCache(Duration = 300)]
         public virtual ActionResult GetEdit(int PermissionId)
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Permission", "PermissionEdit", "Index", new { PermissionId = PermissionId }));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Permission", "PermissionEdit", "Index", new {  PermissionId }));
         }
 
         [ResponseCache(Duration = 300)]

@@ -85,18 +85,5 @@ namespace NewsBoard.Tools
                 context.ExceptionHandled = false;
             }
         }
-
-        public ActionResult ReturnReplaceMainView(ReplaceMainHtmlResult res)
-        {
-            if (IsAjaxRequest)
-            {
-                return res;
-            }
-
-            else
-            {
-                return Redirect(res.Action);
-            }
-        }
     }
 }

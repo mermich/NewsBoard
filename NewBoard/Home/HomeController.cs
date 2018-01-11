@@ -1,6 +1,10 @@
 using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using ServerSideSpaTools.JsonResult;
+using Microsoft.Extensions.Caching.Memory;
+using System;
+using Microsoft.AspNetCore.ResponseCaching;
+
 
 namespace NewsBoard.wwwroot.Home
 {
@@ -9,9 +13,11 @@ namespace NewsBoard.wwwroot.Home
     /// </summary>
     public partial class HomeController : BaseController
     {
-        public HomeController() : base()
-        {
+        private IMemoryCache _cache;
 
+        public HomeController(IMemoryCache memoryCache) : base()
+        {
+            _cache = memoryCache;
         }
 
         public virtual IActionResult Index()
@@ -19,10 +25,10 @@ namespace NewsBoard.wwwroot.Home
             return ReturnView("IndexView", new HomeModel());
         }
 
-        [ResponseCache(Duration = 300)]
+        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
         public virtual IActionResult GetUserArticles()
         {
-            return ReturnReplaceMainView(new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().UserArticleListAction));
+            return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().UserArticleListAction);
         }
 
         [ResponseCache(Duration = 300)]
