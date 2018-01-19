@@ -17,7 +17,7 @@ namespace NewsBoard.wwwroot.Permission.PermissionList
         }
 
 
-        [ResponseCache(Duration = 300)]
+        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
         public virtual IActionResult Index()
         {
             var model = userApi.ListUsers();
@@ -25,16 +25,16 @@ namespace NewsBoard.wwwroot.Permission.PermissionList
             return ReturnView("UserListView", model);
         }
 
-        [ResponseCache(Duration = 300)]
+        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
         public virtual ActionResult GetEdit(int userId)
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserEdit", "Index", new {  userId } ));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserEdit", "Index", new {  userId } )).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }
 
-        [ResponseCache(Duration = 300)]
+        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
         public virtual ActionResult GetCreate()
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserCreate", "Index"));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserCreate", "Index")).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }
     }
 }

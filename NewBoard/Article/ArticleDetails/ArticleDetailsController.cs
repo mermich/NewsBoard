@@ -9,7 +9,7 @@ namespace NewsBoard.wwwroot.Article.ArticleDetails
     [Area("Article")]
     public partial class ArticleDetailsController : BaseController
     {
-        [ResponseCache(Duration = 300)]
+        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
         public virtual IActionResult Index(int articleId)
         {
             return ReturnView("", null);

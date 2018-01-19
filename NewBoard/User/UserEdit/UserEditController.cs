@@ -17,7 +17,7 @@ namespace NewsBoard.wwwroot.Group.GroupCreate
         }
 
 
-        [ResponseCache(Duration = 300)]
+        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
         public virtual IActionResult Index(int userId)
         {
             var model = userApi.GetUserEdit(userId);

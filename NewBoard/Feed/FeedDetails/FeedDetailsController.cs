@@ -21,7 +21,7 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
         }
 
 
-        [ResponseCache(Duration = 300)]
+        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
         public virtual IActionResult Index(int feedId)
         {
             var feed = feedApi.GetFeed(feedId);
@@ -29,7 +29,7 @@ namespace NewsBoard.wwwroot.Feed.FeedDetails
             return ReturnView("FeedDetailsView", feed);
         }
 
-        [ResponseCache(Duration = 300)]
+        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
         public virtual IActionResult RefreshFeed(int feedId)
         {
             feedApi.RefreshFeedArticles(feedId);

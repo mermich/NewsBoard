@@ -101,13 +101,13 @@ namespace NewsBoard.wwwroot.Feed.FeedList
         {
             feedApi.OpenFeed(feedId);
 
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedDetails", "Index", new {  feedId }));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedDetails", "Index", new {  feedId })).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }
 
-        [ResponseCache(Duration = 300)]
+        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
         public virtual IActionResult GetEdit(int feedId)
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedEdit", "Index", new {  feedId }));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedEdit", "Index", new {  feedId })).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }
         
         public virtual IActionResult Refresh(int feedId)

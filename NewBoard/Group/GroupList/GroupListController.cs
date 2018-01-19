@@ -16,7 +16,7 @@ namespace NewsBoard.wwwroot.Group.GroupList
         }
 
 
-        [ResponseCache(Duration = 300)]
+        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
         public virtual IActionResult Index()
         {
             var model = groupApi.GetGroups();
@@ -24,15 +24,17 @@ namespace NewsBoard.wwwroot.Group.GroupList
             return ReturnView("GroupListView", model);
         }
 
-        
+
+        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
         public virtual ActionResult GetEdit(int groupId)
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Group", "GroupEdit", "Index", new { groupId }));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Group", "GroupEdit", "Index", new { groupId })).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }
-        
+
+        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
         public virtual ActionResult GetCreate()
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Group", "GroupCreate", "Index"));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Group", "GroupCreate", "Index")).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }
     }
 }

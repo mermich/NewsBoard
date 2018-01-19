@@ -32,18 +32,18 @@ namespace NewsBoard.wwwroot.User.UserMenu
 
         public virtual ActionResult GetLogin()
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserLogin", "Index"));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserLogin", "Index")).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }
 
 
         public virtual ActionResult GetRegister()
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserRegister", "Index"));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserRegister", "Index")).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }
 
         public virtual ActionResult GetProfile()
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserProfile", "Index"));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserProfile", "Index")).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }
     }
 }

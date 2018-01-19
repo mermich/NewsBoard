@@ -16,7 +16,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
             this.tagApi = tagApi;
         }
 
-        [ResponseCache(Duration = 300)]
+        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
         public virtual IActionResult Index()
         {
             var model = tagApi.GetUsedTags();
@@ -24,7 +24,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
             return ReturnView("TagCloudView", model);
         }
 
-        [ResponseCache(Duration = 300)]
+        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
         public virtual ActionResult GetArticlesByTag(int id)
         {
             var tagModel = tagApi.GetTag(id);
@@ -33,7 +33,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
             var options = new ArticleVMListOptions { Heading = "Articles du Tag : " + tagModel.Label };
 
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.ArticleListAction(filter, options));
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.ArticleListAction(filter, options)).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }
     }
 }
