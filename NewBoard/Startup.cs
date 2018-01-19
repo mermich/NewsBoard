@@ -24,6 +24,7 @@ namespace NewsBoard
     public class Startup
     {
         public IConfigurationRoot Configuration { get; set; }
+
         public IHostingEnvironment env { get; set; }
 
         public Startup(IHostingEnvironment env)
@@ -54,9 +55,20 @@ namespace NewsBoard
                 options.Cookie.Name = ".NewsBoard.Session";
                 options.IdleTimeout = TimeSpan.MaxValue;
                 options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
-
-
             });
+
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.Cookie.Expiration = TimeSpan.FromDays(150);
+                options.LoginPath = "/User/UserLogin/Index"; // If the LoginPath is not set here, ASP.NET Core will default to /Account/Login
+                options.LogoutPath = "/User/UserLogin/Index"; // If the LogoutPath is not set here, ASP.NET Core will default to /Account/Logout
+                options.AccessDeniedPath = "/Account/AccessDenied"; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
+                options.SlidingExpiration = true;
+            });
+
             var sp = services.BuildServiceProvider();
             var iHttpContextAccessor = sp.GetService<IHttpContextAccessor>();
             services.AddScoped((i) => new SessionObject(iHttpContextAccessor.HttpContext.Session));
