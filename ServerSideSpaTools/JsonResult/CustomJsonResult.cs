@@ -1,4 +1,5 @@
-﻿using jsonResult = Microsoft.AspNetCore.Mvc.JsonResult;
+﻿using Microsoft.AspNetCore.Mvc;
+using jsonResult = Microsoft.AspNetCore.Mvc.JsonResult;
 
 namespace ServerSideSpaTools.JsonResult
 {
