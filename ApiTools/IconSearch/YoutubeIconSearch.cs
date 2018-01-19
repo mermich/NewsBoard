@@ -1,5 +1,4 @@
 ﻿using ApiTools.HttpTools;
-using Jint;
 using System;
 using System.Linq;
 
@@ -18,7 +17,9 @@ namespace ApiTools.IconSearch
 
         public override Uri GetIconUri()
         {
-            if (doc.Uri.ToString().Contains("youtube.com/channel/"))
+            // Instead of a if else, could be build with a strategy...
+
+            if (doc.Uri.ToString().Contains("youtube.com/channel/") || doc.Uri.ToString().Contains("youtube.com/user/"))
             {
                 var iconNode = doc.GetNodesByExpression("//img[@class='appbar-nav-avatar']").FirstOrDefault();
                 return new Uri(iconNode.GetAttribute("src").Value);

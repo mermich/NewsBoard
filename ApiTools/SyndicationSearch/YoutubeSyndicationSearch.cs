@@ -23,7 +23,10 @@ namespace ApiTools.SyndicationSearch
 
         public override Uri GetSyndicationUri()
         {
-            if (doc.Uri.ToString().Contains("youtube.com/channel/"))
+            // Instead of a if else, could be build with a strategy...
+
+
+            if (doc.Uri.ToString().Contains("youtube.com/channel/") || doc.Uri.ToString().Contains("youtube.com/user/"))
             {
                 // We are on a user's page, only need to read the content to get the unique id.
                 ///  <link rel="canonical" href="https://www.youtube.com/channel/SOME_UCID">
@@ -35,7 +38,7 @@ namespace ApiTools.SyndicationSearch
             else if (doc.Uri.ToString().Contains("youtube.com/watch?"))
             {
                 // Find script tag with "var ytplayer = ytplayer" in it:
-                var playerNode = doc.GetNodesByExpression("//script").FirstOrDefault(n => n.InnerText.Contains("var ytplayer = ytplayer"));
+                var playerNode = doc.GetNodesByExpression("//script").FirstOrDefault(n => n.InnerText.Contains("var ytplayer = ytplayer") && n.InnerText.Contains("ucid"));
 
                 var engine = new Engine();
                 var ucid = engine.Execute(
