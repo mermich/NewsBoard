@@ -15,9 +15,16 @@ namespace ApiTools.SyndicationSearch
             return new Uri("http://www.lefigaro.fr/rss/figaro_actualites.xml");
         }
 
-        public override bool IsMatch()
+        public override int MatchScore()
         {
-            return doc.Uri.Host == "www.lefigaro.fr";
+            if( doc.Uri.Host == "www.lefigaro.fr")
+            {
+                return 100;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }

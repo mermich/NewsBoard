@@ -16,9 +16,16 @@ namespace ApiTools.SyndicationSearch
             return new Uri("https://www.youtube.com/feeds/videos.xml?channel_id=" + ucid);
         }
 
-        public override bool IsMatch()
+        public override int MatchScore()
         {
-            return doc.Uri.Host == "www.youtube.com";
+            if (doc.Uri.Host == "www.youtube.com")
+            {
+                return 100;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         public override Uri GetSyndicationUri()

@@ -60,12 +60,12 @@ namespace NewsBoard
 
             services.ConfigureApplicationCookie(options =>
             {
-                // Cookie settings
+                // Cookie settings.
                 options.Cookie.HttpOnly = true;
                 options.Cookie.Expiration = TimeSpan.FromDays(150);
-                options.LoginPath = "/User/UserLogin/Index"; // If the LoginPath is not set here, ASP.NET Core will default to /Account/Login
-                options.LogoutPath = "/User/UserLogin/Index"; // If the LogoutPath is not set here, ASP.NET Core will default to /Account/Logout
-                options.AccessDeniedPath = "/Account/AccessDenied"; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
+                options.LoginPath = "/User/UserLogin/Index";
+                options.LogoutPath = "/User/UserLogin/Index";
+                options.AccessDeniedPath = "/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
 
@@ -115,7 +115,7 @@ namespace NewsBoard
 
             app.UseMvc(routes =>
             {
-                // add the new route here.
+                // Add the new route here.
                 routes.MapRoute(name: "areaRoute", template: "{area:exists}/{controller}/{action}", defaults: new { controller = "Home", action = "Index" });
                 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });

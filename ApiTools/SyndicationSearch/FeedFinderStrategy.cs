@@ -10,7 +10,7 @@ namespace ApiTools.SyndicationSearch
         List<ASyndicationSearch> searchers = new List<ASyndicationSearch>();
         ASyndicationSearch defaultSyndicationSearch;
 
-        public SyndicationSearchStrategy(HtmlDocumentPageWrapper doc) : this(new DefaultSyndicationSearch(doc), new List<ASyndicationSearch> { new WordPressSyndicationSearch(doc), new YoutubeSyndicationSearch(doc) })
+        public SyndicationSearchStrategy(HtmlDocumentPageWrapper doc) : this(new DefaultSyndicationSearch(doc), new List<ASyndicationSearch> { new WordPressSyndicationSearch(doc), new YoutubeSyndicationSearch(doc), new WordPressElegantThemesSyndicationSearch(doc), new LefigaroSyndicationSearch(doc) })
         {
         }
 
@@ -22,13 +22,13 @@ namespace ApiTools.SyndicationSearch
 
         public ASyndicationSearch GetFeedSearch()
         {
-            return searchers.FirstOrDefault(f => f.IsMatch());
+            return searchers.OrderBy(f => f.MatchScore()).LastOrDefault();
         }
 
         public ASyndicationSearch GetFeedSearchOrDefault()
         {
-            var finder = searchers.FirstOrDefault(f => f.IsMatch());
-            if (finder == null)
+            var finder = searchers.OrderBy(f => f.MatchScore()).LastOrDefault();
+            if (finder.MatchScore() == 0)
             {
                 finder = defaultSyndicationSearch;
             }

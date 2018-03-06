@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 
 namespace ApiTools.HttpTools
 {
@@ -24,13 +25,18 @@ namespace ApiTools.HttpTools
                 {
                     var res = response.Result.Content.ReadAsStringAsync();
                     res.Wait();
-                    return res.Result;
+                    return RemoveEmptyLines(res.Result);
                 }
                 else
                 {
                     throw new Exception("Didn't get a repsonse from:" + Uri + " error code:" + response.Result.StatusCode);
                 }
             };
+        }
+
+        private string RemoveEmptyLines(string lines)
+        {
+            return Regex.Replace(lines, @"^\s*$\n|\r", "", RegexOptions.Multiline).TrimEnd();
         }
 
         public HtmlDocumentWrapper ToHtmlDocument()

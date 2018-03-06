@@ -47,9 +47,9 @@ namespace ApiTools.SyndicationSearch
             }
         }
 
-        public override bool IsMatch()
+        public override int MatchScore()
         {
-            return false;
+            return 1;
         }
     }
 }

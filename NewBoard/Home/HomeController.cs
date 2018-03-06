@@ -4,7 +4,7 @@ using ServerSideSpaTools.JsonResult;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using Microsoft.AspNetCore.ResponseCaching;
-
+using NewBoardRestApi.FeedApi;
 
 namespace NewsBoard.wwwroot.Home
 {
@@ -13,11 +13,11 @@ namespace NewsBoard.wwwroot.Home
     /// </summary>
     public partial class HomeController : BaseController
     {
-        private IMemoryCache _cache;
+        FeedApi feedApi;
 
-        public HomeController(IMemoryCache memoryCache) : base()
+        public HomeController(FeedApi feedApi) : base()
         {
-            _cache = memoryCache;
+            this.feedApi = feedApi;
         }
 
         public virtual IActionResult Index()
@@ -84,6 +84,13 @@ namespace NewsBoard.wwwroot.Home
         public virtual IActionResult GetUserListPage()
         {
             return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().Action("User", "UserList", "Index")).ReplaceResultOrRedirectResult(IsAjaxRequest);
+        }
+
+        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
+        public virtual IActionResult GetRefreshFeeds()
+        {
+            feedApi.RefreshFeedsArticles();
+            return new WarnMessageResult("Rafraichissement en cours");
         }
     }
 }

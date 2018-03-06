@@ -4,25 +4,26 @@ using System;
 
 namespace ApiTools.SyndicationSearch
 {
-    public class WordPressSyndicationSearch : ASyndicationSearch
+    public class WordPressElegantThemesSyndicationSearch : ASyndicationSearch
     {
-        public WordPressSyndicationSearch(HtmlDocumentPageWrapper doc) : base(doc)
+        public WordPressElegantThemesSyndicationSearch(HtmlDocumentPageWrapper doc) : base(doc)
         {
         }
 
         public override Uri GetSyndicationUri()
         {
-            var feedNode = doc.GetNodesByExpression("//link[@type='application/rss+xml'] | //link[@type='application/atom+xml']").FirstOrDefault();
-
-            return new Uri(doc.Uri, feedNode.GetAttributeValue("href"));
+            return new Uri(doc.Uri, "/feed");
         }
 
         public override int MatchScore()
         {
             bool isWordpress = doc.GetNodesByExpression("//meta[@content]").Any(m => m.GetAttributeValue("content").Contains("WordPress"));
-            if(isWordpress)
+
+            bool isElegantTheme = doc.GetNodesByExpression("//div[@id]").Any(m => m.GetAttributeValue("id").Contains("et-top-navigation"));
+
+            if (isWordpress && isElegantTheme)
             {
-                return 100;
+                return 150;
             }
             else
             {

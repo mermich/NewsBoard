@@ -28,12 +28,15 @@ namespace ApiTools.SyndicationClient
         public Uri GetWebsiteUri()
         {
             var selfLink = doc.Root().Descendants().First(i => i.Name.LocalName == "link" && !(i.Attributes().Any(a => a.Name == "rel" && a.Value == "self") && i.Attributes().Any(a => a.Name == "type" && a.Value == "application/rss+xml")));
+            if (selfLink == null)
+            {
+                selfLink = doc.Root().Descendants().First(i => i.Name.LocalName == "link");
+            }
 
 
             if (selfLink == null)
             {
                 throw new BusinessLogicException("Cannot find link to website.");
-
             }
             else if (!string.IsNullOrWhiteSpace(selfLink.Value))
             {
@@ -49,6 +52,11 @@ namespace ApiTools.SyndicationClient
         public Uri GetSyndicationUri()
         {
             var selfLink = doc.Root().Descendants().FirstOrDefault(i => i.Name.LocalName == "link" && i.Attributes().Any(a => a.Name == "rel" && a.Value == "self") && i.Attributes().Any(a => a.Name == "type" && a.Value == "application/rss+xml"));
+            if (selfLink == null)
+            {
+                selfLink = doc.Root().Descendants().First(i => i.Name.LocalName == "link");
+            }
+
 
             if (selfLink == null)
             {

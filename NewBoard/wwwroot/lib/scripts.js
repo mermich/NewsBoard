@@ -28,6 +28,9 @@ window.onpopstate = function (event) {
 $(function () {
     LoadCallback();
     history.pushState({ url: location.href }, "replaceHtml", location.href);
+
+    $.blockUI.defaults.baseZ = 2000;
+    $.blockUI.defaults.message = null;
 });
 
 function LoadCallback() {
@@ -62,36 +65,54 @@ function LoadCallback() {
 
         $(element).off('click').click(function (e) {
             let target = e.target;
+            let $target = $(e.target);
 
             disableElement(target);
 
             var dataToSend = "";
-            if (verb == "POST")
-                dataToSend = $(this).closest("form").serializeFormJSON();
-            // We could have clicked the icon <i> element. Should be refactored.
-            if ($(e.target).is("i"))
-                target = $(e.target).parent().first()[0];
 
-            // We could have clicked the icon <img> element. Should be refactored.
-            else if ($(e.target).is("img"))
-                target = $(e.target).parent()[0];
+            if (verb == "POST") {
+                dataToSend = $target.closest("form").serializeFormJSON();
+            }
+
+
+
+
+            if ($target.is("i")) {
+                // We could have clicked the icon <i> element. Should be refactored.
+                target = $target.parent().first()[0];
+            }
+            else if ($target.is("img")) {
+                // We could have clicked the icon <img> element. Should be refactored.
+                target = $target.parent()[0];
+            }
+
 
             let targetUrl = target.getAttribute("href");
 
             console.log('performSimpleAjaxAction: ' + targetUrl);
+            
+            // Display a loader.
+            //$target.addClass('auto-loader');
+
             $.ajax({
                 type: verb,
                 url: targetUrl,
                 data: dataToSend,
-                headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                headers:
+                {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
                 success: function (result) {
                     console.log(result);
                     HandleAjaxResult(result);
                     LoadCallback();
                     enableElement(target);
+                    $target.removeClass('auto-loader');
                 },
                 error: function (result) {
                     $.notify({ message: "Une erreur s'est produite." }, { type: 'fatal' });
+                    $target.removeClass('auto-loader');
                 },
             });
             return false;
@@ -145,22 +166,24 @@ function HandleAjaxResult(result) {
         let selector = $(result.removeHtml.selector);
         $(selector).remove();
     }
-    
+
     if (result.replaceHtml != undefined) {
         let selector = $(result.replaceHtml.selector);
         if (selector.length > 0) {
-            var url = result.replaceHtml.action;
+            let url = result.replaceHtml.action;
 
             let loaderClass = "loader";
             if (result.replaceHtml.loaderClass != undefined && result.replaceHtml.loaderClass != null && result.replaceHtml.loaderClass != "") {
                 loaderClass = result.replaceHtml.loaderClass;
             }
-                
+
             // Display a loader.
-            selector.html("<div class='" + loaderClass + "'></div>");
+            //selector.html("<div class='" + loaderClass + "'></div>");
 
             $.ajax({
-                headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
                 type: "GET",
                 url: url,
                 success: function (result2) {
@@ -183,7 +206,7 @@ function HandleAjaxResult(result) {
     if (result.appendHtml != undefined) {
         let selector = $(result.appendHtml.selector);
         if (selector.length > 0) {
-            var url = result.appendHtml.action;
+            let url = result.appendHtml.action;
             $.get(url, function (result2) {
                 $(result2).hide().appendTo(selector).fadeIn(1000);
                 LoadCallback(selector);
@@ -192,8 +215,9 @@ function HandleAjaxResult(result) {
     }
 
     if (result.openNewWindow != undefined) {
-        var url = result.openNewWindow.url;
-        window.open(url, '_blank');
+        setTimeout(function () {
+            window.open(result.openNewWindow.url, '_blank');
+        }, 1000);
     }
 
     if (result.hideHtml != undefined) {
