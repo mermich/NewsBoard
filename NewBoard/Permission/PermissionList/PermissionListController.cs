@@ -16,7 +16,7 @@ namespace NewsBoard.wwwroot.Permission.PermissionList
         }
 
 
-        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
+        
         public virtual IActionResult Index()
         {
             var model = permissionApi.GetPermissions();
@@ -24,13 +24,13 @@ namespace NewsBoard.wwwroot.Permission.PermissionList
             return ReturnView("PermissionListView", model);
         }
 
-        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
+        
         public virtual ActionResult GetEdit(int PermissionId)
         {
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Permission", "PermissionEdit", "Index", new {  PermissionId })).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }
 
-        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
+        
         public virtual ActionResult GetCreate()
         {
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Permission", "PermissionCreate", "Index")).ReplaceResultOrRedirectResult(IsAjaxRequest);

@@ -100,6 +100,11 @@ namespace ApiTools.SyndicationClient
                 Items = GetItems()
             };
 
+            if (string.IsNullOrEmpty(result.Title))
+            {
+                result.Title = result.WebSiteUri.ToString();
+            }
+
             return result;
         }
 

@@ -23,7 +23,7 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
         }
 
 
-        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
+        
         public virtual IActionResult Index()
         {
             return ReturnView("FeedAddView", null);

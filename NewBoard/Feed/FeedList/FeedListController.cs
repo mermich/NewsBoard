@@ -104,7 +104,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedDetails", "Index", new {  feedId })).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }
 
-        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
+        
         public virtual IActionResult GetEdit(int feedId)
         {
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedEdit", "Index", new {  feedId })).ReplaceResultOrRedirectResult(IsAjaxRequest);

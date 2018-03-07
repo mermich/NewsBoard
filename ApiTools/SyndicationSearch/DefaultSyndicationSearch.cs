@@ -20,21 +20,35 @@ namespace ApiTools.SyndicationSearch
             })
             .ThenTry(() =>
             {
-                var testUri = new Uri(doc.Uri, "rss.xml");
-                new HttpClientWrapper(testUri).FetchResponse();
-                return testUri;
+                return TryUriPart(doc.Uri, "rss.xml");
             })
             .ThenTry(() =>
             {
-                var testUri = new Uri(doc.Uri, "atom.xml");
-                new HttpClientWrapper(testUri).FetchResponse();
-                return testUri;
+                return TryUriPart(doc.Uri, "atom.xml");
             })
             .ThenTry(() =>
             {
-                var testUri = new Uri(doc.Uri, "feed.xml");
-                new HttpClientWrapper(testUri).FetchResponse();
-                return testUri;
+                return TryUriPart(doc.Uri, "feed.xml");
+            })
+            .ThenTry(() =>
+            {
+                return TryUriPart(doc.Uri, "feed.rss");
+            })
+            .ThenTry(() =>
+            {
+                return TryUriPart(doc.Uri, "/rss.xml");
+            })
+            .ThenTry(() =>
+            {
+                return TryUriPart(doc.Uri, "/atom.xml");
+            })
+            .ThenTry(() =>
+            {
+                return TryUriPart(doc.Uri, "/feed.xml");
+            })
+            .ThenTry(() =>
+            {
+                return TryUriPart(doc.Uri, "/feed.rss");
             });
 
             if (tryChain.IsSucessFull)
@@ -45,6 +59,14 @@ namespace ApiTools.SyndicationSearch
             {
                 throw new BusinessLogicException("Cannot find syndication");
             }
+        }
+
+
+        public Uri TryUriPart(Uri uri, string part)
+        {
+            var testUri = new Uri(doc.Uri, part);
+            new HttpClientWrapper(testUri).FetchResponse();
+            return testUri;
         }
 
         public override int MatchScore()

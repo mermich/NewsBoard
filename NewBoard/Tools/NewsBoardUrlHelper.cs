@@ -19,7 +19,7 @@ namespace NewsBoard.Tools
 
         public string Action(string area, string controller, string action, params object[] values)
         {
-            var areaItem = new {  area };
+            var areaItem = new { area };
             var merged = areaItem.MergeObjects(null);
 
             if (values != null && values.Any())
@@ -46,7 +46,7 @@ namespace NewsBoard.Tools
 
         public string SuggestedFeedListAction =>
             FeedListAction(
-                new FeedVMSearch { SubscriptionFilter = SubscriptionFilter.OnlyUnSubscribbed, HideReported = true, MaxItems = 5, ShouldPickRandomItems = true },
+                new FeedVMSearch { SubscriptionFilter = SubscriptionFilter.OnlyUnSubscribbed, HideReported = true, MaxItems = 5, ShouldPickRandomItems = true, OrderBy = FeedListOrderBy.Subscriptions },
                 new FeedVMListOptions { Heading = "Les Flux suggeres" });
 
 

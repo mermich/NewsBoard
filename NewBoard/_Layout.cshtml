@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="http://malsup.github.io/jquery.blockUI.js" ></script>
+    <script src="http://malsup.github.io/jquery.blockUI.js"></script>
 
     <link rel="icon" type="image/png" href="~/favico.ico">
 
@@ -64,14 +64,17 @@
 
                     <li><a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetAboutPage")">A propos de l'auteur</a></li>
 
-                    <li class="dropdown">
+                    <li class="dropdown" ns-authorized-roles="Admin>
                         <a data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetTagListPage")">Tags</a></li>
-                            <li><a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetGroupListPage")">Groupes</a></li>
-                            <li><a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetPermissionListPage")">Permissions</a></li>
-                            <li>
-                                <a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetUserListPage")">Utilisateurs</a>
+                            <li ns-authorized-roles="MasterAdmin">
+                                <a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetTagListPage")">Tags</a>
+                            </li>
+                            <li ns-authorized-roles="MasterAdmin">
+                                <a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetGroupListPage")">Groupes</a>
+                            </li>
+                            <li ns-authorized-roles="MasterAdmin">
+                                <a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetPermissionListPage")">Permissions</a>
                             </li>
                             <li ns-authorized-roles="AdminUser">
                                 <a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetUserListPage")">Utilisateurs</a>

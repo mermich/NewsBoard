@@ -2,11 +2,12 @@ using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.UserApi;
 using ServerSideSpaTools.JsonResult;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NewsBoard.wwwroot.Group.GroupCreate
 {
     [Area("User")]
-    //[Authorize(Roles = "AdminUser")]
+    [Authorize(Roles = "AdminUser")]
     public partial class UserEditController : BaseController
     {
         UserApi userApi;
@@ -17,7 +18,7 @@ namespace NewsBoard.wwwroot.Group.GroupCreate
         }
 
 
-        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
+        
         public virtual IActionResult Index(int userId)
         {
             var model = userApi.GetUserEdit(userId);

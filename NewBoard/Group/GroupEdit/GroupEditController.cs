@@ -14,9 +14,7 @@ namespace NewsBoard.wwwroot.Group.GroupCreate
         {
             this.groupApi = groupApi;
         }
-
-
-        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
+                
         public virtual IActionResult Index(int groupId)
         {
             var model = groupApi.GetEditGroup(groupId);

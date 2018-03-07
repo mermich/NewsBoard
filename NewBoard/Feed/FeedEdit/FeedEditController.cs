@@ -20,7 +20,7 @@ namespace NewsBoard.wwwroot.Feed.FeedEdit
 
 
 
-        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
+        
         public virtual IActionResult Index(int feedId)
         {
             var model = feedApi.GetFeedEdit(feedId);

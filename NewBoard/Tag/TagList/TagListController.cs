@@ -15,7 +15,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
             this.tagApi = tagApi;
         }
 
-        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
+        
         public virtual IActionResult Index()
         {
             var model = tagApi.GetTags();
@@ -23,13 +23,13 @@ namespace NewsBoard.wwwroot.User.UserRegister
             return ReturnView("TagListView", model);
         }
 
-        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
+        
         public virtual ActionResult GetEdit(int tagId)
         {
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Tag", "TagEdit", "Index", new {  tagId })).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }
 
-        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
+        
         public virtual ActionResult GetCreate()
         {
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Tag", "TagCreate", "Index")).ReplaceResultOrRedirectResult(IsAjaxRequest);

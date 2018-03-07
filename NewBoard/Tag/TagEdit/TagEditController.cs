@@ -16,7 +16,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
         }
 
 
-        [ResponseCache(Duration = 300, VaryByHeader = "X-Requested-With")]
+        
         public virtual IActionResult Index(int tagId)
         {
             var model = tagApi.GetEditTag(tagId);
