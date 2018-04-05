@@ -8,27 +8,6 @@ namespace NewBoardRestApi.DataModel.Engine
 {
     internal static class DbSetExtentions
     {
-        internal static T SingleResult<T>(this DbSet<T> source, Expression<Func<T, bool>> predicate)
-            where T : class, new()
-        {
-            return SingleResult(source, predicate, "Cannot find item");
-        }
-
-        internal static T SingleResult<T>(this DbSet<T> source, Expression<Func<T, bool>> predicate, string notFoundMessage)
-           where T : class, new()
-        {
-            var item = source.FirstOrDefault(predicate);
-            if (item == null)
-            {
-                item = new T();
-            }
-
-            return item;
-        }
-
-
-
-
 
         public static IEnumerable<T> GetItemsToRemove<T, U>(this DbSet<T> itemsToFilter, IEnumerable<U> itemstoKeep, Func<T, U> identifierSelector)
             where T : class
@@ -54,14 +33,14 @@ namespace NewBoardRestApi.DataModel.Engine
             listToPurge.RemoveRange(itemsToRemove);
         }
 
-        public static void AddItemsThatDoesnExists<T, U>(this DbSet<T> existingItems, Func<T, U> existingItemSelector, IEnumerable<U> itemstoAdd, Func<U, T> convertFunction)
+        public static void AddItemsThatDoesnExists<T, U>(this DbSet<T> existingItems, IEnumerable<U> itemstoAdd, Func<U, T> convertFunction)
             where T : class
             where U : IEquatable<U>
         {
 
             foreach (var item in itemstoAdd)
             {
-                if (!existingItems.Any(e => existingItemSelector(e).Equals(item)))
+                if (!existingItems.Any(e => convertFunction(item).Equals(e)))
                 {
                     var converted = convertFunction(item);
                     existingItems.Add(converted);
@@ -76,7 +55,7 @@ namespace NewBoardRestApi.DataModel.Engine
             var itemsToremove = GetItemsToRemove(listToMerge, itemsEdited, existingItemSelector);
             listToMerge.RemoveRange(itemsToremove);
 
-            AddItemsThatDoesnExists(listToMerge, existingItemSelector, itemsEdited, convertFunction);
+            AddItemsThatDoesnExists(listToMerge, itemsEdited, convertFunction);
 
         }
     }
