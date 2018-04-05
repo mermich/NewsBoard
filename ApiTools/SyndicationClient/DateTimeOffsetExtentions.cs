@@ -62,6 +62,8 @@ namespace ApiTools.SyndicationClient
                 //2017-01-06T00:48:21.261Z
                 "ddd',' dd MMM yyyy HH':'mm':'ss UTC",
                 "ddd, dd MMM yyyy HH:mm:ss UTC",
+
+                "ddd, dd MMM yyyy HH:mm:ss PDT",
                 "yyyy-MM-HH"
             };
 
@@ -71,7 +73,7 @@ namespace ApiTools.SyndicationClient
 
         internal static DateTimeOffset ParseDate(this string date)
         {
-            DateTimeOffset res = DateTime.UtcNow;
+            DateTimeOffset res = DateTime.Today;
 
             for (int i = 0; i < Formats.Value.Count; i++)
             {

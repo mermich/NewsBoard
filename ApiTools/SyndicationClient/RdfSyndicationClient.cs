@@ -10,16 +10,22 @@ namespace ApiTools.SyndicationClient
         {
         }
 
-        public override bool IsMatch()
-        {
-            return doc.Elements().Any(i => i.Name.LocalName == "rdf");
-        }
-
-        
-
         public override SyndicationContent GetSyndicationContent()
         {
             throw new NotImplementedException();
+        }
+
+        public override int MatchScore()
+        {
+            var isMatch = doc.Elements().Any(i => i.Name.LocalName == "rdf");
+            if (isMatch)
+            {
+                return 100;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }

@@ -5,13 +5,13 @@ namespace ApiTools.SyndicationClient
 {
     public class DefaultSyndicationClient : ASyndicationClient
     {
-        public DefaultSyndicationClient(XDocumentPageWrapper doc) : base( doc)
+        public DefaultSyndicationClient(XDocumentPageWrapper doc) : base(doc)
         {
         }
 
-        public override bool IsMatch()
+        public override int MatchScore()
         {
-            throw new NotImplementedException();
+            return 1;
         }
 
         public override SyndicationContent GetSyndicationContent()

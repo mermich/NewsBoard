@@ -90,10 +90,17 @@ namespace ApiTools.SyndicationClient
 
             return items.ToList();
         }
-
-        public override bool IsMatch()
+        public override int MatchScore()
         {
-            return doc.Elements().Any(i => i.Name.LocalName == "feed");
+            var isMatch =  doc.Elements().Any(i => i.Name.LocalName == "feed");
+            if (isMatch)
+            {
+                return 100;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }

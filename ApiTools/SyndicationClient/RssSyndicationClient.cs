@@ -11,9 +11,18 @@ namespace ApiTools.SyndicationClient
         {
         }
 
-        public override bool IsMatch()
+
+        public override int MatchScore()
         {
-            return doc.Elements().Any(i => i.Name.LocalName == "rss");
+            var isMatch = doc.Elements().Any(i => i.Name.LocalName == "rss");
+            if (isMatch)
+            {
+                return 100;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
 

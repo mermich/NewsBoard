@@ -23,13 +23,13 @@ namespace ApiTools
             {
                 Uri = uri,
                 Title = FindPageTitle(hdoc).Trim(),
-                SyndicationUri = new SyndicationSearchStrategy(hdoc).GetFeedSearchOrDefault().GetSyndicationUri(),
+                SyndicationUri = new SyndicationSearchStrategy(hdoc).GetFeedSearch().GetSyndicationUri(),
                 IconUri = new IconSearchStrategy(hdoc).GetIconSearchOrDefault().GetIconUri()
             };
 
 
             var xdoc = new XDocumentPageWrapper(details.SyndicationUri, new HttpClientWrapper(details.SyndicationUri).FetchResponse());
-            var content = new SyndicationClientStrategy(xdoc).GetSyndicationClientOrDefault().GetSyndicationContent();
+            var content = new SyndicationClientStrategy(xdoc).GetSyndicationClient().GetSyndicationContent();
             details.Description = content.Description.Trim();
 
             return details;
