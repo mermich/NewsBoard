@@ -39,7 +39,7 @@ namespace NewsBoard.wwwroot.Feed.FeedAdd
             var uri = new Uri(urlToDiscover);
             var preview = new LookupWebSiteApi().GetWebSiteDetails(uri);
             var xdoc = new XDocumentPageWrapper(preview.SyndicationUri, new HttpClientWrapper(preview.SyndicationUri).FetchResponse());
-            var syndication = new SyndicationClientStrategy(xdoc).GetSyndicationClientOrDefault().GetSyndicationContent();
+            var syndication = new SyndicationClientStrategy(xdoc).GetSyndicationClient().GetSyndicationContent();
 
             var model = new FeedAddPreview
             {

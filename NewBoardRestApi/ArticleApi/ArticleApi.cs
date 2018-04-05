@@ -10,9 +10,6 @@ using System;
 
 namespace NewBoardRestApi.ArticleApi
 {
-    /// <summary>
-    /// plop
-    /// </summary>
     [Route("api/[controller]")]
     public class ArticleApi : BaseAuthenticatedApi
     {
@@ -65,10 +62,7 @@ namespace NewBoardRestApi.ArticleApi
                     return f => true;
             }
         }
-
-
-        [HttpGet("{id}")]
-        [Route("OpenArticle")]
+        
         public virtual ArticleVM OpenArticle(int id)
         {
             var article = NewsBoardContext.Articles

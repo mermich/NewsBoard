@@ -22,11 +22,13 @@ namespace NewBoardRestApi.FeedApi
         {
             var feed = NewsBoardContext.Feeds.FirstOrDefault(f => f.Id == feedId);
             var xdoc = new XDocumentPageWrapper(feed.SyndicationUri, new HttpClientWrapper(feed.SyndicationUri).FetchResponse());
-            var feedDetails = new SyndicationClientStrategy(xdoc).GetSyndicationClientOrDefault().GetSyndicationContent();
+            var feedDetails = new SyndicationClientStrategy(xdoc).GetSyndicationClient().GetSyndicationContent();
 
             feed.LastTimeFetched = DateTime.Now;
-            feed.Description = feedDetails.Description;
-            feed.Title = feedDetails.Title;
+
+            // Not ovveriding Description or Title
+            //feed.Description = feedDetails.Description;
+            //feed.Title = feedDetails.Title;
 
             // Merge the list of articles.
             var existingArticles = NewsBoardContext.Articles.Where(a => a.FeedId == feedId);
@@ -48,19 +50,24 @@ namespace NewBoardRestApi.FeedApi
             }
 
 
-
-            var existingUserFeed = NewsBoardContext.UserFeeds.Include(uf => uf.User).FirstOrDefault(uf => uf.User.Id == UserId && uf.Feed.Id == feedId);
-
-            if (existingUserFeed != null)
+            if (UserId == UnAuthenticatedUserId)
             {
-                existingUserFeed.Subscribe();
+                // nothing more to do;
             }
             else
             {
-                var newSubscription = new UserFeed(UserId, feed);
-                NewsBoardContext.UserFeeds.Add(newSubscription);
-            }
+                var existingUserFeed = NewsBoardContext.UserFeeds.Include(uf => uf.User).FirstOrDefault(uf => uf.User.Id == UserId && uf.Feed.Id == feedId);
 
+                if (existingUserFeed != null)
+                {
+                    existingUserFeed.Subscribe();
+                }
+                else
+                {
+                    var newSubscription = new UserFeed(UserId, feed);
+                    NewsBoardContext.UserFeeds.Add(newSubscription);
+                }
+            }
             NewsBoardContext.SaveChanges();
         }
 
@@ -68,10 +75,25 @@ namespace NewBoardRestApi.FeedApi
 
         public void RefreshFeedsArticles()
         {
-            var feeds = NewsBoardContext.Feeds.ToList();
+            Exception e = null;
+            var feeds = NewsBoardContext.Feeds.Include(f => f.Articles).ToList();
+
             foreach (var feed in feeds)
             {
-                RefreshFeedArticles(feed.Id);
+                try
+                {
+                    RefreshFeedArticles(feed.Id);
+                }
+                catch (Exception ex)
+                {
+                    e = ex;
+                }
+
+            }
+
+            if (e != null)
+            {
+                throw e;
             }
         }
 
@@ -93,7 +115,7 @@ namespace NewBoardRestApi.FeedApi
         public Feed CreateSubscription(Uri websiteUri, Uri syndicationUri)
         {
             var xdoc = new XDocumentPageWrapper(syndicationUri, new HttpClientWrapper(syndicationUri).FetchResponse());
-            var feedDetails = new SyndicationClientStrategy(xdoc).GetSyndicationClientOrDefault().GetSyndicationContent();
+            var feedDetails = new SyndicationClientStrategy(xdoc).GetSyndicationClient().GetSyndicationContent();
 
 
             var websiteDetails = new LookupWebSiteApi().GetWebSiteDetails(websiteUri);
@@ -204,7 +226,7 @@ namespace NewBoardRestApi.FeedApi
                     if (UserId == UnAuthenticatedUserId)
                         return f => false;
                     else
-                        return f => f.UserFeeds.Where(uf => uf.UserId != UserId).Any(uf => uf.IsSubscribed);
+                        return f => f.UserFeeds.Any(uf => uf.UserId != UserId || !uf.IsSubscribed);
                 default:
                     return f => true;
             }

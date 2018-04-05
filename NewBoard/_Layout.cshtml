@@ -64,11 +64,11 @@
 
                     <li><a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetAboutPage")">A propos de l'auteur</a></li>
 
-                    <li class="dropdown" ns-authorized-roles="Admin>
+                    <li class="dropdown" ns-authorized-roles="Admin">
                         <a data-toggle="dropdown" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li ns-authorized-roles="MasterAdmin">
-                                <a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetTagListPage")">Tags</a>
+                                <a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("", "Home", "GetTagListPage")">Tags</a>
                             </li>
                             <li ns-authorized-roles="MasterAdmin">
                                 <a ns-action-type="simpleGetAction" href="@Url.NewsBoardUrlHelper().Action("","Home","GetGroupListPage")">Groupes</a>
