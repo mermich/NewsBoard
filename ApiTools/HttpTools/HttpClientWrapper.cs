@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace ApiTools.HttpTools
@@ -23,9 +25,15 @@ namespace ApiTools.HttpTools
 
                 if (response.Result.IsSuccessStatusCode)
                 {
-                    var res = response.Result.Content.ReadAsStringAsync();
-                    res.Wait();
-                    return RemoveEmptyLines(res.Result);
+                    var buffer = response.Result.Content.ReadAsStreamAsync();
+                    buffer.Wait();
+
+
+                    buffer.Result.Position = 0;
+                    StreamReader reader = new StreamReader(buffer.Result);
+                    string text = reader.ReadToEnd();
+
+                    return text;
                 }
                 else
                 {
