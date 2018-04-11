@@ -2,6 +2,7 @@ using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using NewBoardRestApi.ArticleApi;
 using ServerSideSpaTools.JsonResult;
+using NewBoardRestApi.FeedApi;
 
 namespace NewsBoard.wwwroot.Article.ArticleList
 {
@@ -12,10 +13,12 @@ namespace NewsBoard.wwwroot.Article.ArticleList
     public partial class ArticleListController : BaseController
     {
         ArticleApi articleApi;
+        FeedApi feedApi;
 
-        public ArticleListController(ArticleApi articleApi)
+        public ArticleListController(ArticleApi articleApi, FeedApi feedApi)
         {
             this.articleApi = articleApi;
+            this.feedApi = feedApi;
         }
         
         public virtual IActionResult Index(ArticleVMSearch filter, ArticleVMListOptions options)
@@ -52,6 +55,21 @@ namespace NewsBoard.wwwroot.Article.ArticleList
             return new ComposeResult(
                 new HideHtmlResult("[article='" + articleId + "']"),
                 new SuccessMessageResult("Cet article ne sera plus affiche."));
+        }
+
+
+
+
+        public virtual ActionResult GetArticlesByFeed(int id)
+        {
+            var filter = new ArticleVMSearch();
+            filter.Feeds.Add(id);
+
+            var feed = feedApi.GetFeed(id);
+
+            var options = new ArticleVMListOptions("Articles du flux : " + feed.Description);
+
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.ArticleListAction(filter, options)).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }
     }
 }

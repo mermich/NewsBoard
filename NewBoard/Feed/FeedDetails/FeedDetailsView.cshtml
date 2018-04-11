@@ -1,59 +1,66 @@
 ﻿@model FeedVM
 
-
 <div class="panel panel-default">
     <div class="panel-heading">
-        @Model.Title
+        <img class="no-deco" style="height:24px;margin-right:3px" src="@Model.IconUrl" alt="" /> @Model.Title
     </div>
-    <div class="panel-body">
-        Id: @Html.DisplayFor(m => Model.Id)<br />
-        Title: @Html.DisplayFor(m => Model.Title)<br />
-        IconUrl: @Html.DisplayFor(m => Model.IconUrl)<br />
-        Description: @Html.DisplayFor(m => Model.Description)<br />
-        WebSiteUrl: @Html.DisplayFor(m => Model.WebSiteUrl)<br />
-        SyndicationUrl: @Html.DisplayFor(m => Model.SyndicationUrl)<br />
-        Subscribers: @Html.DisplayFor(m => Model.Subscribers)<br />
 
-        <div>
-            <div class="btn-group" role="group">
-                <button class="btn btn-info btn-sm"
-                        href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "RefreshFeed", new { feedId=Model.Id})"
-                        type="button" ns-action-type="simpleGetAction">
-                    Refresh
-                </button>
-                <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
-                </button>
+    <div class="panel-body panel-edit">
+        <input type="hidden" name="Id" value="@Model.Id" />
 
+        <div class="form-horizontal">
 
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Subscribe", new {feedId = Model.Id })"
-                           type="button" ns-action-type="simpleGetAction">
-                            S'abonner
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="Description" class="col-sm-2" style="text-align: right">Description</label>
+                    <div class="col-sm-10">
+                        @Html.DisplayFor(m => Model.Description)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="SyndicationUrl" class="col-sm-2" style="text-align: right">Adresse du site</label>
+                    <div class="col-sm-10">
+                        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Open", new { feedId = Model.Id })"
+                           ns-action-type="simpleGetAction">
+                            @Model.WebSiteUrl
                         </a>
-                    </li>
-                    <li>
-                        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Unsubscribe", new {feedId = Model.Id })"
-                           type="button" ns-action-type="simpleGetAction">
-                            Se desabonner
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Report", new {feedId = Model.Id })"
-                           type="button" ns-action-type="simpleGetAction">
-                            Report
-                        </a>
-                    </li>
-                </ul>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="SyndicationUrl" class="col-sm-2" style="text-align: right">Adresse du flux</label>
+                    <div class="col-sm-10">
+                        <a href="@Model.SyndicationUrl">@Model.SyndicationUrl</a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-info btn-sm"
+                            href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "RefreshFeed", new { feedId=Model.Id})"
+                            type="button" ns-action-type="simpleGetAction">
+                        Rafraichir les articles
+                    </button>
+
+                    <button class="btn btn-info btn-sm"
+                            href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Subscribe", new {feedId = Model.Id })"
+                            type="button" ns-action-type="simpleGetAction">
+                        S'abonner
+                    </button>
+
+                    <button class="btn btn-info btn-sm"
+                            href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedDetails", "Unsubscribe", new {feedId = Model.Id })"
+                            type="button" ns-action-type="simpleGetAction">
+                        Se desabonner
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<div id="articleList">
-    <div ns-loader-url="@Url.NewsBoardUrlHelper().Action("Article","ArticleList","Index", new ArticleVMSearch() { Feeds = new List<int> { Model.Id } }) ">
-        Chargement des articles ...
+<div>
+    <div ns-loader-url="@Url.NewsBoardUrlHelper().ArticleForFeedListAction(Model.Id)">
+        Chargement des flux ...
         <div class='loader'></div>
     </div>
 </div>

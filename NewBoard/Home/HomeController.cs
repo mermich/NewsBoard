@@ -1,9 +1,6 @@
 using NewsBoard.Tools;
 using Microsoft.AspNetCore.Mvc;
 using ServerSideSpaTools.JsonResult;
-using Microsoft.Extensions.Caching.Memory;
-using System;
-using Microsoft.AspNetCore.ResponseCaching;
 using NewBoardRestApi.FeedApi;
 
 namespace NewsBoard.wwwroot.Home
@@ -31,7 +28,6 @@ namespace NewsBoard.wwwroot.Home
             return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().UserArticleListAction).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }
 
-        
         public virtual IActionResult GetArticleSearch()
         {
             return new ReplaceMainHtmlResult(Url.NewsBoardUrlHelper().AllArticleListAction).ReplaceResultOrRedirectResult(IsAjaxRequest);

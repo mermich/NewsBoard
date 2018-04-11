@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ApiTools
 {
@@ -31,6 +32,26 @@ namespace ApiTools
                 }
                 catch (Exception)
                 {
+                }
+            }
+            return this;
+        }
+
+        public TryChain<T> ThenTry(IEnumerable<Func<T>> fs)
+        {
+            if (!IsSucessFull)
+            {
+                foreach (var f in fs)
+                {
+                    try
+                    {
+                        Result = f();
+                        IsSucessFull = true;
+                        break;
+                    }
+                    catch (Exception)
+                    {
+                    }
                 }
             }
             return this;

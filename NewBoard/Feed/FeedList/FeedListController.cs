@@ -18,10 +18,18 @@ namespace NewsBoard.wwwroot.Feed.FeedList
         {
             this.feedApi = feedApi;
         }
-        
+
 
         public virtual IActionResult Index(FeedVMSearch filter, FeedVMListOptions options)
-        {            
+        {
+            var model = feedApi.ListFeed(filter);
+            model.Options = options;
+
+            return ReturnView("FeedListView", model);
+        }
+
+        public virtual IActionResult GetIndex(FeedVMSearch filter, FeedVMListOptions options)
+        {
             var model = feedApi.ListFeed(filter);
             model.Options = options;
 
@@ -45,11 +53,10 @@ namespace NewsBoard.wwwroot.Feed.FeedList
                 return new RedirectResult(feed.WebSiteUrl);
             }
         }
-
-
+        
         public virtual IActionResult FeedAction(int feedId)
         {
-            var model = feedApi.GetFeed(feedId);
+            var model = feedApi.GetFeedAction(feedId);
             return ReturnView("FeedAction", model);
         }
 
@@ -61,7 +68,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
             return new ComposeResult(
                new SuccessMessageResult("Subscribed"),
                new ReplaceHtmlResult("#UserSubscription", NewsBoardUrlHelper.Action("Feed", "UserSubscription", "Index")),
-               new ReplaceHtmlResult("[feed='" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new {  feedId })));
+               new ReplaceHtmlResult("[feed='" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId })));
         }
 
         public virtual IActionResult Unsubscribe(int feedId)
@@ -71,7 +78,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
             return new ComposeResult(
                 new SuccessMessageResult("Unsubscribed"),
                 new RemoveHtmlResult("[article-feed='" + feedId + "']"),
-                new ReplaceHtmlResult("[feed='" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new {  feedId })));
+                new ReplaceHtmlResult("[feed='" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId })));
         }
 
         public virtual IActionResult Report(int feedId)
@@ -81,7 +88,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
             return new ComposeResult(
                   new SuccessMessageResult("Reported"),
                   new RemoveHtmlResult("[article-feed='" + feedId + "']"),
-                  new ReplaceHtmlResult("[feed='" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new {  feedId })));
+                  new ReplaceHtmlResult("[feed='" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId })));
         }
 
 
@@ -92,7 +99,7 @@ namespace NewsBoard.wwwroot.Feed.FeedList
             return new ComposeResult(
                   new SuccessMessageResult("StopDisplay"),
                   new RemoveHtmlResult("[article-feed='" + feedId + "']"),
-                  new ReplaceHtmlResult("[feed='" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new {  feedId })));
+                  new ReplaceHtmlResult("[feed='" + feedId + "']", NewsBoardUrlHelper.Action("Feed", "FeedList", "FeedAction", new { feedId })));
         }
 
 
@@ -101,15 +108,15 @@ namespace NewsBoard.wwwroot.Feed.FeedList
         {
             feedApi.OpenFeed(feedId);
 
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedDetails", "Index", new {  feedId })).ReplaceResultOrRedirectResult(IsAjaxRequest);
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedDetails", "Index", new { feedId })).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }
 
-        
+
         public virtual IActionResult GetEdit(int feedId)
         {
-            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedEdit", "Index", new {  feedId })).ReplaceResultOrRedirectResult(IsAjaxRequest);
+            return new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("Feed", "FeedEdit", "Index", new { feedId })).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }
-        
+
         public virtual IActionResult Refresh(int feedId)
         {
             feedApi.RefreshFeedArticles(feedId);

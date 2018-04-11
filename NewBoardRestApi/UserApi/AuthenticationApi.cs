@@ -85,5 +85,18 @@ namespace NewBoardRestApi.UserApi
 
             return result;
         }
+
+
+        public string GetUserFeedsAsString(int userId)
+        {
+            var userFeeds = NewsBoardContext
+                 .UserFeeds
+                 .Where(g => g.UserId == userId)
+                 .Select(uf => uf.FeedId)
+                 .ToList();
+
+            return string.Join('_', userFeeds.Select(uf => uf.ToString()));
+        }
+
     }
 }

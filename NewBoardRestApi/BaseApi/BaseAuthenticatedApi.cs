@@ -1,20 +1,6 @@
 ﻿using ApiTools;
-using Microsoft.AspNetCore.Http;
 using NewBoardRestApi.DataModel;
-
-namespace NewBoardRestApi
-{
-    public class SessionObject
-    {
-        public int UserId { get; set; }
-
-        public SessionObject(ISession isession)
-        {
-            UserId = isession.GetInt32("UserId").GetValueOrDefault();
-        }
-    }
-}
-
+using System.Collections.Generic;
 
 namespace NewBoardRestApi.BaseApi
 {
@@ -24,9 +10,12 @@ namespace NewBoardRestApi.BaseApi
 
         public readonly int UserId;
 
+        public List<int> UserFeeds { get; set; } = new List<int>();
+
         public BaseAuthenticatedApi(NewsBoardContext newsBoardContext, SessionObject sessionObject) : base(newsBoardContext)
         {
             this.UserId = sessionObject.UserId;
+            this.UserFeeds = sessionObject.UserFeeds;
         }
 
         public void ThrowExIfUnAuthenticated()

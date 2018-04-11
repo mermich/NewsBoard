@@ -16,7 +16,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
             this.tagApi = tagApi;
         }
 
-        
+
         public virtual IActionResult Index()
         {
             var model = tagApi.GetUsedTags();
@@ -24,14 +24,14 @@ namespace NewsBoard.wwwroot.User.UserRegister
             return ReturnView("TagCloudView", model);
         }
 
-        
+
         public virtual ActionResult GetArticlesByTag(int id)
         {
             var tagModel = tagApi.GetTag(id);
             var filter = new ArticleVMSearch();
             filter.Tags.Add(id);
 
-            var options = new ArticleVMListOptions { Heading = "Articles du Tag : " + tagModel.Label };
+            var options = new ArticleVMListOptions("Articles du Tag : " + tagModel.Label);
 
             return new ReplaceMainHtmlResult(NewsBoardUrlHelper.ArticleListAction(filter, options)).ReplaceResultOrRedirectResult(IsAjaxRequest);
         }

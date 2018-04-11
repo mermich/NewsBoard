@@ -18,7 +18,7 @@ namespace NewBoardRestApi.FeedApi
         {
         }
 
-        public virtual void RefreshFeedArticles(int feedId)
+        public virtual void RefreshFeedArticles(int feedId, bool subscribe = true)
         {
             var feed = NewsBoardContext.Feeds.FirstOrDefault(f => f.Id == feedId);
             var xdoc = new XDocumentPageWrapper(feed.SyndicationUri, new HttpClientWrapper(feed.SyndicationUri).FetchResponse());
@@ -26,46 +26,36 @@ namespace NewBoardRestApi.FeedApi
 
             feed.LastTimeFetched = DateTime.Now;
 
-            // Not ovveriding Description or Title
-            //feed.Description = feedDetails.Description;
-            //feed.Title = feedDetails.Title;
-
             // Merge the list of articles.
             var existingArticles = NewsBoardContext.Articles.Where(a => a.FeedId == feedId);
             foreach (var article in feedDetails.Items.ToArticles(feed))
             {
                 var existingArticle = existingArticles.FirstOrDefault(a => a.Url == article.Url);
-                if (existingArticle != null)
-                {
-                    // Article exists.
-                    existingArticle.Label = article.Label;
-                    existingArticle.LastUpdatedTime = article.LastUpdatedTime;
-                    existingArticle.PublishDate = article.PublishDate;
-                    existingArticle.Summary = article.Summary;
-                }
-                else
+                if (existingArticle == null)
                 {
                     NewsBoardContext.Articles.Add(article);
                 }
             }
 
-
-            if (UserId == UnAuthenticatedUserId)
+            if (subscribe)
             {
-                // nothing more to do;
-            }
-            else
-            {
-                var existingUserFeed = NewsBoardContext.UserFeeds.Include(uf => uf.User).FirstOrDefault(uf => uf.User.Id == UserId && uf.Feed.Id == feedId);
-
-                if (existingUserFeed != null)
+                if (UserId == UnAuthenticatedUserId)
                 {
-                    existingUserFeed.Subscribe();
+                    // nothing more to do;
                 }
                 else
                 {
-                    var newSubscription = new UserFeed(UserId, feed);
-                    NewsBoardContext.UserFeeds.Add(newSubscription);
+                    var existingUserFeed = NewsBoardContext.UserFeeds.Include(uf => uf.User).FirstOrDefault(uf => uf.User.Id == UserId && uf.Feed.Id == feedId);
+
+                    if (existingUserFeed != null)
+                    {
+                        existingUserFeed.Subscribe();
+                    }
+                    else
+                    {
+                        var newSubscription = new UserFeed(UserId, feed);
+                        NewsBoardContext.UserFeeds.Add(newSubscription);
+                    }
                 }
             }
             NewsBoardContext.SaveChanges();
@@ -82,13 +72,12 @@ namespace NewBoardRestApi.FeedApi
             {
                 try
                 {
-                    RefreshFeedArticles(feed.Id);
+                    RefreshFeedArticles(feed.Id, false);
                 }
                 catch (Exception ex)
                 {
                     e = ex;
                 }
-
             }
 
             if (e != null)
@@ -348,6 +337,13 @@ namespace NewBoardRestApi.FeedApi
                 .Include(f => f.Articles).ThenInclude(article => article.UserArticles)
                 .FirstOrDefault(f => f.Id == feedId)
                 .ToFeedVM(UserId);
+        }
+
+        public virtual FeedActionVM GetFeedAction(int feedId)
+        {
+            var feed = NewsBoardContext.Feeds.FirstOrDefault(f => f.Id == feedId);
+
+            return new FeedActionVM(feed, UserFeeds);
         }
 
         public virtual ArticleVMList GetArticles(int feedId)

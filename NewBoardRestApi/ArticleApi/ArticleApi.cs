@@ -37,7 +37,7 @@ namespace NewBoardRestApi.ArticleApi
             var result = NewsBoardContext.Articles
                 .Include(a => a.Feed).ThenInclude(f => f.WebSite)
                 .Include(a => a.UserArticles)
-                .Where(subscriptionFilter(filter.SubscriptionFilter))
+                .Where(SubscriptionFilter(filter.SubscriptionFilter))
                 .Where(a => !filter.HideReported || !a.Feed.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsReported))
                 .Where(a => !filter.Feeds.Any() || filter.Feeds.Contains(a.FeedId))
                 .Where(a => !filter.Tags.Any() ||a.Feed.FeedTags.Any(ft => filter.Tags.Contains(ft.TagId)))
@@ -48,15 +48,15 @@ namespace NewBoardRestApi.ArticleApi
             return result;
         }
 
-        Expression<Func<Article, bool>> subscriptionFilter(SubscriptionFilter filter)
+        Expression<Func<Article, bool>> SubscriptionFilter(SubscriptionFilter filter)
         {
             switch (filter)
             {
-                case SubscriptionFilter.All:
+                case FeedApi.Search.SubscriptionFilter.All:
                     return f => true;
-                case SubscriptionFilter.OnlySubscribbed:
+                case FeedApi.Search.SubscriptionFilter.OnlySubscribbed:
                     return f => f.Feed.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsSubscribed);
-                case SubscriptionFilter.OnlyUnSubscribbed:
+                case FeedApi.Search.SubscriptionFilter.OnlyUnSubscribbed:
                     return f => !f.Feed.UserFeeds.Any(uf => uf.UserId == UserId && uf.IsSubscribed);
                 default:
                     return f => true;

@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NewBoardRestApi;
 using NewBoardRestApi.ArticleApi;
+using NewBoardRestApi.BaseApi;
 using NewBoardRestApi.DataModel;
 using NewBoardRestApi.FeedApi;
 using NewBoardRestApi.GroupApi;
@@ -72,7 +72,7 @@ namespace NewsBoard
             var sp = services.BuildServiceProvider();
             var iHttpContextAccessor = sp.GetService<IHttpContextAccessor>();
             services.AddScoped((i) => new SessionObject(iHttpContextAccessor.HttpContext.Session));
-
+            
 
             // Use in memory for debug.
             if (env.IsDevelopment())

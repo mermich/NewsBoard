@@ -3,20 +3,20 @@ using System;
 
 namespace ApiTools.SyndicationSearch
 {
-    public class LefigaroSyndicationSearch : ASyndicationSearch
+    public class MsdnBlogSyndicationSearch : ASyndicationSearch
     {
-        public LefigaroSyndicationSearch(HtmlDocumentPageWrapper doc) : base(doc)
+        public MsdnBlogSyndicationSearch(HtmlDocumentPageWrapper doc) : base(doc)
         {
         }
 
         public override Uri GetSyndicationUri()
         {
-            return new Uri("http://www.lefigaro.fr/rss/figaro_actualites.xml");
+            return new Uri(doc.Uri.Scheme + "://" + doc.Uri.Host + doc.Uri.Segments[0] + doc.Uri.Segments[1] + "feed");
         }
 
         public override int MatchScore()
         {
-            if( doc.Uri.Host == "www.lefigaro.fr")
+            if (doc.Uri.Host == "blogs.msdn.microsoft.com")
             {
                 return 100;
             }

@@ -79,9 +79,11 @@ namespace NewBoardRestApi.UserApi
                 if (!user.UserGroups.Any(a => a.GroupId == group.Value))
                 {
                     //create the row
-                    var ug = new UserGroup();
-                    ug.User = user;
-                    ug.Group = NewsBoardContext.Groups.FirstOrDefault(a => a.Id == group.Value);
+                    var ug = new UserGroup
+                    {
+                        User = user,
+                        Group = NewsBoardContext.Groups.FirstOrDefault(a => a.Id == group.Value)
+                    };
                     user.UserGroups.Add(ug);
                 }
             }

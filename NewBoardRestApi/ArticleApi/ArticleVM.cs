@@ -22,6 +22,8 @@ namespace NewBoardRestApi.ArticleApi
 
         public int Subscribers { get; private set; }
 
+        public DateTime PublishDate { get; private set; }
+
         public decimal Score { get; private set; }
 
         public int FeedId { get; private set; }
@@ -40,6 +42,7 @@ namespace NewBoardRestApi.ArticleApi
             Score = article.Score;
             FeedId = article.FeedId;
             IconUrl = article.Feed.WebSite.IconUrl;
+            PublishDate = article.PublishDate;
 
             IsSubscribed = article.Feed.UserFeeds != null && article.Feed.UserFeeds.Any(uf => uf.UserId == userId && uf.IsSubscribed);
 

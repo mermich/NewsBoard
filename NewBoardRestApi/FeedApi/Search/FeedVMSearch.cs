@@ -16,26 +16,4 @@ namespace NewBoardRestApi.FeedApi.Search
 
         public FeedListOrderBy OrderBy { get; set; } = FeedListOrderBy.Name;
     }
-
-    public enum SubscriptionFilter
-    {
-        All,
-        OnlySubscribbed,
-        OnlyUnSubscribbed
-    }
-
-    public enum StatusFilter
-    {
-        All,
-        HideHidden,
-        HideReported,
-        HideOpened
-    }
-
-    public enum FeedListOrderBy
-    {
-        None,
-        Name,
-        Subscriptions
-    }
 }

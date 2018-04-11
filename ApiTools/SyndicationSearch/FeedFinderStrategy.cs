@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using ApiTools.HttpTools;
 
@@ -9,7 +8,7 @@ namespace ApiTools.SyndicationSearch
     {
         List<ASyndicationSearch> searchers = new List<ASyndicationSearch>();
 
-        public SyndicationSearchStrategy(HtmlDocumentPageWrapper doc) : this(new List<ASyndicationSearch> { new DefaultSyndicationSearch(doc), new WordPressSyndicationSearch(doc), new YoutubeSyndicationSearch(doc), new WordPressElegantThemesSyndicationSearch(doc), new LefigaroSyndicationSearch(doc) })
+        public SyndicationSearchStrategy(HtmlDocumentPageWrapper doc) : this(new List<ASyndicationSearch> { new DefaultSyndicationSearch(doc), new MsdnBlogSyndicationSearch(doc), new WordPressSyndicationSearch(doc), new YoutubeSyndicationSearch(doc), new WordPressElegantThemesSyndicationSearch(doc), new LefigaroSyndicationSearch(doc) })
         {
         }
 

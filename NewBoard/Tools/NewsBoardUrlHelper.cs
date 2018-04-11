@@ -61,6 +61,9 @@ namespace NewsBoard.Tools
             new ArticleVMSearch { SubscriptionFilter = SubscriptionFilter.OnlySubscribbed, MaxItems = 50 },
             new ArticleVMListOptions { Heading = "Articles de mes Flux" });
 
+        public string ArticleForFeedListAction(int feedId) => ArticleListAction(
+          ArticleVMSearch.BuildSerachByFeedId(feedId),
+          new ArticleVMListOptions { Heading = "Articles du flux" });
 
     }
 }

@@ -2,6 +2,7 @@ using ApiTools;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NewBoardRestApi.FeedApi;
 using NewBoardRestApi.UserApi;
 using NewsBoard.Tools;
 using ServerSideSpaTools.JsonResult;
@@ -14,10 +15,12 @@ namespace NewsBoard.wwwroot.User.UserRegister
     public partial class UserLoginController : BaseController
     {
         AuthenticationApi authenticationApi;
+        FeedApi feedApi;
 
-        public UserLoginController(AuthenticationApi authenticationApi)
+        public UserLoginController(AuthenticationApi authenticationApi, FeedApi feedApi)
         {
             this.authenticationApi = authenticationApi;
+            this.feedApi = feedApi;
         }
 
 
@@ -50,6 +53,10 @@ namespace NewsBoard.wwwroot.User.UserRegister
 
                 HttpContext.SignInAsync("NewsBoardScheme", principal);
                 HttpContext.Session.SetInt32("UserId", user.Id);
+
+
+                var userFeedsAsString = authenticationApi.GetUserFeedsAsString(user.Id);
+                HttpContext.Session.SetString("UserFeeds", userFeedsAsString);
 
                 return new ComposeResult(
                     new SuccessMessageResult("Logged"),

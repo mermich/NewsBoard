@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NewBoardRestApi.BaseApi;
 using NewBoardRestApi.DataModel;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using NewBoardRestApi.DataModel.Engine;
@@ -90,13 +89,13 @@ namespace NewBoardRestApi.GroupApi
 
             var selectedPermissions = groupVM.Permissions.SelectedValues;
 
-            Func<GroupPermission, int> existingIdentifier = g => g.PermissionId;
-            Func<int, GroupPermission> convertFunc = g => new GroupPermission
+            int existingIdentifier(GroupPermission g) => g.PermissionId;
+            GroupPermission convertFunc(int g) => new GroupPermission
             {
                 Group = group,
                 Permission = NewsBoardContext.Permissions.FirstOrDefault(a => a.Id == g)
             };
-            
+
             NewsBoardContext.GroupPermissions.MergeLists(existingIdentifier, selectedPermissions, convertFunc);
 
             NewsBoardContext.SaveChanges();

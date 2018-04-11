@@ -7,7 +7,7 @@ namespace NewBoardRestApi.ArticleApi
     {
         public List<int> Feeds { get; set; } = new List<int>();
 
-        public int MaxItems { get; set; } = 10;
+        public int MaxItems { get; set; } = 100;
 
         public SubscriptionFilter SubscriptionFilter { get; set; } = SubscriptionFilter.All;
 
@@ -17,5 +17,13 @@ namespace NewBoardRestApi.ArticleApi
 
         public List<int> Tags { get; set; } = new List<int>();
 
+        public static ArticleVMSearch BuildSerachByFeedId(int feedId)
+        {
+            return new ArticleVMSearch
+            {
+                Feeds = new List<int> { feedId },
+                HideReported = false
+            };
+        }
     }
 }

@@ -1,6 +1,18 @@
-﻿@model FeedVM
+﻿@model FeedActionVM
 
 <ul name="feed-action" class="dropdown-menu">
+    <li>
+        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "ShowDetails", new { feedId = Model.Id})"
+           type="button" ns-action-type="simpleGetAction">
+            Afficher le flux
+        </a>
+    </li>
+    <li>
+        <a href="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "GetArticlesByFeed", new { id = Model.Id })"
+           type="button" ns-action-type="simpleGetAction">
+            Afficher les articles
+        </a>
+    </li>
     <li th-is-visible="Model.IsSubscribed">
         <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Unsubscribe", new {feedId = Model.Id })"
            type="button" ns-action-type="simpleGetAction">

@@ -5,7 +5,7 @@
     /// </summary>
     public class RemoveHtmlResult : CustomJsonResult
     {
-        public RemoveHtmlResult(string selector) : base(new { RemoveHtml = new { selector = selector } })
+        public RemoveHtmlResult(string selector) : base(new { RemoveHtml = new {  selector } })
         {
 
         }

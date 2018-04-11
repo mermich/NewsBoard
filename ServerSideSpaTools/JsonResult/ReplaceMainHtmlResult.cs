@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace ServerSideSpaTools.JsonResult
+﻿namespace ServerSideSpaTools.JsonResult
 {
     /// <summary>
     /// Replaces main content with the result of an action.

@@ -2,7 +2,7 @@
 {
     public class SetTimeoutResult : CustomJsonResult
     {
-        public SetTimeoutResult(int timeout, CustomJsonResult callback) : base(new { timeout = timeout, callback = callback.Value })
+        public SetTimeoutResult(int timeout, CustomJsonResult callback) : base(new {  timeout, callback = callback.Value })
         {
         }
     }

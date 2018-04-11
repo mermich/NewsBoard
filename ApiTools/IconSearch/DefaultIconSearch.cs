@@ -1,27 +1,56 @@
 ﻿using ApiTools.HttpTools;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ApiTools.IconSearch
 {
     public class DefaultIconSearch : AIconSearch
     {
-        public DefaultIconSearch(HtmlDocumentPageWrapper doc) : base(doc)
+        private List<string> htmlNodepatterns;
+
+        public DefaultIconSearch(HtmlDocumentPageWrapper doc) : this(doc, new List<string>
+        {
+            "//link[@type='image/icon']",
+            "//link[@type='image/x-icon']",
+            "//link[@rel='shortcut icon']",
+            "//link[@rel='icon']"
+        })
         {
 
         }
 
+        public DefaultIconSearch(HtmlDocumentPageWrapper doc, List<string> htmlNodepatterns) : base(doc)
+        {
+            this.htmlNodepatterns = htmlNodepatterns;
+        }
+
+
+        private string findUrlByNodePatterns()
+        {
+            string iconUrl = null;
+
+            foreach (var item in htmlNodepatterns)
+            {
+                var node = doc.GetNodesByExpression(item).FirstOrDefault();
+                if (node != null)
+                {
+                    iconUrl = node.GetAttributeValue("href");
+                }
+            }
+
+            return iconUrl;
+        }
+
         public override Uri GetIconUri()
         {
-            var tryChain = new TryChain<string>(() => doc.GetNodesByExpression("//link[@type='image/icon']").FirstOrDefault().GetAttributeValue("href"))
-            .ThenTry(() => doc.GetNodesByExpression("//link[@type='image/x-icon']").FirstOrDefault().GetAttributeValue("href"))
-            .ThenTry(() => doc.GetNodesByExpression("//link[@type='image/x-icon']").FirstOrDefault().GetAttributeValue("href"))
-            .ThenTry(() => doc.GetNodesByExpression("//link[@rel='shortcut icon']").FirstOrDefault().GetAttributeValue("href"))
-            .ThenTry(() => doc.GetNodesByExpression("//link[@rel='icon']").FirstOrDefault().GetAttributeValue("href"))
-            .ThenTry(() => "/favicon.ico");
+            var iconUrl = findUrlByNodePatterns();
+            if(iconUrl == null)
+            {
+                iconUrl = "/favicon.ico";
+            }
 
-            var uriPart = tryChain.Result;
-            var uri = new UriPart(uriPart).ToFullUri(doc.Uri);
+            var uri = new UriPart(iconUrl).ToFullUri(doc.Uri);
 
             if (new UriTest(uri).DoesExist())
                 return uri;

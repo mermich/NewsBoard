@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using NewBoardRestApi.DataModel;
 
 namespace NewBoardRestApi.BaseApi
@@ -23,7 +22,4 @@ namespace NewBoardRestApi.BaseApi
             }
         }
     }
-
-
-    
 }
