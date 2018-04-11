@@ -1,52 +1,57 @@
 ﻿@model FeedActionVM
-
-<ul name="feed-action" class="dropdown-menu">
-    <li>
-        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "ShowDetails", new { feedId = Model.Id})"
-           type="button" ns-action-type="simpleGetAction">
-            Afficher le flux
-        </a>
-    </li>
-    <li>
-        <a href="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "GetArticlesByFeed", new { id = Model.Id })"
-           type="button" ns-action-type="simpleGetAction">
-            Afficher les articles
-        </a>
-    </li>
-    <li th-is-visible="Model.IsSubscribed">
-        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Unsubscribe", new {feedId = Model.Id })"
-           type="button" ns-action-type="simpleGetAction">
-            Se desabonner
-        </a>
-    </li>
-    <li th-is-visible="!Model.IsSubscribed">
-        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Subscribe", new {feedId = Model.Id })"
+<div>
+    <div th-is-visible="!Model.IsSubscribed" style="margin-right:5px;display:contents">
+        <a class="btn btn-xs btn-success" href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Subscribe", new {feedId = Model.Id })"
            type="button" ns-action-type="simpleGetAction">
             S'abonner
         </a>
-    </li>
-    <li th-is-visible="!Model.IsSubscribed">
-        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "StopDisplay", new {feedId = Model.Id })"
-           type="button" ns-action-type="simpleGetAction">
-            Ne plus afficher
-        </a>
-    </li>
-    <li>
-        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Report", new {feedId = Model.Id })"
-           type="button" ns-action-type="simpleGetAction">
-            Signaler le contenu
-        </a>
-    </li>
-    <li>
-        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "GetEdit", new {feedId = Model.Id })"
-           type="button" ns-action-type="simpleGetAction">
-            Modifier
-        </a>
-    </li>
-    <li>
-        <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Refresh", new {feedId = Model.Id })"
-           type="button" ns-action-type="simpleGetAction">
-            Rafraichir
-        </a>
-    </li>
-</ul>
+    </div>
+
+    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+    </button>
+    <ul name="feed-action" class="dropdown-menu">
+        <li>
+            <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "ShowDetails", new { feedId = Model.Id})"
+               type="button" ns-action-type="simpleGetAction">
+                Afficher le flux
+            </a>
+        </li>
+        <li>
+            <a href="@Url.NewsBoardUrlHelper().Action("Article", "ArticleList", "GetArticlesByFeed", new { id = Model.Id })"
+               type="button" ns-action-type="simpleGetAction">
+                Afficher les articles
+            </a>
+        </li>
+        <li th-is-visible="Model.IsSubscribed">
+            <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Unsubscribe", new {feedId = Model.Id })"
+               type="button" ns-action-type="simpleGetAction">
+                Se desabonner
+            </a>
+        </li>
+        <li th-is-visible="!Model.IsSubscribed">
+            <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "StopDisplay", new {feedId = Model.Id })"
+               type="button" ns-action-type="simpleGetAction">
+                Ne plus afficher
+            </a>
+        </li>
+        <li>
+            <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Report", new {feedId = Model.Id })"
+               type="button" ns-action-type="simpleGetAction">
+                Signaler le contenu
+            </a>
+        </li>
+        <li>
+            <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "GetEdit", new {feedId = Model.Id })"
+               type="button" ns-action-type="simpleGetAction">
+                Modifier
+            </a>
+        </li>
+        <li>
+            <a href="@Url.NewsBoardUrlHelper().Action("Feed", "FeedList", "Refresh", new {feedId = Model.Id })"
+               type="button" ns-action-type="simpleGetAction">
+                Rafraichir
+            </a>
+        </li>
+    </ul>
+</div>
