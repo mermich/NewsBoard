@@ -150,7 +150,7 @@ function HandleAjaxResult(result) {
     }
 
     if (result.successMessage != undefined) {
-        $.notify({ message: result.successMessage }, { type: 'success' });
+        $.notify({ message: result.successMessage, delay: result.duration  }, { type: 'success' });
     }
 
     if (result.fatalMessage != undefined) {
@@ -217,7 +217,7 @@ function HandleAjaxResult(result) {
     if (result.openNewWindow != undefined) {
         setTimeout(function () {
             window.open(result.openNewWindow.url, '_blank');
-        }, 1000);
+        }, 500);
     }
 
     if (result.hideHtml != undefined) {

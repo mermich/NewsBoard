@@ -37,17 +37,17 @@ namespace NewsBoard.Tools
         public string AllFeedListAction =>
             FeedListAction(
                 new FeedVMSearch { SubscriptionFilter = SubscriptionFilter.All, HideReported = false, MaxItems = 50 },
-                new FeedVMListOptions { Heading = "Les Flux" });
+                new FeedVMListOptions("Les Flux"));
 
         public string UserFeedListAction =>
             FeedListAction(
                 new FeedVMSearch { MaxItems = 50 },
-                new FeedVMListOptions { Heading = "Mes Flux" });
+                new FeedVMListOptions("Mes Flux", "Aucuns flux a afficher, il faudrait peut etre souscrire a des flux."));
 
         public string SuggestedFeedListAction =>
             FeedListAction(
                 new FeedVMSearch { SubscriptionFilter = SubscriptionFilter.OnlyUnSubscribbed, HideReported = true, MaxItems = 5, ShouldPickRandomItems = true, OrderBy = FeedListOrderBy.Subscriptions },
-                new FeedVMListOptions { Heading = "Les Flux suggeres" });
+                new FeedVMListOptions("Les Flux suggeres"));
 
 
         public string ArticleListAction(ArticleVMSearch filter, ArticleVMListOptions options) => Action("Article", "ArticleList", "Index", filter, options);
@@ -55,15 +55,15 @@ namespace NewsBoard.Tools
         public string AllArticleListAction =>
             ArticleListAction(
                 new ArticleVMSearch { SubscriptionFilter = SubscriptionFilter.All, MaxItems = 50 },
-                new ArticleVMListOptions { Heading = "Tous les Articles" });
+                new ArticleVMListOptions("Tous les Articles"));
 
         public string UserArticleListAction => ArticleListAction(
             new ArticleVMSearch { SubscriptionFilter = SubscriptionFilter.OnlySubscribbed, MaxItems = 50 },
-            new ArticleVMListOptions { Heading = "Articles de mes Flux" });
+            new ArticleVMListOptions("Articles de mes Flux", "Aucuns resultats a afficher, il faudrait peut etre souscrire a plus de flux."));
 
         public string ArticleForFeedListAction(int feedId) => ArticleListAction(
           ArticleVMSearch.BuildSerachByFeedId(feedId),
-          new ArticleVMListOptions { Heading = "Articles du flux" });
+          new ArticleVMListOptions("Articles du flux"));
 
     }
 }

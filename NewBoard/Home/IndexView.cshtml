@@ -1,22 +1,54 @@
 ﻿@model NewsBoard.wwwroot.Home.HomeModel
 
-<div class="col col-md-6">
-    <div ns-loader-url="@Url.NewsBoardUrlHelper().UserArticleListAction">
-        Chargement des flux ...
-        <div class='loader'></div>
+<div ns-only-authenticated="true">
+    <div class="col col-md-6">
+        <div ns-loader-url="@Url.NewsBoardUrlHelper().UserArticleListAction">
+            Chargement des flux ...
+            <div class='loader'></div>
+        </div>
+    </div>
+
+    <div class="col col-md-6">
+        <div ns-loader-url="@Url.NewsBoardUrlHelper().UserFeedListAction">
+            Chargement du widget ...
+            <div class='loader'></div>
+        </div>
     </div>
 </div>
 
-<div class="col col-md-6">
-    <div ns-loader-url="@Url.NewsBoardUrlHelper().UserFeedListAction">
-        Chargement du widget ...
-        <div class='loader'></div>
-    </div>    
+<div ns-only-authenticated="false">
+    <div class="col col-md-12">
+
+        <div class="panel panel-default">
+            <div class="panel-body panel-default">
+                <div class="form-horizontal">
+
+                    <div class="form-group">
+                        <div class="col-sm-12" style="text-align:center;margin-top: 50px;margin-bottom: 10px;margin-bottom: 100px;">
+                            <h2>
+                                Hey bienvenue a toi modeste voyageur.
+                            </h2>
+                            <br />
+                            <br />
+                            Tu es fatigue de consulter toujours les memes sites pour connaitre les news...
+                            <br />
+                            <br />
+                            Mais tu n'a pas non plus le temps de parcourir tous tes sites preferes pour savoir si il y a du nouveau contenu interessant. <br />
+                            De plus tu vas pouvoir consulter d'autres flux que tes abonnements et pourquoi pas enrichir ton panel !
+                            <br />
+                            <br />
+                            Pour commencer il va te falloir <a href="@Url.NewsBoardUrlHelper().Action("User","UserMenu","GetRegister")" type="button" ns-action-type="simpleGetAction">creer un compte</a>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 
-<script>   
+<script>
     $(function () {
         var fatalMessage = "@TempData["FatalMessage"]";
         if (fatalMessage != undefined && fatalMessage.length > 0) {

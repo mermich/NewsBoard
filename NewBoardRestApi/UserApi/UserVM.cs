@@ -14,13 +14,7 @@ namespace NewBoardRestApi.UserApi
 
         public List<string> Groups { get; set; } = new List<string>();
 
-        public string GroupString
-        {
-            get
-            {
-                return string.Join(", ", Groups.Select(g => g));
-            }
-        }
+        public string GroupString => string.Join(", ", Groups.Select(g => g));
 
 
         public UserVM()

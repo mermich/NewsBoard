@@ -1,3 +1,6 @@
 ﻿
-<li><a class="btn btn-success" id="loginMenuLink" href="@Url.NewsBoardUrlHelper().Action("User","UserMenu", "GetLogin")" type="button" ns-action-type="simpleGetAction">Se connecter</a></li>
-<li><a href="@Url.NewsBoardUrlHelper().Action("User","UserMenu","GetRegister")" type="button" ns-action-type="simpleGetAction">Creer un compte</a></li>
+
+<form class="navbar-form navbar-left" style="margin:0px">
+    <a class="btn btn-default navbar-btn btn-success" id="loginMenuLink" href="@Url.NewsBoardUrlHelper().Action("User","UserMenu", "GetLogin")" type="button" ns-action-type="simpleGetAction">Se connecter</a>
+    <a class="btn btn-default navbar-btn btn-primary" href="@Url.NewsBoardUrlHelper().Action("User","UserMenu","GetRegister")" type="button" ns-action-type="simpleGetAction">Creer un compte</a>
+</form>

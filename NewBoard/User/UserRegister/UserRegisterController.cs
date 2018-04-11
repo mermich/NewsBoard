@@ -28,7 +28,7 @@ namespace NewsBoard.wwwroot.User.UserRegister
             var userId = authenticationApi.Register(model);
 
             return new ComposeResult(
-                    new SuccessMessageResult("Votre compte est creer, veuilliez vous connecter"),
+                    new SuccessMessageResult("Votre compte est creer, veuilliez vous connecter", 20000),
                     new ReplaceMainHtmlResult(NewsBoardUrlHelper.Action("User", "UserLogin", "Index")));
         }
     }

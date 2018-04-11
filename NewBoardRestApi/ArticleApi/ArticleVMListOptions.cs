@@ -15,5 +15,11 @@
         {
             Heading = heading;
         }
+
+        public ArticleVMListOptions(string heading, string noDataToDisplay)
+        {
+            Heading = heading;
+            NoDataToDisplay = noDataToDisplay;
+        }
     }
 }

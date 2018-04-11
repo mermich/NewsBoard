@@ -15,10 +15,12 @@
                 <div class="col-sm-6">
                     <input type="text" class="form-control" id="Email" name="Email" value="@Model.Email" placeholder="Email">
                 </div>
+                <div class="col-sm-6 col-sm-offset-2">
+                    Aucuns spam ne sera envoye, en fait l'email sert d'authentifiant mais n'est jamais verifie.
+                </div>
             </div>
-
             <div class="form-group">
-                <label class="col-sm-2 control-label" for="Password">Password</label>
+                <label class="col-sm-2 control-label" for="Password">Mot de passe</label>
                 <div class="col-sm-6">
                     <input type="password" class="form-control" name="Password" value="@Model.Password" />
                 </div>
@@ -31,7 +33,7 @@
                         <button class="btn btn-info"
                                 href="@Url.NewsBoardUrlHelper().Action("User", "UserRegister", "Register")"
                                 type="button" ns-action-type="simplePostAction">
-                            Register
+                            Creer le compte
                         </button>
                     </div>
                 </div>

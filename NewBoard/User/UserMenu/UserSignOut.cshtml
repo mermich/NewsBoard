@@ -1,3 +1,5 @@
 ﻿@model UserVM
 
-<li><a href="@Url.NewsBoardUrlHelper().Action("User","UserLogin", "SignOut")" type="button" ns-action-type="simpleGetAction">Se deconnecter</a></li>
+<form class="navbar-form navbar-left" style="margin:0px">
+    <a class="btn btn-default navbar-btn btn-primary" href="@Url.NewsBoardUrlHelper().Action("User","UserLogin", "SignOut")" type="button" ns-action-type="simpleGetAction">Se deconnecter</a>
+</form>
